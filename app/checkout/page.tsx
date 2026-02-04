@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { CheckoutSection } from '../components/checkout';
+import Navbar from '../components/layout/Navbar';
 
 // Metadata for SEO
 export const metadata = {
@@ -22,6 +23,7 @@ export const metadata = {
 export default function CheckoutPage() {
   return (
     <main className="min-h-screen bg-[#FFFCF5]">
+      <Navbar />
       {/* Checkout Section */}
       <CheckoutSection />
     </main>
