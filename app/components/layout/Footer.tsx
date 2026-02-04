@@ -192,11 +192,11 @@ const LogoIcon = () => (
  * Footer links data
  */
 const COMPANY_LINKS = [
-  { label: "Tour Listings", href: "/tours" },
+  { label: "Products", href: "/products" },
   { label: "Destinations", href: "/destinations" },
-  { label: "Tour Activates", href: "/activities" },
-  { label: "Tour Types", href: "/tour-types" },
-  { label: "How it Work", href: "/how-it-works" },
+  { label: "Our Portfolio", href: "/portfolio" },
+  { label: "Our History", href: "/history" },
+  { label: "Compare", href: "/compare" },
 ];
 
 const EXPLORE_LINKS = [

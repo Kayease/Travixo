@@ -28,13 +28,13 @@ interface CheckoutSectionProps {
 
 const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   tourData = {
-    image: 'https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=800&auto=format&fit=crop',
+    image: '/images/checkout/Frame 427.png',
     name: 'Bangkok Temple Tour',
     pricePerPerson: 4250,
   },
 }) => {
   // Current step state
-  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(2);
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(3);
 
   // Travel information form state
   const [travelInfo, setTravelInfo] = useState({
@@ -75,12 +75,14 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
     <section className="relative w-full bg-[#FFFCF5] py-8 md:py-12 lg:py-16">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Progress Bar */}
-        <CheckoutProgressBar currentStep={currentStep} />
+        <div className="mb-8 md:mb-12">
+          <CheckoutProgressBar currentStep={currentStep} />
+        </div>
 
         {/* Main Content: Form + Summary */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Left Column: Forms */}
-          <div className="flex-1 max-w-full lg:max-w-[812px]">
+          <div className="flex-1 w-full lg:max-w-[812px]">
             {/* Travel Information Form */}
             <TravelInformationForm
               formData={travelInfo}

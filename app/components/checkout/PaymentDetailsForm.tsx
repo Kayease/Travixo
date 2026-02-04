@@ -14,6 +14,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 interface PaymentDetailsFormProps {
   paymentMethod: 'card' | 'paypal';
@@ -53,16 +54,14 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
       {/* Section Header */}
       <div className="flex items-center gap-2 mb-6 md:mb-8">
         {/* Lock/Security Icon */}
-        <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none">
-          <rect x="6" y="14" width="20" height="14" rx="2" fill="#FF6E00" />
-          <path
-            d="M10 14V10C10 6.68629 12.6863 4 16 4C19.3137 4 22 6.68629 22 10V14"
-            stroke="#FF6E00"
-            strokeWidth="2"
-          />
-          <circle cx="16" cy="21" r="2" fill="white" />
-        </svg>
-        <h2 className="font-display italic font-semibold text-xl md:text-[24px] leading-[30px] text-brand-brown">
+        <Image
+          src="/images/checkout/mdi_encryption-secure-outline.png"
+          alt="Security"
+          width={32}
+          height={32}
+          className="object-contain flex-shrink-0"
+        />
+        <h2 className="font-display italic font-semibold text-[24px] leading-[30px] text-brand-brown">
           Payment Details
         </h2>
       </div>
@@ -75,10 +74,9 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           className={`
             h-[60px] rounded-xl font-body font-semibold text-base leading-[30px] text-brand-brown
             transition-all duration-200
-            ${
-              paymentMethod === 'card'
-                ? 'bg-brand-orange/20 border border-brand-orange'
-                : 'bg-white border border-brand-brown/20 hover:border-brand-orange/50'
+            ${paymentMethod === 'card'
+              ? 'bg-brand-orange/20 border border-brand-orange'
+              : 'bg-white border border-brand-brown/20 hover:border-brand-orange/50'
             }
           `}
         >
@@ -91,10 +89,9 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           className={`
             h-[60px] rounded-xl font-body font-semibold text-base leading-[30px] text-brand-brown
             transition-all duration-200
-            ${
-              paymentMethod === 'paypal'
-                ? 'bg-brand-orange/20 border border-brand-orange'
-                : 'bg-white border border-brand-brown/20 hover:border-brand-orange/50'
+            ${paymentMethod === 'paypal'
+              ? 'bg-brand-orange/20 border border-brand-orange'
+              : 'bg-white border border-brand-brown/20 hover:border-brand-orange/50'
             }
           `}
         >
@@ -107,8 +104,8 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
         <div className="bg-white border border-brand-brown/20 rounded-xl p-4 md:p-6">
           {/* Card Number Field */}
           <div className="mb-4 md:mb-6">
-            <label className="block font-display italic font-semibold text-lg md:text-xl leading-[30px] text-brand-brown mb-2">
-              Email Address
+            <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+              Card Number
             </label>
             <input
               type="text"
@@ -127,7 +124,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {/* Expiry Date */}
             <div>
-              <label className="block font-display italic font-semibold text-lg md:text-xl leading-[30px] text-brand-brown mb-2">
+              <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
                 Expiry Date
               </label>
               <input
@@ -145,7 +142,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
 
             {/* CVV */}
             <div>
-              <label className="block font-display italic font-semibold text-lg md:text-xl leading-[30px] text-brand-brown mb-2">
+              <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
                 CVV
               </label>
               <input

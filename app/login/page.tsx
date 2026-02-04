@@ -53,7 +53,17 @@ const LoginFormSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Login submitted:", formData);
-    // Handle login logic
+
+    // Simulate successful login and redirect to profile
+    // In production, this would validate credentials with an API
+    if (formData.email && formData.password) {
+      // Store login state (in production, use proper auth)
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userEmail', formData.email);
+
+      // Redirect to profile page
+      window.location.href = '/profile';
+    }
   };
 
   return (

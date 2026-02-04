@@ -7,39 +7,39 @@ import { ProcessSection } from "../components/home/ProcessSection";
 import { ValuesSection } from "../components/home/ValuesSection";
 
 /**
- * Gallery images data - Using local images from public folder
+ * Gallery images data - Using local images from public/images/about folder
  */
 const GALLERY_IMAGES = {
   topRight: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 308.png",
+    url: "/images/about/Frame 345.png",
     alt: "Modern architecture building",
   },
   leftTall: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 302.png",
+    url: "/images/about/Frame 346.png",
     alt: "Eiffel Tower Paris",
   },
   centerTop: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 304.png",
+    url: "/images/about/Frame 347.png",
     alt: "Desert safari adventure",
   },
   centerBottom: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 306.png",
+    url: "/images/about/Frame 348.png",
     alt: "Vietnam river boats",
   },
   leftBottom: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 305.png",
+    url: "/images/about/Frame 349.png",
     alt: "Venice canal",
   },
   rightMiddle: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 303.png",
+    url: "/images/about/Frame 350.png",
     alt: "Hot air balloon adventure",
   },
   rightBottom: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 307.png",
+    url: "/images/about/Frame 351.png",
     alt: "Tropical infinity pool",
   },
   visionSmall: {
-    url: "/images/Travixo ( Travel & Tour )/Frame 301.png",
+    url: "/images/about/Frame 354.png",
     alt: "Airplane sunset view",
   },
 };

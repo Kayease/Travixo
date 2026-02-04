@@ -25,7 +25,7 @@ const ImpactStoriesSection: React.FC = () => {
             {/* Main Image */}
             <div className="relative w-full aspect-[630/653] rounded-xl overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.25)]">
               <Image
-                src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop"
+                src="/images/portfolio/Frame 332.png"
                 alt="Traveler exploring the city - Impact Stories"
                 fill
                 className="object-cover"
@@ -62,18 +62,13 @@ const ImpactStoriesSection: React.FC = () => {
               <div className="flex items-start gap-4">
                 {/* Leaf Icon */}
                 <div className="w-7 h-7 flex-shrink-0 mt-0.5">
-                  <svg className="w-7 h-7" viewBox="0 0 28 28" fill="none">
-                    <path
-                      d="M21 7C21 7 19 3 14 3C9 3 4 7 4 14C4 21 9 25 14 25C14 25 14 19 14 14C14 9 21 7 21 7Z"
-                      fill="#FF6E00"
-                    />
-                    <path
-                      d="M14 14C14 14 18 12 21 7"
-                      stroke="#FF6E00"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
+                  <Image
+                    src="/images/portfolio/Vector.png"
+                    alt="Regenerative Tourism"
+                    width={28}
+                    height={28}
+                    className="object-contain"
+                  />
                 </div>
                 <div>
                   <h4 className="font-display italic font-semibold text-lg leading-[30px] text-brand-brown mb-1">
@@ -89,15 +84,13 @@ const ImpactStoriesSection: React.FC = () => {
               <div className="flex items-start gap-4">
                 {/* People Icon */}
                 <div className="w-7 h-7 flex-shrink-0 mt-0.5">
-                  <svg className="w-7 h-7" viewBox="0 0 28 28" fill="none">
-                    <circle cx="14" cy="8" r="4" fill="#FF6E00" />
-                    <path
-                      d="M6 24C6 19.5817 9.58172 16 14 16C18.4183 16 22 19.5817 22 24"
-                      fill="#FF6E00"
-                    />
-                    <circle cx="22" cy="10" r="3" fill="#FF6E00" opacity="0.6" />
-                    <circle cx="6" cy="10" r="3" fill="#FF6E00" opacity="0.6" />
-                  </svg>
+                  <Image
+                    src="/images/portfolio/formkit_people.png"
+                    alt="Community Empowerment"
+                    width={28}
+                    height={28}
+                    className="object-contain"
+                  />
                 </div>
                 <div>
                   <h4 className="font-display italic font-semibold text-lg leading-[30px] text-brand-brown mb-1">

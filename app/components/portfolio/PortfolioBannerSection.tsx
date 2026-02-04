@@ -13,22 +13,24 @@ import Image from 'next/image';
 
 const PortfolioBannerSection: React.FC = () => {
   return (
-    <section 
+    <section
       className="relative w-full"
       aria-label="Portfolio banner image"
     >
       {/* Banner Container */}
       <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] xl:h-[550px] overflow-hidden">
-        {/* Scenic Bridge in Clouds Image */}
-        <Image
-          src="https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=2070&auto=format&fit=crop"
-          alt="Golden Gate Bridge emerging through clouds - global travel destinations"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
-        
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        >
+          <source src="/images/portfolio/18392-291585315_small.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
         {/* Optional subtle gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5" />
       </div>

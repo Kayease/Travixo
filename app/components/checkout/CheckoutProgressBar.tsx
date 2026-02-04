@@ -11,6 +11,7 @@
  */
 
 import React from 'react';
+import Image from 'next/image';
 
 interface CheckoutProgressBarProps {
   currentStep: 1 | 2 | 3;
@@ -22,59 +23,28 @@ const CheckoutProgressBar: React.FC<CheckoutProgressBarProps> = ({ currentStep }
     {
       id: 1,
       label: 'Detail',
-      icon: (
-        // Profile icon
-        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="8" r="4" stroke="#FFFFFF" strokeWidth="2.5" />
-          <path
-            d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20"
-            stroke="#FFFFFF"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      ),
+      iconSrc: '/images/checkout/iconamoon_profile-bold.png',
     },
     {
       id: 2,
       label: 'Payment',
-      icon: (
-        // Payment/Cash icon
-        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="6" width="20" height="12" rx="2" stroke="#FFFFFF" strokeWidth="2" />
-          <circle cx="12" cy="12" r="3" stroke="#FFFFFF" strokeWidth="2" />
-          <path d="M6 12H6.01" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
-          <path d="M18 12H18.01" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
-        </svg>
-      ),
+      iconSrc: '/images/checkout/streamline-freehand_cash-payment-bill.png',
     },
     {
       id: 3,
       label: 'Confirm',
-      icon: (
-        // Success/Check icon
-        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" fill="#FFFFFF" />
-          <path
-            d="M8 12L11 15L16 9"
-            stroke="#FF6E00"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      ),
+      iconSrc: '/images/checkout/ix_success.png',
     },
   ];
 
   return (
     <div className="w-full mb-8 md:mb-12">
       {/* Desktop/Tablet Progress Bar */}
-      <div className="hidden sm:flex items-start justify-between max-w-[900px]">
+      <div className="hidden sm:flex items-start justify-between max-w-[900px] mx-auto">
         {steps.map((step, index) => (
           <React.Fragment key={step.id}>
             {/* Step Item */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-[18px]">
               {/* Icon Circle */}
               <div
                 className={`
@@ -83,23 +53,26 @@ const CheckoutProgressBar: React.FC<CheckoutProgressBarProps> = ({ currentStep }
                   ${step.id <= currentStep ? 'bg-brand-orange' : 'bg-brand-brown/30'}
                 `}
               >
-                {step.icon}
+                <Image
+                  src={step.iconSrc}
+                  alt={step.label}
+                  width={24}
+                  height={24}
+                  className="object-contain"
+                />
               </div>
               {/* Label */}
-              <span className="font-display italic font-medium text-lg md:text-xl leading-[27px] text-brand-brown mt-3 text-center">
+              <span className="font-display italic font-medium text-[20px] leading-[27px] text-brand-brown text-center">
                 {step.label}
               </span>
             </div>
 
             {/* Connecting Line (not after last step) */}
             {index < steps.length - 1 && (
-              <div className="flex-1 flex items-center px-2 mt-6">
+              <div className="flex-1 flex items-start pt-[25px] px-4">
                 <div
-                  className={`
-                    w-full h-px transition-colors duration-300
-                    ${step.id < currentStep ? 'bg-brand-orange' : 'border-t border-brand-orange'}
-                  `}
-                  style={{ borderTopWidth: '1px', borderTopStyle: 'solid', borderTopColor: '#FF6E00' }}
+                  className="w-full h-[1px] bg-brand-orange"
+                  style={{ maxWidth: '309px' }}
                 />
               </div>
             )}

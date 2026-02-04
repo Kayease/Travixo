@@ -19,19 +19,19 @@ const expeditionsData: ExpeditionItem[] = [
     id: '1',
     slug: 'safari-of-dubai',
     title: 'Safari of Dubai',
-    image: 'https://images.unsplash.com/photo-1549144511-f099e773c147?q=80&w=800&auto=format&fit=crop',
+    image: '/images/portfolio/Component 68.png',
   },
   {
     id: '2',
     slug: 'alaska-snowfall',
     title: 'Alaska Snowfall',
-    image: 'https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=800&auto=format&fit=crop',
+    image: '/images/portfolio/Component 69.png',
   },
   {
     id: '3',
     slug: 'japan-culture',
     title: 'Japan Culture',
-    image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=800&auto=format&fit=crop',
+    image: '/images/portfolio/Component 70.png',
   },
 ];
 

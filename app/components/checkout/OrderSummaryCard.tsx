@@ -109,10 +109,10 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({
 
         {/* Total Amount */}
         <div className="flex items-center justify-between mb-6">
-          <span className="font-body font-semibold text-lg md:text-xl leading-[30px] text-brand-brown">
+          <span className="font-body font-semibold text-[20px] leading-[30px] text-brand-brown">
             Total Amount
           </span>
-          <span className="font-body font-semibold text-lg md:text-xl leading-[30px] text-brand-brown">
+          <span className="font-body font-semibold text-[20px] leading-[30px] text-brand-brown">
             {formatCurrency(totalAmount)}
           </span>
         </div>
@@ -124,7 +124,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({
         >
           {/* Fill animation from bottom to top */}
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
-          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-brand-orange transition-colors duration-300">
+          <span className="relative z-10 font-display italic font-medium text-[20px] leading-[27px] text-white group-hover:text-brand-orange transition-colors duration-300">
             Pay
           </span>
         </button>

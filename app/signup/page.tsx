@@ -64,7 +64,11 @@ const SignupFormSection = () => {
       return;
     }
     console.log("Signup submitted:", formData);
-    // Handle signup logic
+
+    // Simulate successful signup and redirect to login
+    // In production, this would create account via API
+    alert("Account created successfully! Please log in.");
+    window.location.href = '/login';
   };
 
   return (

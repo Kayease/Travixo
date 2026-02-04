@@ -8,8 +8,10 @@
  */
 
 import React from 'react';
-import { 
-  PortfolioHeroSection, 
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import {
+  PortfolioHeroSection,
   PortfolioBannerSection,
   SignatureExpeditionsSection,
   ImpactStoriesSection,
@@ -25,24 +27,28 @@ export const metadata = {
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <PortfolioHeroSection />
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-white">
+        {/* Hero Section */}
+        <PortfolioHeroSection />
 
-      {/* Scenic Banner Image */}
-      <PortfolioBannerSection />
+        {/* Scenic Banner Image */}
+        <PortfolioBannerSection />
 
-      {/* Signature Expeditions Section */}
-      <SignatureExpeditionsSection />
+        {/* Signature Expeditions Section */}
+        <SignatureExpeditionsSection />
 
-      {/* Impact Stories Section */}
-      <ImpactStoriesSection />
+        {/* Impact Stories Section */}
+        <ImpactStoriesSection />
 
-      {/* Voice of Discovery Section */}
-      <VoiceOfDiscoverySection />
+        {/* Voice of Discovery Section */}
+        <VoiceOfDiscoverySection />
 
-      {/* CTA Section */}
-      <PortfolioCTASection />
-    </main>
+        {/* CTA Section */}
+        <PortfolioCTASection />
+      </main>
+      <Footer />
+    </>
   );
 }
