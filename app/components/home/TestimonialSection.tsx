@@ -48,38 +48,38 @@ const QuoteIcon = () => (
 const PROFILE_IMAGES = [
   {
     id: 1,
-    url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
+    url: "/images/room/Desktop - 55.png",
     top: "83px",
-    left: "147px",
-    mobileLeft: "50px",
+    left: "60px",
+    mobileLeft: "20px",
   },
   {
     id: 2,
-    url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
-    top: "159px",
-    left: "315px",
-    mobileLeft: "120px",
+    url: "/images/room/Desktop - 56.png",
+    top: "160px",
+    left: "220px",
+    mobileLeft: "100px",
   },
   {
     id: 3,
-    url: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop",
-    top: "74px",
-    left: "482px",
-    mobileLeft: "200px",
-  },
-  {
-    id: 4,
-    url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
-    top: "227px",
-    left: "458px",
+    url: "/images/room/Desktop - 57.png",
+    top: "60px",
+    left: "360px",
     mobileLeft: "180px",
   },
   {
+    id: 4,
+    url: "/images/room/Desktop - 58.png",
+    top: "230px",
+    left: "340px",
+    mobileLeft: "160px",
+  },
+  {
     id: 5,
-    url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&auto=format&fit=crop",
-    top: "317px",
-    left: "265px",
-    mobileLeft: "80px",
+    url: "/images/room/Desktop - 59.png",
+    top: "320px",
+    left: "180px",
+    mobileLeft: "60px",
   },
 ];
 
@@ -92,8 +92,7 @@ const TESTIMONIAL = {
   author: {
     name: "Jimmy Jostar",
     role: "Traveler",
-    avatar:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+    avatar: "/images/room/Desktop - 58.png",
   },
 };
 
@@ -138,8 +137,8 @@ export const TestimonialSection = () => {
 
             {/* Connecting Line */}
             <div
-              className="absolute hidden lg:block w-[150px] h-px bg-brand-orange"
-              style={{ top: "277px", left: "558px" }}
+              className="absolute hidden lg:block w-[100px] h-px bg-brand-orange"
+              style={{ top: "280px", left: "440px" }}
             />
           </div>
 
@@ -186,8 +185,8 @@ export const TestimonialSection = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </div >
+      </div >
+    </section >
   );
 };

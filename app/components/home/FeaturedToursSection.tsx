@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Plane Icon for badge
@@ -88,59 +89,36 @@ const StarIcon = ({ filled = true }: { filled?: boolean }) => (
  * Clock Icon
  */
 const ClockIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="12" cy="12" r="9" stroke="#FF6E00" strokeWidth="2" />
-    <path
-      d="M12 7V12L15 15"
-      stroke="#FF6E00"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/featured/tdesign_time.png"
+    alt="Duration"
+    width={24}
+    height={24}
+  />
 );
 
 /**
  * People Icon
  */
 const PeopleIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="12" cy="7" r="4" fill="#FF6E00" />
-    <path d="M4 21C4 17 7.5 14 12 14C16.5 14 20 17 20 21" fill="#FF6E00" />
-  </svg>
+  <Image
+    src="/images/home/featured/formkit_people (1).png"
+    alt="People"
+    width={24}
+    height={24}
+  />
 );
 
 /**
  * Location Icon
  */
 const LocationIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"
-      stroke="#FF6E00"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/featured/akar-icons_location.png"
+    alt="Location"
+    width={24}
+    height={24}
+  />
 );
 
 /**
@@ -149,8 +127,7 @@ const LocationIcon = () => (
 const TOURS = [
   {
     id: 1,
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop",
+    image: "/images/Travixo ( Travel & Tour )/Frame 277.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -162,11 +139,11 @@ const TOURS = [
     duration: "4 hors",
     people: "2-18",
     location: "Italy, Rome",
+    slug: "/products/boathouse-neighborhood",
   },
   {
     id: 2,
-    image:
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop",
+    image: "/images/Travixo ( Travel & Tour )/Frame 278.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -178,11 +155,11 @@ const TOURS = [
     duration: "4 hors",
     people: "2-18",
     location: "Italy, Venice",
+    slug: "/products/venice-tour",
   },
   {
     id: 3,
-    image:
-      "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=800&auto=format&fit=crop",
+    image: "/images/Travixo ( Travel & Tour )/Frame 279.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -194,6 +171,7 @@ const TOURS = [
     duration: "4 hors",
     people: "2-18",
     location: "France, Paris",
+    slug: "/products/paris-adventure",
   },
 ];
 
@@ -212,6 +190,7 @@ const TourCard = ({
   duration,
   people,
   location,
+  slug,
 }: {
   image: string;
   discount: string;
@@ -224,6 +203,7 @@ const TourCard = ({
   duration: string;
   people: string;
   location: string;
+  slug: string;
 }) => (
   <div className="relative w-full max-w-[418px] group">
     {/* Card Container */}
@@ -233,13 +213,15 @@ const TourCard = ({
     >
       {/* Image Container */}
       <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 418px"
-        />
+        <Link href={slug} className="block w-full h-full relative">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 418px"
+          />
+        </Link>
 
         {/* Discount Badge */}
         <div className="absolute top-3 left-3 bg-brand-orange px-2 py-0.5">
@@ -259,11 +241,17 @@ const TourCard = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2">
-          <button className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
+        <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+          <button
+            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            onClick={() => console.log(`Liked ${title}`)}
+          >
             <HeartIcon />
           </button>
-          <button className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
+          <button
+            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            onClick={() => console.log(`Added ${title} to cart`)}
+          >
             <CartIcon />
           </button>
         </div>
@@ -287,9 +275,11 @@ const TourCard = ({
       </div>
 
       {/* Title */}
-      <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3">
-        {title}
-      </h3>
+      <Link href={slug}>
+        <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 hover:text-brand-orange transition-colors">
+          {title}
+        </h3>
+      </Link>
 
       {/* Description */}
       <p className="font-body font-normal text-sm leading-6 text-brand-brown/60 mb-4 line-clamp-2">
@@ -323,14 +313,17 @@ const TourCard = ({
     </div>
 
     {/* Book Now Button - Shows on Hover */}
-    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
-      <button className="px-8 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown hover:bg-brand-orange hover:text-white transition-all duration-300">
-        Book Now
-      </button>
+    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+      <Link
+        href={slug}
+        className="relative block px-8 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 text-center"
+      >
+        <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
+        <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">
+          Book Now
+        </span>
+      </Link>
     </div>
-
-    {/* Orange Bottom Border */}
-    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[253px] h-[2px] bg-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
   </div>
 );
 
@@ -378,6 +371,7 @@ export const FeaturedToursSection = () => {
               duration={tour.duration}
               people={tour.people}
               location={tour.location}
+              slug={tour.slug}
             />
           ))}
         </div>

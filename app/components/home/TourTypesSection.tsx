@@ -1,109 +1,65 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 /**
  * Plane Icon for the badge
  */
 const PlaneIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M17.5 2.5L9.16667 10.8333M17.5 2.5L12.5 17.5L9.16667 10.8333M17.5 2.5L2.5 7.5L9.16667 10.8333"
-      stroke="white"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/tourtypes/mynaui_plane (1).png"
+    alt="Plane Icon"
+    width={20}
+    height={20}
+  />
 );
 
 /**
  * Windsurfing Icon
  */
 const WindsurfingIcon = () => (
-  <svg
-    width="42"
-    height="42"
-    viewBox="0 0 42 42"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8 38C8 38 12 32 21 32C30 32 34 38 34 38M21 28C21 28 16 22 16 14C16 6 21 4 21 4C21 4 26 6 26 14C26 22 21 28 21 28ZM21 28V32"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/tourtypes/temaki_wind-surfing.png"
+    alt="Windsurfing"
+    width={42}
+    height={42}
+  />
 );
 
 /**
  * Paragliding Icon
  */
 const ParaglidingIcon = () => (
-  <svg
-    width="42"
-    height="42"
-    viewBox="0 0 42 42"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M7 12C7 8 13 5 21 5C29 5 35 8 35 12M7 12C7 14 10 16 14 17M35 12C35 14 32 16 28 17M14 17L18 25M28 17L24 25M18 25H24M18 25L16 37M24 25L26 37M21 30C22 30 23 31 23 32C23 33 22 34 21 34C20 34 19 33 19 32C19 31 20 30 21 30Z"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/tourtypes/material-symbols-light_paragliding-outline.png"
+    alt="Paragliding"
+    width={42}
+    height={42}
+  />
 );
 
 /**
  * Wildlife/Deer Icon
  */
 const WildlifeIcon = () => (
-  <svg
-    width="42"
-    height="42"
-    viewBox="0 0 42 42"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M12 8L10 4M12 8L14 4M12 8V12M30 8L28 4M30 8L32 4M30 8V12M15 18C15 18 12 20 12 24C12 28 15 32 21 32C27 32 30 28 30 24C30 20 27 18 27 18M15 18C18 16 24 16 27 18M15 18L12 12H30L27 18M21 26V28M17 24H18M24 24H25M21 32V38M16 38L21 35L26 38"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/tourtypes/game-icons_deer.png"
+    alt="Wildlife"
+    width={42}
+    height={42}
+  />
 );
 
 /**
  * Hang Gliding Icon
  */
 const HangGlidingIcon = () => (
-  <svg
-    width="42"
-    height="42"
-    viewBox="0 0 42 42"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M4 18L21 10L38 18M21 10V18M21 18L16 32M21 18L26 32M16 32H26M19 24C19 24 20 26 21 26C22 26 23 24 23 24"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/tourtypes/temaki_hang-gliding.png"
+    alt="Hang Gliding"
+    width={42}
+    height={42}
+  />
 );
 
 /**
@@ -172,7 +128,7 @@ const TourTypeCard = ({
   description: string;
   icon: string;
 }) => (
-  <div className="relative w-full max-w-[221px]">
+  <div className="relative w-full max-w-[221px] group">
     {/* Number Badge */}
     <div className="absolute top-0 left-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-brand-orange rounded-full flex items-center justify-center z-10">
       <span className="font-body font-semibold text-3xl md:text-5xl text-white leading-none">
@@ -181,17 +137,20 @@ const TourTypeCard = ({
     </div>
 
     {/* Card */}
-    <div className="relative bg-white border border-brand-orange rounded-tl-[100px] md:rounded-tl-[150px] pt-12 pb-6 px-4 mt-4 ml-4">
+    <div className="relative bg-white border border-brand-orange rounded-tl-[100px] md:rounded-tl-[150px] pt-12 pb-6 px-4 mt-4 ml-4 overflow-hidden">
+      {/* Orange fill animation from bottom to top */}
+      <div className="absolute inset-0 bg-brand-orange h-0 group-hover:h-full transition-all duration-500 ease-out" style={{ top: 'auto', bottom: 0 }} />
+      
       {/* Icon */}
-      <div className="flex justify-center mb-4">{getIcon(icon)}</div>
+      <div className="relative z-10 flex justify-center mb-4 group-hover:brightness-0 group-hover:invert transition-all duration-300">{getIcon(icon)}</div>
 
       {/* Title */}
-      <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown text-center mb-3">
+      <h3 className="relative z-10 font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown group-hover:text-white text-center mb-3 transition-colors duration-300">
         {title}
       </h3>
 
       {/* Description */}
-      <p className="font-body font-normal text-sm md:text-base leading-6 text-brand-brown text-center max-w-[185px] mx-auto">
+      <p className="relative z-10 font-body font-normal text-sm md:text-base leading-6 text-brand-brown group-hover:text-white text-center max-w-[185px] mx-auto transition-colors duration-300">
         {description}
       </p>
     </div>

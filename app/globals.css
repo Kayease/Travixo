@@ -43,3 +43,25 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair), ui-serif, Georgia, serif;
 }
 
+/* ========== Floating Animation for Hero Images ========== */
+/* Used in HeroSection for floating image gallery effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Staggered animation delays for natural floating effect */
+.animate-float-delay-1 { animation-delay: 0s; }
+.animate-float-delay-2 { animation-delay: 0.5s; }
+.animate-float-delay-3 { animation-delay: 1s; }
+.animate-float-delay-4 { animation-delay: 1.5s; }
+.animate-float-delay-5 { animation-delay: 2s; }
+

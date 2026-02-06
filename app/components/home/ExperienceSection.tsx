@@ -94,7 +94,7 @@ export const ExperienceSection = () => {
       <div className="relative w-full h-[529px]">
         {/* Background Image */}
         <Image
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop"
+          src="/images/experience/Frame 25 (1).png"
           alt="Tropical beach sunset"
           fill
           className="object-cover"

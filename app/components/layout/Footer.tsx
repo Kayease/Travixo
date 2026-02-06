@@ -211,6 +211,17 @@ const EXPLORE_LINKS = [
  * Footer Component
  */
 export const Footer = () => {
+  const [email, setEmail] = React.useState("");
+
+  const handleSubscribe = () => {
+    if (!email) {
+      console.log("Please enter your email address.");
+      return;
+    }
+    console.log(`Subscribed with: ${email}`);
+    setEmail("");
+  };
+
   return (
     <footer className="relative w-full" style={{ backgroundColor: "#FF8930" }}>
       {/* Top Bar - Logo and Social Icons */}
@@ -335,10 +346,13 @@ export const Footer = () => {
               <div className="relative">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
                   className="w-full h-[45px] px-4 pr-14 bg-white border border-brand-orange rounded-xl font-body text-base text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:ring-2 focus:ring-brand-orange/50"
                 />
                 <button
+                  onClick={handleSubscribe}
                   className="absolute right-0 top-0 w-[50px] h-[45px] flex items-center justify-center border border-brand-orange rounded-xl hover:bg-brand-orange/10 transition-colors"
                   style={{ backgroundColor: "#FFFCF5" }}
                 >

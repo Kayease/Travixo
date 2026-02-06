@@ -1,26 +1,24 @@
-import { Navbar } from "./components/layout/Navbar";
-import { HeroSection } from "./components/home/HeroSection";
-import { GallerySection } from "./components/home/GallerySection";
-import { ExploreSection } from "./components/home/ExploreSection";
-import { ServicesSection } from "./components/home/ServicesSection";
-import { DestinationsSection } from "./components/home/DestinationsSection";
-import { ExperienceSection } from "./components/home/ExperienceSection";
-import { AboutSection } from "./components/home/AboutSection";
-import { CTABannerSection } from "./components/home/CTABannerSection";
-import { TourTypesSection } from "./components/home/TourTypesSection";
-import { BenefitsSection } from "./components/home/BenefitsSection";
-import { FeaturedToursSection } from "./components/home/FeaturedToursSection";
-import { TestimonialSection } from "./components/home/TestimonialSection";
-import { CommunitySection } from "./components/home/CommunitySection";
-import { FeaturesBarSection } from "./components/home/FeaturesBarSection";
-import { Footer } from "./components/layout/Footer";
+import { Navbar } from "@/app/components/layout/Navbar";
+import { HeroSection } from "@/app/components/home/HeroSection";
+import { ExploreSection } from "@/app/components/home/ExploreSection";
+import { ServicesSection } from "@/app/components/home/ServicesSection";
+import { DestinationsSection } from "@/app/components/home/DestinationsSection";
+import { ExperienceSection } from "@/app/components/home/ExperienceSection";
+import { AboutSection } from "@/app/components/home/AboutSection";
+import { CTABannerSection } from "@/app/components/home/CTABannerSection";
+import { TourTypesSection } from "@/app/components/home/TourTypesSection";
+import { BenefitsSection } from "@/app/components/home/BenefitsSection";
+import { FeaturedToursSection } from "@/app/components/home/FeaturedToursSection";
+import { TestimonialSection } from "@/app/components/home/TestimonialSection";
+import { CommunitySection } from "@/app/components/home/CommunitySection";
+import { FeaturesBarSection } from "@/app/components/home/FeaturesBarSection";
+import { Footer } from "@/app/components/layout/Footer";
 
 export default function Home() {
   return (
     <main className="min-h-screen relative overflow-x-hidden">
       <Navbar />
       <HeroSection />
-      <GallerySection />
       <ExploreSection />
       <ServicesSection />
       <DestinationsSection />

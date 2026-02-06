@@ -15,73 +15,126 @@ interface TourGallerySectionProps {
 
 /**
  * TourGallerySection Component
- * 
- * Displays a gallery of tour images with a main large image
- * and smaller thumbnails on the right.
- * 
- * Design Specifications (from Figma):
- * - Main image: 650x544px, border-radius 12px
- * - Small images: 325x264px, border-radius 12px
- * - Gap between images: 12px
- * 
- * @param {TourGallerySectionProps} props - Gallery images
- * @returns {JSX.Element} The rendered gallery section
+ *
+ * Design Specifications:
+ * - Layout: Bento Grid
+ * - Desktop Width: ~1280px content area
+ * - Gap: 18px (derived from Figma coordinates)
+ *
+ * Image Mapping (Indices based on typical input order 369, 370, 371, 372):
+ * - Index 0 (Frame 369): Left Large (611x519)
+ * - Index 1 (Frame 370): Right Top Left (325x264)
+ * - Index 2 (Frame 371): Right Bottom Wide (652x237)
+ * - Index 3 (Frame 372): Right Top Right (309x264)
+ *
+ * Note: Input array is expected to have at least 4 images for full layout.
  */
 export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
   images,
 }) => {
-  const [activeImage, setActiveImage] = useState(0);
-
-  // Ensure we have at least one image
+  // Ensure we have images
   if (!images || images.length === 0) {
     return null;
   }
 
-  // Get main image and thumbnails
-  const mainImage = images[activeImage];
-  const thumbnails = images.filter((_, index) => index !== activeImage).slice(0, 2);
+  // Fallback for fewer images could be added, but assuming 4 for this specialized design
+  const imgLeft = images[0];
+  const imgRightTop1 = images[1] || images[0];
+  const imgRightBottom = images[2] || images[0];
+  const imgRightTop2 = images[3] || images[1] || images[0];
 
   return (
     <section className="w-full" aria-label="Tour Gallery">
-      <div className="flex flex-col lg:flex-row gap-3">
-        {/* Main Large Image */}
-        <div 
-          className="relative w-full lg:w-[650px] aspect-[650/544] lg:h-[544px] overflow-hidden shrink-0"
-          style={{ borderRadius: "12px" }}
-        >
+      {/* Mobile/Tablet: Vertical or simplified grid */}
+      <div className="flex xl:hidden flex-col gap-4">
+        <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
           <Image
-            src={mainImage.url}
-            alt={mainImage.alt || "Tour main image"}
+            src={imgLeft.url}
+            alt={imgLeft.alt || "Main tour image"}
             fill
             className="object-cover"
-            style={{ borderRadius: "12px" }}
-            sizes="(max-width: 1024px) 100vw, 650px"
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+            <Image
+              src={imgRightTop1.url}
+              alt={imgRightTop1.alt || "Tour detail"}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+            <Image
+              src={imgRightTop2.url}
+              alt={imgRightTop2.alt || "Tour detail"}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative w-full aspect-[2/1] col-span-2 rounded-xl overflow-hidden">
+            <Image
+              src={imgRightBottom.url}
+              alt={imgRightBottom.alt || "Tour panorama"}
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop: Exact Figma Layout (XL Screens >= 1280px) */}
+      <div className="hidden xl:flex flex-row gap-[18px]">
+        {/* Left Column: Frame 369 - 611x519 */}
+        <div
+          className="relative shrink-0 w-[611px] h-[519px] overflow-hidden rounded-xl bg-gray-100"
+        >
+          <Image
+            src={imgLeft.url}
+            alt={imgLeft.alt || "Main tour image"}
+            fill
+            className="object-cover"
+            sizes="611px"
             priority
           />
         </div>
 
-        {/* Thumbnail Images - Right Side */}
-        <div className="flex flex-row lg:flex-col gap-3 w-full lg:w-[325px]">
-          {thumbnails.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                const originalIndex = images.findIndex(img => img.url === image.url);
-                setActiveImage(originalIndex);
-              }}
-              className="relative w-1/2 lg:w-full aspect-[325/264] lg:h-[264px] overflow-hidden transition-opacity hover:opacity-90"
-              style={{ borderRadius: "12px" }}
-            >
+        {/* Right Column: 652px wide */}
+        <div className="flex flex-col gap-[18px] w-[652px] shrink-0">
+          {/* Top Row: Frame 370 & Frame 372 */}
+          <div className="flex flex-row gap-[18px] h-[264px]">
+            {/* Frame 370 - 325x264 */}
+            <div className="relative w-[325px] h-full overflow-hidden rounded-xl bg-gray-100">
               <Image
-                src={image.url}
-                alt={image.alt || `Tour image ${index + 2}`}
+                src={imgRightTop1.url}
+                alt={imgRightTop1.alt || "Tour detail 1"}
                 fill
                 className="object-cover"
-                style={{ borderRadius: "12px" }}
-                sizes="(max-width: 1024px) 50vw, 325px"
+                sizes="325px"
               />
-            </button>
-          ))}
+            </div>
+            {/* Frame 372 - 309x264 */}
+            <div className="relative w-[309px] h-full overflow-hidden rounded-xl bg-gray-100">
+              <Image
+                src={imgRightTop2.url}
+                alt={imgRightTop2.alt || "Tour detail 2"}
+                fill
+                className="object-cover"
+                sizes="309px"
+              />
+            </div>
+          </div>
+
+          {/* Bottom Row: Frame 371 - 652x237 */}
+          <div className="relative w-full h-[237px] overflow-hidden rounded-xl bg-gray-100">
+            <Image
+              src={imgRightBottom.url}
+              alt={imgRightBottom.alt || "Tour panorama"}
+              fill
+              className="object-cover"
+              sizes="652px"
+            />
+          </div>
         </div>
       </div>
     </section>

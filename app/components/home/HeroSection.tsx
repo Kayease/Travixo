@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { HERO_IMAGES } from "../../constants/data";
 
@@ -7,231 +7,275 @@ import { HERO_IMAGES } from "../../constants/data";
  * HeroSection Component
  * 
  * Main landing hero section featuring:
- * - Headline with branded typography (Playfair Display)
- * - Description text (Poppins)
- * - CTA button with rounded corners
- * - Hanging pendulum discount badge
- * - Tilted image gallery strip
- * - Glassmorphism search bar
+ * - Headline with Playfair Display italic typography
+ * - Description text with Poppins font
+ * - CTA button (200x45px, #FF6E00, 12px radius)
+ * - Pendulum discount badge hanging from top-right (interactive mouse-follow)
+ * - Diagonal image strip rotated -8.6deg with floating animation
+ * - Glassmorphism search bar at bottom
  * 
- * Design Specifications:
- * - Background: Cream (#FDFBF7)
- * - CTA Button: #FF6E00, 200x45px, 12px border-radius
- * - Search Bar: 900x100px, backdrop-blur, 12px border-radius
- * - Discount Badge: Pendulum style hanging from top
+ * Design Specifications (from Figma):
+ * - Background: #FFF7E5 with texture overlay
+ * - Image cards: 272x363px, 12px radius, 16px gap
+ * - Strip rotation: -8.6deg
+ * - Search bar: 900x100px, backdrop-blur(60px)
  */
+
 export const HeroSection = () => {
-  return (
-    <section className="relative w-full min-h-[90vh] flex flex-col justify-center overflow-hidden pt-20">
-      {/* Background Gradient Decor */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-orange-50/50 to-transparent pointer-events-none" />
+    // State for pendulum rotation based on mouse position
+    const [pendulumRotation, setPendulumRotation] = useState(0);
+    const pendulumRef = useRef<HTMLDivElement>(null);
+    const [destination, setDestination] = useState("");
+    const [date, setDate] = useState("");
 
-      {/* ========== Pendulum Discount Badge ========== */}
-      {/* Hanging badge positioned at top-right with string effect */}
-      <div className="absolute top-0 right-[10%] lg:right-[15%] z-50 flex flex-col items-center">
-        {/* Hanging String */}
-        <div 
-          className="w-[2px] h-16 md:h-20 lg:h-24"
-          style={{ backgroundColor: "#FF6E00" }}
-        />
-        {/* Badge Circle */}
-        <div 
-          className="relative w-28 h-28 md:w-36 md:h-36 lg:w-[140px] lg:h-[140px] rounded-full flex flex-col items-center justify-center text-white shadow-2xl"
-          style={{ 
-            background: "linear-gradient(180deg, #FF8C00 0%, #FF6E00 100%)",
-            boxShadow: "0px 10px 40px rgba(255, 110, 0, 0.3)"
-          }}
+    const handleSearch = () => {
+        if (!destination && !date) {
+            console.log("Please enter a destination or date to search.");
+            return;
+        }
+        console.log(`Searching for ${destination || "anywhere"} on ${date || "any date"}...`);
+    };
+
+    /**
+     * Handle mouse movement over pendulum area
+     * Calculates rotation based on horizontal mouse position relative to pendulum center
+     */
+    const handlePendulumMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!pendulumRef.current) return;
+
+        const rect = pendulumRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const mouseX = e.clientX;
+
+        // Calculate rotation: max ±15 degrees based on mouse distance from center
+        const distance = mouseX - centerX;
+        const maxDistance = 150; // pixels from center for max rotation
+        const rotation = Math.max(-15, Math.min(15, (distance / maxDistance) * 15));
+
+        setPendulumRotation(rotation);
+    };
+
+    /**
+     * Reset pendulum to center when mouse leaves
+     */
+    const handlePendulumMouseLeave = () => {
+        setPendulumRotation(0);
+    };
+
+    return (
+        <section
+            className="relative w-full h-screen overflow-hidden"
+            style={{
+                backgroundColor: "#FFF7E5",
+                backgroundImage: "url('/images/hero-bg-texture.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat"
+            }}
         >
-          {/* 50% off Text */}
-          <span className="font-display italic font-semibold text-2xl md:text-3xl lg:text-[32px] leading-tight">
-            50% off
-          </span>
-          {/* For First Traveller Text */}
-          <span className="font-display italic font-medium text-sm md:text-base lg:text-lg mt-1">
-            For First
-          </span>
-          <span className="font-display italic font-medium text-sm md:text-base lg:text-lg">
-            Traveller
-          </span>
-        </div>
-      </div>
-
-      {/* ========== Main Content Container ========== */}
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-        
-        {/* ========== Left Content Section ========== */}
-        <div className="lg:col-span-5 flex flex-col gap-5 md:gap-6">
-          {/* Main Heading - Playfair Display */}
-          <h1 className="font-display italic font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-[56px] leading-[1.15] text-brand-brown">
-            Let{" "}
-            <span className="text-brand-orange">Travixo</span>
-            {" "}Guide You to Your Next Adventure
-          </h1>
-
-          {/* Subheading Description - Poppins */}
-          <p className="font-body text-base md:text-lg text-brand-brown/80 font-normal max-w-[480px] leading-relaxed">
-            Discover the soul of Africa through iconic wildlife, breathtaking
-            landscapes, the Great Migration, and a serene hot air balloon
-            journey over the savanna.
-          </p>
-
-          {/* CTA Button - Rounded Rectangle Style */}
-          <div className="pt-2 md:pt-4">
-            <button 
-              className="font-display italic font-medium text-base md:text-lg text-white px-8 py-3 transition-all duration-300 hover:opacity-90 hover:shadow-xl active:scale-95"
-              style={{ 
-                width: "200px",
-                height: "45px",
-                backgroundColor: "#FF6E00",
-                borderRadius: "12px",
-                boxShadow: "0px 8px 24px rgba(255, 110, 0, 0.35)"
-              }}
+            {/* ========== Pendulum Discount Badge ========== */}
+            <div
+                ref={pendulumRef}
+                className="absolute top-0 right-[8%] md:right-[10%] lg:right-[77%] lg:left-auto lg:right-[calc((100%-1440px)/2+1110px)] z-50 flex flex-col items-center"
+                style={{ right: "calc(100% - 1110px - 210px)" }}
+                onMouseMove={handlePendulumMouseMove}
+                onMouseLeave={handlePendulumMouseLeave}
             >
-              Explore More
-            </button>
-          </div>
-        </div>
-
-        {/* ========== Right Content - Image Gallery ========== */}
-        <div className="lg:col-span-7 relative h-[450px] md:h-[550px] lg:h-[600px] flex items-center mt-8 lg:mt-0">
-          
-          {/* Tilted Image Strip Container */}
-          <div className="absolute left-[-5%] lg:left-[0%] w-[140%] lg:w-[130%] flex gap-4 md:gap-6 rotate-[10deg] lg:rotate-12 transform-gpu origin-left">
-            {HERO_IMAGES.map((img, index) => (
-              <div
-                key={img.id}
-                className={`
-                  relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shrink-0 
-                  transition-transform hover:scale-105 duration-500 cursor-pointer
-                  ${index % 2 === 0 
-                    ? "w-44 h-64 md:w-56 md:h-80 lg:w-64 lg:h-96 mt-8 md:mt-12" 
-                    : "w-44 h-56 md:w-56 md:h-72 lg:w-64 lg:h-80"
-                  }
-                `}
-              >
-                {/* Image */}
-                <Image
-                  src={img.url}
-                  alt={img.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 180px, (max-width: 1024px) 230px, 260px"
-                />
-                {/* Overlay with Title */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-4 md:p-6">
-                  <span className="text-white font-display text-lg md:text-xl">
-                    {img.title}
-                  </span>
-                  <span className="text-white/80 text-xs md:text-sm">
-                    {img.location}
-                  </span>
+                {/* For responsive, position from right */}
+                <div
+                    className="absolute top-0 right-[60px] md:right-[80px] lg:right-[120px] flex flex-col items-center cursor-pointer"
+                    style={{
+                        transformOrigin: "top center",
+                        transform: `rotate(${pendulumRotation}deg)`,
+                        transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)"
+                    }}
+                >
+                    {/* Hanging String Line */}
+                    <div
+                        className="w-[2px] h-[90px] md:h-[100px] lg:h-[116px]"
+                        style={{ backgroundColor: "#D55C00" }}
+                        aria-hidden="true"
+                    />
+                    {/* Badge Circle - 150px diameter */}
+                    <div
+                        className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px] lg:w-[150px] lg:h-[150px] rounded-full flex flex-col items-center justify-center text-white"
+                        style={{
+                            backgroundColor: "#FF6E00",
+                            boxShadow: "0px 0px 20px 2px rgba(255, 110, 0, 0.2), inset 0px 0px 20px 10px rgba(0, 0, 0, 0.25)"
+                        }}
+                    >
+                        <span className="font-display italic font-normal text-[22px] md:text-[26px] lg:text-[28px] leading-[28px] text-white">
+                            50% off
+                        </span>
+                        <span className="font-display italic font-normal text-[14px] md:text-[16px] lg:text-[18px] leading-[28px] text-center text-white mt-1">
+                            For First<br />Traveller
+                        </span>
+                    </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ========== Glassmorphism Search Bar ========== */}
-      {/* Floating search component at the bottom of hero */}
-      <div className="relative z-40 mt-8 md:mt-12 lg:mt-0 lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2 w-full px-4 md:px-8">
-        <div 
-          className="max-w-[900px] mx-auto h-auto md:h-[100px] flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 p-5 md:p-6"
-          style={{
-            background: "rgba(255, 255, 255, 0.4)",
-            boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-            backdropFilter: "blur(60px)",
-            WebkitBackdropFilter: "blur(60px)",
-            borderRadius: "12px"
-          }}
-        >
-          {/* Destination Input Field */}
-          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:border-r border-gray-300/50">
-            {/* Location Icon */}
-            <svg 
-              className="w-5 h-5 md:w-6 md:h-6 text-brand-brown/70 shrink-0" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" 
-              />
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" 
-              />
-            </svg>
-            <div className="flex flex-col">
-              <label className="font-display italic font-medium text-sm md:text-base text-brand-brown">
-                Destination
-              </label>
-              <input
-                type="text"
-                placeholder="Enter Location"
-                className="font-body text-sm md:text-base bg-transparent outline-none text-brand-brown/70 placeholder-brand-brown/50 w-full"
-              />
             </div>
-          </div>
 
-          {/* Date Input Field */}
-          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4">
-            {/* Calendar/Location Icon */}
-            <svg 
-              className="w-5 h-5 md:w-6 md:h-6 text-brand-brown/70 shrink-0" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" 
-              />
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" 
-              />
-            </svg>
-            <div className="flex flex-col">
-              <label className="font-display italic font-medium text-sm md:text-base text-brand-brown">
-                Date
-              </label>
-              <input
-                type="text"
-                placeholder="Feb 14,2025"
-                className="font-body text-sm md:text-base bg-transparent outline-none text-brand-brown/70 placeholder-brand-brown/50 w-full"
-              />
+            {/* ========== Main Content Area ========== */}
+            <div className="relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px]">
+                {/* Main Heading */}
+                <h1
+                    className="font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px]"
+                    style={{ color: "#4B3621" }}
+                >
+                    Let Travixo Guide You to<br className="hidden sm:block" /> Your Next Adventure
+                </h1>
+
+                {/* Description */}
+                <p
+                    className="font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8"
+                    style={{ color: "#4B3621" }}
+                >
+                    Discover the soul of Africa through iconic wildlife, breathtaking
+                    landscapes, the Great Migration, and a serene hot air balloon
+                    journey over the savanna.
+                </p>
+
+                {/* CTA Button with bottom-to-top fill animation */}
+                <button
+                    onClick={() => console.log("Navigating to adventure...")}
+                    className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group"
+                    style={{
+                        width: "200px",
+                        height: "45px",
+                        backgroundColor: "#FF6E00",
+                        borderRadius: "12px"
+                    }}
+                >
+                    {/* Bottom-to-top fill animation overlay */}
+                    <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
+                    {/* Button text */}
+                    <span className="relative z-10 group-hover:text-[#FF6E00] transition-colors duration-300">
+                        Explore More
+                    </span>
+                </button>
             </div>
-          </div>
 
-          {/* Search Button */}
-          <button 
-            className="w-full md:w-auto p-3 md:p-4 transition-transform hover:scale-105 active:scale-95"
-            aria-label="Search"
-          >
-            <svg 
-              className="w-6 h-6 md:w-7 md:h-7 text-brand-brown mx-auto" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-              strokeWidth={2}
+            {/* ========== Diagonal Image Strip ========== */}
+            <div
+                className="absolute left-1/2 z-10"
+                style={{
+                    top: "420px",
+                    width: "200vw",
+                    transform: "translateX(-50%) rotate(-8.6deg)",
+                    transformOrigin: "center center"
+                }}
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" 
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </section>
-  );
+                <div className="flex items-center gap-4 animate-scroll-infinite">
+                    {/* Render images multiple times for infinite scroll effect */}
+                    {[...HERO_IMAGES, ...HERO_IMAGES, ...HERO_IMAGES].map((image, index) => (
+                        <div
+                            key={`img-${index}`}
+                            className="relative shrink-0 overflow-hidden transition-transform duration-500 hover:scale-105 cursor-pointer"
+                            style={{
+                                width: "272px",
+                                height: "363px",
+                                borderRadius: "12px",
+                                boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.15)"
+                            }}
+                        >
+                            <Image
+                                src={image.url}
+                                alt={image.alt}
+                                fill
+                                className="object-cover"
+                                sizes="272px"
+                                priority={index < 5}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* ========== Glassmorphism Search Bar ========== */}
+            <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] md:w-auto z-40 px-4 md:px-0">
+                <div
+                    className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0"
+                    style={{
+                        width: "100%",
+                        maxWidth: "900px",
+                        background: "rgba(255, 255, 255, 0.4)",
+                        boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+                        backdropFilter: "blur(60px)",
+                        WebkitBackdropFilter: "blur(60px)",
+                        borderRadius: "12px"
+                    }}
+                >
+                    {/* Destination Field */}
+                    <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
+                            <path d="M14 14.875C15.2426 14.875 16.25 13.8676 16.25 12.625C16.25 11.3824 15.2426 10.375 14 10.375C12.7574 10.375 11.75 11.3824 11.75 12.625C11.75 13.8676 12.7574 14.875 14 14.875Z" stroke="#4B3621" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M14 3.5C11.5136 3.5 9.12903 4.48772 7.37087 6.24587C5.61272 8.00403 4.625 10.3886 4.625 12.875C4.625 15.0575 5.12125 16.52 6.3125 18L14 26.25L21.6875 18C22.8788 16.52 23.375 15.0575 23.375 12.875C23.375 10.3886 22.3873 8.00403 20.6291 6.24587C18.871 4.48772 16.4864 3.5 14 3.5Z" stroke="#4B3621" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <div className="flex flex-col">
+                            <label className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]" style={{ color: "#4B3621" }}>
+                                Destination
+                            </label>
+                            <input
+                                type="text"
+                                value={destination}
+                                onChange={(e) => setDestination(e.target.value)}
+                                placeholder="Enter Location"
+                                className="font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60"
+                                style={{ color: "#4B3621" }}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="hidden md:block w-[1px] h-[70px]" style={{ backgroundColor: "rgba(75, 54, 33, 0.2)" }} />
+
+                    {/* Date Field */}
+                    <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 border-t md:border-t-0 border-[rgba(75,54,33,0.1)]">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="shrink-0">
+                            <path d="M14 14.875C15.2426 14.875 16.25 13.8676 16.25 12.625C16.25 11.3824 15.2426 10.375 14 10.375C12.7574 10.375 11.75 11.3824 11.75 12.625C11.75 13.8676 12.7574 14.875 14 14.875Z" stroke="#4B3621" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M14 3.5C11.5136 3.5 9.12903 4.48772 7.37087 6.24587C5.61272 8.00403 4.625 10.3886 4.625 12.875C4.625 15.0575 5.12125 16.52 6.3125 18L14 26.25L21.6875 18C22.8788 16.52 23.375 15.0575 23.375 12.875C23.375 10.3886 22.3873 8.00403 20.6291 6.24587C18.871 4.48772 16.4864 3.5 14 3.5Z" stroke="#4B3621" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <div className="flex flex-col">
+                            <label className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]" style={{ color: "#4B3621" }}>
+                                Date
+                            </label>
+                            <input
+                                type="text"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                                placeholder="Feb 14,2025"
+                                className="font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60"
+                                style={{ color: "#4B3621" }}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Search Button */}
+                    <button
+                        onClick={handleSearch}
+                        className="p-4 md:pr-6 transition-transform hover:scale-110 active:scale-95"
+                        aria-label="Search"
+                    >
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <circle cx="16.5" cy="16.5" r="10.5" stroke="#4B3621" strokeWidth="2" />
+                            <path d="M24 24L31.5 31.5" stroke="#4B3621" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            {/* ========== CSS Animations ========== */}
+            <style jsx>{`
+                @keyframes scroll-infinite {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-33.33%); }
+                }
+                .animate-scroll-infinite {
+                    animation: scroll-infinite 30s linear infinite;
+                }
+                .animate-scroll-infinite:hover {
+                    animation-play-state: paused;
+                }
+            `}</style>
+        </section>
+    );
 };

@@ -27,9 +27,10 @@ const SAMPLE_TOUR = {
 
   // Gallery Images
   images: [
-    { url: "/images/products/Frame 51.png", alt: "Temple guardian statue" },
-    { url: "/images/products/Frame 51 (1).png", alt: "Thai temple architecture" },
-    { url: "/images/products/Frame 51 (2).png", alt: "Bangkok temple" },
+    { url: "/images/products/Frame 369.png", alt: "Eiffel Tower View" },
+    { url: "/images/products/Frame 370.png", alt: "Louvre Museum" },
+    { url: "/images/products/Frame 371.png", alt: "Centre Pompidou" },
+    { url: "/images/products/Frame 372.png", alt: "Parisian Street" },
   ],
 
   // Overview Data
@@ -106,7 +107,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: 1,
       title: "Eiffel Tower",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 369.png",
+      imageUrl: "/images/products/Frame 51.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -121,7 +122,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: 2,
       title: "Louvre Museum",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 370.png",
+      imageUrl: "/images/products/Frame 51 (1).png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -136,7 +137,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: 3,
       title: "Centre Pompidou",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 371.png",
+      imageUrl: "/images/products/Frame 51 (2).png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -187,24 +188,24 @@ const TourDetailPage: React.FC = () => {
 
       {/* Main Content Section */}
       <section className="w-full py-8 md:py-12" style={{ backgroundColor: "#FFFCF5" }}>
-        <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
+        <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+          {/* Gallery Section - Full Width */}
+          <div className="mb-12">
+            <TourGallerySection images={tour.images} />
+          </div>
+
           {/* Two Column Layout */}
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Left Column - Main Content */}
-            <div className="flex-1 min-w-0">
-              {/* Image Gallery */}
-              <TourGallerySection images={tour.images} />
-
+            <div className="flex-1 min-w-0 space-y-10">
               {/* Overview Section */}
-              <div className="mt-8">
-                <TourOverviewSection
-                  duration={tour.duration}
-                  groupSize={tour.groupSize}
-                  tourType={tour.tourType}
-                  languages={tour.languages}
-                  description={tour.description}
-                />
-              </div>
+              <TourOverviewSection
+                duration={tour.duration}
+                groupSize={tour.groupSize}
+                tourType={tour.tourType}
+                languages={tour.languages}
+                description={tour.description}
+              />
 
               {/* Highlights Section */}
               <TourHighlightsSection highlights={tour.highlights} />
@@ -229,8 +230,8 @@ const TourDetailPage: React.FC = () => {
             </div>
 
             {/* Right Column - Booking Card (Sticky) */}
-            <div className="lg:w-[320px] shrink-0">
-              <div className="lg:sticky lg:top-24">
+            <div className="lg:w-[467px] shrink-0 h-full relative">
+              <div className="lg:sticky lg:top-28 z-10 self-start">
                 <TourBookingCard
                   price={tour.price}
                   currency="$"

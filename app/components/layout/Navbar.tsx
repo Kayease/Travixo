@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /* ============================================
    Type Definitions
@@ -66,14 +67,19 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
           </div>
 
           {/* Destination Links */}
-          {topDestinations.map((destination, index) => (
-            <button
-              key={index}
-              className="text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-[#FF6E00] transition-colors"
-            >
-              {destination}
-            </button>
-          ))}
+          {topDestinations.map((destination, index) => {
+            const slug = destination === "View all" ? "all" : destination.toLowerCase().replace(/\s+/g, "-");
+            return (
+              <Link
+                key={index}
+                href={`/destinations/${slug}`}
+                className="text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-[#FF6E00] transition-colors"
+                onClick={onClose}
+              >
+                {destination}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Vertical Divider */}
@@ -81,26 +87,31 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
         {/* Middle Column - Featured Destinations with Images */}
         <div className="flex flex-col gap-5 pt-2">
-          {featuredDestinations.map((destination, index) => (
-            <button
-              key={index}
-              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-            >
-              {/* Circular Image */}
-              <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden">
-                <Image
-                  src={destination.image}
-                  alt={destination.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Destination Name */}
-              <span className="font-display text-lg italic text-[#4B3621]">
-                {destination.name}
-              </span>
-            </button>
-          ))}
+          {featuredDestinations.map((destination, index) => {
+            const slug = destination.name.toLowerCase().replace(/\s+/g, "-");
+            return (
+              <Link
+                key={index}
+                href={`/destinations/${slug}`}
+                className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+                onClick={onClose}
+              >
+                {/* Circular Image */}
+                <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden">
+                  <Image
+                    src={destination.image}
+                    alt={destination.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                {/* Destination Name */}
+                <span className="font-display text-lg italic text-[#4B3621]">
+                  {destination.name}
+                </span>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Right Column - Promotional Banner */}
@@ -142,7 +153,7 @@ interface PageLink {
 
 const pagesColumn1: PageLink[] = [
   { label: "About", href: "/about" },
-  { label: "product Page", href: "/product" },
+  { label: "Product Page", href: "/products/grand-palace-tour" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Checkout", href: "/checkout" },
   { label: "Wishlist", href: "/wishlist" },
@@ -179,14 +190,14 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
   const renderColumn = (pages: PageLink[]) => (
     <div className="flex flex-col gap-2">
       {pages.map((page, index) => (
-        <a
+        <Link
           key={index}
           href={page.href}
-          className="font-display text-lg italic text-[#4B3621] hover:text-[#FF6E00] transition-colors py-1"
+          className="font-display text-lg italic text-[#4B3621] hover:text-[#FF6E00] transition-colors py-1 cursor-pointer"
           onClick={onClose}
         >
           {page.label}
-        </a>
+        </Link>
       ))}
     </div>
   );
@@ -230,13 +241,16 @@ const NavItem: React.FC<NavItemProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-2 px-4 py-2 font-serif italic text-lg transition-all ${
-        isActive
-          ? "bg-[#FF6E00] text-white rounded-lg"
-          : "text-brand-brown hover:opacity-70"
-      }`}
+      className={`group relative flex items-center gap-2 px-4 py-2 font-serif italic text-lg transition-all overflow-hidden ${isActive
+        ? "text-white rounded-lg"
+        : "text-brand-brown hover:text-white rounded-lg"
+        }`}
     >
-      <span>{label}</span>
+      {/* Background slide effect */}
+      <span className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
+
+      {/* Text content - positioned relatively to sit on top of background */}
+      <span className="relative z-10">{label}</span>
       {hasDropdown && (
         <svg
           width="24"
@@ -244,11 +258,11 @@ const NavItem: React.FC<NavItemProps> = ({
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={`transition-transform ${isActive ? "rotate-180" : ""}`}
+          className={`relative z-10 transition-transform ${isActive ? "rotate-180" : ""}`}
         >
           <path
             d="M6.41 8.58L12 14.17L17.59 8.58L19 10L12 17L5 10L6.41 8.58Z"
-            fill={isActive ? "#FFFFFF" : "#4B3621"}
+            fill="currentColor"
           />
         </svg>
       )}
@@ -418,14 +432,23 @@ export const Navbar = () => {
             />
           </div>
 
-          <NavItem label="Stay" />
+          <NavItem
+            label="Stay"
+            onClick={() => alert("Navigating to: Stay")}
+          />
         </div>
 
         {/* Right Icons Section */}
         <div className="flex items-center gap-6">
-          <SearchIcon />
-          <CartIcon />
-          <ProfileIcon />
+          <div className="cursor-pointer">
+            <SearchIcon />
+          </div>
+          <div className="cursor-pointer">
+            <CartIcon />
+          </div>
+          <div className="cursor-pointer">
+            <ProfileIcon />
+          </div>
         </div>
       </nav>
     </header>

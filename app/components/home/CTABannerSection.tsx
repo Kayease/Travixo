@@ -5,18 +5,18 @@ import Image from "next/image";
 /**
  * Arrow Icon (rotated)
  */
-const ArrowIcon = () => (
+const ArrowIcon = ({ className = "" }: { className?: string }) => (
   <svg
     width="24"
     height="24"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="-rotate-30"
+    className={`-rotate-30 ${className}`}
   >
     <path
       d="M5 12H19M19 12L12 5M19 12L12 19"
-      stroke="#FF6E00"
+      stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -44,28 +44,37 @@ export const CTABannerSection = ({
 }: CTABannerProps) => {
   return (
     <section className="relative w-full py-12 lg:py-16 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         {/* Container with relative positioning for the image */}
-        <div className="relative">
+        <div className="relative ml-[80px]">
           {/* Traveler Image - Positioned to overlap */}
-          <div className="hidden md:block absolute left-0 lg:left-8 -top-4 bottom-0 w-[180px] lg:w-[232px] z-10">
+          <div className="hidden md:block absolute -left-[40px] -top-[67px] w-[232px] h-[334px] z-10">
             <Image
-              src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&auto=format&fit=crop"
+              src="/images/home/cta/Frame 39.png"
               alt="Travel expert"
               fill
               className="object-contain object-bottom"
-              sizes="(max-width: 1024px) 180px, 232px"
+              sizes="232px"
             />
           </div>
 
           {/* CTA Card */}
           <div
-            className="relative ml-0 md:ml-[120px] lg:ml-[180px] rounded-xl shadow-sm py-10 md:py-12 px-6 md:px-8 lg:px-12"
-            style={{ backgroundColor: "#FFF7E5" }}
+            className="relative py-10 md:py-12 px-6 md:px-8 lg:px-12"
+            style={{
+              width: "1280px",
+              maxWidth: "100%",
+              height: "200px",
+              backgroundColor: "#FFF7E5",
+              backgroundImage: "url('/images/hero-bg-texture.png')",
+              backgroundSize: "cover",
+              boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+              borderRadius: "12px"
+            }}
           >
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 pl-[200px]">
               {/* Content */}
-              <div className="flex-1 pl-0 md:pl-12 lg:pl-24">
+              <div className="flex-1">
                 {/* Title */}
                 <h2 className="font-display italic font-semibold text-xl md:text-2xl lg:text-[28px] leading-tight lg:leading-[37px] text-brand-brown mb-3">
                   {title}
@@ -79,11 +88,13 @@ export const CTABannerSection = ({
 
               {/* CTA Button */}
               <button
-                onClick={onButtonClick}
-                className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange hover:bg-brand-orange hover:text-white transition-all duration-300 group"
+                onClick={onButtonClick || (() => console.log(`Action: ${buttonText}`))}
+                className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group"
               >
-                <span>{buttonText}</span>
-                <span className="group-hover:translate-x-1 transition-transform">
+                {/* Fill animation from bottom to top */}
+                <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{buttonText}</span>
+                <span className="relative z-10 group-hover:translate-x-1 transition-transform text-brand-orange group-hover:text-white">
                   <ArrowIcon />
                 </span>
               </button>

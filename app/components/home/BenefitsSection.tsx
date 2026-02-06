@@ -6,84 +6,48 @@ import Image from "next/image";
  * Plane Icon
  */
 const PlaneIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M28 4L14.6667 17.3333M28 4L20 28L14.6667 17.3333M28 4L4 12L14.6667 17.3333"
-      stroke="#FF6E00"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/benefits/Component 31.png"
+    alt="Plane Icon"
+    width={60}
+    height={60}
+  />
 );
 
 /**
  * Tent/Tree Icon
  */
 const TentIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8 8L10 4M10 4L12 8M10 4V12M4 28L16 12L28 28M4 28H28M12 28L16 20L20 28"
-      stroke="#FF6E00"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/benefits/Component 32.png"
+    alt="Tent Icon"
+    width={60}
+    height={60}
+  />
 );
 
 /**
  * Sailboat Icon
  */
 const SailboatIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M16 4V20M16 4L8 20M16 4L24 20M4 24C6 22 10 22 12 24C14 26 18 26 20 24C22 22 26 22 28 24M4 28H28"
-      stroke="#FF6E00"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/benefits/Component 33.png"
+    alt="Sailboat Icon"
+    width={60}
+    height={60}
+  />
 );
 
 /**
  * Hot Air Balloon Icon
  */
 const BalloonIcon = () => (
-  <svg
-    width="28"
-    height="32"
-    viewBox="0 0 28 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M14 2C8 2 3 7 3 13C3 17 6 20 8 22L10 28H18L20 22C22 20 25 17 25 13C25 7 20 2 14 2ZM14 2V13M10 28V30C10 31 12 32 14 32C16 32 18 31 18 30V28"
-      stroke="#FF6E00"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/benefits/Component 34.png"
+    alt="Balloon Icon"
+    width={60}
+    height={60}
+  />
 );
 
 /**
@@ -156,7 +120,7 @@ const StepItem = ({
     {/* Icon and Connector Line */}
     <div className="flex flex-col items-center">
       {/* Icon Container */}
-      <div className="w-[50px] h-[50px] rounded-full border border-brand-orange bg-white flex items-center justify-center shrink-0">
+      <div className="w-[60px] h-[60px] flex items-center justify-center shrink-0">
         {getIcon(icon)}
       </div>
 
@@ -187,7 +151,12 @@ export const BenefitsSection = () => {
   return (
     <section
       className="relative w-full py-12 lg:py-16"
-      style={{ backgroundColor: "#FFF7E5" }}
+      style={{ 
+        backgroundColor: "#FFF7E5",
+        backgroundImage: "url('/images/hero-bg-texture.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
@@ -213,7 +182,7 @@ export const BenefitsSection = () => {
             {/* Image */}
             <div className="relative w-full max-w-[573px] h-[300px] md:h-[400px] lg:h-[470px] rounded-xl overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000&auto=format&fit=crop"
+                src="/images/home/benefits/Frame 483.png"
                 alt="Travel planning with map and camera"
                 fill
                 className="object-cover"

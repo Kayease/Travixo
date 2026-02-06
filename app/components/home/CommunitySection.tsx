@@ -33,23 +33,23 @@ const InstagramIcon = () => (
 const GALLERY_IMAGES = [
   {
     id: 1,
-    url: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=600&auto=format&fit=crop",
-    alt: "Mountain lake landscape",
+    url: "/images/Travixo ( Travel & Tour )/Frame 301.png",
+    alt: "Travel moment 1",
   },
   {
     id: 2,
-    url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600&auto=format&fit=crop",
-    alt: "Traveler in old town",
+    url: "/images/Travixo ( Travel & Tour )/Frame 302.png",
+    alt: "Travel moment 2",
   },
   {
     id: 3,
-    url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=600&auto=format&fit=crop",
-    alt: "City street view",
+    url: "/images/Travixo ( Travel & Tour )/Frame 303.png",
+    alt: "Travel moment 3",
   },
   {
     id: 4,
-    url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop",
-    alt: "Beach paradise",
+    url: "/images/Travixo ( Travel & Tour )/Frame 304.png",
+    alt: "Travel moment 4",
   },
 ];
 
@@ -62,12 +62,12 @@ const GalleryCard = ({ url, alt }: { url: string; alt: string }) => (
       src={url}
       alt={alt}
       fill
-      className="object-cover transition-transform duration-500 group-hover:scale-110"
+      className="object-cover transition-transform duration-500"
       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 311px"
     />
 
-    {/* Overlay with Instagram Icon - Shows on Hover */}
-    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+    {/* Overlay with Instagram Icon - Slides down on Hover */}
+    <div className="absolute inset-0 bg-black/40 z-10 w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out flex items-center justify-center">
       <InstagramIcon />
     </div>
   </div>

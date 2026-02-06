@@ -4,122 +4,50 @@ import Image from "next/image";
 
 /**
  * Activity category data
- * Each category has an icon, label, and active state styling
+ * Each category has an icon path, label, and active state styling
+ * Icons are stored locally in /public/images/home/
  */
 const ACTIVITY_CATEGORIES = [
-  { id: "beach", label: "Beach Tour", icon: "beach" },
-  { id: "safari", label: "Safari", icon: "car" },
-  { id: "hiking", label: "Hiking", icon: "hiking" },
-  { id: "cycling", label: "Cycling", icon: "cycling" },
-  { id: "surfing", label: "Surfing", icon: "surfing" },
+  { id: "beach", label: "Beach Tour", iconPath: "/images/home/streamline_beach.png" },
+  { id: "safari", label: "Safari", iconPath: "/images/home/majesticons_car-line.png" },
+  { id: "hiking", label: "Hiking", iconPath: "/images/home/game-icons_hiking.png" },
+  { id: "cycling", label: "Cycling", iconPath: "/images/home/game-icons_cycling.png" },
+  { id: "surfing", label: "Surfing", iconPath: "/images/home/material-symbols-light_surfing-sharp.png" },
 ];
 
 /**
- * SVG Icons for each activity category
+ * Activity Icon Component
+ * Renders local PNG icons with optional active state styling
  */
 const ActivityIcon = ({
-  type,
+  iconPath,
   isActive,
+  alt,
 }: {
-  type: string;
+  iconPath: string;
   isActive: boolean;
+  alt: string;
 }) => {
-  const color = isActive ? "#FF6E00" : "#4B3621";
-
-  const icons: Record<string, React.ReactNode> = {
-    beach: (
-      <svg
-        width="46"
-        height="46"
-        viewBox="0 0 46 46"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M38 38H8M23 8V38M23 8C23 8 28 12 33 14C38 16 38 8 38 8M23 8C23 8 18 12 13 14C8 16 8 8 8 8M23 20C26 22 30 23 33 22M23 20C20 22 16 23 13 22"
-          stroke={color}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    car: (
-      <svg
-        width="46"
-        height="46"
-        viewBox="0 0 46 46"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8 23L12 13C12.3 12.3 12.8 11.7 13.4 11.3C14 10.9 14.7 10.7 15.5 10.7H30.5C31.3 10.7 32 10.9 32.6 11.3C33.2 11.7 33.7 12.3 34 13L38 23M8 23H38M8 23V35M38 23V35M8 35V36C8 36.8 8.3 37.5 8.9 38.1C9.5 38.7 10.2 39 11 39C11.8 39 12.5 38.7 13.1 38.1C13.7 37.5 14 36.8 14 36V35M8 35H14M38 35V36C38 36.8 37.7 37.5 37.1 38.1C36.5 38.7 35.8 39 35 39C34.2 39 33.5 38.7 32.9 38.1C32.3 37.5 32 36.8 32 36V35M38 35H32M32 35H14"
-          stroke={color}
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    hiking: (
-      <svg
-        width="46"
-        height="46"
-        viewBox="0 0 46 46"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="28" cy="8" r="4" fill={color} />
-        <path
-          d="M20 42L24 30L30 34V42M24 30L20 20L28 16L34 22L30 34M28 16V12"
-          stroke={color}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    cycling: (
-      <svg
-        width="46"
-        height="46"
-        viewBox="0 0 46 46"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="11" cy="32" r="7" stroke={color} strokeWidth="2.5" />
-        <circle cx="35" cy="32" r="7" stroke={color} strokeWidth="2.5" />
-        <path
-          d="M11 32L19 14H27M35 32L27 14M27 14L31 8"
-          stroke={color}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="31" cy="8" r="3" fill={color} />
-      </svg>
-    ),
-    surfing: (
-      <svg
-        width="46"
-        height="46"
-        viewBox="0 0 46 46"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="30" cy="8" r="4" fill={color} />
-        <path
-          d="M8 42C12 38 18 36 24 38C30 40 36 38 40 34M22 32L18 22L26 18L32 28L28 32M26 18L28 12"
-          stroke={color}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  };
-
-  return icons[type] || null;
+  return (
+    <div 
+      className="relative w-[46px] h-[46px] transition-all duration-300"
+      style={{
+        filter: isActive ? "none" : "grayscale(0) brightness(0.4)"
+      }}
+    >
+      <Image
+        src={iconPath}
+        alt={alt}
+        fill
+        className="object-contain"
+        style={{
+          filter: isActive 
+            ? "invert(45%) sepia(98%) saturate(1500%) hue-rotate(360deg) brightness(100%)" 
+            : "none"
+        }}
+      />
+    </div>
+  );
 };
 
 /**
@@ -223,7 +151,7 @@ export const ExploreSection = () => {
                 <div
                   className={`${isActive ? "drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]" : ""}`}
                 >
-                  <ActivityIcon type={category.icon} isActive={isActive} />
+                  <ActivityIcon iconPath={category.iconPath} isActive={isActive} alt={category.label} />
                 </div>
 
                 {/* Label */}
@@ -267,22 +195,19 @@ export const ExploreSection = () => {
               <SelectInput label="Tour Duration" icon="dropdown" />
             </div>
 
-            {/* Search Button */}
-            <div className="mt-4">
+            {/* Search Button with bottom-to-top fill animation */}
+            <div className="mt-6 flex justify-center">
               <button
-                className="w-[384px] h-[50px] bg-white border border-brand-orange rounded-xl 
-                           flex items-center overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)]
-                           hover:shadow-lg transition-shadow"
+                className="relative w-[384px] h-[50px] bg-brand-orange border border-brand-orange rounded-xl 
+                           flex items-center justify-center overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)]
+                           hover:shadow-lg transition-shadow group"
               >
-                {/* Left side - empty white space */}
-                <div className="flex-1" />
-
-                {/* Right side - orange button */}
-                <div className="w-[192px] h-full bg-brand-orange flex items-center justify-center">
-                  <span className="font-display italic font-medium text-xl text-white">
-                    Search Now
-                  </span>
-                </div>
+                {/* Bottom-to-top fill animation overlay */}
+                <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
+                {/* Button text - centered */}
+                <span className="relative z-10 font-display italic font-medium text-xl text-white group-hover:text-brand-orange transition-colors duration-300">
+                  Search Now
+                </span>
               </button>
             </div>
           </div>

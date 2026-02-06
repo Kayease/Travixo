@@ -1,131 +1,7 @@
 "use client";
 import React from "react";
 
-/**
- * Chat Bot Icon - 24-hour support
- */
-const ChatBotIcon = () => (
-  <svg
-    width="48"
-    height="48"
-    viewBox="0 0 48 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8 10C8 7.79 9.79 6 12 6H36C38.21 6 40 7.79 40 10V30C40 32.21 38.21 34 36 34H28L20 42V34H12C9.79 34 8 32.21 8 30V10Z"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <circle cx="18" cy="20" r="2" fill="#FF6E00" />
-    <circle cx="24" cy="20" r="2" fill="#FF6E00" />
-    <circle cx="30" cy="20" r="2" fill="#FF6E00" />
-  </svg>
-);
-
-/**
- * Feed Icon - No hidden fee
- */
-const FeedIcon = () => (
-  <svg
-    width="48"
-    height="48"
-    viewBox="0 0 48 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect
-      x="8"
-      y="12"
-      width="32"
-      height="24"
-      rx="4"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-    />
-    <path
-      d="M16 22H32M16 28H28"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-    <path
-      d="M24 6V12"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-    <circle cx="24" cy="6" r="3" stroke="#FF6E00" strokeWidth="2" />
-  </svg>
-);
-
-/**
- * Checkmark/Flexibility Icon
- */
-const FlexibilityIcon = () => (
-  <svg
-    width="48"
-    height="48"
-    viewBox="0 0 48 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="24" cy="24" r="18" stroke="#FF6E00" strokeWidth="2.5" />
-    <path
-      d="M16 24L22 30L32 18"
-      stroke="#FF6E00"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-/**
- * Bus Icon - Included transfer
- */
-const BusIcon = () => (
-  <svg
-    width="48"
-    height="48"
-    viewBox="0 0 48 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect
-      x="8"
-      y="12"
-      width="32"
-      height="24"
-      rx="4"
-      stroke="#FF6E00"
-      strokeWidth="2.5"
-    />
-    <path d="M8 24H40" stroke="#FF6E00" strokeWidth="2.5" />
-    <circle cx="16" cy="36" r="3" stroke="#FF6E00" strokeWidth="2" />
-    <circle cx="32" cy="36" r="3" stroke="#FF6E00" strokeWidth="2" />
-    <rect
-      x="14"
-      y="16"
-      width="8"
-      height="6"
-      rx="1"
-      stroke="#FF6E00"
-      strokeWidth="2"
-    />
-    <rect
-      x="26"
-      y="16"
-      width="8"
-      height="6"
-      rx="1"
-      stroke="#FF6E00"
-      strokeWidth="2"
-    />
-  </svg>
-);
+import Image from "next/image";
 
 /**
  * Features data
@@ -161,17 +37,54 @@ const FEATURES = [
  * Get icon component by type
  */
 const getIcon = (iconType: string) => {
+  const iconSize = 48; // Standard size for all icons
+
   switch (iconType) {
     case "chat":
-      return <ChatBotIcon />;
+      return (
+        <Image
+          src="/images/home/features/carbon_chat-bot.png"
+          alt="24-hour support"
+          width={iconSize}
+          height={iconSize}
+        />
+      );
     case "feed":
-      return <FeedIcon />;
+      return (
+        <Image
+          src="/images/home/features/fluent_feed-16-regular.png"
+          alt="No hidden fee"
+          width={iconSize}
+          height={iconSize}
+        />
+      );
     case "flex":
-      return <FlexibilityIcon />;
+      return (
+        <Image
+          src="/images/home/features/Mask group (1).png"
+          alt="Booking Flexibility"
+          width={iconSize}
+          height={iconSize}
+        />
+      );
     case "bus":
-      return <BusIcon />;
+      return (
+        <Image
+          src="/images/home/features/tabler_bus.png"
+          alt="Included transfer"
+          width={iconSize}
+          height={iconSize}
+        />
+      );
     default:
-      return <ChatBotIcon />;
+      return (
+        <Image
+          src="/images/home/features/carbon_chat-bot.png"
+          alt="Feature icon"
+          width={iconSize}
+          height={iconSize}
+        />
+      );
   }
 };
 

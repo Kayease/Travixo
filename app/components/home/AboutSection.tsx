@@ -6,84 +6,48 @@ import Image from "next/image";
  * Plane Icon for the badge
  */
 const PlaneIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M17.5 2.5L9.16667 10.8333M17.5 2.5L12.5 17.5L9.16667 10.8333M17.5 2.5L2.5 7.5L9.16667 10.8333"
-      stroke="white"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/about/mynaui_plane.png"
+    alt="Plane Icon"
+    width={20}
+    height={20}
+  />
 );
 
 /**
  * Travel Guide Icon
  */
 const TravelIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M16 4C13.5 4 11.5 6 11.5 8.5C11.5 11 16 16 16 16C16 16 20.5 11 20.5 8.5C20.5 6 18.5 4 16 4ZM16 10.5C14.9 10.5 14 9.6 14 8.5C14 7.4 14.9 6.5 16 6.5C17.1 6.5 18 7.4 18 8.5C18 9.6 17.1 10.5 16 10.5Z"
-      fill="#FF6E00"
-    />
-    <path
-      d="M22 20H10C8.9 20 8 20.9 8 22V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V22C24 20.9 23.1 20 22 20ZM22 26H10V22H22V26Z"
-      fill="#FF6E00"
-    />
-    <path d="M8 18H24V20H8V18Z" fill="#FF6E00" />
-  </svg>
+  <Image
+    src="/images/home/about/Component 29.png"
+    alt="Travel Guide Icon"
+    width={32}
+    height={32}
+  />
 );
 
 /**
  * Luggage/Safety Icon
  */
 const LuggageIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M20 8V6C20 4.9 19.1 4 18 4H14C12.9 4 12 4.9 12 6V8H8C6.9 8 6 8.9 6 10V24C6 25.1 6.9 26 8 26H24C25.1 26 26 25.1 26 24V10C26 8.9 25.1 8 24 8H20ZM14 6H18V8H14V6ZM24 24H8V10H24V24Z"
-      fill="#FF6E00"
-    />
-  </svg>
+  <Image
+    src="/images/home/about/Component 30.png"
+    alt="Luggage Icon"
+    width={32}
+    height={32}
+  />
 );
 
 /**
  * Checkmark Icon
  */
 const CheckIcon = () => (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="14" cy="14" r="14" fill="#FF6E00" />
-    <path
-      d="M11.5 14.5L13 16L17 12"
-      stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <Image
+    src="/images/home/about/Mask group.png"
+    alt="Checkmark Icon"
+    width={28}
+    height={28}
+  />
 );
 
 /**
@@ -132,7 +96,7 @@ const FeatureCard = ({
   >
     <div className="flex items-start gap-4">
       {/* Icon */}
-      <div className="w-[50px] h-[50px] rounded-full border border-brand-orange bg-white flex items-center justify-center shrink-0">
+      <div className="w-[50px] h-[50px] flex items-center justify-center shrink-0">
         {icon === "travel" ? <TravelIcon /> : <LuggageIcon />}
       </div>
 
@@ -175,29 +139,8 @@ export const AboutSection = () => {
               />
             </div>
 
-            {/* 50% Off Badge */}
-            <div className="absolute top-16 md:top-20 right-4 md:right-0 z-10">
-              {/* Decorative Brush Stroke */}
-              <svg
-                width="150"
-                height="70"
-                viewBox="0 0 150 70"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute -left-2 -top-2"
-              >
-                <path
-                  d="M10 35C20 15 50 5 80 10C110 15 140 30 145 45C150 60 130 65 100 60C70 55 30 50 10 35Z"
-                  fill="#FF6E00"
-                />
-              </svg>
-              <span className="relative font-display italic font-extrabold text-[28px] leading-[37px] text-white z-10 px-4">
-                50% Off
-              </span>
-            </div>
-
             {/* Overlapping Secondary Image - Bottom Left */}
-            <div className="absolute -bottom-8 left-[100px] md:left-[150px] lg:left-[228px] w-[280px] md:w-[350px] lg:w-[401px] h-[180px] md:h-[220px] lg:h-[242px] rounded-[32px] overflow-hidden border border-brand-orange shadow-md z-20">
+            <div className="absolute -bottom-8 left-[100px] md:left-[150px] lg:left-[228px] w-[280px] md:w-[350px] lg:w-[401px] h-[180px] md:h-[220px] lg:h-[242px] rounded-[32px] overflow-hidden shadow-md z-20">
               <Image
                 src="/images/getToKnow/Frame 27.png"
                 alt="Beach resort"
@@ -260,8 +203,12 @@ export const AboutSection = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="w-[244px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange hover:bg-brand-orange hover:text-white transition-all duration-300">
-              Explore More
+            <button className="w-[244px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group">
+              {/* Fill animation from bottom to top */}
+              <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                Explore More
+              </span>
             </button>
           </div>
         </div>

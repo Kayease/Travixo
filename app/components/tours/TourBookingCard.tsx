@@ -34,134 +34,158 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 }) => {
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(defaultDate);
   const [activeTab, setActiveTab] = useState<"book" | "enquiry">("book");
 
   return (
     <aside
-      className="w-full lg:w-[320px] p-5 md:p-6"
+      className="relative shrink-0"
       style={{
-        backgroundColor: "#FFFFFF",
-        border: "1px solid rgba(0, 0, 0, 0.1)",
+        width: "100%",
+        maxWidth: "467px",
+        height: "480px",
+        backgroundColor: "#FFF7E5",
         borderRadius: "12px",
-        boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.08)",
+        boxSizing: "border-box",
       }}
     >
-      {/* Price Display */}
-      <div className="mb-5">
-        <span className="font-body text-sm text-brand-brown/60">From</span>
-        <p className="font-display italic font-semibold text-2xl md:text-[28px] text-brand-brown">
-          {currency}
-          {price} <span className="text-base font-normal">/person</span>
-        </p>
-      </div>
+      <div className="relative w-full h-full">
+        {/* Price Display: Top 18px */}
+        <div className="absolute left-[18px] top-[18px]">
+          <p className="font-display italic font-medium text-[20px] leading-[27px] text-brand-brown">
+            From <br />
+            {currency}{price} <span className="text-[20px]">/person</span>
+          </p>
+        </div>
 
-      {/* Book / Enquiry Tabs */}
-      <div className="flex gap-8 mb-5 border-b border-gray-200">
+        {/* Tabs: Top 124px */}
+        <div className="absolute left-0 w-full top-[124px] px-[61px] flex justify-between items-center">
+          <div className="relative">
+            <button
+              onClick={() => setActiveTab("book")}
+              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown"
+            >
+              Book
+            </button>
+            {activeTab === "book" && (
+              <div
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#FF6E00]"
+                style={{ width: "69px", height: "1px", borderRadius: "8px" }}
+              />
+            )}
+          </div>
+
+          <div className="relative">
+            <button
+              onClick={() => setActiveTab("enquiry")}
+              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown"
+            >
+              Enquiry
+            </button>
+            {activeTab === "enquiry" ? (
+              <div
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#FF6E00]"
+                style={{ width: "87px", height: "1px", borderRadius: "8px" }}
+              />
+            ) : (
+              <div
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[rgba(255,110,0,0.2)]"
+                style={{ width: "87px", height: "1px", borderRadius: "8px" }}
+              />
+            )}
+          </div>
+        </div>
+
+        {/* Date Row: Top 193px */}
+        <div className="absolute left-[18px] right-[18px] top-[193px] flex justify-between items-center h-[30px]">
+          <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown">
+            Date
+          </span>
+          <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown">
+            {defaultDate}
+          </span>
+        </div>
+
+        {/* Separator 1: Top 241px */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-[241px] w-[431px] h-[1px] bg-[rgba(0,0,0,0.2)]" />
+
+        {/* Adult Row: Top 259px */}
+        <div className="absolute left-[18px] right-[18px] top-[259px] flex justify-between items-center h-[30px]">
+          <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown">
+            Adult <span className="text-[20px]">( 13+ age )</span>
+          </span>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setAdults(Math.max(0, adults - 1))}
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors"
+            >
+              <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown min-w-[20px] text-center">
+              {adults}
+            </span>
+
+            <button
+              onClick={() => setAdults(adults + 1)}
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white"
+            >
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 1V9M1 5H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Separator 2: Top 307px */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-[307px] w-[431px] h-[1px] bg-[rgba(0,0,0,0.2)]" />
+
+        {/* Children Row: Top 325px */}
+        <div className="absolute left-[18px] right-[18px] top-[325px] flex justify-between items-center h-[30px]">
+          <span className="font-body italic font-medium text-[20px] text-brand-brown">
+            Children <span className="text-[20px]">( age 3-12 )</span>
+          </span>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setChildren(Math.max(0, children - 1))}
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors"
+            >
+              <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown min-w-[20px] text-center">
+              {children}
+            </span>
+
+            <button
+              onClick={() => setChildren(children + 1)}
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white"
+            >
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 1V9M1 5H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Separator 3: Top 373px */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-[373px] w-[431px] h-[1px] bg-[rgba(0,0,0,0.2)]" />
+
+        {/* CTA Button: Top 409px */}
         <button
-          onClick={() => setActiveTab("book")}
-          className={`font-display italic font-medium text-base pb-2 transition-colors ${
-            activeTab === "book"
-              ? "text-brand-brown border-b-2 border-brand-orange"
-              : "text-brand-brown/50"
-          }`}
+          className="absolute left-[18px] right-[18px] top-[409px] h-[45px] bg-[#FF6E00] rounded-[12px] flex items-center justify-center transition-transform active:scale-[0.98]"
         >
-          Book
+          <span className="font-display italic font-medium text-[20px] leading-[27px] text-center text-white">
+            Check Availability
+          </span>
         </button>
-        <button
-          onClick={() => setActiveTab("enquiry")}
-          className={`font-display italic font-medium text-base pb-2 transition-colors ${
-            activeTab === "enquiry"
-              ? "text-brand-brown border-b-2 border-brand-orange"
-              : "text-brand-brown/50"
-          }`}
-        >
-          Enquiry
-        </button>
-      </div>
 
-      {/* Date Selection */}
-      <div className="mb-4">
-        <label className="font-body text-sm text-brand-brown mb-1 block">
-          Date
-        </label>
-        <input
-          type="text"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-          className="w-full font-body text-base text-brand-brown bg-transparent border-b border-gray-200 pb-2 outline-none focus:border-brand-orange transition-colors"
-          placeholder="Select date"
-        />
       </div>
-
-      {/* Adult Counter */}
-      <div className="flex items-center justify-between mb-3 py-2">
-        <div>
-          <span className="font-display italic font-medium text-base text-brand-brown">
-            Adult
-          </span>
-          <span className="font-body text-xs text-brand-brown/60 ml-1">
-            (13+ age)
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setAdults(Math.max(0, adults - 1))}
-            className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-brand-brown/60 hover:border-brand-orange hover:text-brand-orange transition-colors"
-          >
-            −
-          </button>
-          <span className="font-body text-base text-brand-brown w-4 text-center">
-            {adults}
-          </span>
-          <button
-            onClick={() => setAdults(adults + 1)}
-            className="w-7 h-7 rounded-full flex items-center justify-center text-white transition-colors"
-            style={{ backgroundColor: "#FF6E00" }}
-          >
-            +
-          </button>
-        </div>
-      </div>
-
-      {/* Children Counter */}
-      <div className="flex items-center justify-between mb-6 py-2">
-        <div>
-          <span className="font-display italic font-medium text-base text-brand-brown">
-            Children
-          </span>
-          <span className="font-body text-xs text-brand-brown/60 ml-1">
-            (age 3-12)
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setChildren(Math.max(0, children - 1))}
-            className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-brand-brown/60 hover:border-brand-orange hover:text-brand-orange transition-colors"
-          >
-            −
-          </button>
-          <span className="font-body text-base text-brand-brown w-4 text-center">
-            {children}
-          </span>
-          <button
-            onClick={() => setChildren(children + 1)}
-            className="w-7 h-7 rounded-full flex items-center justify-center text-white transition-colors"
-            style={{ backgroundColor: "#FF6E00" }}
-          >
-            +
-          </button>
-        </div>
-      </div>
-
-      {/* Check Availability Button */}
-      <button className="w-full py-3 bg-[#FF6E00] border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 active:scale-[0.98] relative group">
-        {/* Fill animation from bottom to top */}
-        <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
-        <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300">
-          Check Availability
-        </span>
-      </button>
     </aside>
   );
 };
