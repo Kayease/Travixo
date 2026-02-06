@@ -29,8 +29,6 @@ const VALUES_DATA = [
   },
 ];
 
-
-
 /**
  * Value Card Component
  */
@@ -46,12 +44,7 @@ const ValueCard = ({
   <div className="rounded-xl p-5 h-full" style={{ backgroundColor: "#FFFCF5" }}>
     {/* Icon */}
     <div className="mb-4 relative w-[42px] h-[42px]">
-      <Image
-        src={icon}
-        alt={title}
-        fill
-        className="object-contain"
-      />
+      <Image src={icon} alt={title} fill className="object-contain" />
     </div>
 
     {/* Title */}
@@ -158,4 +151,3 @@ export const ValuesSection = () => {
 };
 
 export default ValuesSection;
-

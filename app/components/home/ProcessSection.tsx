@@ -44,8 +44,6 @@ const PROCESS_STEPS = [
   },
 ];
 
-
-
 /**
  * ProcessSection Component
  * "Traveling with Travixo" - Our Process section
@@ -72,10 +70,11 @@ export const ProcessSection = () => {
           {PROCESS_STEPS.map((step) => (
             <div
               key={step.id}
-              className={`flex flex-col gap-8 lg:gap-16 ${step.layout === "image-left"
-                ? "lg:flex-row"
-                : "lg:flex-row-reverse"
-                }`}
+              className={`flex flex-col gap-8 lg:gap-16 ${
+                step.layout === "image-left"
+                  ? "lg:flex-row"
+                  : "lg:flex-row-reverse"
+              }`}
             >
               {/* Image */}
               <div className="w-full lg:w-[640px] shrink-0">
@@ -92,10 +91,11 @@ export const ProcessSection = () => {
 
               {/* Content */}
               <div
-                className={`flex-1 flex flex-col justify-center ${step.layout === "image-left"
-                  ? "lg:items-start lg:text-left"
-                  : "lg:items-start lg:text-left"
-                  }`}
+                className={`flex-1 flex flex-col justify-center ${
+                  step.layout === "image-left"
+                    ? "lg:items-start lg:text-left"
+                    : "lg:items-start lg:text-left"
+                }`}
               >
                 {/* Icon Circle */}
                 <div className="relative w-[80px] h-[80px] lg:w-[95px] lg:h-[95px] mb-6 flex items-center justify-center">
@@ -138,4 +138,3 @@ export const ProcessSection = () => {
 };
 
 export default ProcessSection;
-

@@ -14,7 +14,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332.png",
-    slug: "/blogs/safari-explorer",
+    slug: "/blog/safari-explorer",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332-1.png",
-    slug: "/blogs/kayak-adventure",
+    slug: "/blog/kayak-adventure",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332-2.png",
-    slug: "/blogs/road-trip",
+    slug: "/blog/road-trip",
   },
   {
     id: 4,
@@ -38,7 +38,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332-3.png",
-    slug: "/blogs/mountain-hiking",
+    slug: "/blog/mountain-hiking",
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332-4.png",
-    slug: "/blogs/hot-air-balloon",
+    slug: "/blog/hot-air-balloon",
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332-5.png",
-    slug: "/blogs/group-hiking",
+    slug: "/blog/group-hiking",
   },
   {
     id: 7,
@@ -62,7 +62,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332.png",
-    slug: "/blogs/safari-explorer-2",
+    slug: "/blog/safari-explorer-2",
   },
   {
     id: 8,
@@ -70,7 +70,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332-1.png",
-    slug: "/blogs/kayak-adventure-2",
+    slug: "/blog/kayak-adventure-2",
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/frame-332-2.png",
-    slug: "/blogs/road-trip-2",
+    slug: "/blog/road-trip-2",
   },
 ];
 
@@ -176,4 +176,3 @@ export const BlogGridSection: React.FC<BlogGridSectionProps> = ({
 };
 
 export default BlogGridSection;
-
