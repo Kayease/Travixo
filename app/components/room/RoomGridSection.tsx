@@ -98,7 +98,7 @@ const RoomGridSection: React.FC = () => {
       id: "serenity-suite",
       name: "Serenity Suite",
       price: "$45",
-      image: "/images/room/Frame 494 (1).png",
+      image: "/images/room/frame-494-1.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -106,7 +106,7 @@ const RoomGridSection: React.FC = () => {
       id: "sunlight-terrace",
       name: "Sunlight Terrace Villa",
       price: "$45",
-      image: "/images/room/Frame 494 (2).png",
+      image: "/images/room/frame-494-2.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -114,7 +114,7 @@ const RoomGridSection: React.FC = () => {
       id: "tropical-zen",
       name: "Tropical Zen Retreat",
       price: "$45",
-      image: "/images/room/Frame 494.png",
+      image: "/images/room/frame-494.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -122,7 +122,7 @@ const RoomGridSection: React.FC = () => {
       id: "special",
       name: "Special",
       price: "$45",
-      image: "/images/room/Frame 492.png",
+      image: "/images/room/frame-492.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -130,7 +130,7 @@ const RoomGridSection: React.FC = () => {
       id: "terrace-room",
       name: "Terrace Room",
       price: "$45",
-      image: "/images/room/Frame 491.png",
+      image: "/images/room/frame-491.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -138,7 +138,7 @@ const RoomGridSection: React.FC = () => {
       id: "deluxe-room",
       name: "Deluxe Room",
       price: "$45",
-      image: "/images/room/Frame 404.png",
+      image: "/images/room/frame-404.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -159,3 +159,4 @@ const RoomGridSection: React.FC = () => {
 };
 
 export default RoomGridSection;
+

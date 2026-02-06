@@ -7,7 +7,7 @@ import Image from "next/image";
  */
 const PlaneIcon = () => (
   <Image
-    src="/images/home/tourtypes/mynaui_plane (1).png"
+    src="/images/home/tourtypes/mynaui_plane-1.png"
     alt="Plane Icon"
     width={20}
     height={20}
@@ -207,3 +207,4 @@ export const TourTypesSection = () => {
     </section>
   );
 };
+

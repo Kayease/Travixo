@@ -50,7 +50,7 @@ export const CTABannerSection = ({
           {/* Traveler Image - Positioned to overlap */}
           <div className="hidden md:block absolute -left-[40px] -top-[67px] w-[232px] h-[334px] z-10">
             <Image
-              src="/images/home/cta/Frame 39.png"
+              src="/images/home/cta/frame-39.png"
               alt="Travel expert"
               fill
               className="object-contain object-bottom"

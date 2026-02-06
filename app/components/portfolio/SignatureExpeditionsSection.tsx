@@ -19,19 +19,19 @@ const expeditionsData: ExpeditionItem[] = [
     id: '1',
     slug: 'safari-of-dubai',
     title: 'Safari of Dubai',
-    image: '/images/portfolio/Component 68.png',
+    image: '/images/portfolio/component-68.png',
   },
   {
     id: '2',
     slug: 'alaska-snowfall',
     title: 'Alaska Snowfall',
-    image: '/images/portfolio/Component 69.png',
+    image: '/images/portfolio/component-69.png',
   },
   {
     id: '3',
     slug: 'japan-culture',
     title: 'Japan Culture',
-    image: '/images/portfolio/Component 70.png',
+    image: '/images/portfolio/component-70.png',
   },
 ];
 
@@ -62,3 +62,4 @@ const SignatureExpeditionsSection: React.FC<SignatureExpeditionsSectionProps> = 
 };
 
 export default SignatureExpeditionsSection;
+

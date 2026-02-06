@@ -19,7 +19,7 @@ const PlaneIcon = () => (
  */
 const TravelIcon = () => (
   <Image
-    src="/images/home/about/Component 29.png"
+    src="/images/home/about/component-29.png"
     alt="Travel Guide Icon"
     width={32}
     height={32}
@@ -31,7 +31,7 @@ const TravelIcon = () => (
  */
 const LuggageIcon = () => (
   <Image
-    src="/images/home/about/Component 30.png"
+    src="/images/home/about/component-30.png"
     alt="Luggage Icon"
     width={32}
     height={32}
@@ -43,7 +43,7 @@ const LuggageIcon = () => (
  */
 const CheckIcon = () => (
   <Image
-    src="/images/home/about/Mask group.png"
+    src="/images/home/about/mask-group.png"
     alt="Checkmark Icon"
     width={28}
     height={28}
@@ -131,7 +131,7 @@ export const AboutSection = () => {
             {/* Main Image */}
             <div className="relative w-full h-[500px] md:h-[650px] lg:h-[754px] rounded-lg overflow-hidden">
               <Image
-                src="/images/getToKnow/Frame 4 (1).png"
+                src="/images/gettoknow/frame-4-1.png"
                 alt="Traveler enjoying view"
                 fill
                 className="object-cover"
@@ -142,7 +142,7 @@ export const AboutSection = () => {
             {/* Overlapping Secondary Image - Bottom Left */}
             <div className="absolute -bottom-8 left-[100px] md:left-[150px] lg:left-[228px] w-[280px] md:w-[350px] lg:w-[401px] h-[180px] md:h-[220px] lg:h-[242px] rounded-[32px] overflow-hidden shadow-md z-20">
               <Image
-                src="/images/getToKnow/Frame 27.png"
+                src="/images/gettoknow/frame-27.png"
                 alt="Beach resort"
                 fill
                 className="object-cover"
@@ -216,3 +216,4 @@ export const AboutSection = () => {
     </section>
   );
 };
+

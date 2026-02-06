@@ -6,13 +6,13 @@ import Image from "next/image";
  * About Hero Images Data
  */
 const HERO_IMAGES = {
-    frame345: "/images/about/Frame 345.png",
-    frame346: "/images/about/Frame 346.png",
-    frame347: "/images/about/Frame 347.png",
-    frame348: "/images/about/Frame 348.png",
-    frame349: "/images/about/Frame 349.png",
-    frame350: "/images/about/Frame 350.png",
-    frame356: "/images/about/Frame 356.png",
+    frame345: "/images/about/frame-345.png",
+    frame346: "/images/about/frame-346.png",
+    frame347: "/images/about/frame-347.png",
+    frame348: "/images/about/frame-348.png",
+    frame349: "/images/about/frame-349.png",
+    frame350: "/images/about/frame-350.png",
+    frame356: "/images/about/frame-356.png",
 };
 
 /**
@@ -368,3 +368,4 @@ export const AboutHeroSection = () => {
         </section>
     );
 };
+

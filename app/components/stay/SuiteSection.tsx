@@ -83,7 +83,7 @@ const SuiteSection: React.FC = () => {
     {
       id: "standard",
       name: "Standard Room",
-      image: "/images/stay/Component 99 (1).png",
+      image: "/images/stay/component-99-1.png",
       size: "27 sqm/ 290 sqft",
       occupancy: "2 adults, 1 child",
       bed: "king or twin",
@@ -91,7 +91,7 @@ const SuiteSection: React.FC = () => {
     {
       id: "deluxe",
       name: "Deluxe Room",
-      image: "/images/stay/Component 100.png",
+      image: "/images/stay/component-100.png",
       size: "35 sqm/ 377 sqft",
       occupancy: "2 adults, 2 children",
       bed: "king or twin",
@@ -99,7 +99,7 @@ const SuiteSection: React.FC = () => {
     {
       id: "superior",
       name: "Superior Room",
-      image: "/images/stay/Component 6.png",
+      image: "/images/stay/component-6.png",
       size: "45 sqm/ 484 sqft",
       occupancy: "3 adults, 2 children",
       bed: "king size",
@@ -142,7 +142,7 @@ const SuiteSection: React.FC = () => {
           {/* Right Featured Image */}
           <div className="relative w-full h-[400px] md:h-[500px] lg:h-[615px] rounded-xl overflow-hidden order-1 lg:order-2">
             <Image
-              src="/images/stay/Frame 4 (1).png"
+              src="/images/stay/frame-4-1.png"
               alt="Luxury hotel lobby with chandelier"
               fill
               className="object-cover"
@@ -164,3 +164,4 @@ const SuiteSection: React.FC = () => {
 };
 
 export default SuiteSection;
+

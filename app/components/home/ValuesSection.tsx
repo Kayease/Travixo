@@ -25,7 +25,7 @@ const VALUES_DATA = [
     title: "Community Support",
     description:
       "Partnering with local communities to create meaningful connections and support economic development.",
-    icon: "/images/about/values/formkit_people (2).png",
+    icon: "/images/about/values/formkit_people-2.png",
   },
 ];
 
@@ -158,3 +158,4 @@ export const ValuesSection = () => {
 };
 
 export default ValuesSection;
+

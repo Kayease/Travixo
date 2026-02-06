@@ -160,14 +160,14 @@ const CustomerReviewsSection: React.FC = () => {
     {
       id: "1",
       author: "Ammy Virk",
-      avatar: "/images/room_detail/Frame 401.png",
+      avatar: "/images/room_detail/frame-401.png",
       date: "On October 31, 2025",
       rating: 4,
       comment:
         "I dont know how to improve the tour,Because it was great professional run funny great day hover dam and Grand Canyon, brilliant enough time to do everything not rushed .great tour",
       images: [
-        "/images/room_detail/Frame 403.png",
-        "/images/room_detail/Frame 404.png",
+        "/images/room_detail/frame-403.png",
+        "/images/room_detail/frame-404.png",
       ],
     },
   ];
@@ -252,3 +252,4 @@ const CustomerReviewsSection: React.FC = () => {
 };
 
 export default CustomerReviewsSection;
+

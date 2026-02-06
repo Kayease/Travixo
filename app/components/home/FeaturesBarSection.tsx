@@ -61,7 +61,7 @@ const getIcon = (iconType: string) => {
     case "flex":
       return (
         <Image
-          src="/images/home/features/Mask group (1).png"
+          src="/images/home/features/mask-group-1.png"
           alt="Booking Flexibility"
           width={iconSize}
           height={iconSize}
@@ -143,3 +143,4 @@ export const FeaturesBarSection = () => {
     </section>
   );
 };
+

@@ -48,7 +48,7 @@ const QuoteIcon = () => (
 const TESTIMONIALS_DATA = [
   {
     id: 1,
-    url: "/images/room/Desktop - 55.png",
+    url: "/images/room/desktop---55.png",
     top: "83px",
     left: "60px",
     rating: 5,
@@ -60,7 +60,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 2,
-    url: "/images/room/Desktop - 56.png",
+    url: "/images/room/desktop---56.png",
     top: "160px",
     left: "220px",
     rating: 5,
@@ -72,7 +72,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 3,
-    url: "/images/room/Desktop - 57.png",
+    url: "/images/room/desktop---57.png",
     top: "60px",
     left: "360px",
     rating: 4,
@@ -84,7 +84,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 4,
-    url: "/images/room/Desktop - 58.png",
+    url: "/images/room/desktop---58.png",
     top: "230px",
     left: "340px",
     rating: 4,
@@ -96,7 +96,7 @@ const TESTIMONIALS_DATA = [
   },
   {
     id: 5,
-    url: "/images/room/Desktop - 59.png",
+    url: "/images/room/desktop---59.png",
     top: "320px",
     left: "180px",
     rating: 5,
@@ -224,3 +224,4 @@ export const TestimonialSection = () => {
     </section>
   );
 };
+

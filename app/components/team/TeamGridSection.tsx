@@ -21,37 +21,37 @@ const SAMPLE_TEAM_MEMBERS: TeamMember[] = [
     id: 1,
     name: "Jimmy Jostar",
     role: "Ceo",
-    imageUrl: "/images/team/Frame 405.png",
+    imageUrl: "/images/team/frame-405.png",
   },
   {
     id: 2,
     name: "Law Light",
     role: "Founder",
-    imageUrl: "/images/team/Frame 406.png",
+    imageUrl: "/images/team/frame-406.png",
   },
   {
     id: 3,
     name: "Erean Yegear",
     role: "Digital Marketing",
-    imageUrl: "/images/team/Frame 407.png",
+    imageUrl: "/images/team/frame-407.png",
   },
   {
     id: 4,
     name: "Erza Scarlet",
     role: "Travel Specialist",
-    imageUrl: "/images/team/Frame 408.png",
+    imageUrl: "/images/team/frame-408.png",
   },
   {
     id: 5,
     name: "luffy D. Monkey",
     role: "Travel Specialist",
-    imageUrl: "/images/team/Frame 409.png",
+    imageUrl: "/images/team/frame-409.png",
   },
   {
     id: 6,
     name: "Nami san",
     role: "Travel Specialist",
-    imageUrl: "/images/team/Frame 410.png",
+    imageUrl: "/images/team/frame-410.png",
   },
 ];
 
@@ -148,3 +148,4 @@ export const TeamGridSection: React.FC<TeamGridSectionProps> = ({
 };
 
 export default TeamGridSection;
+

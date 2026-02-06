@@ -81,7 +81,7 @@ const ClockIcon = () => (
  */
 const PeopleIcon = () => (
   <Image
-    src="/images/home/featured/formkit_people (1).png"
+    src="/images/home/featured/formkit_people-1.png"
     alt="People"
     width={24}
     height={24}
@@ -106,7 +106,7 @@ const LocationIcon = () => (
 const PARIS_TOURS = [
   {
     id: 1,
-    image: "/images/paris/Frame 51.png",
+    image: "/images/paris/frame-51.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -122,7 +122,7 @@ const PARIS_TOURS = [
   },
   {
     id: 2,
-    image: "/images/paris/Frame 51 (1).png",
+    image: "/images/paris/frame-51-1.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -138,7 +138,7 @@ const PARIS_TOURS = [
   },
   {
     id: 3,
-    image: "/images/paris/Frame 51 (2).png",
+    image: "/images/paris/frame-51-2.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -154,7 +154,7 @@ const PARIS_TOURS = [
   },
   {
     id: 4,
-    image: "/images/paris/Frame 51 (3).png",
+    image: "/images/paris/frame-51-3.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -170,7 +170,7 @@ const PARIS_TOURS = [
   },
   {
     id: 5,
-    image: "/images/paris/Frame 51 (4).png",
+    image: "/images/paris/frame-51-4.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -186,7 +186,7 @@ const PARIS_TOURS = [
   },
   {
     id: 6,
-    image: "/images/paris/Frame 51 (5).png",
+    image: "/images/paris/frame-51-5.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",

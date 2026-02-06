@@ -44,21 +44,21 @@ const scrapbookData: ScrapbookItem[] = [
     id: '1',
     slug: 'bangkok',
     destination: 'Bangkok',
-    image: '/images/history/Frame 442.png',
+    image: '/images/history/frame-442.png',
     date: 'Jan 2025',
   },
   {
     id: '2',
     slug: 'japan',
     destination: 'Japan',
-    image: '/images/history/Frame 442 (1).png',
+    image: '/images/history/frame-442-1.png',
     date: 'Jan 2025',
   },
   {
     id: '3',
     slug: 'indonesia',
     destination: 'Indonesia',
-    image: '/images/history/Frame 442 (2).png',
+    image: '/images/history/frame-442-2.png',
     date: 'Jan 2025',
   },
 ];
@@ -135,3 +135,4 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
 };
 
 export default HistoryContentSection;
+

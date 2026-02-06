@@ -15,7 +15,7 @@ const RoomDetailHeroSection: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/room_detail/Frame 496.png"
+          src="/images/room_detail/frame-496.png"
           alt="Luxurious room interior background"
           fill
           className="object-cover"
@@ -33,7 +33,7 @@ const RoomDetailHeroSection: React.FC = () => {
           ============================================ */}
           <div className="relative w-full max-w-[350px] md:max-w-[400px] lg:max-w-[445px] h-[450px] md:h-[550px] lg:h-[650px] rounded-2xl overflow-hidden shadow-2xl shrink-0">
             <Image
-              src="/images/room_detail/Frame 495.png"
+              src="/images/room_detail/frame-495.png"
               alt="Serenity Suite with mountain view"
               fill
               className="object-cover object-top"
@@ -64,3 +64,4 @@ const RoomDetailHeroSection: React.FC = () => {
 };
 
 export default RoomDetailHeroSection;
+

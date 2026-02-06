@@ -25,7 +25,7 @@ const ImpactStoriesSection: React.FC = () => {
             {/* Main Image */}
             <div className="relative w-full aspect-[630/653] rounded-xl overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.25)]">
               <Image
-                src="/images/portfolio/Frame 332.png"
+                src="/images/portfolio/frame-332.png"
                 alt="Traveler exploring the city - Impact Stories"
                 fill
                 className="object-cover"
@@ -63,7 +63,7 @@ const ImpactStoriesSection: React.FC = () => {
                 {/* Leaf Icon */}
                 <div className="w-7 h-7 flex-shrink-0 mt-0.5">
                   <Image
-                    src="/images/portfolio/Vector.png"
+                    src="/images/portfolio/vector.png"
                     alt="Regenerative Tourism"
                     width={28}
                     height={28}
@@ -110,3 +110,4 @@ const ImpactStoriesSection: React.FC = () => {
 };
 
 export default ImpactStoriesSection;
+

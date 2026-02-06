@@ -420,7 +420,7 @@ export const Navbar = () => {
         {/* Logo Section */}
         <Link href="/" className="relative w-[150px] h-[50px]">
           <Image
-            src="/images/logo/Frame 511.png"
+            src="/images/logo/frame-511.png"
             alt="Travixo Logo"
             fill
             className="object-contain"
@@ -498,3 +498,4 @@ export const Navbar = () => {
 };
 
 export default Navbar;
+

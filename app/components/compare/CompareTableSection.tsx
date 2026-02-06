@@ -110,7 +110,7 @@ const CompareTableSection: React.FC = () => {
     {
       id: "paris",
       name: "Paris",
-      image: "/images/compare/Frame 448.png",
+      image: "/images/compare/frame-448.png",
       price: "$8,500",
       duration: "10 Days/ 09 Night",
       accommodation: 5,
@@ -125,7 +125,7 @@ const CompareTableSection: React.FC = () => {
     {
       id: "indonesia",
       name: "Indonesia",
-      image: "/images/compare/Frame 449.png",
+      image: "/images/compare/frame-449.png",
       price: "$6,500",
       duration: "07 Days/ 6 Night",
       accommodation: 4,
@@ -140,7 +140,7 @@ const CompareTableSection: React.FC = () => {
     {
       id: "japan",
       name: "Japan",
-      image: "/images/compare/Frame 450.png",
+      image: "/images/compare/frame-450.png",
       price: "$9,100",
       duration: "12 Days/ 11 Nights",
       accommodation: 4,
@@ -336,3 +336,4 @@ const CompareTableSection: React.FC = () => {
 };
 
 export default CompareTableSection;
+

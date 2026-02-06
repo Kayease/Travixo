@@ -28,7 +28,7 @@ const sampleWishlistItems: WishlistItem[] = [
     title: "Eiffel Tower",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/Frame 51.png",
+    image: "/images/wishlist/frame-51.png",
     discountPercent: 27,
     price: 100,
     originalPrice: 120,
@@ -45,7 +45,7 @@ const sampleWishlistItems: WishlistItem[] = [
     title: "Eiffel Tower",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/Frame 51.png",
+    image: "/images/wishlist/frame-51.png",
     discountPercent: 27,
     price: 100,
     originalPrice: 120,
@@ -62,7 +62,7 @@ const sampleWishlistItems: WishlistItem[] = [
     title: "Eiffel Tower",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/Frame 51.png",
+    image: "/images/wishlist/frame-51.png",
     discountPercent: 27,
     price: 100,
     originalPrice: 120,
@@ -79,7 +79,7 @@ const sampleWishlistItems: WishlistItem[] = [
     title: "Eiffel Tower",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/Frame 51.png",
+    image: "/images/wishlist/frame-51.png",
     discountPercent: 27,
     price: 100,
     originalPrice: 120,
@@ -215,3 +215,4 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
 };
 
 export default WishlistContentSection;
+

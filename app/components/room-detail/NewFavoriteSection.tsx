@@ -90,7 +90,7 @@ const NewFavoriteSection: React.FC = () => {
       id: "serenity-suite",
       name: "Serenity Suite",
       price: "$45",
-      image: "/images/room_detail/Frame 494.png",
+      image: "/images/room_detail/frame-494.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -98,7 +98,7 @@ const NewFavoriteSection: React.FC = () => {
       id: "sunlight-terrace",
       name: "Sunlight Terrace Villa",
       price: "$45",
-      image: "/images/room_detail/Frame 497.png",
+      image: "/images/room_detail/frame-497.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -106,7 +106,7 @@ const NewFavoriteSection: React.FC = () => {
       id: "tropical-zen",
       name: "Tropical Zen Retreat",
       price: "$45",
-      image: "/images/room_detail/Frame 498.png",
+      image: "/images/room_detail/frame-498.png",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
     },
@@ -145,3 +145,4 @@ const NewFavoriteSection: React.FC = () => {
 };
 
 export default NewFavoriteSection;
+

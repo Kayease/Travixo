@@ -66,22 +66,22 @@ const StayCommunitySection: React.FC = () => {
   const communityImages: CommunityImage[] = [
     {
       id: "1",
-      src: "/images/stay/Component 87.png",
+      src: "/images/stay/component-87.png",
       alt: "Modern living room with orange chair",
     },
     {
       id: "2",
-      src: "/images/stay/Component 88.png",
+      src: "/images/stay/component-88.png",
       alt: "Cozy workspace with green chair",
     },
     {
       id: "3",
-      src: "/images/stay/Component 89.png",
+      src: "/images/stay/component-89.png",
       alt: "Elegant arched window with curtains",
     },
     {
       id: "4",
-      src: "/images/stay/Component 90.png",
+      src: "/images/stay/component-90.png",
       alt: "Bright Mediterranean style room",
     },
   ];
@@ -120,3 +120,4 @@ const StayCommunitySection: React.FC = () => {
 };
 
 export default StayCommunitySection;
+

@@ -28,7 +28,7 @@ interface CheckoutSectionProps {
 
 const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   tourData = {
-    image: '/images/checkout/Frame 427.png',
+    image: '/images/checkout/frame-427.png',
     name: 'Bangkok Temple Tour',
     pricePerPerson: 4250,
   },
@@ -117,3 +117,4 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
 };
 
 export default CheckoutSection;
+

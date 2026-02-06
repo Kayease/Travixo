@@ -12,9 +12,9 @@ const PROCESS_STEPS = [
     title: "Initial Consultation",
     description:
       "Connect with our safari experts to discuss your travel goals, preferences, and budget. We'll guide you through the best destinations and tailor an itinerary just for you.",
-    image: "/images/Travixo ( Travel & Tour )/Frame 290.png",
+    image: "/images/travixo-tours/frame-290.png",
     imageAlt: "Woman reading map",
-    outerIcon: "/images/about/process/Vector 6.png",
+    outerIcon: "/images/about/process/vector-6.png",
     innerIcon: "/images/about/process/tabler_phone-call.png",
     layout: "image-left",
   },
@@ -24,9 +24,9 @@ const PROCESS_STEPS = [
     title: "Get Ready for Your Adventure",
     description:
       "We handle all the details from accommodations to permits so you can focus on preparing for an unforgettable trip. Receive expert tips on packing, safety, and cultural insights.",
-    image: "/images/Travixo ( Travel & Tour )/Frame 297.png",
+    image: "/images/travixo-tours/frame-297.png",
     imageAlt: "Person on suspension bridge",
-    outerIcon: "/images/about/process/Vector 7.png",
+    outerIcon: "/images/about/process/vector-7.png",
     innerIcon: "/images/about/process/uil_calender.png",
     layout: "image-right",
   },
@@ -36,10 +36,10 @@ const PROCESS_STEPS = [
     title: "Experience the Journey of a Lifetime",
     description:
       "Embark on your African safari with confidence! Enjoy breathtaking landscapes, incredible wildlife, and immersive cultural experiences while we ensure a seamless adventure.",
-    image: "/images/Travixo ( Travel & Tour )/Frame 299.png",
+    image: "/images/travixo-tours/frame-299.png",
     imageAlt: "Woman in car enjoying view",
-    outerIcon: "/images/about/process/Vector 8.png",
-    innerIcon: "/images/about/process/mynaui_plane (2).png",
+    outerIcon: "/images/about/process/vector-8.png",
+    innerIcon: "/images/about/process/mynaui_plane-2.png",
     layout: "image-left",
   },
 ];
@@ -138,3 +138,4 @@ export const ProcessSection = () => {
 };
 
 export default ProcessSection;
+

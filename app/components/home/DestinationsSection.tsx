@@ -10,31 +10,31 @@ const DESTINATIONS = [
     id: "maldives",
     name: "Maldives",
     listings: 3,
-    image: "/images/home/destination/Frame 21.png",
+    image: "/images/home/destination/frame-21.png",
   },
   {
     id: "dubai",
     name: "Dubai",
     listings: 3,
-    image: "/images/home/destination/Frame 21 (1).png",
+    image: "/images/home/destination/frame-21-1.png",
   },
   {
     id: "india",
     name: "India",
     listings: 3,
-    image: "/images/home/destination/Frame 21 (2).png",
+    image: "/images/home/destination/frame-21-2.png",
   },
   {
     id: "japan",
     name: "Japan",
     listings: 3,
-    image: "/images/home/destination/Frame 21 (3).png",
+    image: "/images/home/destination/frame-21-3.png",
   },
   {
     id: "south-korea",
     name: "South Korea",
     listings: 3,
-    image: "/images/home/destination/Frame 21 (4).png",
+    image: "/images/home/destination/frame-21-4.png",
   },
 ];
 
@@ -312,3 +312,4 @@ export const DestinationsSection = () => {
     </section>
   );
 };
+

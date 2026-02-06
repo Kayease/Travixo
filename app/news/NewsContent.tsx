@@ -15,7 +15,7 @@ const FEATURED_ARTICLE = {
   title: "Top 10 Hidden Gems in Southeast Asia You Must Visit in 2026",
   excerpt:
     "Discover the most breathtaking and undiscovered destinations across Southeast Asia that offer authentic cultural experiences and stunning natural beauty.",
-  image: "/images/blogs/Frame 421.png",
+  image: "/images/blogs/frame-421.png",
   category: "Destinations",
   author: "Emily Watson",
   date: "February 4, 2026",
@@ -29,7 +29,7 @@ const NEWS_ARTICLES = [
     title: "Sustainable Travel: How to Minimize Your Environmental Impact",
     excerpt:
       "Learn practical tips and strategies to make your travels more eco-friendly and sustainable.",
-    image: "/images/blogs/Frame 422.png",
+    image: "/images/blogs/frame-422.png",
     category: "Travel Tips",
     author: "Michael Chen",
     date: "February 3, 2026",
@@ -41,7 +41,7 @@ const NEWS_ARTICLES = [
     title: "Best Time to Visit Thailand: A Month-by-Month Guide",
     excerpt:
       "Planning a trip to Thailand? Discover the best months to visit based on weather, festivals, and tourist seasons.",
-    image: "/images/blogs/Frame 423.png",
+    image: "/images/blogs/frame-423.png",
     category: "Guides",
     author: "Sarah Johnson",
     date: "February 2, 2026",
@@ -53,7 +53,7 @@ const NEWS_ARTICLES = [
     title: "Travel Photography Tips: Capturing Memories Like a Pro",
     excerpt:
       "Elevate your travel photography with these expert tips and techniques for stunning vacation photos.",
-    image: "/images/blogs/Frame 424.png",
+    image: "/images/blogs/frame-424.png",
     category: "Photography",
     author: "David Park",
     date: "February 1, 2026",
@@ -65,7 +65,7 @@ const NEWS_ARTICLES = [
     title: "Cultural Etiquette: Respecting Local Customs Around the World",
     excerpt:
       "Understanding and respecting local customs is essential for meaningful travel experiences.",
-    image: "/images/blogs/Frame 425.png",
+    image: "/images/blogs/frame-425.png",
     category: "Culture",
     author: "Emma Rodriguez",
     date: "January 31, 2026",
@@ -77,7 +77,7 @@ const NEWS_ARTICLES = [
     title: "Budget Travel: Exploring the World Without Breaking the Bank",
     excerpt:
       "Discover how to travel on a budget with our comprehensive guide to affordable adventures.",
-    image: "/images/blogs/Frame 426.png",
+    image: "/images/blogs/frame-426.png",
     category: "Budget Travel",
     author: "James Anderson",
     date: "January 30, 2026",
@@ -329,3 +329,4 @@ export default function NewsContent() {
     </>
   );
 }
+

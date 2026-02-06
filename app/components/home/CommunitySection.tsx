@@ -33,22 +33,22 @@ const InstagramIcon = () => (
 const GALLERY_IMAGES = [
   {
     id: 1,
-    url: "/images/Travixo ( Travel & Tour )/Frame 301.png",
+    url: "/images/travixo-tours/frame-301.png",
     alt: "Travel moment 1",
   },
   {
     id: 2,
-    url: "/images/Travixo ( Travel & Tour )/Frame 302.png",
+    url: "/images/travixo-tours/frame-302.png",
     alt: "Travel moment 2",
   },
   {
     id: 3,
-    url: "/images/Travixo ( Travel & Tour )/Frame 303.png",
+    url: "/images/travixo-tours/frame-303.png",
     alt: "Travel moment 3",
   },
   {
     id: 4,
-    url: "/images/Travixo ( Travel & Tour )/Frame 304.png",
+    url: "/images/travixo-tours/frame-304.png",
     alt: "Travel moment 4",
   },
 ];
@@ -110,3 +110,4 @@ export const CommunitySection = () => {
     </section>
   );
 };
+

@@ -60,7 +60,7 @@ const RoomHeroSection: React.FC = () => {
             }}
           >
             <Image
-              src="/images/room/Frame 490.png"
+              src="/images/room/frame-490.png"
               alt="Stylish room with yellow wall and plants"
               fill
               className="object-cover"
@@ -78,7 +78,7 @@ const RoomHeroSection: React.FC = () => {
             }}
           >
             <Image
-              src="/images/room/Frame 491.png"
+              src="/images/room/frame-491.png"
               alt="Bright living room with pink chairs"
               fill
               className="object-cover"
@@ -96,7 +96,7 @@ const RoomHeroSection: React.FC = () => {
             }}
           >
             <Image
-              src="/images/room/Frame 492.png"
+              src="/images/room/frame-492.png"
               alt="Elegant white bedroom"
               fill
               className="object-cover"
@@ -125,7 +125,7 @@ const RoomHeroSection: React.FC = () => {
             {/* Left Tall Image */}
             <div className="relative h-[300px] md:h-[350px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
               <Image
-                src="/images/room/Frame 490.png"
+                src="/images/room/frame-490.png"
                 alt="Stylish room with yellow wall and plants"
                 fill
                 className="object-cover"
@@ -137,7 +137,7 @@ const RoomHeroSection: React.FC = () => {
               {/* Top Image */}
               <div className="relative h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
                 <Image
-                  src="/images/room/Frame 491.png"
+                  src="/images/room/frame-491.png"
                   alt="Bright living room with pink chairs"
                   fill
                   className="object-cover"
@@ -147,7 +147,7 @@ const RoomHeroSection: React.FC = () => {
               {/* Bottom Image */}
               <div className="relative h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
                 <Image
-                  src="/images/room/Frame 492.png"
+                  src="/images/room/frame-492.png"
                   alt="Elegant white bedroom"
                   fill
                   className="object-cover"
@@ -162,3 +162,4 @@ const RoomHeroSection: React.FC = () => {
 };
 
 export default RoomHeroSection;
+

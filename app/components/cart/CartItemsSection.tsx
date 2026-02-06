@@ -46,7 +46,7 @@ const cartItems: CartItem[] = [
     id: "1",
     type: "room",
     title: "Deluxe Ocean Suite",
-    image: "/images/cart/Frame 503.png",
+    image: "/images/cart/frame-503.png",
     location: "Amalfi Paims,Italy",
     dates: "Oct 12-18, 2026",
     amenities: ["Private Balcony", "Butler Service", "King Bed"],
@@ -57,7 +57,7 @@ const cartItems: CartItem[] = [
     id: "2",
     type: "experience",
     title: "Amalfi Coast Private Boat Tour",
-    image: "/images/cart/Frame 503.png",
+    image: "/images/cart/frame-503.png",
     location: "Amalfi Paims,Italy",
     dates: "Oct 12-18, 2026",
     amenities: ["Private Balcony", "Butler Service", "King Bed"],
@@ -396,3 +396,4 @@ const CartItemsSection: React.FC = () => {
 };
 
 export default CartItemsSection;
+

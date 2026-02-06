@@ -102,7 +102,7 @@ const ClockIcon = () => (
  */
 const PeopleIcon = () => (
   <Image
-    src="/images/home/featured/formkit_people (1).png"
+    src="/images/home/featured/formkit_people-1.png"
     alt="People"
     width={24}
     height={24}
@@ -127,7 +127,7 @@ const LocationIcon = () => (
 const TOURS = [
   {
     id: 1,
-    image: "/images/Travixo ( Travel & Tour )/Frame 277.png",
+    image: "/images/travixo-tours/frame-277.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -143,7 +143,7 @@ const TOURS = [
   },
   {
     id: 2,
-    image: "/images/Travixo ( Travel & Tour )/Frame 278.png",
+    image: "/images/travixo-tours/frame-278.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -159,7 +159,7 @@ const TOURS = [
   },
   {
     id: 3,
-    image: "/images/Travixo ( Travel & Tour )/Frame 279.png",
+    image: "/images/travixo-tours/frame-279.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",

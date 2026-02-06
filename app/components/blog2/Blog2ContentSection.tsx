@@ -28,21 +28,21 @@ const blogPosts: BlogPost[] = [
     id: '1',
     title: 'Discover the World, One Journey at a Time',
     description: 'Travel is more than visiting new places—it\'s about creating memories, experiencing cultures, and seeing the world from a fresh perspective. Whether you\'re dreaming of peaceful beaches, vibrant cities, or breathtaking mountain escapes, every journey has a story waiting to be told. we believe travel should feel exciting, effortless, and...',
-    image: '/images/blog2/Frame 482.png',
+    image: '/images/blog2/frame-482.png',
     date: '13 May, 2026',
   },
   {
     id: '2',
     title: 'Travel Experiences Designed for You',
     description: 'No two travelers are the same. Some seek adventure, others crave relaxation, and many want a little of both. That\'s why we focus on creating travel experiences that match your pace, interests, and style. From cultural tours and nature escapes to luxury getaways and budget-friendly trips, our goal is to turn your travel dreams into reality—without stress or compromise...',
-    image: '/images/blog2/Frame 482 (1).png',
+    image: '/images/blog2/frame-482-1.png',
     date: '13 May, 2026',
   },
   {
     id: '3',
     title: 'Destinations Worth Exploring',
     description: 'The world is full of places that leave a lasting impression. Wander through historic streets, taste local flavors, meet new people, and discover hidden gems beyond the typical tourist routes. Each destination offers something unique, and every trip is an opportunity to learn, grow, and reconnect—with the world and yourself...',
-    image: '/images/blog2/Frame 482 (2).png',
+    image: '/images/blog2/frame-482-2.png',
     date: '13 May, 2026',
   },
 ];
@@ -124,3 +124,4 @@ const Blog2ContentSection: React.FC = () => {
 };
 
 export default Blog2ContentSection;
+

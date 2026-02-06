@@ -7,7 +7,7 @@ import Image from "next/image";
  */
 const PlaneIcon = () => (
   <Image
-    src="/images/home/benefits/Component 31.png"
+    src="/images/home/benefits/component-31.png"
     alt="Plane Icon"
     width={60}
     height={60}
@@ -19,7 +19,7 @@ const PlaneIcon = () => (
  */
 const TentIcon = () => (
   <Image
-    src="/images/home/benefits/Component 32.png"
+    src="/images/home/benefits/component-32.png"
     alt="Tent Icon"
     width={60}
     height={60}
@@ -31,7 +31,7 @@ const TentIcon = () => (
  */
 const SailboatIcon = () => (
   <Image
-    src="/images/home/benefits/Component 33.png"
+    src="/images/home/benefits/component-33.png"
     alt="Sailboat Icon"
     width={60}
     height={60}
@@ -43,7 +43,7 @@ const SailboatIcon = () => (
  */
 const BalloonIcon = () => (
   <Image
-    src="/images/home/benefits/Component 34.png"
+    src="/images/home/benefits/component-34.png"
     alt="Balloon Icon"
     width={60}
     height={60}
@@ -182,7 +182,7 @@ export const BenefitsSection = () => {
             {/* Image */}
             <div className="relative w-full max-w-[573px] h-[300px] md:h-[400px] lg:h-[470px] rounded-xl overflow-hidden">
               <Image
-                src="/images/home/benefits/Frame 483.png"
+                src="/images/home/benefits/frame-483.png"
                 alt="Travel planning with map and camera"
                 fill
                 className="object-cover"
@@ -210,3 +210,4 @@ export const BenefitsSection = () => {
     </section>
   );
 };
+

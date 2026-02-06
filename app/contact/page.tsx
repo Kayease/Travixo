@@ -85,7 +85,7 @@ const ContactFormSection = () => {
             {/* Image */}
             <div className="relative h-[280px] md:h-[351px] rounded-xl overflow-hidden">
               <Image
-                src="/images/Travixo ( Travel & Tour )/Frame 306.png"
+                src="/images/travixo-tours/frame-306.png"
                 alt="Beautiful waterfall"
                 fill
                 className="object-cover"
@@ -264,3 +264,4 @@ export default function ContactPage() {
     </main>
   );
 }
+

@@ -27,10 +27,10 @@ const SAMPLE_TOUR = {
 
   // Gallery Images
   images: [
-    { url: "/images/products/Frame 369.png", alt: "Eiffel Tower View" },
-    { url: "/images/products/Frame 370.png", alt: "Louvre Museum" },
-    { url: "/images/products/Frame 371.png", alt: "Centre Pompidou" },
-    { url: "/images/products/Frame 372.png", alt: "Parisian Street" },
+    { url: "/images/products/frame-369.png", alt: "Eiffel Tower View" },
+    { url: "/images/products/frame-370.png", alt: "Louvre Museum" },
+    { url: "/images/products/frame-371.png", alt: "Centre Pompidou" },
+    { url: "/images/products/frame-372.png", alt: "Parisian Street" },
   ],
 
   // Overview Data
@@ -95,8 +95,8 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       rating: 4,
       comment: "I don't know how to improve the tour because it was great professional run funny great day lover som and Grand Canyon, brilliant enough time to do everything not rushed great tour",
       images: [
-        "/images/products/Frame 403.png",
-        "/images/products/Frame 404.png",
+        "/images/products/frame-403.png",
+        "/images/products/frame-404.png",
       ],
     },
   ],
@@ -107,7 +107,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: 1,
       title: "Eiffel Tower",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 51.png",
+      imageUrl: "/images/products/frame-51.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -122,7 +122,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: 2,
       title: "Louvre Museum",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 51 (1).png",
+      imageUrl: "/images/products/frame-51-1.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -137,7 +137,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: 3,
       title: "Centre Pompidou",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 51 (2).png",
+      imageUrl: "/images/products/frame-51-2.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",

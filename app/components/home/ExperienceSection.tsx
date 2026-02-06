@@ -11,7 +11,7 @@ const EXPERIENCES = [
     title: "Spa & Wellness",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature, offering extraordinary visual and auditory experiences that pamper and heal.",
-    image: "/images/experience/Component 17.png",
+    image: "/images/experience/component-17.png",
     offset: false,
   },
   {
@@ -19,7 +19,7 @@ const EXPERIENCES = [
     title: "Island Activates",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature, offering extraordinary visual and auditory experiences that pamper and heal.",
-    image: "/images/experience/Component 18.png",
+    image: "/images/experience/component-18.png",
     offset: true,
   },
   {
@@ -27,7 +27,7 @@ const EXPERIENCES = [
     title: "Gastronomic Dine",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature, offering extraordinary visual and auditory experiences that pamper and heal.",
-    image: "/images/experience/Component 19.png",
+    image: "/images/experience/component-19.png",
     offset: false,
   },
 ];
@@ -94,7 +94,7 @@ export const ExperienceSection = () => {
       <div className="relative w-full h-[529px]">
         {/* Background Image */}
         <Image
-          src="/images/experience/Frame 25 (1).png"
+          src="/images/experience/frame-25-1.png"
           alt="Tropical beach sunset"
           fill
           className="object-cover"
@@ -153,3 +153,4 @@ export const ExperienceSection = () => {
     </section>
   );
 };
+

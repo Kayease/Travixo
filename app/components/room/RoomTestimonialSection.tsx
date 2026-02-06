@@ -15,27 +15,27 @@ const RoomTestimonialSection: React.FC = () => {
   const profileImages = [
     {
       id: 1,
-      src: "/images/room/Desktop - 55.png",
+      src: "/images/room/desktop---55.png",
       alt: "Happy guest 1",
     },
     {
       id: 2,
-      src: "/images/room/Desktop - 56.png",
+      src: "/images/room/desktop---56.png",
       alt: "Happy guest 2",
     },
     {
       id: 3,
-      src: "/images/room/Desktop - 57.png",
+      src: "/images/room/desktop---57.png",
       alt: "Happy guest 3",
     },
     {
       id: 4,
-      src: "/images/room/Desktop - 58.png",
+      src: "/images/room/desktop---58.png",
       alt: "Happy guest 4",
     },
     {
       id: 5,
-      src: "/images/room/Desktop - 59.png",
+      src: "/images/room/desktop---59.png",
       alt: "Happy guest 5",
     },
   ];
@@ -152,7 +152,7 @@ const RoomTestimonialSection: React.FC = () => {
                 {/* Author Avatar */}
                 <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden">
                   <Image
-                    src="/images/room/Desktop - 58.png"
+                    src="/images/room/desktop---58.png"
                     alt="Jimmy Jostar"
                     fill
                     className="object-cover"
@@ -193,3 +193,4 @@ const RoomTestimonialSection: React.FC = () => {
 };
 
 export default RoomTestimonialSection;
+

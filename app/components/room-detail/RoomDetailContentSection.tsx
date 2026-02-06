@@ -259,7 +259,7 @@ const RoomDetailContentSection: React.FC = () => {
           {/* Large Image */}
           <div className="relative w-full h-[300px] md:h-[400px] lg:h-[452px] rounded-xl overflow-hidden mb-4 lg:mb-5">
             <Image
-              src="/images/room_detail/Frame 496.png"
+              src="/images/room_detail/frame-496.png"
               alt="Room panoramic view"
               fill
               className="object-cover"
@@ -270,7 +270,7 @@ const RoomDetailContentSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
             <div className="relative w-full h-[280px] md:h-[350px] lg:h-[452px] rounded-xl overflow-hidden bg-gray-100">
               <Image
-                src="/images/room_detail/Frame 498.png"
+                src="/images/room_detail/frame-498.png"
                 alt="Cozy room interior"
                 fill
                 className="object-contain"
@@ -278,7 +278,7 @@ const RoomDetailContentSection: React.FC = () => {
             </div>
             <div className="relative w-full h-[280px] md:h-[350px] lg:h-[452px] rounded-xl overflow-hidden bg-gray-100">
               <Image
-                src="/images/room_detail/Frame 497.png"
+                src="/images/room_detail/frame-497.png"
                 alt="Comfortable seating area"
                 fill
                 className="object-contain"
@@ -292,3 +292,4 @@ const RoomDetailContentSection: React.FC = () => {
 };
 
 export default RoomDetailContentSection;
+

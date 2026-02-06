@@ -19,21 +19,21 @@ const discoveryData: DiscoveryItem[] = [
     id: '1',
     slug: 'safari-explorer-africa',
     title: "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
-    image: '/images/portfolio/Frame 332 (1).png',
+    image: '/images/portfolio/frame-332-1.png',
     date: '13 May, 2026',
   },
   {
     id: '2',
     slug: 'hot-air-balloon-adventure',
     title: "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
-    image: '/images/portfolio/Frame 332 (2).png',
+    image: '/images/portfolio/frame-332-2.png',
     date: '13 May, 2026',
   },
   {
     id: '3',
     slug: 'african-safari-group',
     title: "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
-    image: '/images/portfolio/Frame 332.png',
+    image: '/images/portfolio/frame-332.png',
     date: '13 May, 2026',
   },
 ];
@@ -73,3 +73,4 @@ const VoiceOfDiscoverySection: React.FC<VoiceOfDiscoverySectionProps> = ({
 };
 
 export default VoiceOfDiscoverySection;
+

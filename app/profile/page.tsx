@@ -150,7 +150,7 @@ const ProfileContentSection = () => {
       date: "March 15 - 22, 2026",
       status: "Confirmed",
       price: "$2,499",
-      image: "/images/Travixo ( Travel & Tour )/Frame 302.png",
+      image: "/images/travixo-tours/frame-302.png",
     },
     {
       id: "BK-2026-002",
@@ -158,7 +158,7 @@ const ProfileContentSection = () => {
       date: "June 10 - 20, 2026",
       status: "Pending",
       price: "$1,899",
-      image: "/images/Travixo ( Travel & Tour )/Frame 304.png",
+      image: "/images/travixo-tours/frame-304.png",
     },
     {
       id: "BK-2025-003",
@@ -166,7 +166,7 @@ const ProfileContentSection = () => {
       date: "December 5 - 12, 2025",
       status: "Completed",
       price: "$1,599",
-      image: "/images/Travixo ( Travel & Tour )/Frame 303.png",
+      image: "/images/travixo-tours/frame-303.png",
     },
   ];
 
@@ -740,3 +740,4 @@ export default function ProfilePage() {
     </>
   );
 }
+

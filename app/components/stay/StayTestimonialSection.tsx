@@ -15,31 +15,31 @@ const StayTestimonialSection: React.FC = () => {
   const profileImages = [
     {
       id: 1,
-      src: "/images/stay/Desktop - 55.png",
+      src: "/images/stay/desktop---55.png",
       alt: "Happy guest 1",
       position: "top-[83px] left-[147px]",
     },
     {
       id: 2,
-      src: "/images/stay/Desktop - 56.png",
+      src: "/images/stay/desktop---56.png",
       alt: "Happy guest 2",
       position: "top-[159px] left-[315px]",
     },
     {
       id: 3,
-      src: "/images/stay/Desktop - 57.png",
+      src: "/images/stay/desktop---57.png",
       alt: "Happy guest 3",
       position: "top-[74px] left-[482px]",
     },
     {
       id: 4,
-      src: "/images/stay/Desktop - 58.png",
+      src: "/images/stay/desktop---58.png",
       alt: "Happy guest 4",
       position: "top-[227px] left-[458px]",
     },
     {
       id: 5,
-      src: "/images/stay/Desktop - 59.png",
+      src: "/images/stay/desktop---59.png",
       alt: "Happy guest 5",
       position: "top-[317px] left-[265px]",
     },
@@ -157,7 +157,7 @@ const StayTestimonialSection: React.FC = () => {
                 {/* Author Avatar */}
                 <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden">
                   <Image
-                    src="/images/stay/Desktop - 58.png"
+                    src="/images/stay/desktop---58.png"
                     alt="Jimmy Jostar"
                     fill
                     className="object-cover"
@@ -198,3 +198,4 @@ const StayTestimonialSection: React.FC = () => {
 };
 
 export default StayTestimonialSection;
+

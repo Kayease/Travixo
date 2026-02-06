@@ -15,7 +15,7 @@ const FavoriteRoomSection: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/room/Frame 492.png"
+          src="/images/room/frame-492.png"
           alt="Luxurious bedroom background"
           fill
           className="object-cover"
@@ -34,7 +34,7 @@ const FavoriteRoomSection: React.FC = () => {
             {/* Room Image */}
             <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden">
               <Image
-                src="/images/room/Frame 494 (2).png"
+                src="/images/room/frame-494-2.png"
                 alt="Special room with golden interior"
                 fill
                 className="object-cover"
@@ -124,3 +124,4 @@ const FavoriteRoomSection: React.FC = () => {
 };
 
 export default FavoriteRoomSection;
+

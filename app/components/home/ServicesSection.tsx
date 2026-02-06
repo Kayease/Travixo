@@ -12,28 +12,28 @@ const SERVICES = [
     title: "Personalized guide",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    iconPath: "/images/home/whatwedo/Component 57.png",
+    iconPath: "/images/home/whatwedo/component-57.png",
   },
   {
     id: "accommodation",
     title: "Accommodation booking",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    iconPath: "/images/home/whatwedo/Component 58.png",
+    iconPath: "/images/home/whatwedo/component-58.png",
   },
   {
     id: "transportation",
     title: "Transportation service",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    iconPath: "/images/home/whatwedo/Component 59.png",
+    iconPath: "/images/home/whatwedo/component-59.png",
   },
   {
     id: "culinary",
     title: "Culinary experiences",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    iconPath: "/images/home/whatwedo/Component 60.png",
+    iconPath: "/images/home/whatwedo/component-60.png",
   },
 ];
 
@@ -153,3 +153,4 @@ export const ServicesSection = () => {
     </section>
   );
 };
+
