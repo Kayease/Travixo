@@ -20,21 +20,76 @@ const topDestinations = ["France", "Thailand", "United Kingdom", "View all"];
 
 const featuredDestinations: DestinationItem[] = [
   {
-    name: "France",
+    name: "Paris",
     image:
       "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=100&h=100&fit=crop",
   },
   {
-    name: "Indonesia",
+    name: "Bali", // Indonesia -> Bali for better context
     image:
       "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=100&h=100&fit=crop",
   },
   {
-    name: "UK",
+    name: "London",
     image:
       "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=100&h=100&fit=crop",
   },
 ];
+
+const destinationCities: Record<string, DestinationItem[]> = {
+  France: [
+    {
+      name: "Paris",
+      image:
+        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=100&h=100&fit=crop",
+    },
+    {
+      name: "Nice",
+      image:
+        "https://images.unsplash.com/photo-1533646549248-1850123595b0?w=100&h=100&fit=crop",
+    },
+    {
+      name: "Lyon",
+      image:
+        "https://images.unsplash.com/photo-1621255557620-1a74d5382025?w=100&h=100&fit=crop",
+    },
+  ],
+  Thailand: [
+    {
+      name: "Bangkok",
+      image:
+        "https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=100&h=100&fit=crop",
+    },
+    {
+      name: "Phuket",
+      image:
+        "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=100&h=100&fit=crop",
+    },
+    {
+      name: "Chiang Mai",
+      image:
+        "https://images.unsplash.com/photo-1598971861713-54cd16a19a19?w=100&h=100&fit=crop",
+    },
+  ],
+  "United Kingdom": [
+    {
+      name: "London",
+      image:
+        "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=100&h=100&fit=crop",
+    },
+    {
+      name: "Edinburgh",
+      image:
+        "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=100&h=100&fit=crop",
+    },
+    {
+      name: "Manchester",
+      image:
+        "https://images.unsplash.com/photo-1515586838455-8f8f940d6853?w=100&h=100&fit=crop",
+    },
+  ],
+  "View all": featuredDestinations,
+};
 
 /* ============================================
    DestinationDropdown Component
@@ -49,19 +104,29 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [hoveredCountry, setHoveredCountry] = useState<string>("View all");
+
+  // Reset to default view when closed/opened
+  useEffect(() => {
+    if (isOpen) setHoveredCountry("View all");
+  }, [isOpen]);
+
   if (!isOpen) return null;
+
+  const currentCities =
+    destinationCities[hoveredCountry] || featuredDestinations;
 
   return (
     <div
-      className="w-[830px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
+      className="w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
       style={{ height: "314px" }}
     >
       <div className="flex h-full p-4">
         {/* Left Column - Menu Items */}
-        <div className="flex flex-col w-[148px] pt-2">
+        <div className="flex flex-col w-[190px] pt-2">
           {/* Top Destination Header */}
           <div className="bg-[#FF6E00] px-4 py-1.5 rounded-sm mb-1">
-            <span className="font-display text-lg italic text-white">
+            <span className="font-display text-lg italic text-white whitespace-nowrap">
               Top Destination
             </span>
           </div>
@@ -76,10 +141,13 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
               <Link
                 key={index}
                 href="/paris"
-                className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300"
+                className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
                 onClick={onClose}
+                onMouseEnter={() => setHoveredCountry(destination)}
               >
-                <span className="absolute inset-0 bg-[#FF6E00] w-0 group-hover:w-full transition-all duration-300 ease-out z-0"></span>
+                <span
+                  className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out z-0 ${hoveredCountry === destination ? "w-full" : "w-0 group-hover:w-full"}`}
+                ></span>
                 <span className="relative z-10">{destination}</span>
               </Link>
             );
@@ -90,8 +158,8 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         <div className="w-px h-[278px] bg-[rgba(0,0,0,0.2)] mx-6 self-center" />
 
         {/* Middle Column - Featured Destinations with Images */}
-        <div className="flex flex-col gap-5 pt-2">
-          {featuredDestinations.map((destination, index) => {
+        <div className="flex flex-col gap-5 pt-2 w-[240px]">
+          {currentCities.map((destination, index) => {
             return (
               <Link
                 key={index}
@@ -126,7 +194,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
             className="object-cover"
           />
           {/* Overlay Content */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FFF7E5]/90 to-[#FFF7E5]/70 flex flex-col items-center justify-center p-4">
+          <div className="absolute inset-0 bg-linear-to-b from-[#FFF7E5]/90 to-[#FFF7E5]/70 flex flex-col items-center justify-center p-4">
             <h3 className="text-3xl font-bold text-[#FF6E00] mb-1">TRAVEL</h3>
             <h3 className="text-3xl font-bold text-[#4B3621] mb-4">HOLIDAY</h3>
             <div className="bg-[#FF3B30] text-white px-3 py-1 rounded-lg mb-2">
@@ -444,7 +512,7 @@ export const Navbar = () => {
               label="Destination"
               hasDropdown
               isActive={isDestinationOpen}
-              className="cursor-default"
+              className="cursor-pointer"
             />
             <div className="absolute top-full left-0 pt-2 z-50">
               <DestinationDropdown
@@ -467,7 +535,7 @@ export const Navbar = () => {
               label="Pages"
               hasDropdown
               isActive={isPagesOpen}
-              className="cursor-default"
+              className="cursor-pointer"
             />
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
               <PagesDropdown
@@ -498,4 +566,3 @@ export const Navbar = () => {
 };
 
 export default Navbar;
-

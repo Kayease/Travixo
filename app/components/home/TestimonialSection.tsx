@@ -132,6 +132,17 @@ export const TestimonialSection = () => {
         >
           {/* Floating Profile Images - Hidden on mobile */}
           <div className="hidden md:block">
+            {/* Connecting Line - Dynamically follows the active profile */}
+            <div
+              className="absolute hidden lg:block h-px bg-brand-orange transition-all duration-500 ease-in-out z-0"
+              style={{
+                top: parseInt(activeTestimonial.top) + 50 + "px",
+                left: parseInt(activeTestimonial.left) + 100 + "px",
+                width: 550 - (parseInt(activeTestimonial.left) + 100) + "px",
+                transformOrigin: "left center",
+              }}
+            />
+
             {TESTIMONIALS_DATA.map((profile) => {
               const isActive = activeId === profile.id;
               return (
@@ -161,17 +172,6 @@ export const TestimonialSection = () => {
                 </div>
               );
             })}
-
-            {/* Connecting Line - Dynamically follows the active profile */}
-            <div
-              className="absolute hidden lg:block h-px bg-brand-orange transition-all duration-500 ease-in-out z-0"
-              style={{
-                top: parseInt(activeTestimonial.top) + 50 + "px",
-                left: parseInt(activeTestimonial.left) + 100 + "px",
-                width: 550 - (parseInt(activeTestimonial.left) + 100) + "px",
-                transformOrigin: "left center",
-              }}
-            />
           </div>
 
           {/* Testimonial Card */}
@@ -224,4 +224,3 @@ export const TestimonialSection = () => {
     </section>
   );
 };
-

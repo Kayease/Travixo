@@ -5,20 +5,6 @@ import { HERO_IMAGES } from "../../constants/data";
 
 /**
  * HeroSection Component
- *
- * Main landing hero section featuring:
- * - Headline with Playfair Display italic typography
- * - Description text with Poppins font
- * - CTA button (200x45px, #FF6E00, 12px radius)
- * - Pendulum discount badge hanging from top-right (interactive mouse-follow)
- * - Diagonal image strip rotated -8.6deg with floating animation
- * - Glassmorphism search bar at bottom
- *
- * Design Specifications (from Figma):
- * - Background: #FFF7E5 with texture overlay
- * - Image cards: 272x363px, 12px radius, 16px gap
- * - Strip rotation: -8.6deg
- * - Search bar: 900x100px, backdrop-blur(60px)
  */
 
 export const HeroSection = () => {
@@ -142,7 +128,7 @@ export const HeroSection = () => {
         {/* CTA Button with bottom-to-top fill animation */}
         <button
           onClick={() => console.log("Navigating to adventure...")}
-          className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group"
+          className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           style={{
             width: "200px",
             height: "45px",
@@ -255,7 +241,7 @@ export const HeroSection = () => {
 
           {/* Divider */}
           <div
-            className="hidden md:block w-[1px] h-[70px]"
+            className="hidden md:block w-px h-[70px]"
             style={{ backgroundColor: "rgba(75, 54, 33, 0.2)" }}
           />
 
@@ -304,7 +290,8 @@ export const HeroSection = () => {
           {/* Search Button */}
           <button
             onClick={handleSearch}
-            className="p-4 md:pr-6 transition-transform hover:scale-110 active:scale-95"
+            disabled={!destination && !date}
+            className="p-4 md:pr-6 transition-transform hover:scale-110 active:scale-95 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100"
             aria-label="Search"
           >
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
