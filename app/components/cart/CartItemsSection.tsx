@@ -1,6 +1,8 @@
+"use client";
+
 /**
  * CartItemsSection Component
- * 
+ *
  * Displays the cart items list with booking summary sidebar.
  * Features room and experience selections with edit/remove actions,
  * and a comprehensive booking summary with pricing breakdown.
@@ -9,6 +11,8 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "../ui/Button";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 /* ============================================
    Type Definitions
@@ -139,10 +143,17 @@ interface CartItemCardProps {
 }
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
+  const [currentDate, setCurrentDate] = useState(item.dates);
+  const dateInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleEditClick = () => {
+    dateInputRef.current?.showPicker();
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] p-3 flex flex-col md:flex-row gap-4">
       {/* Item Image */}
-      <div className="relative w-full md:w-[278px] h-[200px] md:h-[238px] flex-shrink-0 rounded-xl overflow-hidden">
+      <div className="relative w-full md:w-[278px] h-[200px] md:h-[238px] shrink-0 rounded-xl overflow-hidden">
         <Image
           src={item.image}
           alt={item.title}
@@ -177,9 +188,19 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
           </div>
 
           {/* Dates */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 relative">
             <CalendarIcon />
-            <span className="text-lg text-[#4B3621]">{item.dates}</span>
+            <span className="text-lg text-[#4B3621]">{currentDate}</span>
+            <input
+              ref={dateInputRef}
+              type="date"
+              className="absolute inset-0 opacity-0 cursor-pointer pointer-events-none"
+              onChange={(e) => {
+                if (e.target.value) {
+                  setCurrentDate(e.target.value);
+                }
+              }}
+            />
           </div>
         </div>
 
@@ -198,13 +219,16 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-4">
           {/* Edit/Customize Button */}
-          <button className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6E00] rounded-xl text-white text-lg hover:bg-[#e56200] transition-colors">
+          <button
+            onClick={handleEditClick}
+            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6E00] rounded-xl text-white text-lg hover:bg-[#e56200] transition-colors cursor-pointer"
+          >
             <PencilIcon />
             <span>{item.actionLabel}</span>
           </button>
 
           {/* Remove Button */}
-          <button className="flex items-center gap-2 px-3 py-1.5 bg-[#FF3B30] rounded-xl text-white text-lg hover:bg-[#e53530] transition-colors">
+          <button className="flex items-center gap-2 px-3 py-1.5 bg-[#FF3B30] rounded-xl text-white text-lg hover:bg-[#e53530] transition-colors cursor-pointer">
             <span>Remove</span>
           </button>
         </div>
@@ -226,6 +250,7 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
   summary,
   itemCount,
 }) => {
+  const router = useRouter();
   const totalAmount =
     summary.roomSubtotal +
     summary.experienceSubtotal -
@@ -243,7 +268,9 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
       <div className="space-y-4">
         {/* Room Subtotal */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">Room Subtotal</span>
+          <span className="text-xl md:text-2xl text-[#4B3621]">
+            Room Subtotal
+          </span>
           <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#4B3621]">
             ${summary.roomSubtotal.toLocaleString()}.00
           </span>
@@ -251,7 +278,9 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
 
         {/* Experience Subtotal */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">Experience Subtotal</span>
+          <span className="text-xl md:text-2xl text-[#4B3621]">
+            Experience Subtotal
+          </span>
           <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#4B3621]">
             ${summary.experienceSubtotal.toLocaleString()}.00
           </span>
@@ -259,7 +288,9 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
 
         {/* Combo Saving */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">Combo Saving</span>
+          <span className="text-xl md:text-2xl text-[#4B3621]">
+            Combo Saving
+          </span>
           <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#34C759]">
             -${summary.comboSaving.toLocaleString()}.00
           </span>
@@ -267,7 +298,9 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
 
         {/* Taxes & Fee */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">Taxes &amp; Fee</span>
+          <span className="text-xl md:text-2xl text-[#4B3621]">
+            Taxes &amp; Fee
+          </span>
           <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#4B3621]">
             ${summary.taxesAndFee.toLocaleString()}.00
           </span>
@@ -288,19 +321,24 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
       </div>
 
       {/* Proceed to Checkout Button */}
-      <Button variant="primary" size="lg" className="w-full">
+      <Button
+        variant="primary"
+        size="lg"
+        className="w-full"
+        onClick={() => router.push("/checkout")}
+      >
         Proceed to Checkout
       </Button>
 
       {/* Terms Text */}
       <p className="text-center text-base text-[#4B3621] mt-6 leading-6">
         by clicking proceed, you agree to our{" "}
-        <a href="#" className="underline hover:text-[#FF6E00]">
+        <a href="#" className="underline hover:text-[#FF6E00] cursor-pointer">
           Terms of Service
         </a>
         <br />
         and{" "}
-        <a href="#" className="underline hover:text-[#FF6E00]">
+        <a href="#" className="underline hover:text-[#FF6E00] cursor-pointer">
           Cancellation Policy
         </a>
         .
@@ -345,8 +383,11 @@ const CartItemsSection: React.FC = () => {
           </div>
 
           {/* Right Column - Booking Summary */}
-          <div className="w-full lg:w-[467px] flex-shrink-0">
-            <BookingSummaryCard summary={bookingSummary} itemCount={itemCount} />
+          <div className="w-full lg:w-[467px] shrink-0">
+            <BookingSummaryCard
+              summary={bookingSummary}
+              itemCount={itemCount}
+            />
           </div>
         </div>
       </div>

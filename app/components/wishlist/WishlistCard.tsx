@@ -29,6 +29,7 @@ export interface WishlistItem {
   reviewCount: number;
   duration: string;
   groupSize: string;
+  type: "tour" | "destination";
   location: string;
 }
 
@@ -139,7 +140,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
             {/* Heart/Remove Button */}
             <button
               onClick={() => onRemove?.(item.id)}
-              className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] text-[#4B3621] hover:text-white transition-colors"
+              className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] text-[#4B3621] hover:text-white transition-colors cursor-pointer"
               aria-label="Remove from wishlist"
             >
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
@@ -157,7 +158,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
             {/* Cart Button */}
             <button
               onClick={() => onAddToCart?.(item.id)}
-              className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] text-[#4B3621] hover:text-white transition-colors"
+              className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] text-[#4B3621] hover:text-white transition-colors cursor-pointer"
               aria-label="Add to cart"
             >
               <svg
@@ -258,7 +259,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[120%] group-hover:translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-20 w-max">
         <Link
           href={`/tours/${item.slug}`}
-          className="block bg-brand-orange rounded-xl px-12 py-3 shadow-lg relative overflow-hidden group/btn transition-all duration-300"
+          className="block bg-brand-orange rounded-xl px-12 py-3 shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer"
         >
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
           <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover/btn:text-brand-orange transition-colors duration-300">

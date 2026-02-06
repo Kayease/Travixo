@@ -53,7 +53,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
   return (
     <div
-      className="absolute top-full left-0 mt-2 w-[830px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] z-50"
+      className="w-[830px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
       style={{ height: "314px" }}
     >
       <div className="flex h-full p-4">
@@ -68,15 +68,19 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
           {/* Destination Links */}
           {topDestinations.map((destination, index) => {
-            const slug = destination === "View all" ? "all" : destination.toLowerCase().replace(/\s+/g, "-");
+            const slug =
+              destination === "View all"
+                ? "all"
+                : destination.toLowerCase().replace(/\s+/g, "-");
             return (
               <Link
                 key={index}
-                href={`/destinations/${slug}`}
-                className="text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-[#FF6E00] transition-colors"
+                href="/paris"
+                className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300"
                 onClick={onClose}
               >
-                {destination}
+                <span className="absolute inset-0 bg-[#FF6E00] w-0 group-hover:w-full transition-all duration-300 ease-out z-0"></span>
+                <span className="relative z-10">{destination}</span>
               </Link>
             );
           })}
@@ -88,11 +92,10 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         {/* Middle Column - Featured Destinations with Images */}
         <div className="flex flex-col gap-5 pt-2">
           {featuredDestinations.map((destination, index) => {
-            const slug = destination.name.toLowerCase().replace(/\s+/g, "-");
             return (
               <Link
                 key={index}
-                href={`/destinations/${slug}`}
+                href="/paris"
                 className="flex items-center gap-3 hover:opacity-80 transition-opacity"
                 onClick={onClose}
               >
@@ -162,7 +165,7 @@ const pagesColumn1: PageLink[] = [
 const pagesColumn2: PageLink[] = [
   { label: "Team", href: "/team" },
   { label: "Blogs", href: "/blog" },
-  { label: "Blog 2", href: "/blog-2" },
+  { label: "Blog 2", href: "/blog2" },
   { label: "FAQ", href: "/faq" },
   { label: "Cart Page", href: "/cart" },
 ];
@@ -193,10 +196,11 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
         <Link
           key={index}
           href={page.href}
-          className="font-display text-lg italic text-[#4B3621] hover:text-[#FF6E00] transition-colors py-1 cursor-pointer"
+          className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300"
           onClick={onClose}
         >
-          {page.label}
+          <span className="absolute inset-0 bg-[#FF6E00] w-0 group-hover:w-full transition-all duration-300 ease-out z-0"></span>
+          <span className="relative z-10">{page.label}</span>
         </Link>
       ))}
     </div>
@@ -204,7 +208,7 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[830px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] z-50"
+      className="w-[830px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
       style={{ height: "314px" }}
     >
       <div className="flex h-full px-10 py-10 justify-between">
@@ -230,6 +234,8 @@ interface NavItemProps {
   hasDropdown?: boolean;
   isActive?: boolean;
   onClick?: () => void;
+  href?: string;
+  className?: string;
 }
 
 const NavItem: React.FC<NavItemProps> = ({
@@ -237,17 +243,17 @@ const NavItem: React.FC<NavItemProps> = ({
   hasDropdown = false,
   isActive = false,
   onClick,
+  href,
+  className,
 }) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`group relative flex items-center gap-2 px-4 py-2 font-serif italic text-lg transition-all overflow-hidden ${isActive
-        ? "text-white rounded-lg"
-        : "text-brand-brown hover:text-white rounded-lg"
-        }`}
-    >
+  const content = (
+    <>
       {/* Background slide effect */}
-      <span className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
+      <span
+        className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${
+          isActive ? "w-full" : "w-0 group-hover:w-full"
+        }`}
+      />
 
       {/* Text content - positioned relatively to sit on top of background */}
       <span className="relative z-10">{label}</span>
@@ -258,7 +264,9 @@ const NavItem: React.FC<NavItemProps> = ({
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={`relative z-10 transition-transform ${isActive ? "rotate-180" : ""}`}
+          className={`relative z-10 transition-transform ${
+            isActive ? "rotate-180" : ""
+          }`}
         >
           <path
             d="M6.41 8.58L12 14.17L17.59 8.58L19 10L12 17L5 10L6.41 8.58Z"
@@ -266,6 +274,26 @@ const NavItem: React.FC<NavItemProps> = ({
           />
         </svg>
       )}
+    </>
+  );
+
+  const containerClasses = `group relative flex items-center gap-2 px-4 py-2 font-serif italic text-lg transition-all overflow-hidden ${
+    isActive
+      ? "text-white rounded-lg"
+      : "text-brand-brown hover:text-white rounded-lg"
+  } ${className || ""}`;
+
+  if (href) {
+    return (
+      <Link href={href} className={containerClasses}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button onClick={onClick} className={containerClasses}>
+      {content}
     </button>
   );
 };
@@ -380,7 +408,7 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="w-full sticky top-0 z-50">
+    <header className="w-full sticky top-0 z-1000">
       {/* Main Navbar Container */}
       <nav
         className="w-full h-[60px] flex items-center justify-between px-20"
@@ -390,8 +418,7 @@ export const Navbar = () => {
         }}
       >
         {/* Logo Section */}
-        {/* Logo Section */}
-        <div className="relative w-[150px] h-[50px]">
+        <Link href="/" className="relative w-[150px] h-[50px]">
           <Image
             src="/images/logo/Frame 511.png"
             alt="Travixo Logo"
@@ -400,42 +427,57 @@ export const Navbar = () => {
             sizes="150px"
             priority
           />
-        </div>
+        </Link>
 
         {/* Center Navigation Links */}
         <div className="flex items-center gap-[35px]" ref={dropdownRef}>
           {/* Destination with Dropdown */}
-          <div className="relative">
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              setIsDestinationOpen(true);
+              setIsPagesOpen(false);
+            }}
+            onMouseLeave={() => setIsDestinationOpen(false)}
+          >
             <NavItem
               label="Destination"
               hasDropdown
               isActive={isDestinationOpen}
-              onClick={handleDestinationClick}
+              className="cursor-default"
             />
-            <DestinationDropdown
-              isOpen={isDestinationOpen}
-              onClose={() => setIsDestinationOpen(false)}
-            />
+            <div className="absolute top-full left-0 pt-2 z-50">
+              <DestinationDropdown
+                isOpen={isDestinationOpen}
+                onClose={() => setIsDestinationOpen(false)}
+              />
+            </div>
           </div>
 
           {/* Pages with Dropdown */}
-          <div className="relative">
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              setIsPagesOpen(true);
+              setIsDestinationOpen(false);
+            }}
+            onMouseLeave={() => setIsPagesOpen(false)}
+          >
             <NavItem
               label="Pages"
               hasDropdown
               isActive={isPagesOpen}
-              onClick={handlePagesClick}
+              className="cursor-default"
             />
-            <PagesDropdown
-              isOpen={isPagesOpen}
-              onClose={() => setIsPagesOpen(false)}
-            />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+              <PagesDropdown
+                isOpen={isPagesOpen}
+                onClose={() => setIsPagesOpen(false)}
+              />
+            </div>
           </div>
 
-          <NavItem
-            label="Stay"
-            onClick={() => alert("Navigating to: Stay")}
-          />
+          <NavItem label="Stay" href="/stay" />
         </div>
 
         {/* Right Icons Section */}
@@ -443,12 +485,12 @@ export const Navbar = () => {
           <div className="cursor-pointer">
             <SearchIcon />
           </div>
-          <div className="cursor-pointer">
+          <Link href="/cart" className="cursor-pointer">
             <CartIcon />
-          </div>
-          <div className="cursor-pointer">
+          </Link>
+          <Link href="/profile" className="cursor-pointer">
             <ProfileIcon />
-          </div>
+          </Link>
         </div>
       </nav>
     </header>

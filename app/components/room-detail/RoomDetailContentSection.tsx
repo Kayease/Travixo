@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useToast } from "../../context/ToastContext";
 
 /**
  * BookingWidget Component
@@ -11,14 +12,35 @@ const BookingWidget: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"book" | "enquiry">("book");
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
+  const [selectedDate, setSelectedDate] = useState("2026-01-17");
+
+  const { showToast } = useToast();
+
+  const handleAction = () => {
+    if (activeTab === "book") {
+      if (adults === 0 && children === 0) {
+        showToast("Please select at least one guest.", "warning");
+        return;
+      }
+      showToast(
+        `Checking availability for ${adults} Adults and ${children} Children on ${selectedDate}...`,
+        "info",
+      );
+    } else {
+      showToast(
+        `Sending enquiry for your stay on ${selectedDate}. We will contact you soon!`,
+        "success",
+      );
+    }
+  };
 
   return (
     <div
-      className="bg-[#FFF7E5] rounded-[12px] w-full lg:w-[467px] relative"
-      style={{ height: "480px" }}
+      className="bg-[#FFF7E5] rounded-[12px] w-full lg:w-[467px] relative p-6"
+      style={{ minHeight: "480px" }}
     >
       {/* Price Section */}
-      <div className="absolute top-[18px] left-[18px] w-[86px] h-[54px] flex flex-col">
+      <div className="flex flex-col mb-8">
         <span className="font-display italic font-medium text-[20px] leading-[27px] text-[#4B3621]">
           From
         </span>
@@ -28,117 +50,128 @@ const BookingWidget: React.FC = () => {
       </div>
 
       {/* Tabs Section */}
-      <div
-        className="absolute top-[124px] left-[70px] cursor-pointer"
-        onClick={() => setActiveTab("book")}
-      >
-        <span className="font-display italic font-medium text-[24px] leading-[32px] text-[#4B3621]">
-          Book
-        </span>
+      <div className="flex gap-20 mb-10 justify-center">
         <div
-          className={`absolute top-[36px] left-[-9px] w-[69px] h-[1px] rounded-[8px] transition-colors duration-300 ${
-            activeTab === "book" ? "bg-[#FF6E00]" : "bg-[#FF6E00]/20"
-          }`}
-        />
-      </div>
+          className="relative cursor-pointer"
+          onClick={() => setActiveTab("book")}
+        >
+          <span className="font-display italic font-medium text-[24px] leading-[32px] text-[#4B3621]">
+            Book
+          </span>
+          <div
+            className={`absolute -bottom-1 left-[-9px] w-[69px] h-px rounded-[8px] transition-colors duration-300 ${
+              activeTab === "book" ? "bg-[#FF6E00]" : "bg-transparent"
+            }`}
+          />
+        </div>
 
-      <div
-        className="absolute top-[124px] left-[300px] cursor-pointer"
-        onClick={() => setActiveTab("enquiry")}
-      >
-        <span className="font-display italic font-medium text-[24px] leading-[32px] text-[#4B3621]">
-          Enquiry
-        </span>
         <div
-          className={`absolute top-[36px] left-[-2px] w-[87px] h-[1px] rounded-[8px] transition-colors duration-300 ${
-            activeTab === "enquiry" ? "bg-[#FF6E00]" : "bg-[#FF6E00]/20"
-          }`}
-        />
+          className="relative cursor-pointer"
+          onClick={() => setActiveTab("enquiry")}
+        >
+          <span className="font-display italic font-medium text-[24px] leading-[32px] text-[#4B3621]">
+            Enquiry
+          </span>
+          <div
+            className={`absolute -bottom-1 left-[-2px] w-[87px] h-px rounded-[8px] transition-colors duration-300 ${
+              activeTab === "enquiry" ? "bg-[#FF6E00]" : "bg-transparent"
+            }`}
+          />
+        </div>
       </div>
 
       {/* Rows */}
-      {/* Date Row */}
-      <div className="absolute top-[193px] left-[18px] right-[18px] flex justify-between items-center h-[30px]">
-        <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
-          Date
-        </span>
-        <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
-          Jan 17, 2026
-        </span>
-      </div>
-      {/* Separator Line 1 */}
-      <div className="absolute top-[241px] left-[18px] right-[18px] h-px bg-black/20" />
+      <div className="space-y-6">
+        {/* Date Row */}
+        <div className="flex justify-between items-center py-2 border-b border-black/10">
+          <label
+            htmlFor="booking-date"
+            className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]"
+          >
+            Date
+          </label>
+          <input
+            id="booking-date"
+            type="date"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+            className="bg-transparent border-none font-sans italic font-medium text-[16px] text-[#4B3621] focus:outline-none cursor-pointer text-right"
+          />
+        </div>
 
-      {/* Adult Row */}
-      <div className="absolute top-[259px] left-[18px] h-[30px] flex items-center">
-        <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
-          Adult ( 13+ age )
-        </span>
-      </div>
-      {/* Adult Counter */}
-      <div className="absolute top-[268px] right-[18px] flex items-center gap-3">
-        <button
-          onClick={() => setAdults(Math.max(0, adults - 1))}
-          className="w-[20px] h-[20px] rounded-full bg-[#FF6E00]/40 flex items-center justify-center hover:bg-[#FF6E00]/60 transition-colors"
-        >
-          <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
-            <rect width="10" height="2" rx="1" fill="#4B3621" />
-          </svg>
-        </button>
-        <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621] w-[20px] text-center">
-          {adults}
-        </span>
-        <button
-          onClick={() => setAdults(adults + 1)}
-          className="w-[20px] h-[20px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity"
-        >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
-          </svg>
-        </button>
-      </div>
-      {/* Separator Line 2 */}
-      <div className="absolute top-[307px] left-[18px] right-[18px] h-px bg-black/20" />
+        {activeTab === "book" && (
+          <>
+            {/* Adult Row */}
+            <div className="flex justify-between items-center py-2 border-b border-black/10">
+              <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
+                Adult ( 13+ age )
+              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setAdults(Math.max(0, adults - 1))}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors"
+                >
+                  <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
+                    <rect width="10" height="2" rx="1" fill="#4B3621" />
+                  </svg>
+                </button>
+                <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621] w-[24px] text-center">
+                  {adults}
+                </span>
+                <button
+                  onClick={() => setAdults(adults + 1)}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
 
-      {/* Children Row */}
-      <div className="absolute top-[325px] left-[18px] h-[30px] flex items-center">
-        <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
-          Children ( age 3-12 )
-        </span>
+            {/* Children Row */}
+            <div className="flex justify-between items-center py-2 border-b border-black/10">
+              <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
+                Children ( age 3-12 )
+              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setChildren(Math.max(0, children - 1))}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors"
+                >
+                  <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
+                    <rect width="10" height="2" rx="1" fill="#4B3621" />
+                  </svg>
+                </button>
+                <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621] w-[24px] text-center">
+                  {children}
+                </span>
+                <button
+                  onClick={() => setChildren(children + 1)}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
-      {/* Children Counter */}
-      <div className="absolute top-[329px] right-[18px] flex items-center gap-3">
-        <button
-          onClick={() => setChildren(Math.max(0, children - 1))}
-          className="w-[20px] h-[20px] rounded-full bg-[#FF6E00]/40 flex items-center justify-center hover:bg-[#FF6E00]/60 transition-colors"
-        >
-          <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
-            <rect width="10" height="2" rx="1" fill="#4B3621" />
-          </svg>
-        </button>
-        <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621] w-[20px] text-center">
-          {children}
-        </span>
-        <button
-          onClick={() => setChildren(children + 1)}
-          className="w-[20px] h-[20px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity"
-        >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
-          </svg>
-        </button>
-      </div>
-      {/* Separator Line 3 */}
-      <div className="absolute top-[373px] left-[18px] right-[18px] h-px bg-black/20" />
 
       {/* Button */}
-      <button className="absolute top-[409px] left-1/2 -translate-x-1/2 w-[90%] md:w-[431px] h-[45px] bg-[#FF6E00] rounded-[12px] border border-[#FF6E00] overflow-hidden transition-all duration-300 active:scale-95 group relative">
-        {/* Fill animation from bottom to top */}
-        <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
-        <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300">
-          Check Availability
-        </span>
-      </button>
+      <div className="mt-8">
+        <button
+          onClick={handleAction}
+          className="w-full h-[50px] bg-[#FF6E00] rounded-[12px] border border-[#FF6E00] overflow-hidden transition-all duration-300 active:scale-95 group relative"
+        >
+          <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
+          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300">
+            {activeTab === "book" ? "Check Availability" : "Send Enquiry"}
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

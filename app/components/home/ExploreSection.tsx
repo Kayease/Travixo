@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 /**
@@ -53,61 +54,38 @@ const ActivityIcon = ({
 /**
  * Dropdown Select Component
  */
-const SelectInput = ({
-  label,
-  icon,
-}: {
+
+// Example values for dropdowns
+const DESTINATIONS = [
+  "Bangkok", "Paris", "New York", "Tokyo", "Sydney"
+];
+const TRAVEL_TYPES = [
+  "Adventure", "Leisure", "Family", "Romantic", "Cultural"
+];
+const DURATIONS = [
+  "1-3 Days", "4-7 Days", "8-14 Days", "15+ Days"
+];
+
+const SelectInput = ({ label, value, onChange, options, name }: {
   label: string;
-  icon?: "dropdown" | "calendar";
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  options: string[];
+  name: string;
 }) => (
-  <div className="relative w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl flex items-center px-4 cursor-pointer hover:border-brand-brown/40 transition-colors">
-    <span className="text-brand-brown font-medium text-lg font-body">
+  <select
+    name={name}
+    value={value}
+    onChange={onChange}
+    className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 text-brand-brown font-medium text-lg font-body focus:outline-none focus:ring-2 focus:ring-brand-orange"
+  >
+    <option value="" disabled>
       {label}
-    </span>
-    <div className="absolute right-4">
-      {icon === "calendar" ? (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            x="3"
-            y="4"
-            width="18"
-            height="18"
-            rx="2"
-            stroke="#4B3621"
-            strokeWidth="2"
-          />
-          <path
-            d="M3 10H21M8 2V6M16 2V6"
-            stroke="#4B3621"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
-      ) : (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7 10L12 15L17 10"
-            stroke="#4B3621"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      )}
-    </div>
-  </div>
+    </option>
+    {options.map((opt) => (
+      <option key={opt} value={opt}>{opt}</option>
+    ))}
+  </select>
 );
 
 /**
@@ -115,8 +93,26 @@ const SelectInput = ({
  * "Explore The World" section with activity categories, trip planning form, and featured image
  * Background: #FFFCF5 (cream)
  */
+
 export const ExploreSection = () => {
   const [activeCategory, setActiveCategory] = useState("beach");
+  const [destination, setDestination] = useState("");
+  const [travelType, setTravelType] = useState("");
+  const [duration, setDuration] = useState("");
+  const [date, setDate] = useState("");
+  const router = useRouter();
+
+  const handleSearch = () => {
+    // Navigate to /products with query params
+    const params = new URLSearchParams({
+      destination,
+      travelType,
+      duration,
+      date,
+      category: activeCategory,
+    });
+    router.push(`/products?${params.toString()}`);
+  };
 
   return (
     <section
@@ -189,18 +185,47 @@ export const ExploreSection = () => {
 
             {/* Form Inputs */}
             <div className="grid grid-cols-2 gap-4 mt-4">
-              <SelectInput label="Destination" icon="dropdown" />
-              <SelectInput label="dd/mm/yyyy" icon="calendar" />
-              <SelectInput label="Travel Type" icon="dropdown" />
-              <SelectInput label="Tour Duration" icon="dropdown" />
+              <SelectInput
+                label="Destination"
+                name="destination"
+                value={destination}
+                onChange={e => setDestination(e.target.value)}
+                options={DESTINATIONS}
+              />
+              <input
+                type="date"
+                name="date"
+                value={date}
+                onChange={e => setDate(e.target.value)}
+                className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 text-brand-brown font-medium text-lg font-body focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                placeholder="dd/mm/yyyy"
+                min={new Date().toISOString().split('T')[0]}
+              />
+              <SelectInput
+                label="Travel Type"
+                name="travelType"
+                value={travelType}
+                onChange={e => setTravelType(e.target.value)}
+                options={TRAVEL_TYPES}
+              />
+              <SelectInput
+                label="Tour Duration"
+                name="duration"
+                value={duration}
+                onChange={e => setDuration(e.target.value)}
+                options={DURATIONS}
+              />
             </div>
 
             {/* Search Button with bottom-to-top fill animation */}
             <div className="mt-6 flex justify-center">
               <button
+                type="button"
+                onClick={handleSearch}
+                disabled={!(destination && travelType && duration && date)}
                 className="relative w-[384px] h-[50px] bg-brand-orange border border-brand-orange rounded-xl 
                            flex items-center justify-center overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)]
-                           hover:shadow-lg transition-shadow group"
+                           hover:shadow-lg transition-shadow group disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {/* Bottom-to-top fill animation overlay */}
                 <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />

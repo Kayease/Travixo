@@ -31,10 +31,10 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
       />
 
       {/* Gradient to hide baked-in text on images */}
-      <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-t from-[#1a1a1a] to-transparent z-[5]" />
+      <div className="absolute inset-x-0 bottom-0 h-[100px] bg-linear-to-t from-[#1a1a1a] to-transparent z-5" />
 
       {/* Hover Overlay - Slides in from left, only covers bottom portion */}
-      <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#9A4C04] via-[#9A4C04]/70 to-transparent -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-[#9A4C04] via-[#9A4C04]/70 to-transparent -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-10" />
 
       {/* Room Name - Always visible, moves up on hover */}
       <h3 className="absolute left-6 md:left-8 bottom-6 md:bottom-8 group-hover:bottom-[200px] md:group-hover:bottom-[220px] font-display text-2xl md:text-[28px] italic font-semibold text-white z-30 transition-all duration-500 ease-out drop-shadow-lg">
@@ -83,7 +83,7 @@ const SuiteSection: React.FC = () => {
     {
       id: "standard",
       name: "Standard Room",
-      image: "/images/stay/Component 3.png",
+      image: "/images/stay/Component 99 (1).png",
       size: "27 sqm/ 290 sqft",
       occupancy: "2 adults, 1 child",
       bed: "king or twin",
@@ -91,7 +91,7 @@ const SuiteSection: React.FC = () => {
     {
       id: "deluxe",
       name: "Deluxe Room",
-      image: "/images/stay/Component 5.png",
+      image: "/images/stay/Component 100.png",
       size: "35 sqm/ 377 sqft",
       occupancy: "2 adults, 2 children",
       bed: "king or twin",

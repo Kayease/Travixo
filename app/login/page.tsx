@@ -40,9 +40,7 @@ const LoginFormSection = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -58,11 +56,11 @@ const LoginFormSection = () => {
     // In production, this would validate credentials with an API
     if (formData.email && formData.password) {
       // Store login state (in production, use proper auth)
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userEmail', formData.email);
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", formData.email);
 
-      // Redirect to profile page
-      window.location.href = '/profile';
+      // Redirect to home page
+      window.location.href = "/";
     }
   };
 

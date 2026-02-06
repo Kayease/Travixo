@@ -240,16 +240,16 @@ export const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex items-center gap-4">
-            <Link href="#" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity">
               <FacebookIcon />
             </Link>
-            <Link href="#" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity">
               <InstagramIcon />
             </Link>
-            <Link href="#" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity">
               <LinkedInIcon />
             </Link>
-            <Link href="#" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity">
               <TwitterIcon />
             </Link>
           </div>

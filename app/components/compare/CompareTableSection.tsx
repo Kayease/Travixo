@@ -2,6 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useToast } from "@/app/context/ToastContext";
 
 /**
  * Interface for individual tour comparison data
@@ -34,7 +36,7 @@ const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
           fill="#FF6E00"
           stroke="#FF6E00"
           strokeWidth="1.5"
-          className="flex-shrink-0"
+          className="shrink-0"
         >
           <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
         </svg>
@@ -56,7 +58,7 @@ const ActivityItem: React.FC<{ activity: string }> = ({ activity }) => {
         height="20"
         viewBox="0 0 20 20"
         fill="none"
-        className="flex-shrink-0"
+        className="shrink-0"
       >
         <circle cx="10" cy="10" r="8.75" fill="#FF6E00" />
         <path
@@ -76,15 +78,15 @@ const ActivityItem: React.FC<{ activity: string }> = ({ activity }) => {
  * Difficulty Badge Component
  * Renders colored badge based on difficulty level
  */
-const DifficultyBadge: React.FC<{ difficulty: "EASY" | "MODERATE" | "HARD" }> = ({
-  difficulty,
-}) => {
+const DifficultyBadge: React.FC<{
+  difficulty: "EASY" | "MODERATE" | "HARD";
+}> = ({ difficulty }) => {
   const bgColor =
     difficulty === "EASY"
       ? "bg-[#34C759]"
       : difficulty === "MODERATE"
-      ? "bg-[#FF6E00]/60"
-      : "bg-red-500";
+        ? "bg-[#FF6E00]/60"
+        : "bg-red-500";
 
   return (
     <span
@@ -101,6 +103,8 @@ const DifficultyBadge: React.FC<{ difficulty: "EASY" | "MODERATE" | "HARD" }> = 
  * duration, accommodation, meals, activities, and difficulty level
  */
 const CompareTableSection: React.FC = () => {
+  const { showToast } = useToast();
+
   // Sample tour data for comparison
   const tours: TourData[] = [
     {
@@ -111,7 +115,11 @@ const CompareTableSection: React.FC = () => {
       duration: "10 Days/ 09 Night",
       accommodation: 5,
       meals: "Michelin star Dining & Breakfast",
-      activities: ["Husky Sledding Safari", "Private Aurora hunt", "Ice Hotel Overnight"],
+      activities: [
+        "Husky Sledding Safari",
+        "Private Aurora hunt",
+        "Ice Hotel Overnight",
+      ],
       difficulty: "MODERATE",
     },
     {
@@ -122,7 +130,11 @@ const CompareTableSection: React.FC = () => {
       duration: "07 Days/ 6 Night",
       accommodation: 4,
       meals: "Full Board Gourmet Selection",
-      activities: ["Private Yacht Charter", "Positano Wine Tasting", "Lemon Grove Tour"],
+      activities: [
+        "Private Yacht Charter",
+        "Positano Wine Tasting",
+        "Lemon Grove Tour",
+      ],
       difficulty: "EASY",
     },
     {
@@ -298,11 +310,22 @@ const CompareTableSection: React.FC = () => {
                 key={`book-${tour.id}`}
                 className="p-4 md:p-6 flex items-center justify-center border-t lg:border-t-0"
               >
-                <button className="group/btn relative w-full max-w-[233px] h-[45px] bg-[#FF6E00] text-white font-display text-[20px] leading-[27px] italic font-medium rounded-xl overflow-hidden transition-all duration-300">
-                  <span className="relative z-10 group-hover/btn:text-[#4B3621] transition-colors duration-300">Book Now</span>
+                <Link
+                  href="/checkout"
+                  className="w-full max-w-[233px] block group/btn relative h-[45px] bg-[#FF6E00] text-white font-display text-[20px] leading-[27px] italic font-medium rounded-xl overflow-hidden transition-all duration-300 cursor-pointer"
+                  onClick={(e) => {
+                    showToast(
+                      `Redirecting to checkout for ${tour.name} excursion...`,
+                      "info",
+                    );
+                  }}
+                >
+                  <span className="relative z-10 flex items-center justify-center h-full group-hover/btn:text-[#4B3621] transition-colors duration-300">
+                    Book Now
+                  </span>
                   {/* Bottom-to-top fill animation */}
                   <span className="absolute bottom-0 left-0 w-full h-0 bg-white transition-all duration-500 ease-out group-hover/btn:h-full"></span>
-                </button>
+                </Link>
               </div>
             ))}
           </div>

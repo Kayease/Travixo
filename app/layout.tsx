@@ -28,6 +28,8 @@ export const metadata: Metadata = {
   description: "Your Safari Hub: News, Tips, and Inspiration",
 };
 
+import { ToastProvider } from "./context/ToastContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,10 +37,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${playfair.variable} ${poppins.variable} antialiased`}
-      >
-        {children}
+      <body className={`${playfair.variable} ${poppins.variable} antialiased`}>
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );

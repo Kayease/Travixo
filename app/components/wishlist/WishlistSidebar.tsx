@@ -1,10 +1,10 @@
 /**
  * WishlistSidebar Component
- * 
+ *
  * Sidebar navigation for filtering wishlist items by collection type.
- * Displays "Collections" title with filter options for All Items, 
+ * Displays "Collections" title with filter options for All Items,
  * Saved Tours, and Destinations with item counts.
- * 
+ *
  * Design specs from Figma:
  * - Title: Playfair Display italic, 24px, 600 weight
  * - Filter items: 379x58px, Poppins 20px medium
@@ -12,9 +12,9 @@
  * - Icons: 24x24px, orange #FF6E00 for active
  */
 
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // Collection type definition
 interface Collection {
@@ -35,7 +35,7 @@ interface WishlistSidebarProps {
 }
 
 const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
-  activeCollection = 'all',
+  activeCollection = "all",
   onCollectionChange,
   itemCounts = { all: 12, tours: 5, destinations: 8 },
 }) => {
@@ -50,8 +50,8 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
   // Collection items with icons
   const collections: Collection[] = [
     {
-      id: 'all',
-      name: 'All Items',
+      id: "all",
+      name: "All Items",
       count: itemCounts.all,
       icon: (
         <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
@@ -64,8 +64,8 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
       ),
     },
     {
-      id: 'tours',
-      name: 'Saved Tours',
+      id: "tours",
+      name: "Saved Tours",
       count: itemCounts.tours,
       icon: (
         <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
@@ -82,8 +82,8 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
       ),
     },
     {
-      id: 'destinations',
-      name: 'Destinations',
+      id: "destinations",
+      name: "Destinations",
       count: itemCounts.destinations,
       icon: (
         <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
@@ -113,32 +113,98 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
             key={collection.id}
             onClick={() => handleCollectionClick(collection.id)}
             className={`
-              w-full h-[58px] rounded-xl flex items-center justify-between px-5
+              w-full h-[58px] rounded-xl flex items-center justify-between px-5 cursor-pointer
               transition-all duration-200
               ${
                 active === collection.id
-                  ? 'bg-white border border-brand-brown/40'
-                  : 'bg-transparent hover:bg-white/50'
+                  ? "bg-white border border-brand-brown/40"
+                  : "bg-transparent hover:bg-white/50"
               }
             `}
           >
             {/* Left: Icon + Name */}
             <div className="flex items-center gap-3.5">
               {/* Icon - Update color based on active state */}
-              <div className={active === collection.id ? 'text-brand-orange' : 'text-brand-brown'}>
-                {collection.id === 'all' && active === collection.id ? (
+              <div
+                className={
+                  active === collection.id
+                    ? "text-brand-orange"
+                    : "text-brand-brown"
+                }
+              >
+                {collection.id === "all" && active === collection.id ? (
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="3" width="7" height="7" rx="1" fill="#FF6E00" />
-                    <rect x="14" y="3" width="7" height="7" rx="1" fill="#FF6E00" />
-                    <rect x="3" y="14" width="7" height="7" rx="1" fill="#FF6E00" />
-                    <rect x="14" y="14" width="7" height="7" rx="1" fill="#FF6E00" />
+                    <rect
+                      x="3"
+                      y="3"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      fill="#FF6E00"
+                    />
+                    <rect
+                      x="14"
+                      y="3"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      fill="#FF6E00"
+                    />
+                    <rect
+                      x="3"
+                      y="14"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      fill="#FF6E00"
+                    />
+                    <rect
+                      x="14"
+                      y="14"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      fill="#FF6E00"
+                    />
                   </svg>
-                ) : collection.id === 'all' ? (
+                ) : collection.id === "all" ? (
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="3" width="7" height="7" rx="1" stroke="#4B3621" strokeWidth="1.5" />
-                    <rect x="14" y="3" width="7" height="7" rx="1" stroke="#4B3621" strokeWidth="1.5" />
-                    <rect x="3" y="14" width="7" height="7" rx="1" stroke="#4B3621" strokeWidth="1.5" />
-                    <rect x="14" y="14" width="7" height="7" rx="1" stroke="#4B3621" strokeWidth="1.5" />
+                    <rect
+                      x="3"
+                      y="3"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      stroke="#4B3621"
+                      strokeWidth="1.5"
+                    />
+                    <rect
+                      x="14"
+                      y="3"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      stroke="#4B3621"
+                      strokeWidth="1.5"
+                    />
+                    <rect
+                      x="3"
+                      y="14"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      stroke="#4B3621"
+                      strokeWidth="1.5"
+                    />
+                    <rect
+                      x="14"
+                      y="14"
+                      width="7"
+                      height="7"
+                      rx="1"
+                      stroke="#4B3621"
+                      strokeWidth="1.5"
+                    />
                   </svg>
                 ) : (
                   collection.icon
@@ -153,7 +219,7 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
 
             {/* Right: Count */}
             <span className="font-body font-medium text-base leading-[30px] text-brand-brown">
-              {collection.count.toString().padStart(2, '0')}
+              {collection.count.toString().padStart(2, "0")}
             </span>
           </button>
         ))}

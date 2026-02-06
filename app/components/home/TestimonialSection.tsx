@@ -43,58 +43,70 @@ const QuoteIcon = () => (
 );
 
 /**
- * Floating profile images data
+ * Testimonial data consolidated with profile image positions
  */
-const PROFILE_IMAGES = [
+const TESTIMONIALS_DATA = [
   {
     id: 1,
     url: "/images/room/Desktop - 55.png",
     top: "83px",
     left: "60px",
-    mobileLeft: "20px",
+    rating: 5,
+    text: "My trip to the Maldives was absolutely breathtaking! The support from the Travixo team made everything so easy. I will definitely book my next vacation here.",
+    author: {
+      name: "Sarah Johnson",
+      role: "Photographer",
+    },
   },
   {
     id: 2,
     url: "/images/room/Desktop - 56.png",
     top: "160px",
     left: "220px",
-    mobileLeft: "100px",
+    rating: 5,
+    text: "Highly recommend Travixo for anyone looking for unique adventures. The prices are unbeatable and the customer service is top-notch!",
+    author: {
+      name: "Marcus Miller",
+      role: "Adventure Guide",
+    },
   },
   {
     id: 3,
     url: "/images/room/Desktop - 57.png",
     top: "60px",
     left: "360px",
-    mobileLeft: "180px",
+    rating: 4,
+    text: "Working as a digital nomad, I need reliable booking services. Travixo has never let me down, and the variety of destinations is fantastic.",
+    author: {
+      name: "Elena Grace",
+      role: "Blogger",
+    },
   },
   {
     id: 4,
     url: "/images/room/Desktop - 58.png",
     top: "230px",
     left: "340px",
-    mobileLeft: "160px",
+    rating: 4,
+    text: "I had an amazing experience with Travixo! The website is easy to use, prices are competitive, and everything went perfectly on my trip",
+    author: {
+      name: "Jimmy Jostar",
+      role: "Traveler",
+    },
   },
   {
     id: 5,
     url: "/images/room/Desktop - 59.png",
     top: "320px",
     left: "180px",
-    mobileLeft: "60px",
+    rating: 5,
+    text: "The most seamless travel booking I've ever experienced. From flights to accommodation, everything was perfectly organized. Five stars!",
+    author: {
+      name: "David Chen",
+      role: "Business Consultant",
+    },
   },
 ];
-
-/**
- * Testimonial data
- */
-const TESTIMONIAL = {
-  rating: 4,
-  text: "I had an amazing experience with Travixo! The website is easy to use, prices are competitive, and everything went perfectly on my trip",
-  author: {
-    name: "Jimmy Jostar",
-    role: "Traveler",
-    avatar: "/images/room/Desktop - 58.png",
-  },
-};
 
 /**
  * TestimonialSection Component
@@ -102,6 +114,11 @@ const TESTIMONIAL = {
  * Background: #FFFCF5 (cream)
  */
 export const TestimonialSection = () => {
+  const [activeId, setActiveId] = React.useState(4);
+
+  const activeTestimonial =
+    TESTIMONIALS_DATA.find((t) => t.id === activeId) || TESTIMONIALS_DATA[3];
+
   return (
     <section
       className="relative w-full py-12 lg:py-16 overflow-hidden"
@@ -115,35 +132,50 @@ export const TestimonialSection = () => {
         >
           {/* Floating Profile Images - Hidden on mobile */}
           <div className="hidden md:block">
-            {PROFILE_IMAGES.map((profile) => (
-              <div
-                key={profile.id}
-                className="absolute w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded-full shadow-md border-4 border-white"
-                style={{
-                  top: profile.top,
-                  left: profile.left,
-                  overflow: "hidden",
-                }}
-              >
-                <Image
-                  src={profile.url}
-                  alt="Traveler"
-                  fill
-                  className="object-cover rounded-full"
-                  sizes="100px"
-                />
-              </div>
-            ))}
+            {TESTIMONIALS_DATA.map((profile) => {
+              const isActive = activeId === profile.id;
+              return (
+                <div
+                  key={profile.id}
+                  onClick={() => setActiveId(profile.id)}
+                  className={`absolute w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded-full shadow-md border-4 cursor-pointer transition-all duration-300 hover:scale-110 ${
+                    isActive
+                      ? "border-brand-orange z-20 scale-105"
+                      : "border-white z-10"
+                  }`}
+                  style={{
+                    top: profile.top,
+                    left: profile.left,
+                    overflow: "hidden",
+                  }}
+                >
+                  <Image
+                    src={profile.url}
+                    alt="Traveler"
+                    fill
+                    className={`object-cover rounded-full transition-opacity duration-300 ${
+                      isActive ? "opacity-100" : "opacity-80 hover:opacity-100"
+                    }`}
+                    sizes="100px"
+                  />
+                </div>
+              );
+            })}
 
-            {/* Connecting Line */}
+            {/* Connecting Line - Dynamically follows the active profile */}
             <div
-              className="absolute hidden lg:block w-[100px] h-px bg-brand-orange"
-              style={{ top: "280px", left: "440px" }}
+              className="absolute hidden lg:block h-px bg-brand-orange transition-all duration-500 ease-in-out z-0"
+              style={{
+                top: parseInt(activeTestimonial.top) + 50 + "px",
+                left: parseInt(activeTestimonial.left) + 100 + "px",
+                width: 550 - (parseInt(activeTestimonial.left) + 100) + "px",
+                transformOrigin: "left center",
+              }}
             />
           </div>
 
           {/* Testimonial Card */}
-          <div className="absolute right-4 md:right-8 lg:right-[80px] top-1/2 -translate-y-1/2 w-full max-w-[320px] md:max-w-[450px] lg:max-w-[610px] bg-white rounded-xl p-6 md:p-8 lg:p-12 shadow-sm">
+          <div className="absolute right-4 md:right-8 lg:right-[80px] top-1/2 -translate-y-1/2 w-full max-w-[320px] md:max-w-[450px] lg:max-w-[610px] bg-white rounded-xl p-6 md:p-8 lg:p-12 shadow-sm transition-all duration-300 z-10">
             {/* Quote Icon */}
             <div className="absolute top-6 right-6 md:top-8 md:right-8 w-[50px] md:w-[70px] lg:w-[87px] opacity-80">
               <QuoteIcon />
@@ -151,23 +183,25 @@ export const TestimonialSection = () => {
 
             {/* Rating */}
             <div className="flex items-center gap-1 md:gap-2 mb-4 md:mb-6">
-              {[...Array(TESTIMONIAL.rating)].map((_, i) => (
+              {[...Array(activeTestimonial.rating)].map((_, i) => (
                 <StarIcon key={i} />
               ))}
             </div>
 
             {/* Testimonial Text */}
-            <p className="font-body font-medium text-base md:text-lg lg:text-[22px] leading-relaxed lg:leading-[33px] text-brand-brown mb-6 md:mb-8 max-w-[458px]">
-              {TESTIMONIAL.text}
-            </p>
+            <div className="min-h-[100px]">
+              <p className="font-body font-medium text-base md:text-lg lg:text-[22px] leading-relaxed lg:leading-[33px] text-brand-brown mb-6 md:mb-8 max-w-[458px]">
+                {activeTestimonial.text}
+              </p>
+            </div>
 
             {/* Author */}
             <div className="flex items-center gap-3 md:gap-4">
               {/* Avatar */}
               <div className="relative w-[50px] h-[50px] md:w-[60px] md:h-[60px] rounded-full overflow-hidden border-2 border-gray-100">
                 <Image
-                  src={TESTIMONIAL.author.avatar}
-                  alt={TESTIMONIAL.author.name}
+                  src={activeTestimonial.url}
+                  alt={activeTestimonial.author.name}
                   fill
                   className="object-cover rounded-full"
                   sizes="60px"
@@ -177,16 +211,16 @@ export const TestimonialSection = () => {
               {/* Info */}
               <div>
                 <h4 className="font-display italic font-semibold text-base md:text-lg leading-6 text-brand-brown">
-                  {TESTIMONIAL.author.name}
+                  {activeTestimonial.author.name}
                 </h4>
                 <span className="font-body font-normal text-sm text-brand-brown">
-                  {TESTIMONIAL.author.role}
+                  {activeTestimonial.author.role}
                 </span>
               </div>
             </div>
           </div>
-        </div >
-      </div >
-    </section >
+        </div>
+      </div>
+    </section>
   );
 };

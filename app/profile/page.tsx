@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useToast } from "../context/ToastContext";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 
@@ -32,9 +33,13 @@ const ProfileHeroSection = () => {
  * Profile Content Section
  */
 const ProfileContentSection = () => {
-  const [activeTab, setActiveTab] = useState<"profile" | "bookings" | "security">("profile");
+  const [activeTab, setActiveTab] = useState<
+    "profile" | "bookings" | "security"
+  >("profile");
   const [isEditing, setIsEditing] = useState(false);
+  const { showToast } = useToast();
 
+  // Main profile data source
   const [profileData, setProfileData] = useState({
     firstName: "John",
     lastName: "Doe",
@@ -48,17 +53,93 @@ const ProfileContentSection = () => {
     postalCode: "10001",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setProfileData({
-      ...profileData,
+  // Temporary state for editing
+  const [formData, setFormData] = useState(profileData);
+
+  // Password state
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+
+  // 2FA state
+  const [is2FAEnabled, setIs2FAEnabled] = useState(false);
+
+  const handleToggle2FA = () => {
+    setIs2FAEnabled(!is2FAEnabled);
+    showToast(
+      is2FAEnabled
+        ? "Two-Factor Authentication Disabled!"
+        : "Two-Factor Authentication Enabled!",
+      is2FAEnabled ? "info" : "success",
+    );
+  };
+
+  const handleDeleteAccount = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete your account? This action cannot be undone.",
+      )
+    ) {
+      showToast("Account deleted successfully.", "success");
+      window.location.href = "/";
+    }
+  };
+
+  const handleLogout = () => {
+    showToast("Logged out successfully.", "success");
+    window.location.href = "/";
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSave = () => {
-    console.log("Profile updated:", profileData);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordData({
+      ...passwordData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleEditClick = () => {
+    setFormData(profileData); // Reset form to current data
+    setIsEditing(true);
+  };
+
+  const handleCancel = () => {
+    setFormData(profileData); // Revert changes
     setIsEditing(false);
-    // Handle save logic
+  };
+
+  const handleSave = () => {
+    setProfileData(formData); // Commit changes
+    setIsEditing(false);
+    showToast("Profile Updated Successfully!", "success");
+  };
+
+  const handleUpdatePassword = () => {
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      showToast("New passwords do not match!", "error");
+      return;
+    }
+    if (!passwordData.currentPassword || !passwordData.newPassword) {
+      showToast("Please fill in all password fields.", "warning");
+      return;
+    }
+    // Simulate API call
+    setPasswordData({
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    });
+    showToast("Password Updated Successfully!", "success");
   };
 
   // Mock booking data
@@ -89,6 +170,11 @@ const ProfileContentSection = () => {
     },
   ];
 
+  // Get initials for avatar
+  const getInitials = () => {
+    return `${profileData.firstName.charAt(0)}${profileData.lastName.charAt(0)}`.toUpperCase();
+  };
+
   return (
     <section
       className="relative w-full py-12 lg:py-[80px]"
@@ -103,7 +189,7 @@ const ProfileContentSection = () => {
               <div className="text-center mb-6">
                 <div className="relative w-24 h-24 mx-auto mb-4">
                   <div className="w-full h-full rounded-full bg-brand-orange flex items-center justify-center text-white font-display text-3xl">
-                    JD
+                    {getInitials()}
                   </div>
                   <button className="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <svg
@@ -237,7 +323,10 @@ const ProfileContentSection = () => {
               </nav>
 
               {/* Logout Button */}
-              <button className="w-full mt-6 flex items-center justify-center px-4 py-3 rounded-lg border border-red-500 text-red-500 font-body font-medium text-[16px] hover:bg-red-50 transition-colors">
+              <button
+                onClick={handleLogout}
+                className="w-full mt-6 flex items-center justify-center px-4 py-3 rounded-lg border border-red-500 text-red-500 font-body font-medium text-[16px] hover:bg-red-50 transition-colors"
+              >
                 <svg
                   className="w-5 h-5 mr-2"
                   fill="none"
@@ -267,7 +356,7 @@ const ProfileContentSection = () => {
                   </h2>
                   {!isEditing ? (
                     <button
-                      onClick={() => setIsEditing(true)}
+                      onClick={handleEditClick}
                       className="flex items-center px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors"
                     >
                       <svg
@@ -288,7 +377,7 @@ const ProfileContentSection = () => {
                   ) : (
                     <div className="flex gap-2">
                       <button
-                        onClick={() => setIsEditing(false)}
+                        onClick={handleCancel}
                         className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-body font-medium text-[14px] hover:bg-gray-50 transition-colors"
                       >
                         Cancel
@@ -312,7 +401,7 @@ const ProfileContentSection = () => {
                     <input
                       type="text"
                       name="firstName"
-                      value={profileData.firstName}
+                      value={formData.firstName}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -327,7 +416,7 @@ const ProfileContentSection = () => {
                     <input
                       type="text"
                       name="lastName"
-                      value={profileData.lastName}
+                      value={formData.lastName}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -342,7 +431,7 @@ const ProfileContentSection = () => {
                     <input
                       type="email"
                       name="email"
-                      value={profileData.email}
+                      value={formData.email}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -357,7 +446,7 @@ const ProfileContentSection = () => {
                     <input
                       type="tel"
                       name="phoneNumber"
-                      value={profileData.phoneNumber}
+                      value={formData.phoneNumber}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -372,7 +461,7 @@ const ProfileContentSection = () => {
                     <input
                       type="date"
                       name="dateOfBirth"
-                      value={profileData.dateOfBirth}
+                      value={formData.dateOfBirth}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -387,7 +476,7 @@ const ProfileContentSection = () => {
                     <input
                       type="text"
                       name="nationality"
-                      value={profileData.nationality}
+                      value={formData.nationality}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -402,7 +491,7 @@ const ProfileContentSection = () => {
                     <input
                       type="text"
                       name="address"
-                      value={profileData.address}
+                      value={formData.address}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -417,7 +506,7 @@ const ProfileContentSection = () => {
                     <input
                       type="text"
                       name="city"
-                      value={profileData.city}
+                      value={formData.city}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -432,7 +521,7 @@ const ProfileContentSection = () => {
                     <input
                       type="text"
                       name="postalCode"
-                      value={profileData.postalCode}
+                      value={formData.postalCode}
                       onChange={handleChange}
                       disabled={!isEditing}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50 disabled:text-gray-600"
@@ -549,6 +638,9 @@ const ProfileContentSection = () => {
                       </label>
                       <input
                         type="password"
+                        name="currentPassword"
+                        value={passwordData.currentPassword}
+                        onChange={handlePasswordChange}
                         placeholder="Enter current password"
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] focus:outline-none focus:ring-2 focus:ring-brand-orange"
                       />
@@ -559,6 +651,9 @@ const ProfileContentSection = () => {
                       </label>
                       <input
                         type="password"
+                        name="newPassword"
+                        value={passwordData.newPassword}
+                        onChange={handlePasswordChange}
                         placeholder="Enter new password"
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] focus:outline-none focus:ring-2 focus:ring-brand-orange"
                       />
@@ -569,11 +664,17 @@ const ProfileContentSection = () => {
                       </label>
                       <input
                         type="password"
+                        name="confirmPassword"
+                        value={passwordData.confirmPassword}
+                        onChange={handlePasswordChange}
                         placeholder="Confirm new password"
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] focus:outline-none focus:ring-2 focus:ring-brand-orange"
                       />
                     </div>
-                    <button className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors">
+                    <button
+                      onClick={handleUpdatePassword}
+                      className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors"
+                    >
                       Update Password
                     </button>
                   </div>
@@ -587,8 +688,15 @@ const ProfileContentSection = () => {
                   <p className="font-body text-[14px] text-gray-600 mb-4">
                     Add an extra layer of security to your account
                   </p>
-                  <button className="px-6 py-3 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[16px] hover:bg-orange-50 transition-colors">
-                    Enable 2FA
+                  <button
+                    onClick={handleToggle2FA}
+                    className={`px-6 py-3 rounded-lg border font-body font-medium text-[16px] transition-colors ${
+                      is2FAEnabled
+                        ? "border-green-600 text-green-600 hover:bg-green-50"
+                        : "border-brand-orange text-brand-orange hover:bg-orange-50"
+                    }`}
+                  >
+                    {is2FAEnabled ? "2FA Enabled" : "Enable 2FA"}
                   </button>
                 </div>
 
@@ -601,7 +709,10 @@ const ProfileContentSection = () => {
                     Once you delete your account, there is no going back. Please
                     be certain.
                   </p>
-                  <button className="px-6 py-3 rounded-lg bg-red-500 text-white font-body font-medium text-[16px] hover:bg-red-600 transition-colors">
+                  <button
+                    onClick={handleDeleteAccount}
+                    className="px-6 py-3 rounded-lg bg-red-500 text-white font-body font-medium text-[16px] hover:bg-red-600 transition-colors"
+                  >
                     Delete Account
                   </button>
                 </div>
