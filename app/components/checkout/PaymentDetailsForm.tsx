@@ -59,7 +59,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           alt="Security"
           width={32}
           height={32}
-          className="object-contain flex-shrink-0"
+          className="object-contain shrink-0"
         />
         <h2 className="font-display italic font-semibold text-[24px] leading-[30px] text-brand-brown">
           Payment Details
@@ -73,7 +73,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           onClick={() => onPaymentMethodChange('card')}
           className={`
             h-[60px] rounded-xl font-body font-semibold text-base leading-[30px] text-brand-brown
-            transition-all duration-200
+            transition-all duration-200 cursor-pointer
             ${paymentMethod === 'card'
               ? 'bg-brand-orange/20 border border-brand-orange'
               : 'bg-white border border-brand-brown/20 hover:border-brand-orange/50'
@@ -88,7 +88,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           onClick={() => onPaymentMethodChange('paypal')}
           className={`
             h-[60px] rounded-xl font-body font-semibold text-base leading-[30px] text-brand-brown
-            transition-all duration-200
+            transition-all duration-200 cursor-pointer
             ${paymentMethod === 'paypal'
               ? 'bg-brand-orange/20 border border-brand-orange'
               : 'bg-white border border-brand-brown/20 hover:border-brand-orange/50'
@@ -177,7 +177,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
       {/* Security Notice */}
       <div className="flex items-center justify-center gap-2 mt-6 md:mt-8">
         {/* Lock Icon */}
-        <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 16 16" fill="none">
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none">
           <rect x="3" y="7" width="10" height="7" rx="1" stroke="rgba(75,54,33,0.6)" strokeWidth="1" />
           <path
             d="M5 7V5C5 3.34315 6.34315 2 8 2C9.65685 2 11 3.34315 11 5V7"

@@ -176,7 +176,7 @@ const ContactFormSection = () => {
               <div className="pt-6">
                 <button
                   type="submit"
-                  className="w-[200px] h-[45px] rounded-[12px] font-display italic font-normal text-[18px] leading-[24px] text-white bg-[#FF6E00] border border-[#FF6E00] overflow-hidden transition-all duration-300 relative group"
+                  className="w-[200px] h-[45px] rounded-[12px] font-display italic font-normal text-[18px] leading-[24px] text-white bg-[#FF6E00] border border-[#FF6E00] overflow-hidden transition-all duration-300 relative group cursor-pointer"
                 >
                   {/* Fill animation from bottom to top */}
                   <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />

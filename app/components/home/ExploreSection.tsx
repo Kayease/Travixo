@@ -271,7 +271,7 @@ export const ExploreSection = () => {
                 disabled={!(destination && travelType && duration && date)}
                 className="relative w-[384px] h-[50px] bg-brand-orange border border-brand-orange rounded-xl 
                            flex items-center justify-center overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)]
-                           hover:shadow-lg transition-shadow group disabled:opacity-50 disabled:cursor-not-allowed"
+                           hover:shadow-lg transition-shadow group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {/* Bottom-to-top fill animation overlay */}
                 <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />

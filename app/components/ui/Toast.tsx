@@ -101,7 +101,7 @@ export const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
       </p>
       <button
         onClick={handleClose}
-        className="shrink-0 opacity-70 hover:opacity-100 transition-opacity"
+        className="shrink-0 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
       >
         <svg
           className="w-4 h-4"

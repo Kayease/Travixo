@@ -57,7 +57,7 @@ export const TourFAQSection: React.FC<TourFAQSectionProps> = ({ faqs }) => {
             {/* Question Button */}
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50 transition-colors cursor-pointer"
             >
               <span className="font-body text-sm md:text-base text-brand-brown pr-4">
                 {faq.question}

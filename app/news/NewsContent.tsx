@@ -111,7 +111,7 @@ const FeaturedArticleCard: React.FC<typeof FEATURED_ARTICLE> = ({
   slug,
 }) => {
   return (
-    <Link href={slug} className="group">
+    <Link href={slug} className="group cursor-pointer">
       <div className="relative bg-white border border-brand-brown/20 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Image */}
@@ -179,7 +179,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   slug,
 }) => {
   return (
-    <Link href={slug} className="group">
+    <Link href={slug} className="group cursor-pointer">
       <div className="bg-white border border-brand-brown/20 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
         {/* Image */}
         <div className="relative h-[220px] overflow-hidden">
@@ -271,7 +271,7 @@ export default function NewsContent() {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`
-                    px-6 py-2 rounded-full font-body font-medium text-sm transition-all duration-300
+                    px-6 py-2 rounded-full font-body font-medium text-sm transition-all duration-300 cursor-pointer
                     ${
                       selectedCategory === category
                         ? "bg-brand-orange text-white"
@@ -318,7 +318,7 @@ export default function NewsContent() {
                 placeholder="Enter your email"
                 className="w-full sm:flex-1 px-6 py-4 rounded-xl font-body text-base text-brand-brown border-2 border-white/20 focus:outline-none focus:border-white"
               />
-              <button className="w-full sm:w-auto bg-white text-brand-orange px-8 py-4 rounded-xl font-body font-semibold text-base hover:bg-brand-cream transition-colors duration-300 whitespace-nowrap">
+              <button className="w-full sm:w-auto bg-white text-brand-orange px-8 py-4 rounded-xl font-body font-semibold text-base hover:bg-brand-cream transition-colors duration-300 whitespace-nowrap cursor-pointer">
                 Subscribe
               </button>
             </div>

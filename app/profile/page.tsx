@@ -191,7 +191,7 @@ const ProfileContentSection = () => {
                   <div className="w-full h-full rounded-full bg-brand-orange flex items-center justify-center text-white font-display text-3xl">
                     {getInitials()}
                   </div>
-                  <button className="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors">
+                  <button className="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer">
                     <svg
                       className="w-4 h-4 text-gray-600"
                       fill="none"
@@ -225,7 +225,7 @@ const ProfileContentSection = () => {
               <nav className="space-y-2">
                 <button
                   onClick={() => setActiveTab("profile")}
-                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors ${
+                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors cursor-pointer ${
                     activeTab === "profile"
                       ? "bg-brand-orange text-white"
                       : "text-gray-700 hover:bg-gray-100"
@@ -249,7 +249,7 @@ const ProfileContentSection = () => {
 
                 <button
                   onClick={() => setActiveTab("bookings")}
-                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors ${
+                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors cursor-pointer ${
                     activeTab === "bookings"
                       ? "bg-brand-orange text-white"
                       : "text-gray-700 hover:bg-gray-100"
@@ -273,7 +273,7 @@ const ProfileContentSection = () => {
 
                 <button
                   onClick={() => setActiveTab("security")}
-                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors ${
+                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors cursor-pointer ${
                     activeTab === "security"
                       ? "bg-brand-orange text-white"
                       : "text-gray-700 hover:bg-gray-100"
@@ -325,7 +325,7 @@ const ProfileContentSection = () => {
               {/* Logout Button */}
               <button
                 onClick={handleLogout}
-                className="w-full mt-6 flex items-center justify-center px-4 py-3 rounded-lg border border-red-500 text-red-500 font-body font-medium text-[16px] hover:bg-red-50 transition-colors"
+                className="w-full mt-6 flex items-center justify-center px-4 py-3 rounded-lg border border-red-500 text-red-500 font-body font-medium text-[16px] hover:bg-red-50 transition-colors cursor-pointer"
               >
                 <svg
                   className="w-5 h-5 mr-2"
@@ -357,7 +357,7 @@ const ProfileContentSection = () => {
                   {!isEditing ? (
                     <button
                       onClick={handleEditClick}
-                      className="flex items-center px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors"
+                      className="flex items-center px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors cursor-pointer"
                     >
                       <svg
                         className="w-4 h-4 mr-2"
@@ -378,13 +378,13 @@ const ProfileContentSection = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={handleCancel}
-                        className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-body font-medium text-[14px] hover:bg-gray-50 transition-colors"
+                        className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-body font-medium text-[14px] hover:bg-gray-50 transition-colors cursor-pointer"
                       >
                         Cancel
                       </button>
                       <button
                         onClick={handleSave}
-                        className="px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[14px] hover:bg-orange-600 transition-colors"
+                        className="px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[14px] hover:bg-orange-600 transition-colors cursor-pointer"
                       >
                         Save Changes
                       </button>
@@ -604,11 +604,11 @@ const ProfileContentSection = () => {
                       </div>
 
                       <div className="flex gap-3">
-                        <button className="px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors">
+                        <button className="px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors cursor-pointer">
                           View Details
                         </button>
                         {booking.status !== "Completed" && (
-                          <button className="px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[14px] hover:bg-orange-600 transition-colors">
+                          <button className="px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[14px] hover:bg-orange-600 transition-colors cursor-pointer">
                             Manage Booking
                           </button>
                         )}
@@ -673,7 +673,7 @@ const ProfileContentSection = () => {
                     </div>
                     <button
                       onClick={handleUpdatePassword}
-                      className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors"
+                      className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors cursor-pointer"
                     >
                       Update Password
                     </button>
@@ -690,7 +690,7 @@ const ProfileContentSection = () => {
                   </p>
                   <button
                     onClick={handleToggle2FA}
-                    className={`px-6 py-3 rounded-lg border font-body font-medium text-[16px] transition-colors ${
+                    className={`px-6 py-3 rounded-lg border font-body font-medium text-[16px] transition-colors cursor-pointer ${
                       is2FAEnabled
                         ? "border-green-600 text-green-600 hover:bg-green-50"
                         : "border-brand-orange text-brand-orange hover:bg-orange-50"
@@ -711,7 +711,7 @@ const ProfileContentSection = () => {
                   </p>
                   <button
                     onClick={handleDeleteAccount}
-                    className="px-6 py-3 rounded-lg bg-red-500 text-white font-body font-medium text-[16px] hover:bg-red-600 transition-colors"
+                    className="px-6 py-3 rounded-lg bg-red-500 text-white font-body font-medium text-[16px] hover:bg-red-600 transition-colors cursor-pointer"
                   >
                     Delete Account
                   </button>

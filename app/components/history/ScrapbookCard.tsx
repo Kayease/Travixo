@@ -30,7 +30,7 @@ const ScrapbookCard: React.FC<ScrapbookCardProps> = ({ item }) => {
   return (
     <Link 
       href={`/destinations/${item.slug}`}
-      className="group block bg-white border border-brand-brown/40 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg"
+      className="group block bg-white border border-brand-brown/40 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer"
     >
       {/* Image Container */}
       <div className="relative w-full aspect-[418/375] overflow-hidden">

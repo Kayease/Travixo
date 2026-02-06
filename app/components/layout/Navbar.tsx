@@ -46,12 +46,12 @@ const destinationCities: Record<string, DestinationItem[]> = {
     {
       name: "Nice",
       image:
-        "https://images.unsplash.com/photo-1533646549248-1850123595b0?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1524396309943-e03f5249f002?w=100&h=100&fit=crop",
     },
     {
       name: "Lyon",
       image:
-        "https://images.unsplash.com/photo-1621255557620-1a74d5382025?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1431274172761-c37d6732f115?w=100&h=100&fit=crop",
     },
   ],
   Thailand: [
@@ -68,7 +68,7 @@ const destinationCities: Record<string, DestinationItem[]> = {
     {
       name: "Chiang Mai",
       image:
-        "https://images.unsplash.com/photo-1598971861713-54cd16a19a19?w=100&h=100&fit=crop",
+        "https://images.unsplash.com/photo-1528181304800-259b08848526?w=100&h=100&fit=crop",
     },
   ],
   "United Kingdom": [
@@ -345,7 +345,7 @@ const NavItem: React.FC<NavItemProps> = ({
     </>
   );
 
-  const containerClasses = `group relative flex items-center gap-2 px-4 py-2 font-serif italic text-lg transition-all overflow-hidden ${
+  const containerClasses = `group relative flex items-center gap-2 px-4 py-2 font-serif italic text-lg transition-all overflow-hidden cursor-pointer ${
     isActive
       ? "text-white rounded-lg"
       : "text-brand-brown hover:text-white rounded-lg"
@@ -486,7 +486,7 @@ export const Navbar = () => {
         }}
       >
         {/* Logo Section */}
-        <Link href="/" className="relative w-[150px] h-[50px]">
+        <Link href="/" className="relative w-[150px] h-[50px] cursor-pointer">
           <Image
             src="/images/logo/frame-511.png"
             alt="Travixo Logo"

@@ -61,11 +61,13 @@ const PlaneIcon = () => (
 
 /**
  * DestinationCard Component
- * Figma specs: 418x657px card with unique arch shape
- * Image: 418x519px at top:0, border-radius: 1000px
- * Container has curved cutout shape at bottom-left
- * TRAVEL TO: top: 537px, Inter 500 18px/22px
- * Destination name: top: 577px, Playfair Display italic 500 28px/37px
+ * Figma Component 9: exact specs from Frame 22 / Frame 23
+ * Card: 418×657px, border-radius: 400px 400px 0px 200px
+ * Image (Frame 21): 418×519px, top 0, border-radius 1000px
+ * Overlay (Frame 23): top 316px, default 24px height + opacity 0, hover 341px + #FF8930
+ * Badge: 93×32px, top 435px, Poppins 400 16px/24px #FFF
+ * TRAVEL TO: top 537px, Inter 500 18px/22px, #4B3621 → #FFF on hover
+ * Name: top 577px, Playfair Display italic 500 28px/37px, #4B3621 → #FFF on hover
  */
 const DestinationCard = ({
   name,
@@ -77,134 +79,83 @@ const DestinationCard = ({
   image: string;
 }) => (
   <div
-    className="shrink-0 relative cursor-pointer group transition-all duration-500 ease-in-out hover:scale-[1.02]"
+    className="shrink-0 bg-transparent! relative cursor-pointer group transition-all duration-500 ease-in-out box-border overflow-hidden hover:shadow-[0px_0px_4px_rgba(255,255,255,0.1)]"
     style={{
       width: "418px",
       height: "657px",
+      background: "#FFFFFF",
+      border: "1px solid #FF8930",
+      borderRadius: "400px 400px 0px 300px",
     }}
     onClick={() => console.log(`Viewing destination: ${name}`)}
   >
-    {/* Card Container with curved cutout shape */}
-    <div
-      className="absolute overflow-hidden"
-      style={{
-        width: "418px",
-        height: "400px",
-        left: "0px",
-        bottom: "20px",
-        borderRadius: "0px 0px 0px 200px",
-        zIndex: 30, // Increased z-index
-        border: "1px solid #FF6E00",
-        borderTop: "none",
-      }}
-    >
-      {/* Smooth Orange Fill Animation from Bottom with Requested Texture */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-0 group-hover:h-full bg-brand-orange transition-all duration-500 ease-in-out z-0"
-        style={{
-          backgroundImage: "url('/images/home/destination/hover-bg.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-
-      {/* TRAVEL TO Label */}
-      <span
-        className="absolute text-center z-30 transition-colors duration-500 group-hover:text-white"
-        style={{
-          width: "98px",
-          height: "22px",
-          left: "calc(50% - 98px/2)",
-          top: "117px", // Adjusted based on 400px height (537 - (657 - 400 - 20) = 537 - 237 = 300? No, let's keep absolute positioning relative to parent if possible, or adjust this)
-          fontFamily: "'Inter', sans-serif",
-          fontStyle: "normal",
-          fontWeight: 500,
-          fontSize: "18px",
-          lineHeight: "22px",
-          color: "#4B3621",
-        }}
-      >
-        TRAVEL TO
-      </span>
-
-      {/* Destination Name */}
-      <h3
-        className="absolute text-center font-display italic z-30 transition-colors duration-500 group-hover:text-white"
-        style={{
-          left: "0",
-          right: "0",
-          top: "157px", // Adjusted similarly
-          fontWeight: 500,
-          fontSize: "28px",
-          lineHeight: "37px",
-          color: "#4B3621",
-        }}
-      >
-        {name}
-      </h3>
-    </div>
-
-    {/* Right border extension */}
-    <div
-      className="absolute"
-      style={{
-        width: "1px",
-        height: "238px", // Connects perfectly to the top of the 400px bottom container
-        right: "0px",
-        top: "0px",
-        background: "#FF6E00",
-        zIndex: 20,
-      }}
-    />
-
-    {/* Left border extension - connects image to bottom container */}
-    <div
-      className="absolute"
-      style={{
-        width: "1px",
-        height: "238px", // Connects perfectly
-        left: "0px",
-        top: "0px",
-        background: "#FF6E00",
-        zIndex: 20,
-      }}
-    />
-
     {/* Image Container - Frame 21 */}
     <div
-      className="absolute overflow-hidden"
+      className="absolute overflow-hidden box-border"
       style={{
         width: "418px",
         height: "519px",
         left: "calc(50% - 418px/2)",
         top: "0px",
         borderRadius: "1000px",
-        boxSizing: "border-box",
-        border: "1px solid #FF6E00",
-        zIndex: 10, // Lower z-index so it doesn't clip the bottom curved content
+        background: "#FFFFFF",
+        zIndex: 1,
       }}
     >
       <Image
         src={image}
         alt={name}
         fill
-        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
-        style={{ transformOrigin: "top center" }} // Prevent cutting from top
+        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+        style={{ transformOrigin: "top center" }}
         sizes="418px"
       />
     </div>
 
-    {/* Listings Badge - restored and positioned */}
+    {/* Hover overlay - Frame 23: textured hover-bg.png (longhand only to avoid style conflict) */}
     <div
-      className="absolute left-1/2 -translate-x-1/2 z-40 bg-[#FF6E00] px-4 py-1.5 rounded-2xl shadow-md transition-transform duration-500 group-hover:translate-y-[-4px]"
+      className="absolute left-0 h-[24px] group-hover:h-[341px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out z-0"
       style={{
-        top: "428px",
+        width: "419px",
+        top: "316px",
+        backgroundColor: "#FF8930",
+        backgroundImage: "url('/images/home/destination/hover-bg.png')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
+    />
+
+
+    {/* TRAVEL TO: top 537px, Inter 500 18px/22px */}
+    <span
+      className="absolute left-1/2 -translate-x-1/2 text-center z-3 transition-colors duration-500 group-hover:text-white"
+      style={{
+        width: "98px",
+        top: "537px",
+        fontFamily: "'Inter', sans-serif",
+        fontWeight: 500,
+        fontSize: "18px",
+        lineHeight: "22px",
+        color: "#4B3621",
       }}
     >
-      <span className="font-display italic font-medium text-[14px] leading-[19px] text-white whitespace-nowrap">
-        {listings} Listings
-      </span>
-    </div>
+      TRAVEL TO
+    </span>
+
+    {/* Destination name: top 577px, Playfair Display italic 500 28px/37px */}
+    <h3
+      className="absolute left-1/2 -translate-x-1/2 text-center font-display italic z-3 transition-colors duration-500 group-hover:text-white"
+      style={{
+        top: "577px",
+        fontWeight: 500,
+        fontSize: "28px",
+        lineHeight: "37px",
+        color: "#4B3621",
+      }}
+    >
+      {name}
+    </h3>
   </div>
 );
 
@@ -322,9 +273,8 @@ export const DestinationsSection = () => {
           <div className="flex-1 pt-[52px] overflow-hidden">
             <div
               ref={scrollRef}
-              className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${
-                isDragging ? "cursor-grabbing" : "cursor-grab"
-              }`}
+              className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
+                }`}
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",

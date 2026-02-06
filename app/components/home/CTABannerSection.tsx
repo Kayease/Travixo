@@ -43,12 +43,12 @@ export const CTABannerSection = ({
   onButtonClick,
 }: CTABannerProps) => {
   return (
-    <section className="relative w-full py-12 lg:py-16 bg-white overflow-hidden">
+    <section className="relative w-full py-12 lg:py-16 bg-white overflow">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         {/* Container with relative positioning for the image */}
         <div className="relative ml-[80px]">
           {/* Traveler Image - Positioned to overlap */}
-          <div className="hidden md:block absolute -left-[40px] -top-[67px] w-[232px] h-[334px] z-10">
+          <div className="hidden md:block absolute -left-[40px] -top-[135px] w-[232px] h-[334px] z-10">
             <Image
               src="/images/home/cta/frame-39.png"
               alt="Travel expert"

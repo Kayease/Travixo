@@ -107,7 +107,7 @@ const FavoriteRoomSection: React.FC = () => {
             </p>
 
             {/* Book Now Button */}
-            <button className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300">
+            <button className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
               {/* Fill animation from bottom to top */}
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
 

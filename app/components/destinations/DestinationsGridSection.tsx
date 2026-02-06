@@ -124,7 +124,7 @@ export const DestinationsGridSection: React.FC<DestinationsGridSectionProps> = (
           <div className="flex justify-center mt-12 md:mt-16 lg:mt-[72px]">
             <button
               onClick={handleLoadMore}
-              className="font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-white transition-all duration-300 hover:opacity-90 hover:shadow-xl active:scale-95"
+              className="font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-white transition-all duration-300 hover:opacity-90 hover:shadow-xl active:scale-95 cursor-pointer"
               style={{
                 width: "200px",
                 height: "45px",

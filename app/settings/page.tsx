@@ -94,7 +94,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("emailNotifications")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.emailNotifications ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -117,7 +117,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("smsNotifications")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.smsNotifications ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -140,7 +140,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("pushNotifications")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.pushNotifications ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -171,7 +171,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("bookingReminders")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.bookingReminders ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -194,7 +194,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("priceAlerts")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.priceAlerts ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -217,7 +217,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("marketingEmails")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.marketingEmails ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -240,7 +240,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("weeklyNewsletter")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.weeklyNewsletter ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -263,7 +263,7 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("travelTips")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
                     settings.travelTips ? "bg-brand-orange" : "bg-gray-300"
                   }`}
                 >
@@ -412,7 +412,7 @@ const SettingsContentSection = () => {
                   <p className="font-body text-[14px] text-gray-600">
                     Request a copy of your personal data
                   </p>
-                  <button className="font-body text-[14px] text-brand-orange hover:underline inline-block mt-2">
+                  <button className="font-body text-[14px] text-brand-orange hover:underline inline-block mt-2 cursor-pointer">
                     Request Data Export →
                   </button>
                 </div>
@@ -431,7 +431,7 @@ const SettingsContentSection = () => {
           </Link>
           <button
             onClick={handleSave}
-            className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors"
+            className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors cursor-pointer"
           >
             Save Settings
           </button>

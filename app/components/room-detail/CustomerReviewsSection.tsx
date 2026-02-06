@@ -186,7 +186,7 @@ const CustomerReviewsSection: React.FC = () => {
           {/* Spacer */}
           <div className="hidden sm:block flex-1" />
 
-          <button className="px-6 py-2.5 bg-[#FF6E00] border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 group relative">
+          <button className="px-6 py-2.5 bg-[#FF6E00] border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 group relative cursor-pointer">
             {/* Fill animation from bottom to top */}
             <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
             <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300">

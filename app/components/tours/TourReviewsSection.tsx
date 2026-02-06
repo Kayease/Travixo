@@ -92,7 +92,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
           Customer reviews
         </h2>
         <button
-          className="font-display italic font-medium text-sm md:text-base text-white px-5 py-2 transition-all duration-300 hover:opacity-90 active:scale-95"
+          className="font-display italic font-medium text-sm md:text-base text-white px-5 py-2 transition-all duration-300 hover:opacity-90 active:scale-95 cursor-pointer"
           style={{
             backgroundColor: "#FF6E00",
             borderRadius: "8px",
@@ -133,7 +133,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
 
         {/* Vertical Divider */}
         <div
-          className="absolute left-[160px] top-[1px] w-[130px] h-[1px] bg-[rgba(75,54,33,0.4)]"
+          className="absolute left-[160px] top-px w-[130px] h-px bg-[rgba(62,56,51,0.4)]"
           style={{ transform: "rotate(90deg)", transformOrigin: "0 0" }}
         />
 

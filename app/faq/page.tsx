@@ -144,18 +144,17 @@ const FAQAccordionItem: React.FC<FAQAccordionItemProps> = ({
     <div className="border-b border-gray-200">
       <button
         onClick={onToggle}
-        className="w-full py-6 flex justify-between items-start text-left hover:bg-gray-50 transition-colors duration-200 px-6"
+        className="w-full py-6 flex justify-between items-start text-left hover:bg-gray-50 transition-colors duration-200 px-6 cursor-pointer"
       >
         <div className="flex-1 pr-8">
           <h3 className="font-body font-semibold text-[18px] leading-[28px] text-brand-brown">
             {item.question}
           </h3>
         </div>
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <svg
-            className={`w-6 h-6 text-brand-orange transform transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
+            className={`w-6 h-6 text-brand-orange transform transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+              }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -170,9 +169,8 @@ const FAQAccordionItem: React.FC<FAQAccordionItemProps> = ({
         </div>
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96" : "max-h-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"
+          }`}
       >
         <div className="px-6 pb-6">
           <p className="font-body font-normal text-[16px] leading-[28px] text-gray-700">

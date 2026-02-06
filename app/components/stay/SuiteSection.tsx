@@ -57,7 +57,7 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
         </div>
 
         {/* Book Now Button with bottom-to-top fill animation */}
-        <button className="relative w-[180px] md:w-[200px] h-[45px] md:h-[50px] bg-white rounded-lg font-display italic text-[16px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-0 group-hover:opacity-100 delay-200 overflow-hidden group/btn">
+        <button className="relative w-[180px] md:w-[200px] h-[45px] md:h-[50px] bg-white rounded-lg font-display italic text-[16px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-0 group-hover:opacity-100 delay-200 overflow-hidden group/btn cursor-pointer">
           {/* Fill animation from bottom to top */}
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
           {/* Button text */}
@@ -128,7 +128,7 @@ const SuiteSection: React.FC = () => {
             </p>
 
             {/* CTA Button */}
-            <button className="group relative w-full max-w-[300px] h-[50px] bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300">
+            <button className="group relative w-full max-w-[300px] h-[50px] bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
               {/* Fill animation from bottom to top */}
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
 

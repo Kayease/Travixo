@@ -62,7 +62,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           <div className="relative">
             <button
               onClick={() => setActiveTab("book")}
-              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown"
+              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown cursor-pointer"
             >
               Book
             </button>
@@ -77,7 +77,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           <div className="relative">
             <button
               onClick={() => setActiveTab("enquiry")}
-              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown"
+              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown cursor-pointer"
             >
               Enquiry
             </button>
@@ -106,7 +106,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         </div>
 
         {/* Separator 1: Top 241px */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[241px] w-[431px] h-[1px] bg-[rgba(0,0,0,0.2)]" />
+        <div className="absolute left-1/2 -translate-x-1/2 top-[241px] w-[431px] h-px bg-[rgba(0,0,0,0.2)]" />
 
         {/* Adult Row: Top 259px */}
         <div className="absolute left-[18px] right-[18px] top-[259px] flex justify-between items-center h-[30px]">
@@ -117,7 +117,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={() => setAdults(Math.max(0, adults - 1))}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors"
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors cursor-pointer"
             >
               <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -130,7 +130,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
             <button
               onClick={() => setAdults(adults + 1)}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white"
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white cursor-pointer"
             >
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 1V9M1 5H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -140,7 +140,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         </div>
 
         {/* Separator 2: Top 307px */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[307px] w-[431px] h-[1px] bg-[rgba(0,0,0,0.2)]" />
+        <div className="absolute left-1/2 -translate-x-1/2 top-[307px] w-[431px] h-px bg-[rgba(0,0,0,0.2)]" />
 
         {/* Children Row: Top 325px */}
         <div className="absolute left-[18px] right-[18px] top-[325px] flex justify-between items-center h-[30px]">
@@ -151,7 +151,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={() => setChildren(Math.max(0, children - 1))}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors"
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors cursor-pointer"
             >
               <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -164,7 +164,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
             <button
               onClick={() => setChildren(children + 1)}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white"
+              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white cursor-pointer"
             >
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 1V9M1 5H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -174,11 +174,11 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         </div>
 
         {/* Separator 3: Top 373px */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[373px] w-[431px] h-[1px] bg-[rgba(0,0,0,0.2)]" />
+        <div className="absolute left-1/2 -translate-x-1/2 top-[373px] w-[431px] h-px bg-[rgba(0,0,0,0.2)]" />
 
         {/* CTA Button: Top 409px */}
         <button
-          className="absolute left-[18px] right-[18px] top-[409px] h-[45px] bg-[#FF6E00] rounded-[12px] flex items-center justify-center transition-transform active:scale-[0.98]"
+          className="absolute left-[18px] right-[18px] top-[409px] h-[45px] bg-[#FF6E00] rounded-[12px] flex items-center justify-center transition-transform active:scale-[0.98] cursor-pointer"
         >
           <span className="font-display italic font-medium text-[20px] leading-[27px] text-center text-white">
             Check Availability

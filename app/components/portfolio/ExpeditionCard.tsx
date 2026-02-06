@@ -27,7 +27,7 @@ const ExpeditionCard: React.FC<ExpeditionCardProps> = ({ expedition }) => {
   return (
     <Link 
       href={`/tours/${expedition.slug}`}
-      className="group block"
+      className="group block cursor-pointer"
     >
       {/* Image Card */}
       <div className="relative w-full aspect-[418/487] rounded-xl overflow-hidden border border-brand-brown/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] mb-4 md:mb-5">

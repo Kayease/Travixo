@@ -213,7 +213,7 @@ const TourCard = ({
     >
       {/* Image Container */}
       <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
-        <Link href={slug} className="block w-full h-full relative">
+        <Link href={slug} className="block w-full h-full relative cursor-pointer">
           <Image
             src={image}
             alt={title}
@@ -243,13 +243,13 @@ const TourCard = ({
         {/* Action Buttons */}
         <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
           <button
-            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
             onClick={() => console.log(`Liked ${title}`)}
           >
             <HeartIcon />
           </button>
           <button
-            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
             onClick={() => console.log(`Added ${title} to cart`)}
           >
             <CartIcon />
@@ -275,7 +275,7 @@ const TourCard = ({
       </div>
 
       {/* Title */}
-      <Link href={slug}>
+      <Link href={slug} className="cursor-pointer">
         <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 hover:text-brand-orange transition-colors">
           {title}
         </h3>

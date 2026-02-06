@@ -109,7 +109,7 @@ const BookingWidget: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setAdults(Math.max(0, adults - 1))}
-                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors"
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors cursor-pointer"
                 >
                   <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
                     <rect width="10" height="2" rx="1" fill="#4B3621" />
@@ -120,7 +120,7 @@ const BookingWidget: React.FC = () => {
                 </span>
                 <button
                   onClick={() => setAdults(adults + 1)}
-                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity"
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
                 >
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
@@ -137,7 +137,7 @@ const BookingWidget: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setChildren(Math.max(0, children - 1))}
-                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors"
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors cursor-pointer"
                 >
                   <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
                     <rect width="10" height="2" rx="1" fill="#4B3621" />
@@ -148,7 +148,7 @@ const BookingWidget: React.FC = () => {
                 </span>
                 <button
                   onClick={() => setChildren(children + 1)}
-                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity"
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
                 >
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
@@ -164,7 +164,7 @@ const BookingWidget: React.FC = () => {
       <div className="mt-8">
         <button
           onClick={handleAction}
-          className="w-full h-[50px] bg-[#FF6E00] rounded-[12px] border border-[#FF6E00] overflow-hidden transition-all duration-300 active:scale-95 group relative"
+          className="w-full h-[50px] bg-[#FF6E00] rounded-[12px] border border-[#FF6E00] overflow-hidden transition-all duration-300 active:scale-95 group relative cursor-pointer"
         >
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
           <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300">

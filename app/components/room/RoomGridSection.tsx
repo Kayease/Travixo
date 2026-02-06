@@ -52,8 +52,8 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
         </p>
 
         {/* Check Availability Link */}
-        <Link href="/room-detail" className="block">
-          <button className="group/btn relative w-full h-[45px] mt-2 bg-white border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300">
+        <Link href="/room-detail" className="block cursor-pointer">
+          <button className="group/btn relative w-full h-[45px] mt-2 bg-white border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer">
             {/* Fill animation from bottom to top */}
             <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />
 

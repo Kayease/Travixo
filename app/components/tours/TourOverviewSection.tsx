@@ -148,7 +148,7 @@ export const TourOverviewSection: React.FC<TourOverviewSectionProps> = ({
       {description.length > 400 && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="px-6 py-2 bg-[#FF6E00] border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 active:scale-95 relative group"
+          className="px-6 py-2 bg-[#FF6E00] border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 active:scale-95 relative group cursor-pointer"
         >
           {/* Fill animation from bottom to top */}
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />

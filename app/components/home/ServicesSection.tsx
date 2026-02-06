@@ -172,7 +172,7 @@ const ServiceCard = ({
  * Poppins 400, 14px/21px with 24px arrow icon, 4px gap
  */
 const ReadMoreLink = () => (
-  <button className="flex items-center gap-1 text-brand-brown font-body font-normal text-[14px] leading-[21px] hover:text-brand-orange transition-colors group">
+  <button className="flex items-center gap-1 text-brand-brown font-body font-normal text-[14px] leading-[21px] hover:text-brand-orange transition-colors group cursor-pointer">
     <span>Read More</span>
     <svg
       width="24"

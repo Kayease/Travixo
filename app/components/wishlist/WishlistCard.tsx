@@ -102,7 +102,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
       <div className="p-[18px]">
         {/* Image Container */}
         <div className="relative w-full aspect-382/283 rounded-xl overflow-hidden mb-4">
-          <Link href={`/tours/${item.slug}`}>
+          <Link href={`/tours/${item.slug}`} className="cursor-pointer">
             <Image
               src={item.image}
               alt={item.title}
@@ -190,7 +190,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
         </div>
 
         {/* Title */}
-        <Link href={`/tours/${item.slug}`}>
+        <Link href={`/tours/${item.slug}`} className="cursor-pointer">
           <h3 className="font-display italic font-semibold text-[22px] leading-[29px] text-brand-brown mb-3 hover:text-brand-orange transition-colors">
             {item.title}
           </h3>

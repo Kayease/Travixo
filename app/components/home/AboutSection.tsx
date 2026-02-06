@@ -203,7 +203,7 @@ export const AboutSection = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="w-[244px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group">
+            <button className="w-[244px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer">
               {/* Fill animation from bottom to top */}
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
               <span className="relative z-10 group-hover:text-white transition-colors duration-300">

@@ -228,7 +228,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 lg:py-10">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 cursor-pointer">
             <LogoIcon />
             <div className="flex flex-col">
               <span className="font-display italic font-semibold text-xl md:text-2xl text-white">
@@ -240,16 +240,16 @@ export const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex items-center gap-4">
-            <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
               <FacebookIcon />
             </Link>
-            <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
               <InstagramIcon />
             </Link>
-            <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
               <LinkedInIcon />
             </Link>
-            <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
               <TwitterIcon />
             </Link>
           </div>
@@ -274,7 +274,7 @@ export const Footer = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-body font-medium text-base md:text-lg leading-[28px] text-white hover:text-white/80 transition-colors"
+                    className="font-body font-medium text-base md:text-lg leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -293,7 +293,7 @@ export const Footer = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-body font-medium text-base md:text-lg leading-[28px] text-white hover:text-white/80 transition-colors"
+                    className="font-body font-medium text-base md:text-lg leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -353,13 +353,12 @@ export const Footer = () => {
                 />
                 <button
                   onClick={handleSubscribe}
-                  className="absolute right-0 top-0 w-[50px] h-[45px] flex items-center justify-center border border-brand-orange rounded-xl hover:bg-brand-orange/10 transition-colors"
+                  className="absolute right-0 top-0 w-[50px] h-[45px] flex items-center justify-center border border-brand-orange rounded-xl hover:bg-brand-orange/10 transition-colors cursor-pointer"
                   style={{ backgroundColor: "#FFFCF5" }}
                 >
                   <ArrowIcon />
                 </button>
-                {/* Orange underline accent */}
-                <div className="absolute bottom-0 left-0 w-[50px] h-[2px] bg-brand-orange" />
+               
               </div>
             </div>
           </div>

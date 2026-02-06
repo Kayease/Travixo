@@ -120,7 +120,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({
         {/* Pay Button */}
         <button
           onClick={onPay}
-          className="w-full h-[45px] bg-brand-orange border border-brand-orange rounded-[12px] overflow-hidden transition-all duration-300 relative group"
+          className="w-full h-[45px] bg-brand-orange border border-brand-orange rounded-[12px] overflow-hidden transition-all duration-300 relative group cursor-pointer"
         >
           {/* Fill animation from bottom to top */}
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />

@@ -83,7 +83,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               <div
                 className="absolute left-[18px] top-[18px] w-[calc(100%-36px)] h-[283px] overflow-hidden rounded-[12px] group"
               >
-                <Link href={tour.slug} className="block w-full h-full relative">
+                <Link href={tour.slug} className="block w-full h-full relative cursor-pointer">
                   <Image
                     src={tour.imageUrl}
                     alt={tour.title}
@@ -150,7 +150,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               </div>
 
               <div className="absolute left-[18px] top-[315px] flex items-center h-[19px]">
-                <div className="flex gap-[1px]">
+                <div className="flex gap-px">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <div key={star} className="relative w-[17px] h-[16px]">
                       {star <= 4 ? (
@@ -170,7 +170,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                   {tour.rating}
                 </span>
 
-                <div className="mx-[8px] w-[1px] h-[16px] bg-[#4B3621]" />
+                <div className="mx-[8px] w-px h-[16px] bg-[#4B3621]" />
 
                 <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
                   ({tour.reviewCount} Reviews)
@@ -179,7 +179,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
 
               {/* Title */}
               <div className="absolute left-[18px] top-[346px]">
-                <Link href={tour.slug}>
+                <Link href={tour.slug} className="cursor-pointer">
                   <h3 className="font-display italic font-semibold text-[22px] leading-[29px] text-brand-brown line-clamp-1 hover:text-brand-orange transition-colors">
                     {tour.title}
                   </h3>
@@ -194,7 +194,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               </div>
 
               {/* Separator Line */}
-              <div className="absolute left-[50%] -translate-x-1/2 top-[453px] w-[382px] h-[1px] bg-[rgba(0,0,0,0.2)]" />
+              <div className="absolute left-[50%] -translate-x-1/2 top-[453px] w-[382px] h-px bg-[rgba(0,0,0,0.2)]" />
 
               {/* Bottom Info Row */}
               <div className="absolute left-[50%] -translate-x-1/2 top-[471px] flex items-center gap-[38px] w-[333px] h-[24px]">
@@ -231,7 +231,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               {/* Book Now Button - Positioned at bottom outside image */}
               {/* Book Now Button - Matches FeaturedToursSection implementation */}
               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                <Link href={tour.slug} className="relative flex items-center justify-center w-[202px] h-[45px] bg-white border border-[#FF6E00] rounded-[12px] font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300">
+                <Link href={tour.slug} className="relative flex items-center justify-center w-[202px] h-[45px] bg-white border border-[#FF6E00] rounded-[12px] font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer">
                   <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />
                   <span className="relative z-10 font-medium text-[20px] group-hover/btn:text-white transition-colors duration-300">Book Now</span>
                 </Link>

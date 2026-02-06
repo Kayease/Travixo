@@ -193,7 +193,7 @@ const SignupFormSection = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-brand-brown transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-brand-brown transition-colors cursor-pointer"
                 >
                   {showPassword ? (
                     <svg
@@ -259,7 +259,7 @@ const SignupFormSection = () => {
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-brand-brown transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-brand-brown transition-colors cursor-pointer"
                 >
                   {showConfirmPassword ? (
                     <svg
@@ -347,7 +347,7 @@ const SignupFormSection = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full inline-flex items-center justify-center rounded-[12px] font-display italic font-normal transition-all duration-300 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-orange relative overflow-hidden group px-6 py-3 text-[18px] leading-[24px] bg-brand-orange border border-brand-orange text-white"
+              className="w-full inline-flex items-center justify-center rounded-[12px] font-display italic font-normal transition-all duration-300 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-orange relative overflow-hidden group px-6 py-3 text-[18px] leading-[24px] bg-brand-orange border border-brand-orange text-white cursor-pointer"
             >
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
               <span className="relative z-10 group-hover:text-brand-orange transition-colors duration-300">
@@ -372,7 +372,7 @@ const SignupFormSection = () => {
           <div className="grid grid-cols-2 gap-4 mb-8">
             <button
               type="button"
-              className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg font-body font-medium text-[16px] text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+              className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg font-body font-medium text-[16px] text-gray-700 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path
@@ -396,7 +396,7 @@ const SignupFormSection = () => {
             </button>
             <button
               type="button"
-              className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg font-body font-medium text-[16px] text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+              className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg font-body font-medium text-[16px] text-gray-700 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
             >
               <svg className="w-5 h-5 mr-2" fill="#1877F2" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
