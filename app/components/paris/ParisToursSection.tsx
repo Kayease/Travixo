@@ -106,7 +106,7 @@ const LocationIcon = () => (
 const PARIS_TOURS = [
   {
     id: 1,
-    image: "/images/paris/frame-51.png",
+    image: "/images/paris/Frame 485.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -122,7 +122,7 @@ const PARIS_TOURS = [
   },
   {
     id: 2,
-    image: "/images/paris/frame-51-1.png",
+    image: "/images/paris/Frame 486.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -138,7 +138,7 @@ const PARIS_TOURS = [
   },
   {
     id: 3,
-    image: "/images/paris/frame-51-2.png",
+    image: "/images/paris/Frame 487.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -154,13 +154,13 @@ const PARIS_TOURS = [
   },
   {
     id: 4,
-    image: "/images/paris/frame-51-3.png",
+    image: "/images/paris/Frame 488.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
     rating: 4.9,
     reviews: 311,
-    title: "Champs-Élysées",
+    title: "Arc de Triomphe",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
     duration: "4 hours",
@@ -170,7 +170,7 @@ const PARIS_TOURS = [
   },
   {
     id: 5,
-    image: "/images/paris/frame-51-4.png",
+    image: "/images/paris/Frame 489.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -186,7 +186,7 @@ const PARIS_TOURS = [
   },
   {
     id: 6,
-    image: "/images/paris/frame-51-5.png",
+    image: "/images/paris/Frame 51.png",
     discount: "27% Off",
     currentPrice: "$100",
     originalPrice: "$120",
@@ -240,7 +240,10 @@ const ParisTourCard = ({
     >
       {/* Image Container */}
       <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
-        <Link href={slug} className="block w-full h-full relative cursor-pointer">
+        <Link
+          href={slug}
+          className="block w-full h-full relative cursor-pointer"
+        >
           <Image
             src={image}
             alt={title}

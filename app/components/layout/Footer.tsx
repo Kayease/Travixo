@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 /**
  * Facebook Icon
@@ -153,42 +154,6 @@ const ArrowIcon = () => (
 );
 
 /**
- * Logo Icon
- */
-const LogoIcon = () => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 40 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect
-      x="2"
-      y="8"
-      width="36"
-      height="28"
-      rx="4"
-      stroke="white"
-      strokeWidth="2.5"
-    />
-    <path
-      d="M8 8V4C8 2.89543 8.89543 2 10 2H30C31.1046 2 32 2.89543 32 4V8"
-      stroke="white"
-      strokeWidth="2.5"
-    />
-    <circle cx="20" cy="22" r="6" stroke="white" strokeWidth="2" />
-    <path
-      d="M17 22L19 24L23 20"
-      stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-/**
  * Footer links data
  */
 const COMPANY_LINKS = [
@@ -228,28 +193,40 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 lg:py-10">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 cursor-pointer">
-            <LogoIcon />
-            <div className="flex flex-col">
-              <span className="font-display italic font-semibold text-xl md:text-2xl text-white">
-                TRAVIXO
-              </span>
-              <span className="text-xs text-white/80">TOUR & TRAVEL</span>
-            </div>
+          <Link href="/" className="cursor-pointer">
+            <Image
+              src="/images/logo/frame-511.png"
+              alt="Travixo Logo"
+              width={160}
+              height={40}
+              className="h-auto w-auto max-h-12 object-contain"
+            />
           </Link>
 
           {/* Social Icons */}
           <div className="flex items-center gap-4">
-            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <Link
+              href="/"
+              className="hover:opacity-80 transition-opacity cursor-pointer"
+            >
               <FacebookIcon />
             </Link>
-            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <Link
+              href="/"
+              className="hover:opacity-80 transition-opacity cursor-pointer"
+            >
               <InstagramIcon />
             </Link>
-            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <Link
+              href="/"
+              className="hover:opacity-80 transition-opacity cursor-pointer"
+            >
               <LinkedInIcon />
             </Link>
-            <Link href="/" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <Link
+              href="/"
+              className="hover:opacity-80 transition-opacity cursor-pointer"
+            >
               <TwitterIcon />
             </Link>
           </div>
@@ -358,7 +335,6 @@ export const Footer = () => {
                 >
                   <ArrowIcon />
                 </button>
-               
               </div>
             </div>
           </div>

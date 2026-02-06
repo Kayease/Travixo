@@ -126,7 +126,6 @@ const DestinationCard = ({
       }}
     />
 
-
     {/* TRAVEL TO: top 537px, Inter 500 18px/22px */}
     <span
       className="absolute left-1/2 -translate-x-1/2 text-center z-3 transition-colors duration-500 group-hover:text-white"
@@ -173,7 +172,7 @@ export const DestinationsSection = () => {
   React.useEffect(() => {
     let animationFrameId: number;
     let lastTime = 0;
-    const speed = 0.05; // pixels per ms
+    const speed = 0.08; // Increased speed for better visibility
 
     const step = (time: number) => {
       if (!lastTime) lastTime = time;
@@ -182,10 +181,13 @@ export const DestinationsSection = () => {
 
       if (!isDragging && !isHovering && scrollRef.current) {
         scrollRef.current.scrollLeft += speed * deltaTime;
-        const maxScroll =
-          scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
-        if (scrollRef.current.scrollLeft >= maxScroll - 1) {
-          scrollRef.current.scrollLeft = 0;
+
+        // Midpoint of the duplicated items
+        const halfScroll = scrollRef.current.scrollWidth / 2;
+
+        // Reset to beginning when we've scrolled through the first set
+        if (scrollRef.current.scrollLeft >= halfScroll) {
+          scrollRef.current.scrollLeft -= halfScroll;
         }
       }
       animationFrameId = requestAnimationFrame(step);
@@ -225,8 +227,6 @@ export const DestinationsSection = () => {
   return (
     <section
       className="relative w-full overflow-hidden"
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
       style={{
         backgroundColor: "#FFF9F0",
         backgroundImage: "url('/images/hero-bg-texture.png')",
@@ -273,16 +273,18 @@ export const DestinationsSection = () => {
           <div className="flex-1 pt-[52px] overflow-hidden">
             <div
               ref={scrollRef}
-              className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
-                }`}
+              className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${
+                isDragging ? "cursor-grabbing" : "cursor-grab"
+              }`}
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
               }}
               onMouseDown={handleMouseDown}
-              onMouseLeave={handleMouseLeave}
-              onMouseUp={handleMouseUp}
               onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => setIsHovering(true)}
             >
               {displayDestinations.map((destination, idx) => (
                 <DestinationCard

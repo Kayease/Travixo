@@ -134,12 +134,13 @@ export const TestimonialSection = () => {
           <div className="hidden md:block">
             {/* Connecting Line - Dynamically follows the active profile */}
             <div
-              className="absolute hidden lg:block h-px bg-brand-orange transition-all duration-500 ease-in-out z-0"
+              className="absolute hidden lg:block h-px bg-brand-orange transition-all duration-500 ease-in-out pointer-events-none z-0"
               style={{
                 top: parseInt(activeTestimonial.top) + 50 + "px",
                 left: parseInt(activeTestimonial.left) + 100 + "px",
                 width: 550 - (parseInt(activeTestimonial.left) + 100) + "px",
                 transformOrigin: "left center",
+                zIndex: 0,
               }}
             />
 
@@ -149,15 +150,16 @@ export const TestimonialSection = () => {
                 <div
                   key={profile.id}
                   onClick={() => setActiveId(profile.id)}
-                  className={`absolute w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded-full shadow-md border-4 cursor-pointer transition-all duration-300 hover:scale-110 ${
+                  className={`absolute w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded-full shadow-md border-4 cursor-pointer transition-all duration-300 hover:scale-110 bg-white ${
                     isActive
-                      ? "border-brand-orange z-20 scale-105"
+                      ? "border-brand-orange scale-105 z-20"
                       : "border-white z-10"
                   }`}
                   style={{
                     top: profile.top,
                     left: profile.left,
                     overflow: "hidden",
+                    zIndex: isActive ? 20 : 10,
                   }}
                 >
                   <Image

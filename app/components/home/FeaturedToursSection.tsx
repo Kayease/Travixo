@@ -213,7 +213,10 @@ const TourCard = ({
     >
       {/* Image Container */}
       <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
-        <Link href={slug} className="block w-full h-full relative cursor-pointer">
+        <Link
+          href={slug}
+          className="block w-full h-full relative cursor-pointer"
+        >
           <Image
             src={image}
             alt={title}
