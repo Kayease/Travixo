@@ -19,6 +19,7 @@ const RoomDetailHeroSection: React.FC = () => {
           alt="Luxurious room interior background"
           fill
           className="object-cover"
+          sizes="100vw"
           priority
         />
         {/* Dark Overlay - darker to match design */}
@@ -37,6 +38,8 @@ const RoomDetailHeroSection: React.FC = () => {
               alt="Serenity Suite with mountain view"
               fill
               className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 445px"
+              priority
             />
             {/* Subtle border glow effect */}
             <div className="absolute inset-0 rounded-2xl ring-1 ring-white/20" />
@@ -64,4 +67,3 @@ const RoomDetailHeroSection: React.FC = () => {
 };
 
 export default RoomDetailHeroSection;
-

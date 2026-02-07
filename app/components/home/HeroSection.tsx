@@ -161,7 +161,7 @@ export const HeroSection = () => {
             (image, index) => (
               <div
                 key={`img-${index}`}
-                className="relative shrink-0 overflow-hidden transition-transform duration-500 hover:scale-105 cursor-pointer"
+                className="relative shrink-0 overflow-hidden transition-transform duration-500 cursor-pointer"
                 style={{
                   width: "272px",
                   height: "363px",
@@ -325,9 +325,6 @@ export const HeroSection = () => {
         }
         .animate-scroll-infinite {
           animation: scroll-infinite 30s linear infinite;
-        }
-        .animate-scroll-infinite:hover {
-          animation-play-state: paused;
         }
       `}</style>
     </section>

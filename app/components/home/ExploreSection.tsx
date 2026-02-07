@@ -87,6 +87,7 @@ const ActivityIcon = ({
             ? "invert(45%) sepia(98%) saturate(1500%) hue-rotate(360deg) brightness(100%)"
             : "none",
         }}
+        sizes="46px"
       />
     </div>
   );

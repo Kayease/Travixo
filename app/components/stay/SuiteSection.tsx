@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Interface for room card data
@@ -57,14 +58,18 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
         </div>
 
         {/* Book Now Button with bottom-to-top fill animation */}
-        <button className="relative w-[180px] md:w-[200px] h-[45px] md:h-[50px] bg-white rounded-lg font-display italic text-[16px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-0 group-hover:opacity-100 delay-200 overflow-hidden group/btn cursor-pointer">
+        {/* Book Now Button with bottom-to-top fill animation */}
+        <Link
+          href={`/checkout?name=${encodeURIComponent(room.name)}&image=${encodeURIComponent(room.image)}&price=250`}
+          className="flex items-center justify-center relative w-[180px] md:w-[200px] h-[45px] md:h-[50px] bg-white rounded-lg font-display italic text-[16px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-0 group-hover:opacity-100 delay-200 overflow-hidden group/btn cursor-pointer"
+        >
           {/* Fill animation from bottom to top */}
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
           {/* Button text */}
           <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">
             Book Now
           </span>
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -164,4 +169,3 @@ const SuiteSection: React.FC = () => {
 };
 
 export default SuiteSection;
-

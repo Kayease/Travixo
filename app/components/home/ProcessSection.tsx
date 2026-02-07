@@ -106,6 +106,7 @@ export const ProcessSection = () => {
                       alt=""
                       fill
                       className="object-contain"
+                      sizes="(max-width: 1024px) 80px, 95px"
                     />
                   </div>
                   {/* Inner Icon */}
@@ -115,6 +116,7 @@ export const ProcessSection = () => {
                       alt={`Step ${step.id} icon`}
                       fill
                       className="object-contain"
+                      sizes="(max-width: 1024px) 40px, 48px"
                     />
                   </div>
                 </div>

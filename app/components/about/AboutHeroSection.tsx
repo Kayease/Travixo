@@ -51,6 +51,8 @@ export const AboutHeroSection = () => {
                 alt="Travixo Story"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
               />
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
@@ -59,6 +61,7 @@ export const AboutHeroSection = () => {
                 alt="Eiffel Tower"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="relative h-[300px] rounded-xl overflow-hidden md:col-span-2">
@@ -67,6 +70,7 @@ export const AboutHeroSection = () => {
                 alt="Safari"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
@@ -75,6 +79,7 @@ export const AboutHeroSection = () => {
                 alt="Hot Air Balloon"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
@@ -83,6 +88,7 @@ export const AboutHeroSection = () => {
                 alt="River Boats"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -95,6 +101,7 @@ export const AboutHeroSection = () => {
                 alt="Venice"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
 
@@ -128,6 +135,7 @@ export const AboutHeroSection = () => {
                 alt="Travel Vision"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -188,6 +196,8 @@ export const AboutHeroSection = () => {
             alt="Travixo Story"
             fill
             className="object-cover"
+            sizes="418px"
+            priority
           />
         </div>
 
@@ -206,6 +216,7 @@ export const AboutHeroSection = () => {
             alt="Eiffel Tower"
             fill
             className="object-cover"
+            sizes="347px"
           />
         </div>
 
@@ -224,6 +235,7 @@ export const AboutHeroSection = () => {
             alt="Safari"
             fill
             className="object-cover"
+            sizes="489px"
           />
         </div>
 
@@ -242,6 +254,7 @@ export const AboutHeroSection = () => {
             alt="River Boats"
             fill
             className="object-cover"
+            sizes="418px"
           />
         </div>
 
@@ -260,6 +273,7 @@ export const AboutHeroSection = () => {
             alt="Hot Air Balloon"
             fill
             className="object-cover"
+            sizes="489px"
           />
         </div>
 
@@ -278,6 +292,7 @@ export const AboutHeroSection = () => {
             alt="Venice"
             fill
             className="object-cover"
+            sizes="347px"
           />
         </div>
 
@@ -296,6 +311,7 @@ export const AboutHeroSection = () => {
             alt="Travel Vision"
             fill
             className="object-cover"
+            sizes="347px"
           />
         </div>
 

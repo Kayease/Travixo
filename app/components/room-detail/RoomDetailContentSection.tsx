@@ -263,6 +263,7 @@ const RoomDetailContentSection: React.FC = () => {
               alt="Room panoramic view"
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, 792px"
             />
           </div>
 
@@ -274,6 +275,7 @@ const RoomDetailContentSection: React.FC = () => {
                 alt="Cozy room interior"
                 fill
                 className="object-contain"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="relative w-full h-[280px] md:h-[350px] lg:h-[452px] rounded-xl overflow-hidden bg-gray-100">
@@ -282,6 +284,7 @@ const RoomDetailContentSection: React.FC = () => {
                 alt="Comfortable seating area"
                 fill
                 className="object-contain"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -292,4 +295,3 @@ const RoomDetailContentSection: React.FC = () => {
 };
 
 export default RoomDetailContentSection;
-

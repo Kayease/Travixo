@@ -345,7 +345,7 @@ const ParisTourCard = ({
     {/* Book Now Button - Shows on Hover */}
     <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
       <Link
-        href={slug}
+        href={`/checkout?name=${encodeURIComponent(title)}&price=${encodeURIComponent(currentPrice)}&image=${encodeURIComponent(image)}`}
         className="relative block px-8 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 text-center shadow-lg"
       >
         <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />

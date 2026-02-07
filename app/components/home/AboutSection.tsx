@@ -47,6 +47,7 @@ const CheckIcon = () => (
     alt="Checkmark Icon"
     width={28}
     height={28}
+    style={{ width: "auto", height: "auto" }}
   />
 );
 

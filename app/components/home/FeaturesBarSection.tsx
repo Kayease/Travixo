@@ -37,16 +37,15 @@ const FEATURES = [
  * Get icon component by type
  */
 const getIcon = (iconType: string) => {
-  const iconSize = 48; // Standard size for all icons
-
   switch (iconType) {
     case "chat":
       return (
         <Image
           src="/images/home/features/carbon_chat-bot.png"
           alt="24-hour support"
-          width={iconSize}
-          height={iconSize}
+          fill
+          className="object-contain"
+          sizes="48px"
         />
       );
     case "feed":
@@ -54,8 +53,9 @@ const getIcon = (iconType: string) => {
         <Image
           src="/images/home/features/fluent_feed-16-regular.png"
           alt="No hidden fee"
-          width={iconSize}
-          height={iconSize}
+          fill
+          className="object-contain"
+          sizes="48px"
         />
       );
     case "flex":
@@ -63,8 +63,9 @@ const getIcon = (iconType: string) => {
         <Image
           src="/images/home/features/mask-group-1.png"
           alt="Booking Flexibility"
-          width={iconSize}
-          height={iconSize}
+          fill
+          className="object-contain"
+          sizes="48px"
         />
       );
     case "bus":
@@ -72,8 +73,9 @@ const getIcon = (iconType: string) => {
         <Image
           src="/images/home/features/tabler_bus.png"
           alt="Included transfer"
-          width={iconSize}
-          height={iconSize}
+          fill
+          className="object-contain"
+          sizes="48px"
         />
       );
     default:
@@ -81,8 +83,9 @@ const getIcon = (iconType: string) => {
         <Image
           src="/images/home/features/carbon_chat-bot.png"
           alt="Feature icon"
-          width={iconSize}
-          height={iconSize}
+          fill
+          className="object-contain"
+          sizes="48px"
         />
       );
   }
@@ -102,7 +105,7 @@ const FeatureItem = ({
 }) => (
   <div className="flex flex-col items-center text-center gap-4 md:gap-6">
     {/* Icon */}
-    <div className="w-12 h-12">{getIcon(icon)}</div>
+    <div className="relative w-12 h-12">{getIcon(icon)}</div>
 
     {/* Title */}
     <h3 className="font-display italic font-semibold text-xl md:text-[28px] leading-[28px] text-brand-brown">
@@ -143,4 +146,3 @@ export const FeaturesBarSection = () => {
     </section>
   );
 };
-

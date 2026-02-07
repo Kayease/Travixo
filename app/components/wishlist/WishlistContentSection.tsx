@@ -215,4 +215,3 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
 };
 
 export default WishlistContentSection;
-

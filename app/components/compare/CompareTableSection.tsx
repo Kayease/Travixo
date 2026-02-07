@@ -311,7 +311,7 @@ const CompareTableSection: React.FC = () => {
                 className="p-4 md:p-6 flex items-center justify-center border-t lg:border-t-0"
               >
                 <Link
-                  href="/checkout"
+                  href={`/checkout?name=${encodeURIComponent(tour.name)}&price=${encodeURIComponent(tour.price)}&image=${encodeURIComponent(tour.image)}`}
                   className="w-full max-w-[233px] block group/btn relative h-[45px] bg-[#FF6E00] text-white font-display text-[20px] leading-[27px] italic font-medium rounded-xl overflow-hidden transition-all duration-300 cursor-pointer"
                   onClick={(e) => {
                     showToast(
@@ -336,4 +336,3 @@ const CompareTableSection: React.FC = () => {
 };
 
 export default CompareTableSection;
-

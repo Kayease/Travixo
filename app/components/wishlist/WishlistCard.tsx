@@ -37,12 +37,14 @@ interface WishlistCardProps {
   item: WishlistItem;
   onRemove?: (id: string) => void;
   onAddToCart?: (id: string) => void;
+  priority?: boolean;
 }
 
 const WishlistCard: React.FC<WishlistCardProps> = ({
   item,
   onRemove,
   onAddToCart,
+  priority = false,
 }) => {
   // Render star rating
   const renderStars = (rating: number) => {
@@ -102,13 +104,17 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
       <div className="p-[18px]">
         {/* Image Container */}
         <div className="relative w-full aspect-382/283 rounded-xl overflow-hidden mb-4">
-          <Link href={`/tours/${item.slug}`} className="cursor-pointer">
+          <Link
+            href={`/tours/${item.slug}`}
+            className="block relative w-full h-full cursor-pointer"
+          >
             <Image
               src={item.image}
               alt={item.title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 418px"
+              priority={priority}
             />
           </Link>
 
@@ -256,17 +262,15 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
       </div>
 
       {/* Hover State - Book Now Button */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[120%] group-hover:translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-20 w-max">
-        <Link
-          href={`/tours/${item.slug}`}
-          className="block bg-brand-orange rounded-xl px-12 py-3 shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer"
-        >
-          <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
-          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover/btn:text-brand-orange transition-colors duration-300">
-            Book Now
-          </span>
-        </Link>
-      </div>
+      <Link
+        href={`/checkout?name=${encodeURIComponent(item.title)}&price=${item.price}&image=${encodeURIComponent(item.image)}`}
+        className="block bg-brand-orange rounded-xl px-12 py-3 shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer"
+      >
+        <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
+        <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover/btn:text-brand-orange transition-colors duration-300">
+          Book Now
+        </span>
+      </Link>
     </article>
   );
 };

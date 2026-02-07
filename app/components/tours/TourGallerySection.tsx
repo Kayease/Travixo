@@ -53,6 +53,8 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
             alt={imgLeft.alt || "Main tour image"}
             fill
             className="object-cover"
+            sizes="(max-width: 1280px) 100vw, 611px"
+            priority
           />
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -62,6 +64,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
               alt={imgRightTop1.alt || "Tour detail"}
               fill
               className="object-cover"
+              sizes="(max-width: 1280px) 50vw, 325px"
             />
           </div>
           <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
@@ -70,6 +73,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
               alt={imgRightTop2.alt || "Tour detail"}
               fill
               className="object-cover"
+              sizes="(max-width: 1280px) 50vw, 309px"
             />
           </div>
           <div className="relative w-full aspect-[2/1] col-span-2 rounded-xl overflow-hidden">
@@ -78,6 +82,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
               alt={imgRightBottom.alt || "Tour panorama"}
               fill
               className="object-cover"
+              sizes="(max-width: 1280px) 100vw, 652px"
             />
           </div>
         </div>
@@ -86,9 +91,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
       {/* Desktop: Exact Figma Layout (XL Screens >= 1280px) */}
       <div className="hidden xl:flex flex-row gap-[18px]">
         {/* Left Column: Frame 369 - 611x519 */}
-        <div
-          className="relative shrink-0 w-[611px] h-[519px] overflow-hidden rounded-xl bg-gray-100"
-        >
+        <div className="relative shrink-0 w-[611px] h-[519px] overflow-hidden rounded-xl bg-gray-100">
           <Image
             src={imgLeft.url}
             alt={imgLeft.alt || "Main tour image"}
@@ -111,6 +114,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
                 fill
                 className="object-cover"
                 sizes="325px"
+                priority
               />
             </div>
             {/* Frame 372 - 309x264 */}

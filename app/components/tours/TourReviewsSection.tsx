@@ -65,15 +65,15 @@ const StarRating: React.FC<{ rating: number; size?: "sm" | "md" }> = ({
 
 /**
  * TourReviewsSection Component
- * 
+ *
  * Displays customer reviews with summary and individual reviews.
- * 
+ *
  * Design Specifications (from Figma):
  * - Title: Playfair Display, italic, 600 weight, 24px
  * - Review summary card with category ratings
  * - Individual review cards with avatar, rating, comment
  * - "Write Review" CTA button
- * 
+ *
  * @param {TourReviewsSectionProps} props - Reviews data
  * @returns {JSX.Element} The rendered reviews section
  */
@@ -82,7 +82,10 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
   reviews,
 }) => {
   return (
-    <section className="w-full py-6 border-t border-gray-200" aria-labelledby="reviews-title">
+    <section
+      className="w-full py-6 border-t border-gray-200"
+      aria-labelledby="reviews-title"
+    >
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6">
         <h2
@@ -115,9 +118,20 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
         {/* Left Rating Section */}
         <div className="absolute left-[32px] top-[36px] flex items-center gap-2">
           {/* Star Icon */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              stroke="#FF6E00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              stroke="#FF6E00"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
 
           <span className="font-poppins font-semibold text-[20px] leading-[30px] text-brand-brown">
@@ -127,7 +141,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
 
         <div className="absolute left-[32px] top-[75px]">
           <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
-            {summary.totalReviews} review{summary.totalReviews !== 1 ? 's' : ''}
+            {summary.totalReviews} review{summary.totalReviews !== 1 ? "s" : ""}
           </span>
         </div>
 
@@ -150,60 +164,90 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
 
         {/* Guide - Top Left of Grid */}
         <div className="absolute left-[192px] top-[48px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">Guide</span>
+          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
+            Guide
+          </span>
         </div>
         <div className="absolute left-[404px] top-[45px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">4.2/5</span>
+          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
+            4.2/5
+          </span>
         </div>
         {/* Bar */}
         <div className="absolute left-[192px] top-[69px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div className="h-full bg-[#FF6E00] rounded-[12px]" style={{ width: "80%" /* 4.2/5 */ }}></div>
+          <div
+            className="h-full bg-[#FF6E00] rounded-[12px]"
+            style={{ width: "80%" /* 4.2/5 */ }}
+          ></div>
         </div>
-
 
         {/* Service - Top Right of Grid */}
         <div className="absolute left-[482px] top-[48px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">Service</span>
+          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
+            Service
+          </span>
         </div>
         <div className="absolute left-[694px] top-[45px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">4.2/5</span>
+          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
+            4.2/5
+          </span>
         </div>
         {/* Bar */}
         <div className="absolute left-[482px] top-[69px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div className="h-full bg-[#FF6E00] rounded-[12px]" style={{ width: "84%" }}></div>
+          <div
+            className="h-full bg-[#FF6E00] rounded-[12px]"
+            style={{ width: "84%" }}
+          ></div>
         </div>
 
         {/* Transportation - Bottom Left of Grid */}
         <div className="absolute left-[192px] top-[86px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">Transportation</span>
+          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
+            Transportation
+          </span>
         </div>
         <div className="absolute left-[404px] top-[83px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">4.2/5</span>
+          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
+            4.2/5
+          </span>
         </div>
         {/* Bar */}
         <div className="absolute left-[192px] top-[107px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div className="h-full bg-[#FF6E00] rounded-[12px]" style={{ width: "84%" }}></div>
+          <div
+            className="h-full bg-[#FF6E00] rounded-[12px]"
+            style={{ width: "84%" }}
+          ></div>
         </div>
 
         {/* Organization - Bottom Right of Grid */}
         <div className="absolute left-[482px] top-[86px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">Organization</span>
+          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
+            Organization
+          </span>
         </div>
         <div className="absolute left-[694px] top-[83px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">4.2/5</span>
+          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
+            4.2/5
+          </span>
         </div>
         {/* Bar */}
         <div className="absolute left-[482px] top-[107px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div className="h-full bg-[#FF6E00] rounded-[12px]" style={{ width: "84%" }}></div>
+          <div
+            className="h-full bg-[#FF6E00] rounded-[12px]"
+            style={{ width: "84%" }}
+          ></div>
         </div>
-
       </div>
 
       {/* Mobile Fallback for Summary (Simple list) */}
       <div className="md:hidden mb-8 p-4 border border-brand-brown/10 rounded-xl bg-white">
         <div className="flex items-center gap-2 mb-4">
-          <span className="font-display italic font-semibold text-xl text-brand-brown">Review summary</span>
-          <span className="font-body text-sm text-brand-brown/60">({summary.totalReviews} reviews)</span>
+          <span className="font-display italic font-semibold text-xl text-brand-brown">
+            Review summary
+          </span>
+          <span className="font-body text-sm text-brand-brown/60">
+            ({summary.totalReviews} reviews)
+          </span>
         </div>
         <div className="space-y-4">
           {summary.categories.map((cat, i) => (
@@ -213,7 +257,10 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
                 <span>{cat.rating}/5</span>
               </div>
               <div className="w-full h-1 bg-brand-brown/10 rounded-full overflow-hidden">
-                <div className="h-full bg-brand-orange" style={{ width: `${(cat.rating / 5) * 100}%` }} />
+                <div
+                  className="h-full bg-brand-orange"
+                  style={{ width: `${(cat.rating / 5) * 100}%` }}
+                />
               </div>
             </div>
           ))}
@@ -223,7 +270,10 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
       {/* Individual Reviews */}
       <div className="space-y-6">
         {reviews.map((review) => (
-          <div key={review.id} className="pb-6 border-b border-gray-100 last:border-0">
+          <div
+            key={review.id}
+            className="pb-6 border-b border-gray-100 last:border-0"
+          >
             {/* Review Header */}
             <div className="flex items-center gap-3 mb-3">
               {/* Avatar */}
@@ -234,6 +284,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
                     alt={review.author}
                     fill
                     className="object-cover"
+                    sizes="40px"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-gray-500 font-medium">
@@ -274,6 +325,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
                       alt={`Review image ${imgIndex + 1}`}
                       fill
                       className="object-cover"
+                      sizes="64px"
                     />
                   </div>
                 ))}

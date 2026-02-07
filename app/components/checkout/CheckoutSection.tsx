@@ -1,22 +1,23 @@
 /**
  * CheckoutSection Component
- * 
+ *
  * Main checkout section combining all checkout form components:
  * progress bar, travel information, payment details, and order summary.
- * 
+ *
  * Design specs from Figma:
  * - Background: #FFFCF5
  * - Two-column layout: Form (left) + Order Summary (right)
  * - Max width: 1440px
  */
 
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import CheckoutProgressBar from './CheckoutProgressBar';
-import TravelInformationForm from './TravelInformationForm';
-import PaymentDetailsForm from './PaymentDetailsForm';
-import OrderSummaryCard from './OrderSummaryCard';
+import React, { useState } from "react";
+import CheckoutProgressBar from "./CheckoutProgressBar";
+import TravelInformationForm from "./TravelInformationForm";
+import PaymentDetailsForm from "./PaymentDetailsForm";
+import OrderSummaryCard from "./OrderSummaryCard";
+import { useSearchParams } from "next/navigation";
 
 interface CheckoutSectionProps {
   tourData?: {
@@ -27,31 +28,43 @@ interface CheckoutSectionProps {
 }
 
 const CheckoutSection: React.FC<CheckoutSectionProps> = ({
-  tourData = {
-    image: '/images/checkout/frame-427.png',
-    name: 'Bangkok Temple Tour',
-    pricePerPerson: 4250,
-  },
+  tourData: initialTourData,
 }) => {
+  const searchParams = useSearchParams();
+
+  // Prioritize search params, fallback to props, then default
+  const tourData = {
+    name:
+      searchParams.get("name") ||
+      initialTourData?.name ||
+      "Bangkok Temple Tour",
+    pricePerPerson: searchParams.get("price")
+      ? parseFloat(searchParams.get("price")!.replace(/[^0-9.]/g, ""))
+      : initialTourData?.pricePerPerson || 4250,
+    image:
+      searchParams.get("image") ||
+      initialTourData?.image ||
+      "/images/checkout/frame-427.png",
+  };
   // Current step state
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(3);
 
   // Travel information form state
   const [travelInfo, setTravelInfo] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    passportNumber: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    passportNumber: "",
   });
 
   // Payment method state
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'paypal'>('card');
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal">("card");
 
   // Card details state
   const [cardData, setCardData] = useState({
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
   });
 
   // Handle travel info change
@@ -66,7 +79,11 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
 
   // Handle payment
   const handlePay = () => {
-    console.log('Processing payment...', { travelInfo, paymentMethod, cardData });
+    console.log("Processing payment...", {
+      travelInfo,
+      paymentMethod,
+      cardData,
+    });
     // Implement payment logic
     setCurrentStep(3);
   };
@@ -99,7 +116,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
           </div>
 
           {/* Right Column: Order Summary */}
-          <div className="w-full lg:w-[440px] lg:flex-shrink-0">
+          <div className="w-full lg:w-[440px] lg:shrink-0">
             <OrderSummaryCard
               tourImage={tourData.image}
               tourName={tourData.name}
@@ -117,4 +134,3 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
 };
 
 export default CheckoutSection;
-

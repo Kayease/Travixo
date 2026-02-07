@@ -1,9 +1,9 @@
 /**
  * ImpactStoriesSection Component
- * 
+ *
  * Section showcasing impact stories with a large image, stats card,
  * and content about sustainable tourism and community empowerment.
- * 
+ *
  * Design specs from Figma:
  * - Background: #FFF7E5
  * - Image: 630x653px with shadow and rounded corners
@@ -11,8 +11,8 @@
  * - Content: Impact Stories title, description, and feature points
  */
 
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 const ImpactStoriesSection: React.FC = () => {
   return (
@@ -53,7 +53,10 @@ const ImpactStoriesSection: React.FC = () => {
 
             {/* Description */}
             <p className="font-body font-medium text-base md:text-lg leading-[28px] md:leading-[30px] text-brand-brown mb-8 md:mb-10 max-w-[543px]">
-              At travixo, we create immersive and sustainable safari experiences that connect travelers with Africa&apos;s beauty. Our goal is to offer authentic adventures while supporting local communities and protecting wildlife for future generations.
+              At travixo, we create immersive and sustainable safari experiences
+              that connect travelers with Africa&apos;s beauty. Our goal is to
+              offer authentic adventures while supporting local communities and
+              protecting wildlife for future generations.
             </p>
 
             {/* Feature Points */}
@@ -61,13 +64,13 @@ const ImpactStoriesSection: React.FC = () => {
               {/* Regenerative Tourism */}
               <div className="flex items-start gap-4">
                 {/* Leaf Icon */}
-                <div className="w-7 h-7 flex-shrink-0 mt-0.5">
+                <div className="relative w-7 h-7 flex-shrink-0 mt-0.5">
                   <Image
-                    src="/images/portfolio/vector.png"
+                    src="/images/about/values/guidance_service-animal-2.png"
                     alt="Regenerative Tourism"
-                    width={28}
-                    height={28}
+                    fill
                     className="object-contain"
+                    sizes="28px"
                   />
                 </div>
                 <div>
@@ -75,7 +78,8 @@ const ImpactStoriesSection: React.FC = () => {
                     Regenerative Tourism
                   </h4>
                   <p className="font-body font-normal text-sm leading-[25px] text-brand-brown">
-                    we create immersive and sustainable safari experiences that connect.
+                    we create immersive and sustainable safari experiences that
+                    connect.
                   </p>
                 </div>
               </div>
@@ -83,13 +87,13 @@ const ImpactStoriesSection: React.FC = () => {
               {/* Community Empowerment */}
               <div className="flex items-start gap-4">
                 {/* People Icon */}
-                <div className="w-7 h-7 flex-shrink-0 mt-0.5">
+                <div className="relative w-7 h-7 flex-shrink-0 mt-0.5">
                   <Image
                     src="/images/portfolio/formkit_people.png"
                     alt="Community Empowerment"
-                    width={28}
-                    height={28}
+                    fill
                     className="object-contain"
+                    sizes="28px"
                   />
                 </div>
                 <div>
@@ -97,7 +101,8 @@ const ImpactStoriesSection: React.FC = () => {
                     Community Empowerment
                   </h4>
                   <p className="font-body font-normal text-sm leading-[25px] text-brand-brown">
-                    we create immersive and sustainable safari experiences that connect.
+                    we create immersive and sustainable safari experiences that
+                    connect.
                   </p>
                 </div>
               </div>
@@ -110,4 +115,3 @@ const ImpactStoriesSection: React.FC = () => {
 };
 
 export default ImpactStoriesSection;
-

@@ -8,6 +8,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const FavoriteRoomSection: React.FC = () => {
   return (
@@ -107,7 +108,11 @@ const FavoriteRoomSection: React.FC = () => {
             </p>
 
             {/* Book Now Button */}
-            <button className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+            {/* Book Now Button */}
+            <Link
+              href={`/checkout?name=Special%20Room&price=45&image=${encodeURIComponent("/images/room/frame-494-2.png")}`}
+              className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer flex items-center justify-center"
+            >
               {/* Fill animation from bottom to top */}
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
 
@@ -115,7 +120,7 @@ const FavoriteRoomSection: React.FC = () => {
               <span className="relative z-10 font-display text-lg italic text-[#FF6E00] group-hover:text-white transition-colors duration-300">
                 Book Now
               </span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -124,4 +129,3 @@ const FavoriteRoomSection: React.FC = () => {
 };
 
 export default FavoriteRoomSection;
-

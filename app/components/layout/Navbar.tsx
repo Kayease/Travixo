@@ -21,18 +21,15 @@ const topDestinations = ["France", "Thailand", "United Kingdom", "View all"];
 const featuredDestinations: DestinationItem[] = [
   {
     name: "Paris",
-    image:
-      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=100&h=100&fit=crop",
+    image: "/images/destinations/Frame_268.png",
   },
   {
-    name: "Bali", // Indonesia -> Bali for better context
-    image:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=100&h=100&fit=crop",
+    name: "Bali",
+    image: "/images/destinations/Frame _272.png",
   },
   {
     name: "London",
-    image:
-      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=100&h=100&fit=crop",
+    image: "/images/destinations/Frame_269.png",
   },
 ];
 
@@ -40,52 +37,43 @@ const destinationCities: Record<string, DestinationItem[]> = {
   France: [
     {
       name: "Paris",
-      image:
-        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_268.png",
     },
     {
       name: "Nice",
-      image:
-        "https://images.unsplash.com/photo-1524396309943-e03f5249f002?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_268 (1).png",
     },
     {
       name: "Lyon",
-      image:
-        "https://images.unsplash.com/photo-1431274172761-c37d6732f115?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_268 (2).png",
     },
   ],
   Thailand: [
     {
       name: "Bangkok",
-      image:
-        "https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_270.png",
     },
     {
       name: "Phuket",
-      image:
-        "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_270 (1).png",
     },
     {
       name: "Chiang Mai",
-      image:
-        "https://images.unsplash.com/photo-1528181304800-259b08848526?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_270 (2).png",
     },
   ],
   "United Kingdom": [
     {
       name: "London",
-      image:
-        "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_269.png",
     },
     {
       name: "Edinburgh",
-      image:
-        "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_269 (1).png",
     },
     {
       name: "Manchester",
-      image:
-        "https://images.unsplash.com/photo-1515586838455-8f8f940d6853?w=100&h=100&fit=crop",
+      image: "/images/destinations/Frame_269 (2).png",
     },
   ],
   "View all": featuredDestinations,
@@ -111,14 +99,18 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
     if (isOpen) setHoveredCountry("View all");
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  // Early return removed for transition
 
   const currentCities =
     destinationCities[hoveredCountry] || featuredDestinations;
 
   return (
     <div
-      className="w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
+      className={`w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${
+        isOpen
+          ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+          : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
+      }`}
       style={{ height: "314px" }}
     >
       <div className="flex h-full p-4">
@@ -174,6 +166,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
                     alt={destination.name}
                     fill
                     className="object-cover"
+                    sizes="50px"
                   />
                 </div>
                 {/* Destination Name */}
@@ -188,10 +181,12 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         {/* Right Column - Promotional Banner */}
         <div className="ml-auto relative w-[298px] h-[298px] rounded-lg overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=400&h=400&fit=crop"
+            src="/images/destinations/Frame_268.png"
             alt="Travel Holiday Promotion"
             fill
             className="object-cover"
+            sizes="298px"
+            priority
           />
           {/* Overlay Content */}
           <div className="absolute inset-0 bg-linear-to-b from-[#FFF7E5]/90 to-[#FFF7E5]/70 flex flex-col items-center justify-center p-4">
@@ -256,7 +251,7 @@ interface PagesDropdownProps {
 }
 
 const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+  // Early return removed for transition
 
   const renderColumn = (pages: PageLink[]) => (
     <div className="flex flex-col gap-2">
@@ -276,7 +271,11 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="w-[830px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
+      className={`w-[830px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${
+        isOpen
+          ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+          : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
+      }`}
       style={{ height: "314px" }}
     >
       <div className="flex h-full px-10 py-10 justify-between">
@@ -514,7 +513,11 @@ export const Navbar = () => {
               isActive={isDestinationOpen}
               className="cursor-pointer"
             />
-            <div className="absolute top-full left-0 pt-2 z-50">
+            <div
+              className={`absolute top-full left-0 pt-2 z-50 ${
+                isDestinationOpen ? "" : "pointer-events-none"
+              }`}
+            >
               <DestinationDropdown
                 isOpen={isDestinationOpen}
                 onClose={() => setIsDestinationOpen(false)}
@@ -537,7 +540,11 @@ export const Navbar = () => {
               isActive={isPagesOpen}
               className="cursor-pointer"
             />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+            <div
+              className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 ${
+                isPagesOpen ? "" : "pointer-events-none"
+              }`}
+            >
               <PagesDropdown
                 isOpen={isPagesOpen}
                 onClose={() => setIsPagesOpen(false)}
