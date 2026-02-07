@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
+import { DatePicker } from "../ui/DatePicker";
 import { HERO_IMAGES } from "../../constants/data";
 
 /**
@@ -269,20 +270,19 @@ export const HeroSection = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
               <label
                 className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
                 style={{ color: "#4B3621" }}
               >
                 Date
               </label>
-              <input
-                type="text"
+              <DatePicker
                 value={date}
-                onChange={(e) => setDate(e.target.value)}
-                placeholder="Feb 14,2025"
-                className="font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60"
-                style={{ color: "#4B3621" }}
+                onChange={setDate}
+                placeholder="Feb 14, 2025"
+                variant="transparent"
+                className="w-full"
               />
             </div>
           </div>

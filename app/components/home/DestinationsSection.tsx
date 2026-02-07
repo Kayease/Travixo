@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Destination data for the carousel
@@ -78,8 +79,9 @@ const DestinationCard = ({
   listings: number;
   image: string;
 }) => (
-  <div
-    className="shrink-0 bg-transparent! relative cursor-pointer group transition-all duration-500 ease-in-out box-border overflow-hidden hover:shadow-[0px_0px_4px_rgba(255,255,255,0.1)]"
+  <Link
+    href="/paris"
+    className="shrink-0 bg-transparent! relative cursor-pointer group transition-all duration-500 ease-in-out box-border overflow-hidden hover:shadow-[0px_0px_4px_rgba(255,255,255,0.1)] block"
     style={{
       width: "418px",
       height: "657px",
@@ -87,7 +89,6 @@ const DestinationCard = ({
       border: "1px solid #FF8930",
       borderRadius: "400px 400px 0px 300px",
     }}
-    onClick={() => console.log(`Viewing destination: ${name}`)}
   >
     {/* Image Container - Frame 21 */}
     <div
@@ -112,19 +113,37 @@ const DestinationCard = ({
       />
     </div>
 
-    {/* Hover overlay - Frame 23: textured hover-bg.png (longhand only to avoid style conflict) */}
+    {/* Hover overlay container - Frame 23 */}
     <div
-      className="absolute left-0 h-[24px] group-hover:h-[341px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out z-0"
+      className="absolute left-0 h-[24px] group-hover:h-[341px] transition-all duration-500 ease-in-out z-0"
       style={{
         width: "419px",
         top: "316px",
-        backgroundColor: "#FF8930",
-        backgroundImage: "url('/images/home/destination/hover-bg.png')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
       }}
-    />
+    >
+      {/* Initial Background - Visible by default, fades out on hover */}
+      <div
+        className="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-500 ease-in-out"
+        style={{
+          backgroundImage: "url('/images/home/destination/initial-bg.png')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      />
+
+      {/* Hover Background - Invisible by default, fades in on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+        style={{
+          backgroundColor: "#FF8930",
+          backgroundImage: "url('/images/home/destination/hover-bg.png')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      />
+    </div>
 
     {/* TRAVEL TO: top 537px, Inter 500 18px/22px */}
     <span
@@ -155,7 +174,7 @@ const DestinationCard = ({
     >
       {name}
     </h3>
-  </div>
+  </Link>
 );
 
 /**
@@ -229,7 +248,7 @@ export const DestinationsSection = () => {
       className="relative w-full overflow-hidden"
       style={{
         backgroundColor: "#FFF9F0",
-        backgroundImage: "url('/images/hero-bg-texture.png')",
+        backgroundImage: "url('/images/home/destination/destination-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "761px",

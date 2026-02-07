@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 /**
  * BlogDetailContent Component
@@ -9,6 +10,10 @@ import Link from "next/link";
  * Features absolute positioning for desktop layout and the provided video asset.
  */
 export const BlogDetailContent: React.FC = () => {
+  const searchParams = useSearchParams();
+  const from = searchParams.get("from");
+  const backLink = from === "blog2" ? "/blog2" : "/blog";
+
   return (
     <section
       className="relative w-full overflow-hidden bg-[#FFFCF5]"
@@ -18,7 +23,7 @@ export const BlogDetailContent: React.FC = () => {
       <div className="max-w-[1440px] mx-auto w-full h-full relative">
         {/* Back to Blog - Frame 338 */}
         <Link
-          href="/blog"
+          href={backLink}
           className="flex lg:absolute items-center gap-2 group px-5 lg:px-0 py-6 lg:py-0"
           style={{
             left: "297px",

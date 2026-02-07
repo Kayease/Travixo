@@ -22,16 +22,16 @@ export interface DestinationCardProps {
 
 /**
  * DestinationCard Component
- * 
+ *
  * A reusable card component for displaying destination previews.
  * Features an image with country name below.
- * 
+ *
  * Design Specifications (from Figma):
  * - Card image: 418x487px, border-radius 12px
  * - Border: 1px solid rgba(75, 54, 33, 0.2)
  * - Shadow: 0px 0px 4px rgba(0, 0, 0, 0.1)
  * - Country name: Playfair Display, italic, 600 weight, 28px, #4B3621
- * 
+ *
  * @param {DestinationCardProps} props - Destination data
  * @returns {JSX.Element} The rendered destination card
  */
@@ -45,24 +45,22 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
   return (
     <Link
       href={slug}
-      className="group block w-full cursor-pointer"
+      className="group w-full cursor-pointer flex flex-col items-center"
     >
-      {/* Image Container */}
+      {/* Image Container - Circle */}
       <div
-        className="relative w-full aspect-418/487 overflow-hidden transition-all duration-300 group-hover:shadow-xl"
+        className="relative w-full aspect-square overflow-hidden transition-all duration-300 group-hover:shadow-xl rounded-full"
         style={{
           border: "1px solid rgba(75, 54, 33, 0.2)",
           boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-          borderRadius: "12px",
         }}
       >
         <Image
           src={imageUrl}
           alt={imageAlt || name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          style={{ borderRadius: "12px" }}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 418px"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
 

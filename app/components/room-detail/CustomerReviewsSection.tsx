@@ -95,6 +95,7 @@ const ReviewCard: React.FC<{ review: ReviewData }> = ({ review }) => {
             alt={review.author}
             fill
             className="object-cover"
+            sizes="50px"
           />
         </div>
         <div className="flex flex-col">
@@ -252,4 +253,3 @@ const CustomerReviewsSection: React.FC = () => {
 };
 
 export default CustomerReviewsSection;
-

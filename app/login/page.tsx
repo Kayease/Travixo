@@ -273,7 +273,7 @@ export default function LoginPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="min-h-screen relative">
         <LoginHeroSection />
         <LoginFormSection />
       </main>

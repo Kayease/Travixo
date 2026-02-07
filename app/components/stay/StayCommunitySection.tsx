@@ -25,6 +25,7 @@ const CommunityImageCard: React.FC<{ image: CommunityImage }> = ({ image }) => {
         alt={image.alt}
         fill
         className="object-cover transition-transform duration-500 group-hover:scale-105"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
       />
 
       {/* Hover Overlay with Instagram Icon - Slides from top to bottom */}
@@ -120,4 +121,3 @@ const StayCommunitySection: React.FC = () => {
 };
 
 export default StayCommunitySection;
-

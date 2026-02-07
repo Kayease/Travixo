@@ -1,8 +1,8 @@
 /**
  * DiscoveryCard Component
- * 
+ *
  * Blog/story card for the Voice of Discovery section.
- * 
+ *
  * Design specs from Figma:
  * - Card: 418x590px, cream background, border, shadow, radius 12px
  * - Image: 418x357px
@@ -11,9 +11,9 @@
  * - Read More link with arrow
  */
 
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export interface DiscoveryItem {
   id: string;
@@ -31,7 +31,7 @@ const DiscoveryCard: React.FC<DiscoveryCardProps> = ({ item }) => {
   return (
     <article className="bg-[#FFFCF5] border border-black/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] rounded-xl overflow-hidden">
       {/* Image */}
-      <div className="relative w-full aspect-[418/357]">
+      <div className="relative w-full aspect-418/357">
         <Image
           src={item.image}
           alt={item.title}
@@ -55,7 +55,7 @@ const DiscoveryCard: React.FC<DiscoveryCardProps> = ({ item }) => {
 
         {/* Read More Link */}
         <Link
-          href={`/blogs/${item.slug}`}
+          href={`/blog/${item.slug}`}
           className="inline-flex items-center justify-center gap-2 w-full group"
         >
           <span className="font-body font-normal text-sm leading-[17px] text-brand-brown group-hover:text-brand-orange transition-colors">

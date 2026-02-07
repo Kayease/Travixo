@@ -273,16 +273,45 @@ const ParisTourCard = ({
         {/* Action Buttons */}
         <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
           <button
-            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
+            className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
             onClick={() => console.log(`Liked ${title}`)}
           >
-            <HeartIcon />
+            <div className="relative w-6 h-6">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 21C12 21 3 13.5 3 8.5C3 5.5 5.5 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.5 3 23 5.5 23 8.5C23 13.5 14 21 14 21"
+                  className="stroke-[#4B3621] group-hover/icon:stroke-white transition-colors duration-300"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </button>
           <button
-            className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
+            className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
             onClick={() => console.log(`Added ${title} to cart`)}
           >
-            <CartIcon />
+            <div className="relative w-[18px] h-[14px]">
+              <svg
+                width="18"
+                height="14"
+                viewBox="0 0 18 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
+                  className="fill-[#4B3621] group-hover/icon:fill-white transition-colors duration-300"
+                />
+              </svg>
+            </div>
           </button>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Arrow Icon (rotated)
@@ -69,7 +70,7 @@ export const CTABannerSection = ({
               backgroundImage: "url('/images/hero-bg-texture.png')",
               backgroundSize: "cover",
               boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-              borderRadius: "12px"
+              borderRadius: "12px",
             }}
           >
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 pl-[200px]">
@@ -87,17 +88,19 @@ export const CTABannerSection = ({
               </div>
 
               {/* CTA Button */}
-              <button
-                onClick={onButtonClick || (() => console.log(`Action: ${buttonText}`))}
-                className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group"
+              <Link
+                href="/contact"
+                className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer"
               >
                 {/* Fill animation from bottom to top */}
                 <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{buttonText}</span>
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                  {buttonText}
+                </span>
                 <span className="relative z-10 group-hover:translate-x-1 transition-transform text-brand-orange group-hover:text-white">
                   <ArrowIcon />
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -105,7 +105,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
         {/* Image Container */}
         <div className="relative w-full aspect-382/283 rounded-xl overflow-hidden mb-4">
           <Link
-            href={`/tours/${item.slug}`}
+            href="/paris"
             className="block relative w-full h-full cursor-pointer"
           >
             <Image
@@ -196,7 +196,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
         </div>
 
         {/* Title */}
-        <Link href={`/tours/${item.slug}`} className="cursor-pointer">
+        <Link href="/paris" className="cursor-pointer">
           <h3 className="font-display italic font-semibold text-[22px] leading-[29px] text-brand-brown mb-3 hover:text-brand-orange transition-colors">
             {item.title}
           </h3>
@@ -261,16 +261,18 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
         </div>
       </div>
 
-      {/* Hover State - Book Now Button */}
-      <Link
-        href={`/checkout?name=${encodeURIComponent(item.title)}&price=${item.price}&image=${encodeURIComponent(item.image)}`}
-        className="block bg-brand-orange rounded-xl px-12 py-3 shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer"
-      >
-        <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
-        <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover/btn:text-brand-orange transition-colors duration-300">
-          Book Now
-        </span>
-      </Link>
+      {/* Hover State - Book Now Button - Slides up from bottom on card hover */}
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out w-[260px]">
+        <Link
+          href={`/checkout?name=${encodeURIComponent(item.title)}&price=${item.price}&image=${encodeURIComponent(item.image)}`}
+          className="block w-full bg-brand-orange rounded-xl py-3 shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer text-center"
+        >
+          <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
+          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover/btn:text-brand-orange transition-colors duration-300">
+            Book Now
+          </span>
+        </Link>
+      </div>
     </article>
   );
 };

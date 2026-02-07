@@ -256,7 +256,7 @@ const ContactFormSection = () => {
  */
 export default function ContactPage() {
   return (
-    <main className="min-h-screen relative overflow-x-hidden">
+    <main className="min-h-screen relative">
       <Navbar />
       <ContactHeroSection />
       <ContactFormSection />
@@ -264,4 +264,3 @@ export default function ContactPage() {
     </main>
   );
 }
-

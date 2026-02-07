@@ -38,8 +38,9 @@ export const DatePicker = ({
   placeholder = "Select Date",
   minDate,
   maxDate,
+  variant,
   className = "",
-}: DatePickerProps) => {
+}: DatePickerProps & { variant?: "default" | "transparent" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -205,33 +206,32 @@ export const DatePicker = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`
-          w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
-          flex items-center justify-between gap-3
-          text-brand-brown font-medium text-lg font-body
-          focus:outline-none focus:ring-2 focus:ring-brand-orange
-          transition-all duration-200 cursor-pointer
-          ${isOpen ? "ring-2 ring-brand-orange" : ""}
-        `}
+        className={
+          variant === "transparent"
+            ? "w-full bg-transparent border-none p-0 flex items-center justify-between text-brand-brown font-normal text-[16px] md:text-[18px] leading-[28px] font-body focus:outline-none cursor-pointer"
+            : `w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 flex items-center justify-between gap-3 text-brand-brown font-medium text-lg font-body focus:outline-none focus:ring-2 focus:ring-brand-orange transition-all duration-200 cursor-pointer ${isOpen ? "ring-2 ring-brand-orange" : ""}`
+        }
       >
-        <span className={value ? "text-brand-brown" : "text-brand-brown/50"}>
+        <span className={value ? "text-brand-brown" : "text-brand-brown/60"}>
           {value ? formatDisplayValue() : placeholder}
         </span>
 
-        {/* Calendar Icon */}
-        <svg
-          className={`w-5 h-5 text-brand-brown/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
-        </svg>
+        {/* Calendar Icon - Hidden for transparent variant if desired, or styled differently. Keeping for dropdown indication but maybe smaller/subtle? */}
+        {variant !== "transparent" && (
+          <svg
+            className={`w-5 h-5 text-brand-brown/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+        )}
       </button>
 
       {/* Calendar Dropdown */}

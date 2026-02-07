@@ -20,6 +20,7 @@ const FavoriteRoomSection: React.FC = () => {
           alt="Luxurious bedroom background"
           fill
           className="object-cover"
+          sizes="100vw"
         />
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/40" />
@@ -39,6 +40,7 @@ const FavoriteRoomSection: React.FC = () => {
                 alt="Special room with golden interior"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 418px"
               />
             </div>
 

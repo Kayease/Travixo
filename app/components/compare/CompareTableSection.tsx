@@ -176,6 +176,7 @@ const CompareTableSection: React.FC = () => {
                     src={tour.image}
                     alt={tour.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 302px"
                     className="object-cover"
                   />
                 </div>
@@ -308,7 +309,7 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`book-${tour.id}`}
-                className="p-4 md:p-6 flex items-center justify-center border-t lg:border-t-0"
+                className="p-4 md:p-6 flex items-center border-t lg:border-t-0"
               >
                 <Link
                   href={`/checkout?name=${encodeURIComponent(tour.name)}&price=${encodeURIComponent(tour.price)}&image=${encodeURIComponent(tour.image)}`}

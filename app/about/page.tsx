@@ -11,7 +11,7 @@ import { AboutHeroSection } from "../components/about/AboutHeroSection";
  */
 export default function AboutPage() {
   return (
-    <main className="min-h-screen relative overflow-x-hidden">
+    <main className="min-h-screen relative bg-[#FDFBF7]">
       <Navbar />
       <AboutHeroSection />
       <ProcessSection />

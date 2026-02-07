@@ -157,11 +157,11 @@ const ArrowIcon = () => (
  * Footer links data
  */
 const COMPANY_LINKS = [
-  { label: "Products", href: "/products" },
+  { label: "Tour Listings", href: "/products" },
   { label: "Destinations", href: "/destinations" },
-  { label: "Our Portfolio", href: "/portfolio" },
-  { label: "Our History", href: "/history" },
-  { label: "Compare", href: "/compare" },
+  { label: "Tour Activates", href: "/tour-activates" },
+  { label: "Tour Types", href: "/tour-types" },
+  { label: "How It Work", href: "/how-it-works" },
 ];
 
 const EXPLORE_LINKS = [
@@ -188,183 +188,167 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative w-full" style={{ backgroundColor: "#FF8930" }}>
-      {/* Top Bar - Logo and Social Icons */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 lg:py-10">
-        <div className="flex items-center justify-between">
+    <footer
+      className="relative w-full overflow-hidden"
+      style={{ backgroundColor: "#FF8930" }}
+    >
+      {/* Container to match 1440px design width */}
+      <div className="w-full max-w-[1440px] mx-auto relative px-4 md:px-20 py-12">
+        {/* Top Section: Logo and Socials */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 md:gap-0">
           {/* Logo */}
           <Link href="/" className="cursor-pointer">
             <Image
-              src="/images/logo/frame-511.png"
-              alt="Travixo Logo"
-              width={160}
-              height={40}
-              className="h-auto w-auto max-h-12 object-contain"
+              src="/images/footer/Frame 512.png"
+              alt="Travixo"
+              width={140}
+              height={68}
+              className="object-contain"
             />
           </Link>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="hover:opacity-80 transition-opacity cursor-pointer"
+          <div className="flex items-center gap-[18px]">
+            <button
+              type="button"
+              className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <FacebookIcon />
-            </Link>
-            <Link
-              href="/"
-              className="hover:opacity-80 transition-opacity cursor-pointer"
+            </button>
+            <button
+              type="button"
+              className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <InstagramIcon />
-            </Link>
-            <Link
-              href="/"
-              className="hover:opacity-80 transition-opacity cursor-pointer"
+            </button>
+            <button
+              type="button"
+              className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <LinkedInIcon />
-            </Link>
-            <Link
-              href="/"
-              className="hover:opacity-80 transition-opacity cursor-pointer"
+            </button>
+            <button
+              type="button"
+              className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <TwitterIcon />
-            </Link>
+            </button>
           </div>
         </div>
-      </div>
 
-      {/* Divider Line */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="w-full h-px bg-white" />
-      </div>
+        {/* Divider 1 */}
+        <div className="w-full h-px bg-white mb-10" />
 
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 lg:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Company Column */}
-          <div>
-            <h3 className="font-display italic font-semibold text-2xl md:text-[28px] leading-[28px] text-white mb-6">
-              Company
-            </h3>
-            <ul className="space-y-3">
-              {COMPANY_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="font-body font-medium text-base md:text-lg leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Main Content Grid */}
+        <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-0 relative">
+          {/* Columns Container */}
+          <div className="flex flex-col md:flex-row gap-10 md:gap-24 lg:gap-[134px]">
+            {/* Company Column */}
+            <div className="flex flex-col">
+              <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">
+                Company
+              </h3>
+              <ul className="flex flex-col gap-2">
+                {COMPANY_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Explore Column */}
-          <div>
-            <h3 className="font-display italic font-semibold text-2xl md:text-[28px] leading-[28px] text-white mb-6">
-              Explore
-            </h3>
-            <ul className="space-y-3">
-              {EXPLORE_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="font-body font-medium text-base md:text-lg leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Explore Column */}
+            <div className="flex flex-col">
+              <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">
+                Explore
+              </h3>
+              <ul className="flex flex-col gap-2">
+                {EXPLORE_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Contact Column */}
-          <div>
-            <h3 className="font-display italic font-semibold text-2xl md:text-[28px] leading-[28px] text-white mb-6">
-              Contact
-            </h3>
-            <div className="space-y-4">
-              {/* Address */}
-              <p className="font-body font-medium text-base md:text-lg leading-[28px] text-white">
-                6391 Elgin St.Celina,Delware
-                <br />
-                New York,USA
-              </p>
-
-              {/* Phone */}
-              <div className="flex items-center gap-2">
-                <PhoneIcon />
-                <span className="font-body font-medium text-base md:text-lg leading-[28px] text-white">
-                  +91 1234567890
-                </span>
-              </div>
-
-              {/* Email */}
-              <div className="flex items-center gap-2">
-                <MailIcon />
-                <span className="font-body font-medium text-base md:text-lg leading-[28px] text-white">
-                  Travixo@demo.com
-                </span>
+            {/* Contact Column */}
+            <div className="flex flex-col">
+              <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">
+                Contact
+              </h3>
+              <div className="flex flex-col gap-4">
+                <p className="font-body font-medium text-[18px] leading-[28px] text-white max-w-[255px]">
+                  6391 Elgin St.Celina,Delware
+                  <br />
+                  New York,USA
+                </p>
+                <div className="flex items-center gap-2">
+                  <PhoneIcon />
+                  <span className="font-body font-medium text-[18px] leading-[28px] text-white">
+                    +91 1234567890
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MailIcon />
+                  <span className="font-body font-medium text-[18px] leading-[28px] text-white">
+                    Travixo@demo.com
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Newsletter Column */}
-          <div>
-            <div
-              className="p-4 md:p-5 rounded-xl"
-              style={{ backgroundColor: "#FFFCF5" }}
-            >
-              <h4 className="font-display italic font-medium text-base md:text-lg leading-[28px] text-brand-brown mb-4">
-                Signup for our latest news & articles
-              </h4>
-
-              <div className="relative">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email address"
-                  className="w-full h-[45px] px-4 pr-14 bg-white border border-brand-orange rounded-xl font-body text-base text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:ring-2 focus:ring-brand-orange/50"
-                />
-                <button
-                  onClick={handleSubscribe}
-                  className="absolute right-0 top-0 w-[50px] h-[45px] flex items-center justify-center border border-brand-orange rounded-xl hover:bg-brand-orange/10 transition-colors cursor-pointer"
-                  style={{ backgroundColor: "#FFFCF5" }}
-                >
-                  <ArrowIcon />
-                </button>
-              </div>
+          {/* Newsletter Box (Right aligned) */}
+          <div className="lg:absolute lg:right-0 lg:top-0 w-[291px] h-[145px] bg-[#FFFCF5] rounded-[12px] p-[18px] flex flex-col justify-between shadow-lg">
+            <h4 className="font-display italic font-medium text-[18px] leading-[28px] text-[#4B3621] text-center w-full">
+              Signup for our latest news & articles
+            </h4>
+            <div className="relative w-[255px] h-[45px] mx-auto">
+              <input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full h-full bg-white border border-[#FF6E00] rounded-[12px] pl-[18px] pr-[55px] font-body text-[18px] text-[#4B3621] placeholder:text-[#4B3621]/60 focus:outline-none"
+              />
+              <button
+                onClick={handleSubscribe}
+                className="absolute right-0 top-0 w-[50px] h-[45px] bg-[#FFFCF5] border border-[#FF6E00] rounded-[12px] flex items-center justify-center cursor-pointer hover:bg-orange-50 transition-colors"
+              >
+                <ArrowIcon />
+              </button>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Divider */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="w-full h-px bg-white/20" />
-      </div>
+        {/* Divider 2 */}
+        <div className="w-full h-px bg-white/20 mt-12 mb-6" />
 
-      {/* Bottom Bar - Copyright and Legal */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 lg:py-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Copyright */}
-          <p className="font-body font-normal text-sm text-white/60 text-center md:text-left">
-            © Copyright 2025 Blushora Cosmetics. All rights reserved.
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-body font-normal text-[14px] leading-[21px] text-white/60">
+            © Copyright 2026 Travixo. All rights reserved.
           </p>
-
-          {/* Legal Links */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-8">
             <Link
               href="/terms"
-              className="font-body font-normal text-sm text-white/60 hover:text-white/80 transition-colors"
+              className="font-body font-normal text-[14px] leading-[21px] text-white/60 hover:text-white transition-colors"
             >
               Terms & Condition
             </Link>
             <Link
               href="/privacy"
-              className="font-body font-normal text-sm text-white/60 hover:text-white/80 transition-colors"
+              className="font-body font-normal text-[14px] leading-[21px] text-white/60 hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>

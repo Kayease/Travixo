@@ -64,6 +64,7 @@ const RoomHeroSection: React.FC = () => {
               alt="Stylish room with yellow wall and plants"
               fill
               className="object-cover"
+              sizes="295px"
             />
           </div>
 
@@ -82,6 +83,7 @@ const RoomHeroSection: React.FC = () => {
               alt="Bright living room with pink chairs"
               fill
               className="object-cover"
+              sizes="551px"
             />
           </div>
 
@@ -100,6 +102,7 @@ const RoomHeroSection: React.FC = () => {
               alt="Elegant white bedroom"
               fill
               className="object-cover"
+              sizes="551px"
             />
           </div>
         </div>
@@ -129,6 +132,7 @@ const RoomHeroSection: React.FC = () => {
                 alt="Stylish room with yellow wall and plants"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 350px"
               />
             </div>
 
@@ -141,6 +145,7 @@ const RoomHeroSection: React.FC = () => {
                   alt="Bright living room with pink chairs"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 168px"
                 />
               </div>
 
@@ -151,6 +156,7 @@ const RoomHeroSection: React.FC = () => {
                   alt="Elegant white bedroom"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 168px"
                 />
               </div>
             </div>
@@ -162,4 +168,3 @@ const RoomHeroSection: React.FC = () => {
 };
 
 export default RoomHeroSection;
-

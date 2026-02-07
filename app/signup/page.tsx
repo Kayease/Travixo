@@ -68,7 +68,7 @@ const SignupFormSection = () => {
     // Simulate successful signup and redirect to login
     // In production, this would create account via API
     alert("Account created successfully! Please log in.");
-    window.location.href = '/login';
+    window.location.href = "/login";
   };
 
   return (
@@ -430,7 +430,7 @@ export default function SignupPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="min-h-screen relative">
         <SignupHeroSection />
         <SignupFormSection />
       </main>

@@ -159,6 +159,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
           alt={item.title}
           fill
           className="object-cover"
+          sizes="(max-width: 768px) 100vw, 278px"
         />
       </div>
 
@@ -396,4 +397,3 @@ const CartItemsSection: React.FC = () => {
 };
 
 export default CartItemsSection;
-

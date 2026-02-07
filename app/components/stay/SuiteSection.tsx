@@ -28,6 +28,7 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
         src={room.image}
         alt={room.name}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-transform duration-500 group-hover:scale-105"
       />
 
@@ -133,7 +134,11 @@ const SuiteSection: React.FC = () => {
             </p>
 
             {/* CTA Button */}
-            <button className="group relative w-full max-w-[300px] h-[50px] bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+            {/* CTA Button */}
+            <Link
+              href="/room"
+              className="group relative flex items-center justify-center w-full max-w-[300px] h-[50px] bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer"
+            >
               {/* Fill animation from bottom to top */}
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
 
@@ -141,7 +146,7 @@ const SuiteSection: React.FC = () => {
               <span className="relative z-10 font-display text-lg italic text-[#FF6E00] group-hover:text-white transition-colors duration-300">
                 Discover our suites
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* Right Featured Image */}
@@ -150,6 +155,7 @@ const SuiteSection: React.FC = () => {
               src="/images/stay/frame-4-1.png"
               alt="Luxury hotel lobby with chandelier"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
           </div>

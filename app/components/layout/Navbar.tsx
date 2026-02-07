@@ -138,7 +138,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
                 onMouseEnter={() => setHoveredCountry(destination)}
               >
                 <span
-                  className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out z-0 ${hoveredCountry === destination ? "w-full" : "w-0 group-hover:w-full"}`}
+                  className={`absolute inset-0 bg-[#FF6E00] transition-all duration-500 ease-out z-0 ${hoveredCountry === destination ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"}`}
                 ></span>
                 <span className="relative z-10">{destination}</span>
               </Link>
@@ -262,7 +262,7 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
           className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300"
           onClick={onClose}
         >
-          <span className="absolute inset-0 bg-[#FF6E00] w-0 group-hover:w-full transition-all duration-300 ease-out z-0"></span>
+          <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover:w-full group-hover:opacity-100 transition-all duration-500 ease-out z-0"></span>
           <span className="relative z-10">{page.label}</span>
         </Link>
       ))}
@@ -318,7 +318,9 @@ const NavItem: React.FC<NavItemProps> = ({
       {/* Background slide effect */}
       <span
         className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${
-          isActive ? "w-full" : "w-0 group-hover:w-full"
+          isActive
+            ? "w-full opacity-100"
+            : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
         }`}
       />
 
@@ -344,10 +346,10 @@ const NavItem: React.FC<NavItemProps> = ({
     </>
   );
 
-  const containerClasses = `group relative flex items-center gap-2 px-4 py-2 font-serif italic text-lg transition-all overflow-hidden cursor-pointer ${
+  const containerClasses = `group relative flex items-center gap-2 px-3 py-1.5 font-display italic text-[18px] transition-all overflow-hidden cursor-pointer ${
     isActive
       ? "text-white rounded-lg"
-      : "text-brand-brown hover:text-white rounded-lg"
+      : "text-[#4B3621] hover:text-white rounded-lg"
   } ${className || ""}`;
 
   if (href) {
@@ -444,7 +446,17 @@ const ProfileIcon = () => (
 export const Navbar = () => {
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   const [isPagesOpen, setIsPagesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -475,14 +487,18 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="w-full sticky top-0 z-1000">
+    <header
+      className={`w-full sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-[#FFFCF5]/95 backdrop-blur-md shadow-md py-1"
+          : "bg-[#FFFCF5] py-0"
+      }`}
+    >
       {/* Main Navbar Container */}
       <nav
-        className="w-full h-[60px] flex items-center justify-between px-20"
-        style={{
-          background: "#FFFCF5",
-          boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-        }}
+        className={`w-full flex items-center justify-between px-5 md:px-10 lg:px-20 transition-all duration-300 ${
+          isScrolled ? "h-[50px]" : "h-[60px]"
+        }`}
       >
         {/* Logo Section */}
         <Link href="/" className="relative w-[150px] h-[50px] cursor-pointer">

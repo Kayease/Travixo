@@ -7,7 +7,7 @@ import { TestimonialSection } from "@/app/components/paris/TestimonialSection";
 
 export default function ParisPage() {
   return (
-    <main className="min-h-screen relative overflow-x-hidden bg-[#FDFBF7]">
+    <main className="min-h-screen relative bg-[#FDFBF7]">
       <Navbar />
 
       {/* Paris Banner Section */}

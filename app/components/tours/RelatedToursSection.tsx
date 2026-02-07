@@ -82,7 +82,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               {/* Image Container (Frame 51) */}
               <div className="absolute left-[18px] top-[18px] w-[calc(100%-36px)] h-[283px] overflow-hidden rounded-[12px] group">
                 <Link
-                  href={tour.slug}
+                  href="/paris"
                   className="block w-full h-full relative cursor-pointer"
                 >
                   <Image
@@ -113,7 +113,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                 {/* Hover Icons: Slide in from Right */}
                 <div className="absolute top-[12px] right-[12px] flex flex-col gap-2 translate-x-[50px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10">
                   {/* Heart Icon */}
-                  <div className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100">
+                  <div className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#FF6E00] transition-colors duration-300">
                     <svg
                       width="24"
                       height="24"
@@ -122,14 +122,8 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M12.7692 6.39583C12.3533 5.97917 11.6441 5.97917 11.2307 6.39583L4.24996 13.3958C3.83411 13.8125 3.83411 14.5242 4.24996 14.9408L11.2307 21.9408C11.6466 22.3575 12.3558 22.3575 12.7692 21.9408L19.7499 14.9408C20.1658 14.5242 20.1658 13.8125 19.7499 13.3958L12.7692 6.39583Z"
-                        stroke="#4B3621"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                      />
-                      <path
                         d="M12 21.5C12 21.5 6 15 6 10C6 7 8 5 10.5 5C11.9 5 13.2 5.6 14 6.6C14.8 5.6 16.1 5 17.5 5C20 5 22 7 22 10C22 15 16 21.5 16 21.5"
-                        stroke="#4B3621"
+                        className="stroke-[#4B3621] group-hover/icon:stroke-white transition-colors duration-300"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -138,41 +132,24 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                   </div>
 
                   {/* Cart Icon */}
-                  <div className="w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100">
+                  <div className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#FF6E00] transition-colors duration-300">
                     <svg
                       width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
+                      height="14"
+                      viewBox="0 0 18 14"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M9 20C9 21.1 8.1 22 7 22C5.9 22 5 21.1 5 20C5 18.9 5.9 18 7 18C8.1 18 9 18.9 9 20Z"
-                        stroke="#4B3621"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M20 20C20 21.1 19.1 22 18 22C16.9 22 16 21.1 16 20C16 18.9 16.9 18 18 18C19.1 18 20 18.9 20 20Z"
-                        stroke="#4B3621"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
-                        stroke="#4B3621"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                        d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
+                        className="fill-[#4B3621] group-hover/icon:fill-white transition-colors duration-300"
                       />
                     </svg>
                   </div>
                 </div>
 
-                {/* Price Tag (Frame 53) - Hidden on Hover to make room for button */}
-                <div className="absolute bottom-[12px] right-0 w-[102px] h-[47px] bg-white rounded-tl-[100px] rounded-bl-[100px] rounded-br-none rounded-tr-none flex items-center justify-center pl-4 transition-opacity duration-300 group-hover:opacity-0">
+                {/* Price Tag (Frame 53) - Always visible */}
+                <div className="absolute bottom-[12px] right-0 w-[102px] h-[47px] bg-white rounded-tl-[100px] rounded-bl-[100px] rounded-br-none rounded-tr-none flex items-center justify-center pl-4">
                   <div className="relative w-full h-full">
                     <span className="absolute left-[7px] top-[10px] font-poppins font-medium text-[18px] leading-[27px] text-[#FF6E00]">
                       ${tour.price}
@@ -234,7 +211,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
 
               {/* Title */}
               <div className="absolute left-[18px] top-[346px]">
-                <Link href={tour.slug} className="cursor-pointer">
+                <Link href="/paris" className="cursor-pointer">
                   <h3 className="font-display italic font-semibold text-[22px] leading-[29px] text-brand-brown line-clamp-1 hover:text-brand-orange transition-colors">
                     {tour.title}
                   </h3>
@@ -348,7 +325,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               {/* Book Now Button - Matches FeaturedToursSection implementation */}
               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
                 <Link
-                  href={`/checkout?name=${encodeURIComponent(tour.title)}&price=${tour.price}&image=${encodeURIComponent(tour.imageUrl)}`}
+                  href="/paris"
                   className="relative flex items-center justify-center w-[202px] h-[45px] bg-white border border-[#FF6E00] rounded-[12px] font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer"
                 >
                   <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />

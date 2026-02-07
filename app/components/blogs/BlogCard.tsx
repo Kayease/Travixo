@@ -24,10 +24,10 @@ export interface BlogCardProps {
 
 /**
  * BlogCard Component
- * 
+ *
  * A reusable card component for displaying blog post previews.
  * Features an image, title, date, and "Read More" link.
- * 
+ *
  * Design Specifications (from Figma):
  * - Card: 418x590px, border-radius 12px
  * - Border: 1px solid rgba(0,0,0,0.2)
@@ -36,7 +36,7 @@ export interface BlogCardProps {
  * - Title: Playfair Display, italic, 600 weight, 24px, #4B3621
  * - Date: Poppins, 400 weight, 18px, #4B3621
  * - Read More: 14px with orange arrow icon
- * 
+ *
  * @param {BlogCardProps} props - Blog post data
  * @returns {JSX.Element} The rendered blog card
  */
@@ -58,7 +58,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
       }}
     >
       {/* Image Container */}
-      <div className="relative w-full aspect-[418/357] overflow-hidden">
+      <div className="relative w-full aspect-418/357 overflow-hidden">
         <Image
           src={imageUrl}
           alt={imageAlt || title}
@@ -76,7 +76,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
         </h3>
 
         {/* Publication Date - Poppins */}
-        <time 
+        <time
           className="font-body font-normal text-base md:text-[18px] leading-[27px] text-brand-brown"
           dateTime={date}
         >

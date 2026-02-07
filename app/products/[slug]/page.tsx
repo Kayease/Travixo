@@ -62,18 +62,29 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
     "Boat ride",
     "Bottled water",
   ],
-  excludes: [
-    "Entrance fees",
-  ],
+  excludes: ["Entrance fees"],
 
   // Cancellation Policy
-  cancellationPolicy: "You can cancel up to 24 hours in advance of the experience for a full refund.",
+  cancellationPolicy:
+    "You can cancel up to 24 hours in advance of the experience for a full refund.",
 
   // FAQs
   faqs: [
-    { question: "What to bring", answer: "Comfortable walking shoes, sunscreen, hat, and a camera. Dress modestly as you'll be visiting temples - shoulders and knees should be covered." },
-    { question: "Not allowed", answer: "Shorts, sleeveless shirts, and revealing clothing are not permitted inside the temples. Shoes must be removed before entering temple buildings." },
-    { question: "Know before you go", answer: "The tour involves a significant amount of walking. The temples can get crowded, especially during peak hours. We recommend booking an early morning tour for a more peaceful experience." },
+    {
+      question: "What to bring",
+      answer:
+        "Comfortable walking shoes, sunscreen, hat, and a camera. Dress modestly as you'll be visiting temples - shoulders and knees should be covered.",
+    },
+    {
+      question: "Not allowed",
+      answer:
+        "Shorts, sleeveless shirts, and revealing clothing are not permitted inside the temples. Shoes must be removed before entering temple buildings.",
+    },
+    {
+      question: "Know before you go",
+      answer:
+        "The tour involves a significant amount of walking. The temples can get crowded, especially during peak hours. We recommend booking an early morning tour for a more peaceful experience.",
+    },
   ],
 
   // Reviews
@@ -93,7 +104,8 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       author: "Aarav Vink",
       date: "October 31, 2025",
       rating: 4,
-      comment: "I don't know how to improve the tour because it was great professional run funny great day lover som and Grand Canyon, brilliant enough time to do everything not rushed great tour",
+      comment:
+        "I don't know how to improve the tour because it was great professional run funny great day lover som and Grand Canyon, brilliant enough time to do everything not rushed great tour",
       images: [
         "/images/products/frame-403.png",
         "/images/products/frame-404.png",
@@ -106,8 +118,9 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
     {
       id: 1,
       title: "Eiffel Tower",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/frame-51.png",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      imageUrl: "/images/products/Frame_51.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -121,8 +134,9 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
     {
       id: 2,
       title: "Louvre Museum",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/frame-51-1.png",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      imageUrl: "/images/products/Frame 485.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -136,8 +150,9 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
     {
       id: 3,
       title: "Centre Pompidou",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/frame-51-2.png",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      imageUrl: "/images/products/Frame 486.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -153,10 +168,10 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
 
 /**
  * TourDetailPage Component
- * 
+ *
  * Individual tour/product detail page showing comprehensive tour information.
  * Uses dynamic routing with [slug] parameter.
- * 
+ *
  * Page Structure:
  * 1. Navbar - Site navigation
  * 2. TourDetailHeroSection - Tour title, rating, and location
@@ -165,7 +180,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
  *    - Right Column: Booking Card (sticky)
  * 4. Related Tours Section
  * 5. Footer - Site footer
- * 
+ *
  * @returns {JSX.Element} The complete tour detail page
  */
 const TourDetailPage: React.FC = () => {
@@ -187,7 +202,10 @@ const TourDetailPage: React.FC = () => {
       />
 
       {/* Main Content Section */}
-      <section className="w-full py-8 md:py-12" style={{ backgroundColor: "#FFFCF5" }}>
+      <section
+        className="w-full py-8 md:py-12"
+        style={{ backgroundColor: "#FFFCF5" }}
+      >
         <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
           {/* Gallery Section - Full Width */}
           <div className="mb-12">

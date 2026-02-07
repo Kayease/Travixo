@@ -98,6 +98,7 @@ export const ExperienceSection = () => {
           alt="Tropical beach sunset"
           fill
           className="object-cover"
+          sizes="100vw"
           priority
         />
 
@@ -153,4 +154,3 @@ export const ExperienceSection = () => {
     </section>
   );
 };
-
