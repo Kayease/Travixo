@@ -47,7 +47,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
     <section className="w-full" aria-label="Tour Gallery">
       {/* Mobile/Tablet: Vertical or simplified grid */}
       <div className="flex xl:hidden flex-col gap-4">
-        <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+        <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden">
           <Image
             src={imgLeft.url}
             alt={imgLeft.alt || "Main tour image"}
@@ -58,7 +58,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
           />
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+          <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden">
             <Image
               src={imgRightTop1.url}
               alt={imgRightTop1.alt || "Tour detail"}
@@ -67,7 +67,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
               sizes="(max-width: 1280px) 50vw, 325px"
             />
           </div>
-          <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+          <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden">
             <Image
               src={imgRightTop2.url}
               alt={imgRightTop2.alt || "Tour detail"}
@@ -76,7 +76,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
               sizes="(max-width: 1280px) 50vw, 309px"
             />
           </div>
-          <div className="relative w-full aspect-[2/1] col-span-2 rounded-xl overflow-hidden">
+          <div className="relative w-full aspect-2/1 col-span-2 rounded-xl overflow-hidden">
             <Image
               src={imgRightBottom.url}
               alt={imgRightBottom.alt || "Tour panorama"}

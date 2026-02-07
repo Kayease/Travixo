@@ -21,9 +21,9 @@ const ImpactStoriesSection: React.FC = () => {
         {/* Main Content Grid */}
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 xl:gap-24">
           {/* Left: Image with Stats Card */}
-          <div className="relative w-full lg:w-[630px] flex-shrink-0">
+          <div className="relative w-full lg:w-[630px] shrink-0">
             {/* Main Image */}
-            <div className="relative w-full aspect-[630/653] rounded-xl overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.25)]">
+            <div className="relative w-full aspect-630/653 rounded-xl overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.25)]">
               <Image
                 src="/images/portfolio/frame-332.png"
                 alt="Traveler exploring the city - Impact Stories"
@@ -64,7 +64,7 @@ const ImpactStoriesSection: React.FC = () => {
               {/* Regenerative Tourism */}
               <div className="flex items-start gap-4">
                 {/* Leaf Icon */}
-                <div className="relative w-7 h-7 flex-shrink-0 mt-0.5">
+                <div className="relative w-7 h-7 shrink-0 mt-0.5">
                   <Image
                     src="/images/about/values/guidance_service-animal-2.png"
                     alt="Regenerative Tourism"
@@ -87,7 +87,7 @@ const ImpactStoriesSection: React.FC = () => {
               {/* Community Empowerment */}
               <div className="flex items-start gap-4">
                 {/* People Icon */}
-                <div className="relative w-7 h-7 flex-shrink-0 mt-0.5">
+                <div className="relative w-7 h-7 shrink-0 mt-0.5">
                   <Image
                     src="/images/portfolio/formkit_people.png"
                     alt="Community Empowerment"
