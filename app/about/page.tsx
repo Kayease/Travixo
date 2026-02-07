@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
-import { ProcessSection } from "../components/home/ProcessSection";
-import { ValuesSection } from "../components/home/ValuesSection";
-import { AboutHeroSection } from "../components/about/AboutHeroSection";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { ProcessSection } from "@/components/home/ProcessSection";
+import { ValuesSection } from "@/components/home/ValuesSection";
+import { AboutHeroSection } from "@/components/about/AboutHeroSection";
 
 /**
  * About Page

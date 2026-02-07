@@ -16,8 +16,8 @@
 
 import React from "react";
 import Image from "next/image";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 // Metadata for SEO
 export const metadata = {
@@ -36,7 +36,7 @@ const TESTIMONIALS_DATA = [
     name: "Sarah Johnson",
     location: "New York, USA",
     rating: 5,
-    image: "/images/room/desktop---55.png",
+    image: "/images/room/cards/testimonial-1.png",
     testimonial:
       "Our trip to Thailand was absolutely magical! The attention to detail and personalized service from Travixo made it an unforgettable experience. Every moment was perfectly planned.",
     tour: "Bangkok Temple Tour",
@@ -47,7 +47,7 @@ const TESTIMONIALS_DATA = [
     name: "Michael Chen",
     location: "Singapore",
     rating: 5,
-    image: "/images/room/desktop---56.png",
+    image: "/images/room/cards/testimonial-2.png",
     testimonial:
       "I've traveled with many companies, but Travixo stands out for their professionalism and genuine care for their clients. The safari experience exceeded all expectations!",
     tour: "African Safari Adventure",
@@ -58,7 +58,7 @@ const TESTIMONIALS_DATA = [
     name: "Emma Rodriguez",
     location: "Madrid, Spain",
     rating: 5,
-    image: "/images/room/desktop---57.png",
+    image: "/images/room/cards/testimonial-3.png",
     testimonial:
       "Travixo turned our honeymoon into a dream come true. From the stunning locations to the impeccable service, everything was perfect. Highly recommended!",
     tour: "Maldives Luxury Retreat",
@@ -69,7 +69,7 @@ const TESTIMONIALS_DATA = [
     name: "James Anderson",
     location: "London, UK",
     rating: 5,
-    image: "/images/room/desktop---58.png",
+    image: "/images/room/cards/testimonial-4.png",
     testimonial:
       "The cultural immersion and authentic experiences provided by Travixo were beyond compare. Our guide was knowledgeable and passionate about sharing local traditions.",
     tour: "Japan Cultural Journey",
@@ -80,7 +80,7 @@ const TESTIMONIALS_DATA = [
     name: "Sophia Williams",
     location: "Sydney, Australia",
     rating: 5,
-    image: "/images/room/desktop---59.png",
+    image: "/images/room/cards/testimonial-5.png",
     testimonial:
       "As a solo traveler, I felt safe and well-cared for throughout my entire journey. Travixo's team was always available and went above and beyond to ensure my comfort.",
     tour: "European Adventure",
@@ -91,7 +91,7 @@ const TESTIMONIALS_DATA = [
     name: "David Park",
     location: "Seoul, South Korea",
     rating: 5,
-    image: "/images/room/desktop---55.png",
+    image: "/images/room/cards/testimonial-1.png",
     testimonial:
       "The value for money was exceptional. Beautiful accommodations, amazing food, and incredible sights - all without breaking the bank. Thank you, Travixo!",
     tour: "Bali Paradise Tour",

@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
-import { DestinationsHeroSection } from "../components/destinations/DestinationsHeroSection";
-import { DestinationsGridSection } from "../components/destinations/DestinationsGridSection";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { DestinationsHeroSection } from "@/components/destinations/DestinationsHeroSection";
+import { DestinationsGridSection } from "@/components/destinations/DestinationsGridSection";
 
 /**
  * DestinationsPage (View All) Component

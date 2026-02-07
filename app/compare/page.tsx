@@ -9,9 +9,9 @@
  */
 
 import React from 'react';
-import { CompareHeroSection, CompareTableSection } from '../components/compare';
-import { Navbar } from '../components/layout/Navbar';
-import { Footer } from '../components/layout/Footer';
+import { CompareHeroSection, CompareTableSection } from '@/components/compare';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 
 // Metadata for SEO
 export const metadata = {

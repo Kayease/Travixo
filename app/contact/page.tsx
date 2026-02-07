@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 /**
  * ContactHeroSection Component
@@ -85,7 +85,7 @@ const ContactFormSection = () => {
             {/* Image */}
             <div className="relative h-[280px] md:h-[351px] rounded-xl overflow-hidden">
               <Image
-                src="/images/travixo-tours/frame-306.png"
+                src="/images/travixo-tours/cards/contact.png"
                 alt="Beautiful waterfall"
                 fill
                 className="object-cover"

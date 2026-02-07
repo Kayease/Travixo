@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useCallback } from "react";
-import { Toast } from "@/app/components/ui/Toast";
+import { Toast } from "@/components/ui/Toast";
 
 type ToastType = "success" | "error" | "info" | "warning";
 
@@ -42,7 +42,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <div className="fixed bottom-5 right-5 z-[2000] flex flex-col gap-3">
+      <div className="fixed bottom-5 right-5 z-2000 flex flex-col gap-3">
         {toasts.map((toast) => (
           <Toast
             key={toast.id}

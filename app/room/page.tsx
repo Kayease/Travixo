@@ -14,9 +14,9 @@ import {
   RoomGridSection,
   FavoriteRoomSection,
   RoomTestimonialSection,
-} from "../components/room";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
+} from "@/components/room";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 // Metadata for SEO
 export const metadata = {

@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import { Blog2HeroSection, Blog2ContentSection } from '../components/blog2';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import { Blog2HeroSection, Blog2ContentSection } from '@/components/blog2';
 
 // Metadata for SEO
 export const metadata = {

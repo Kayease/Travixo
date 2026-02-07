@@ -1,9 +1,9 @@
-import { Navbar } from "@/app/components/layout/Navbar";
-import { Footer } from "@/app/components/layout/Footer";
-import { ParisToursSection } from "@/app/components/paris/ParisToursSection";
-import { AdventureSection } from "@/app/components/paris/AdventureSection";
-import { WhenToVisitSection } from "@/app/components/paris/WhenToVisitSection";
-import { TestimonialSection } from "@/app/components/paris/TestimonialSection";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { ParisToursSection } from "@/components/paris/ParisToursSection";
+import { AdventureSection } from "@/components/paris/AdventureSection";
+import { WhenToVisitSection } from "@/components/paris/WhenToVisitSection";
+import { TestimonialSection } from "@/components/paris/TestimonialSection";
 
 export default function ParisPage() {
   return (
@@ -36,7 +36,7 @@ export default function ParisPage() {
           muted
           playsInline
         >
-          <source src="/images/paris/220942_small.mp4" type="video/mp4" />
+          <source src="/images/paris/paris-hero.mp4" type="video/mp4" />
         </video>
       </section>
 

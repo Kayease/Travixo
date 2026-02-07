@@ -15,9 +15,9 @@ import {
   StayStatsSection,
   StayTestimonialSection,
   StayCommunitySection,
-} from "../components/stay";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
+} from "@/components/stay";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 // Metadata for SEO
 export const metadata = {

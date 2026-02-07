@@ -11,8 +11,8 @@
  */
 
 import React from "react";
-import { CheckoutSection } from "../components/checkout";
-import Navbar from "../components/layout/Navbar";
+import { CheckoutSection } from "@/components/checkout";
+import Navbar from "@/components/layout/Navbar";
 
 // Metadata for SEO
 export const metadata = {
@@ -39,7 +39,7 @@ export default async function CheckoutPage({
     image:
       typeof resolvedParams.image === "string"
         ? resolvedParams.image
-        : "/images/checkout/frame-427.png",
+        : "/images/checkout/success.png",
   };
 
   return (

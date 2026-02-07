@@ -10,9 +10,9 @@
  */
 
 import React from 'react';
-import { HistoryHeroSection, HistoryContentSection } from '../components/history';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+import { HistoryHeroSection, HistoryContentSection } from '@/components/history';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 
 // Metadata for SEO
 export const metadata = {

@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { Navbar } from "../../components/layout/Navbar";
-import { Footer } from "../../components/layout/Footer";
-import { BlogDetailHero } from "../../components/blogs/BlogDetailHero";
-import { BlogDetailContent } from "../../components/blogs/BlogDetailContent";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { BlogDetailHero } from "@/components/blogs/BlogDetailHero";
+import { BlogDetailContent } from "@/components/blogs/BlogDetailContent";
 
 /**
  * BlogDetailPage Component
@@ -16,7 +16,7 @@ const BlogDetailPage: React.FC = () => {
   const blogData = {
     title: "Discover the World, One Journey at a Time",
     date: "13 May, 2024",
-    featuredImage: "/images/blogs/frame-332.png",
+    featuredImage: "/images/blogs/cards/article-1.png",
     content: [
       "Travel is more than visiting new places—it's about creating memories, experiencing cultures, and seeing the world from a fresh perspective. Whether you're dreaming of peaceful beaches, vibrant cities, or breathtaking mountain escapes, every journey has a story waiting to be told.",
       "At Travixo, we believe travel should feel exciting, effortless, and deeply personal. We focus on creating travel experiences that match your pace, interests, and style. From cultural tours and nature escapes to luxury getaways and budget-friendly trips, our goal is to turn your travel dreams into reality—without stress or compromise.",

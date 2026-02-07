@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
-import { Navbar } from "../../components/layout/Navbar";
-import { Footer } from "../../components/layout/Footer";
-import { TourDetailHeroSection } from "../../components/tours/TourDetailHeroSection";
-import { TourGallerySection } from "../../components/tours/TourGallerySection";
-import { TourOverviewSection } from "../../components/tours/TourOverviewSection";
-import { TourBookingCard } from "../../components/tours/TourBookingCard";
-import { TourHighlightsSection } from "../../components/tours/TourHighlightsSection";
-import { TourIncludesSection } from "../../components/tours/TourIncludesSection";
-import { TourCancellationSection } from "../../components/tours/TourCancellationSection";
-import { TourFAQSection } from "../../components/tours/TourFAQSection";
-import { TourReviewsSection } from "../../components/tours/TourReviewsSection";
-import { RelatedToursSection } from "../../components/tours/RelatedToursSection";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { TourDetailHeroSection } from "@/components/tours/TourDetailHeroSection";
+import { TourGallerySection } from "@/components/tours/TourGallerySection";
+import { TourOverviewSection } from "@/components/tours/TourOverviewSection";
+import { TourBookingCard } from "@/components/tours/TourBookingCard";
+import { TourHighlightsSection } from "@/components/tours/TourHighlightsSection";
+import { TourIncludesSection } from "@/components/tours/TourIncludesSection";
+import { TourCancellationSection } from "@/components/tours/TourCancellationSection";
+import { TourFAQSection } from "@/components/tours/TourFAQSection";
+import { TourReviewsSection } from "@/components/tours/TourReviewsSection";
+import { RelatedToursSection } from "@/components/tours/RelatedToursSection";
 
 /**
  * Sample tour data for demonstration
@@ -27,10 +27,10 @@ const SAMPLE_TOUR = {
 
   // Gallery Images
   images: [
-    { url: "/images/products/frame-369.png", alt: "Eiffel Tower View" },
-    { url: "/images/products/frame-370.png", alt: "Louvre Museum" },
-    { url: "/images/products/frame-371.png", alt: "Centre Pompidou" },
-    { url: "/images/products/frame-372.png", alt: "Parisian Street" },
+    { url: "/images/products/cards/gallery-1.png", alt: "Eiffel Tower View" },
+    { url: "/images/products/cards/gallery-2.png", alt: "Louvre Museum" },
+    { url: "/images/products/cards/gallery-3.png", alt: "Centre Pompidou" },
+    { url: "/images/products/cards/gallery-4.png", alt: "Parisian Street" },
   ],
 
   // Overview Data
@@ -107,8 +107,8 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       comment:
         "I don't know how to improve the tour because it was great professional run funny great day lover som and Grand Canyon, brilliant enough time to do everything not rushed great tour",
       images: [
-        "/images/products/frame-403.png",
-        "/images/products/frame-404.png",
+        "/images/products/cards/gallery-5.png",
+        "/images/products/cards/gallery-6.png",
       ],
     },
   ],
@@ -120,7 +120,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       title: "Eiffel Tower",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame_51.png",
+      imageUrl: "/images/products/cards/product-1.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -136,7 +136,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       title: "Louvre Museum",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 485.png",
+      imageUrl: "/images/products/cards/product-2.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",
@@ -152,7 +152,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       title: "Centre Pompidou",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-      imageUrl: "/images/products/Frame 486.png",
+      imageUrl: "/images/products/cards/product-3.png",
       price: 100,
       originalPrice: 120,
       discount: "27% Off",

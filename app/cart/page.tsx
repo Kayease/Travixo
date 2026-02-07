@@ -8,9 +8,9 @@
  */
 
 import React from 'react';
-import { CartHeroSection, CartItemsSection } from '../components/cart';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+import { CartHeroSection, CartItemsSection } from '@/components/cart';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 
 // Metadata for SEO
 export const metadata = {

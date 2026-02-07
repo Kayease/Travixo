@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
-import { TeamHeroSection } from "../components/team/TeamHeroSection";
-import { TeamBannerSection } from "../components/team/TeamBannerSection";
-import { TeamGridSection } from "../components/team/TeamGridSection";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { TeamHeroSection } from "@/components/team/TeamHeroSection";
+import { TeamBannerSection } from "@/components/team/TeamBannerSection";
+import { TeamGridSection } from "@/components/team/TeamGridSection";
 
 /**
  * TeamPage Component

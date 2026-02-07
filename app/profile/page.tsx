@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useToast } from "../context/ToastContext";
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 /**
  * Profile Hero Section
@@ -150,7 +150,7 @@ const ProfileContentSection = () => {
       date: "March 15 - 22, 2026",
       status: "Confirmed",
       price: "$2,499",
-      image: "/images/travixo-tours/frame-302.png",
+      image: "/images/travixo-tours/cards/community-2.png",
     },
     {
       id: "BK-2026-002",
@@ -158,7 +158,7 @@ const ProfileContentSection = () => {
       date: "June 10 - 20, 2026",
       status: "Pending",
       price: "$1,899",
-      image: "/images/travixo-tours/frame-304.png",
+      image: "/images/travixo-tours/cards/community-4.png",
     },
     {
       id: "BK-2025-003",
@@ -166,7 +166,7 @@ const ProfileContentSection = () => {
       date: "December 5 - 12, 2025",
       status: "Completed",
       price: "$1,599",
-      image: "/images/travixo-tours/frame-303.png",
+      image: "/images/travixo-tours/cards/community-3.png",
     },
   ];
 

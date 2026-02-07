@@ -13,8 +13,8 @@ import {
   RoomDetailContentSection,
   CustomerReviewsSection,
   NewFavoriteSection,
-} from "../components/room-detail";
-import { Navbar } from "../components/layout/Navbar";
+} from "@/components/room-detail";
+import { Navbar } from "@/components/layout/Navbar";
 
 // Metadata for SEO
 export const metadata = {

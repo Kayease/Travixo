@@ -8,8 +8,8 @@
  */
 
 import React from 'react';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 import {
   PortfolioHeroSection,
   PortfolioBannerSection,
@@ -17,7 +17,7 @@ import {
   ImpactStoriesSection,
   VoiceOfDiscoverySection,
   PortfolioCTASection
-} from '../components/portfolio';
+} from '@/components/portfolio';
 
 // Metadata for SEO
 export const metadata = {

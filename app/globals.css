@@ -52,6 +52,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair), ui-serif, Georgia, serif;
 }
 
+/* ========== Interactive elements – cursor ========== */
+button:not(:disabled),
+a[href],
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+
 /* ========== Floating Animation for Hero Images ========== */
 /* Used in HeroSection for floating image gallery effect */
 @keyframes float {
@@ -73,4 +83,35 @@ h1, h2, h3, h4, h5, h6 {
 .animate-float-delay-3 { animation-delay: 1s; }
 .animate-float-delay-4 { animation-delay: 1.5s; }
 .animate-float-delay-5 { animation-delay: 2s; }
+
+/* ========== Explore section tab content transition ========== */
+@keyframes explore-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes explore-image-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-explore-fade-in {
+  animation: explore-fade-in 0.45s ease-out forwards;
+}
+
+.animate-explore-image-in {
+  animation: explore-image-in 0.5s ease-out forwards;
+}
 
