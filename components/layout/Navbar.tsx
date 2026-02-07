@@ -20,61 +20,31 @@ interface DestinationItem {
 const topDestinations = ["France", "Thailand", "United Kingdom", "View all"];
 
 const featuredDestinations: DestinationItem[] = [
-  {
-    name: "Paris",
-    image: "/images/destinations/cards/paris.png",
-  },
-  {
-    name: "Bali",
-    image: "/images/destinations/cards/indonesia.png",
-  },
-  {
-    name: "London",
-    image: "/images/destinations/cards/london.png",
-  },
+  { name: "Paris", image: "/images/destinations/cards/Component_68.png" },
+  { name: "Bali", image: "/images/destinations/cards/Component_69.png" },
+  { name: "London", image: "/images/destinations/cards/Component_70.png" },
 ];
 
 const destinationCities: Record<string, DestinationItem[]> = {
   France: [
-    {
-      name: "Paris",
-      image: "/images/destinations/cards/paris.png",
-    },
-    {
-      name: "Nice",
-      image: "/images/destinations/cards/nice.png",
-    },
-    {
-      name: "Lyon",
-      image: "/images/destinations/cards/lyon.png",
-    },
+    { name: "Paris", image: "/images/destinations/cards/Component_68.png" },
+    { name: "Nice", image: "/images/destinations/cards/Component_69.png" },
+    { name: "Lyon", image: "/images/destinations/cards/Component_70.png" },
   ],
   Thailand: [
-    {
-      name: "Bangkok",
-      image: "/images/destinations/cards/bangkok.png",
-    },
-    {
-      name: "Phuket",
-      image: "/images/destinations/cards/phuket.png",
-    },
+    { name: "Bangkok", image: "/images/destinations/cards/Component_71.png" },
+    { name: "Phuket", image: "/images/destinations/cards/Component_72.png" },
     {
       name: "Chiang Mai",
-      image: "/images/destinations/cards/chiang-mai.png",
+      image: "/images/destinations/cards/Component_73.png",
     },
   ],
   "United Kingdom": [
-    {
-      name: "London",
-      image: "/images/destinations/cards/london.png",
-    },
-    {
-      name: "Edinburgh",
-      image: "/images/destinations/cards/edinburgh.png",
-    },
+    { name: "London", image: "/images/destinations/cards/Component_68.png" },
+    { name: "Edinburgh", image: "/images/destinations/cards/Component_69.png" },
     {
       name: "Manchester",
-      image: "/images/destinations/cards/manchester.png",
+      image: "/images/destinations/cards/Component_70.png",
     },
   ],
   "View all": featuredDestinations,
@@ -182,7 +152,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         {/* Right Column - Promotional Banner */}
         <div className="ml-auto relative w-[298px] h-[298px] rounded-lg overflow-hidden">
           <Image
-            src="/images/destinations/cards/paris.png"
+            src="/images/destinations/cards/Component_68.png"
             alt="Travel Holiday Promotion"
             fill
             className="object-cover"
