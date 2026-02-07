@@ -30,7 +30,7 @@ const TeamPage: React.FC = () => {
       {/* Hero Section - Page Header */}
       <TeamHeroSection
         title="Meet our teams"
-        subtitle="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        subtitle="The people behind your journey. Our team brings decades of travel expertise and a shared passion for unforgettable experiences."
       />
 
       {/* Banner Image Section */}

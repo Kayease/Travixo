@@ -1,4 +1,5 @@
 "use client";
+/** Site-wide navigation: logo, destination dropdowns, search, and auth links. */
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";

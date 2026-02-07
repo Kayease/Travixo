@@ -105,6 +105,7 @@ export const ProcessSection = () => {
                       src={step.outerIcon}
                       alt=""
                       fill
+                      role="presentation"
                       className="object-contain"
                       sizes="(max-width: 1024px) 80px, 95px"
                     />

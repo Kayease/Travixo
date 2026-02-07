@@ -1,9 +1,9 @@
 /**
  * TravelInformationForm Component
- * 
+ *
  * Form section for collecting traveler details including
  * first name, last name, email, and passport number.
- * 
+ *
  * Design specs from Figma:
  * - Section title: Playfair Display italic, 24px, 600 weight with briefcase icon
  * - Labels: Playfair Display italic, 20px, 600 weight
@@ -11,10 +11,10 @@
  * - Input text: Poppins 16px, 400 weight
  */
 
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 interface TravelInformationFormProps {
   formData: {
@@ -40,7 +40,7 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
           alt="Briefcase"
           width={32}
           height={32}
-          className="object-contain flex-shrink-0"
+          className="object-contain shrink-0"
         />
         <h2 className="font-display italic font-semibold text-[24px] leading-[30px] text-brand-brown">
           Travel Information
@@ -51,13 +51,17 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {/* First Name */}
         <div>
-          <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+          <label
+            htmlFor="checkout-firstName"
+            className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2"
+          >
             First Name
           </label>
           <input
+            id="checkout-firstName"
             type="text"
             value={formData.firstName}
-            onChange={(e) => onChange('firstName', e.target.value)}
+            onChange={(e) => onChange("firstName", e.target.value)}
             placeholder="Jimmy"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
@@ -68,13 +72,17 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
 
         {/* Last Name */}
         <div>
-          <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+          <label
+            htmlFor="checkout-lastName"
+            className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2"
+          >
             Last Name
           </label>
           <input
+            id="checkout-lastName"
             type="text"
             value={formData.lastName}
-            onChange={(e) => onChange('lastName', e.target.value)}
+            onChange={(e) => onChange("lastName", e.target.value)}
             placeholder="Jostar"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
@@ -85,13 +93,17 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
 
         {/* Email Address */}
         <div>
-          <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+          <label
+            htmlFor="checkout-email"
+            className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2"
+          >
             Email Address
           </label>
           <input
+            id="checkout-email"
             type="email"
             value={formData.email}
-            onChange={(e) => onChange('email', e.target.value)}
+            onChange={(e) => onChange("email", e.target.value)}
             placeholder="Jimmy@demo.com"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
@@ -102,13 +114,17 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
 
         {/* Passport Number */}
         <div>
-          <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+          <label
+            htmlFor="checkout-passport"
+            className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2"
+          >
             Passport Number
           </label>
           <input
+            id="checkout-passport"
             type="text"
             value={formData.passportNumber}
-            onChange={(e) => onChange('passportNumber', e.target.value)}
+            onChange={(e) => onChange("passportNumber", e.target.value)}
             placeholder="X123456789"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown

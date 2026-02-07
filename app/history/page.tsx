@@ -17,7 +17,7 @@ import Footer from '@/components/layout/Footer';
 // Metadata for SEO
 export const metadata = {
   title: 'Your Travel Legacy | Travixo - Travel & Tour',
-  description: 'A curated odyssey through the world\'s most breathtaking sanctuaries, documented with precision and a refined lens.',
+  description: 'Your travel legacy with Travixo. Relive past journeys and the stories behind our most breathtaking sanctuaries.',
 };
 
 export default function HistoryPage() {

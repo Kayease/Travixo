@@ -59,13 +59,13 @@ const FavoriteRoomSection: React.FC = () => {
 
               {/* Description */}
               <p className="text-base md:text-lg font-normal leading-7 text-[#4B3621] mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt.
+                A refined retreat with golden accents and premium amenities for
+                a restful stay.
               </p>
 
               {/* Check Availability Link */}
-              <a
-                href="#"
+              <Link
+                href="/room-detail"
                 className="inline-flex items-center gap-2 text-lg md:text-xl font-normal text-[#4B3621] hover:text-[#FF6E00] transition-colors duration-300 group"
               >
                 <span>Check Availability</span>
@@ -85,7 +85,7 @@ const FavoriteRoomSection: React.FC = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
 

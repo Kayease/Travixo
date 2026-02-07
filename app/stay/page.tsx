@@ -23,7 +23,7 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata = {
   title: "Stay | Travixo - Travel & Tour",
   description:
-    "A curated odyssey through the world's most breathtaking sanctuaries, documented with precision and a refined lens.",
+    "Find your perfect stay. Browse handpicked accommodations for every journey, from safari lodges to city retreats.",
 };
 
 export default function StayPage() {

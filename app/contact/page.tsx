@@ -24,8 +24,8 @@ const ContactHeroSection = () => {
 
           {/* Subtitle */}
           <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown max-w-[780px] mx-auto">
-            Get in Touch with Us Start Planning Your Ultimate Safari Adventure
-            Today!
+            Get in Touch with Us. Start planning your ultimate safari adventure
+            today.
           </p>
         </div>
       </div>

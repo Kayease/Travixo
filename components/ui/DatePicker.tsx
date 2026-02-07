@@ -1,4 +1,5 @@
 "use client";
+/** Calendar-style date picker for tour and stay search. */
 import React, { useState, useRef, useEffect } from "react";
 
 interface DatePickerProps {

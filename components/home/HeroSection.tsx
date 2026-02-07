@@ -13,9 +13,7 @@ const PENDULUM_OMEGA = (2 * Math.PI) / PENDULUM_PERIOD;
 const PENDULUM_MAX_TIME = 7; // stop animation after 7s
 const PENDULUM_REST_THRESHOLD = 0.25; // degrees below which we consider "at rest"
 
-/**
- * HeroSection Component
- */
+/** Homepage hero with search, date picker, and floating image gallery. */
 export const HeroSection = () => {
   const [pendulumRotation, setPendulumRotation] = useState(0);
   const pendulumRotationRef = useRef(0); // keep in sync so leave animation starts from current position

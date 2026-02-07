@@ -22,7 +22,7 @@ import {
 // Metadata for SEO
 export const metadata = {
   title: 'Our Global Footprint | Travixo - Travel & Tour',
-  description: 'A curated odyssey through the world\'s most breathtaking sanctuaries, documented with precision and a refined lens.',
+  description: 'Our global footprint. Discover the destinations and expeditions that define Travixo\'s commitment to extraordinary travel.',
 };
 
 export default function PortfolioPage() {

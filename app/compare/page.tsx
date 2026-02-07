@@ -16,7 +16,7 @@ import { Footer } from '@/components/layout/Footer';
 // Metadata for SEO
 export const metadata = {
   title: 'Compare Our Experiences | Travixo - Travel & Tour',
-  description: 'A curated odyssey through the world\'s most breathtaking sanctuaries, documented with precision and a refined lens.',
+  description: 'Compare tours and experiences. Side-by-side details on duration, price, and inclusions to choose your ideal adventure.',
 };
 
 export default function ComparePage() {

@@ -104,10 +104,11 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
         <div className="bg-white border border-brand-brown/20 rounded-xl p-4 md:p-6">
           {/* Card Number Field */}
           <div className="mb-4 md:mb-6">
-            <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+            <label htmlFor="checkout-cardNumber" className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
               Card Number
             </label>
             <input
+              id="checkout-cardNumber"
               type="text"
               value={cardData.cardNumber}
               onChange={(e) => onCardChange('cardNumber', formatCardNumber(e.target.value))}
@@ -124,10 +125,11 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {/* Expiry Date */}
             <div>
-              <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+              <label htmlFor="checkout-expiry" className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
                 Expiry Date
               </label>
               <input
+                id="checkout-expiry"
                 type="text"
                 value={cardData.expiryDate}
                 onChange={(e) => onCardChange('expiryDate', formatExpiryDate(e.target.value))}
@@ -142,10 +144,11 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
 
             {/* CVV */}
             <div>
-              <label className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+              <label htmlFor="checkout-cvv" className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
                 CVV
               </label>
               <input
+                id="checkout-cvv"
                 type="text"
                 value={cardData.cvv}
                 onChange={(e) => onCardChange('cvv', e.target.value.replace(/\D/g, '').substring(0, 4))}

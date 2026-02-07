@@ -334,12 +334,11 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
       {/* Terms Text */}
       <p className="text-center text-base text-[#4B3621] mt-6 leading-6">
         by clicking proceed, you agree to our{" "}
-        <a href="#" className="underline hover:text-[#FF6E00] cursor-pointer">
+        <a href="/terms" className="underline hover:text-[#FF6E00] cursor-pointer">
           Terms of Service
         </a>
-        <br />
-        and{" "}
-        <a href="#" className="underline hover:text-[#FF6E00] cursor-pointer">
+        {" "}and our{" "}
+        <a href="/terms#cancellation" className="underline hover:text-[#FF6E00] cursor-pointer">
           Cancellation Policy
         </a>
         .

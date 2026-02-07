@@ -15,7 +15,7 @@ import Footer from '@/components/layout/Footer';
 // Metadata for SEO
 export const metadata = {
   title: 'Your Travel Selection | Travixo - Travel & Tour',
-  description: 'A curated odyssey through the world\'s most breathtaking sanctuaries, documented with precision and a refined lens.',
+  description: 'Review your travel selection. Manage items in your cart and proceed to checkout for tours, stays, and experiences.',
 };
 
 export default function CartPage() {

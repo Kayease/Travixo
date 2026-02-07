@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Interface for favorite room data
@@ -51,8 +52,8 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
         </p>
 
         {/* Check Availability Link */}
-        <a
-          href="#"
+        <Link
+          href="/room-detail"
           className="inline-flex items-center gap-2 text-lg md:text-xl font-normal text-[#4B3621] hover:text-[#FF6E00] transition-colors duration-300 group/link"
         >
           <span>Check Availability</span>
@@ -72,7 +73,7 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
               strokeLinejoin="round"
             />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );

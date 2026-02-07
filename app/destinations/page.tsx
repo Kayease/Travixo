@@ -27,7 +27,7 @@ const DestinationsPage: React.FC = () => {
 
       {/* Hero Section - Page Header */}
       <DestinationsHeroSection 
-        title="Discover the Taravixo"
+        title="Discover Travixo"
         subtitle="From vast savannas teeming with wildlife to breathtaking landscapes untouched by time, every safari promises adventure."
       />
 

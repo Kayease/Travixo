@@ -23,9 +23,23 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://travixo.com";
+
 export const metadata: Metadata = {
   title: "Travixo - Travel & Tour",
   description: "Your Safari Hub: News, Tips, and Inspiration",
+  openGraph: {
+    title: "Travixo - Travel & Tour",
+    description: "Your Safari Hub: News, Tips, and Inspiration",
+    url: siteUrl,
+    siteName: "Travixo",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Travixo - Travel & Tour",
+    description: "Your Safari Hub: News, Tips, and Inspiration",
+  },
 };
 
 import { ToastProvider } from "./context/ToastContext";
@@ -41,7 +55,15 @@ export default function RootLayout({
         className={`${playfair.variable} ${poppins.variable} antialiased`}
         suppressHydrationWarning
       >
-        <ToastProvider>{children}</ToastProvider>
+        <a
+          href="#main-content"
+          className="absolute left-4 top-4 z-100 -translate-y-full rounded bg-brand-orange px-4 py-2 text-white transition focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+        >
+          Skip to main content
+        </a>
+        <div id="main-content">
+          <ToastProvider>{children}</ToastProvider>
+        </div>
       </body>
     </html>
   );
