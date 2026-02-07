@@ -47,25 +47,26 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
       href={slug}
       className="group w-full cursor-pointer flex flex-col items-center"
     >
-      {/* Image Container - Circle */}
+      {/* Image Container - Rectangular with 12px radius */}
       <div
-        className="relative w-full aspect-square overflow-hidden transition-all duration-300 group-hover:shadow-xl rounded-full"
+        className="relative w-full aspect-418/487 overflow-hidden transition-all duration-300 group-hover:shadow-xl"
         style={{
           border: "1px solid rgba(75, 54, 33, 0.2)",
           boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+          borderRadius: "12px",
         }}
       >
         <Image
           src={imageUrl}
           alt={imageAlt || name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
 
       {/* Destination Name - Playfair Display Italic */}
-      <h3 className="font-display italic font-semibold text-xl md:text-2xl lg:text-[28px] leading-[37px] text-brand-brown text-center mt-4 md:mt-5 transition-colors duration-300 group-hover:text-brand-orange">
+      <h3 className="font-display italic font-semibold text-xl md:text-2xl lg:text-[28px] leading-[37px] text-[#4B3621] text-center mt-4 md:mt-6 lg:mt-8 transition-colors duration-300 group-hover:text-[#FF6E00]">
         {name}
       </h3>
     </Link>

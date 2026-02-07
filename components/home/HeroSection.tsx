@@ -189,7 +189,7 @@ export const HeroSection = () => {
           {/* CTA Button with bottom-to-top fill animation */}
           <button
             type="button"
-            onClick={() => router.push("/paris")}
+            onClick={() => router.push("/destinations")}
             className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group cursor-pointer"
             style={{
               width: "200px",
@@ -223,6 +223,7 @@ export const HeroSection = () => {
               (image, index) => (
                 <div
                   key={`img-${index}`}
+                  onClick={() => router.push("/destinations")}
                   className="relative shrink-0 overflow-hidden transition-transform duration-500 cursor-pointer"
                   style={{
                     width: "272px",

@@ -13,6 +13,7 @@ import Image from "next/image";
 import { Button } from "../ui/Button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { DatePicker } from "../ui/DatePicker";
 
 /* ============================================
    Type Definitions
@@ -48,10 +49,10 @@ const cartItems: CartItem[] = [
     title: "Deluxe Ocean Suite",
     image: "/images/cart/cart-item.png",
     location: "Amalfi Paims,Italy",
-    dates: "Oct 12-18, 2026",
+    dates: "2026-10-12",
     amenities: ["Private Balcony", "Butler Service", "King Bed"],
     price: 2500,
-    actionLabel: "Edit Date",
+    actionLabel: "Customize",
   },
   {
     id: "2",
@@ -59,7 +60,7 @@ const cartItems: CartItem[] = [
     title: "Amalfi Coast Private Boat Tour",
     image: "/images/cart/cart-item.png",
     location: "Amalfi Paims,Italy",
-    dates: "Oct 12-18, 2026",
+    dates: "2026-10-12",
     amenities: ["Private Balcony", "Butler Service", "King Bed"],
     price: 2500,
     actionLabel: "Customize",
@@ -144,10 +145,14 @@ interface CartItemCardProps {
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
   const [currentDate, setCurrentDate] = useState(item.dates);
-  const dateInputRef = React.useRef<HTMLInputElement>(null);
+  const datePickerWrapperRef = React.useRef<HTMLDivElement>(null);
 
   const handleEditClick = () => {
-    dateInputRef.current?.showPicker();
+    // Find the button inside the DatePicker wrapper and click it to open the calendar
+    const button = datePickerWrapperRef.current?.querySelector("button");
+    if (button) {
+      button.click();
+    }
   };
 
   return (
@@ -191,17 +196,14 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
           {/* Dates */}
           <div className="flex items-center gap-2 relative">
             <CalendarIcon />
-            <span className="text-lg text-[#4B3621]">{currentDate}</span>
-            <input
-              ref={dateInputRef}
-              type="date"
-              className="absolute inset-0 opacity-0 cursor-pointer pointer-events-none"
-              onChange={(e) => {
-                if (e.target.value) {
-                  setCurrentDate(e.target.value);
-                }
-              }}
-            />
+            <div ref={datePickerWrapperRef} className="w-[160px]">
+              <DatePicker
+                value={currentDate}
+                onChange={setCurrentDate}
+                variant="transparent"
+                placeholder="Select Date"
+              />
+            </div>
           </div>
         </div>
 
@@ -334,11 +336,17 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
       {/* Terms Text */}
       <p className="text-center text-base text-[#4B3621] mt-6 leading-6">
         by clicking proceed, you agree to our{" "}
-        <a href="/terms" className="underline hover:text-[#FF6E00] cursor-pointer">
+        <a
+          href="/terms"
+          className="underline hover:text-[#FF6E00] cursor-pointer"
+        >
           Terms of Service
-        </a>
-        {" "}and our{" "}
-        <a href="/terms#cancellation" className="underline hover:text-[#FF6E00] cursor-pointer">
+        </a>{" "}
+        and our{" "}
+        <a
+          href="/terms#cancellation"
+          className="underline hover:text-[#FF6E00] cursor-pointer"
+        >
           Cancellation Policy
         </a>
         .

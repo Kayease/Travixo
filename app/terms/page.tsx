@@ -384,8 +384,8 @@ const TermsContentSection = () => {
               <p>
                 <strong>Email:</strong>{" "}
                 <a
-                  href="mailto:legal@travixo.com"
-                  className="text-brand-orange hover:underline"
+                
+                  className="text-brand-orange "
                 >
                   legal@travixo.com
                 </a>

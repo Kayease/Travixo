@@ -325,7 +325,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               {/* Book Now Button - Matches FeaturedToursSection implementation */}
               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
                 <Link
-                  href="/paris"
+                  href={`/checkout?name=${encodeURIComponent(tour.title)}&price=${tour.price}&image=${encodeURIComponent(tour.imageUrl)}`}
                   className="relative flex items-center justify-center w-[202px] h-[45px] bg-white border border-[#FF6E00] rounded-[12px] font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer"
                 >
                   <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />

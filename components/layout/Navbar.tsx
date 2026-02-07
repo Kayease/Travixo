@@ -133,7 +133,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
             return (
               <Link
                 key={index}
-                href="/paris"
+                href={destination === "View all" ? "/destinations" : "/paris"}
                 className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
                 onClick={onClose}
                 onMouseEnter={() => setHoveredCountry(destination)}

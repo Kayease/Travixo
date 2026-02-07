@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 /**
  * Destination data for the carousel.
@@ -163,6 +164,7 @@ const DestinationCard = ({
  * DestinationsSection Component
  */
 export const DestinationsSection = () => {
+  const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = React.useState(false);
   const [startX, setStartX] = React.useState(0);
@@ -262,7 +264,7 @@ export const DestinationsSection = () => {
 
             <button
               className="w-[300px] h-[50px] bg-white border border-brand-orange rounded-[12px] font-display italic font-normal text-[18px] leading-[24px] text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              onClick={() => console.log("Discovering more destinations...")}
+              onClick={() => router.push("/destinations")}
             >
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
               <span className="relative z-10 group-hover:text-white transition-colors duration-300">
