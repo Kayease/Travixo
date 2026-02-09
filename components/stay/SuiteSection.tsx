@@ -46,7 +46,6 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
       actionLabel: "Customize",
     };
     addToCart(cartItem);
-    router.push("/cart");
   };
 
   return (

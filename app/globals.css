@@ -1,19 +1,31 @@
 /* ===== Scrollbar Hiding ===== */
 /* Hide scrollbar for all browsers */
-html, body, * {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
+html,
+body,
+* {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
-html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
 }
+
 @import "tailwindcss";
 
 :root {
   /* Brand Colors extracted from design */
-  --color-brand-brown: #4b3621; /* Deep brown from textual content */
-  --color-brand-orange: #f97316; /* Vibrant orange for CTA */
-  --color-brand-cream: #fdfbf7; /* Light cream background */
+  --color-brand-brown: #4b3621;
+  /* Deep brown from textual content */
+  --color-brand-orange: #f97316;
+  /* Vibrant orange for CTA */
+  --color-brand-cream: #fdfbf7;
+  /* Light cream background */
 }
 
 @theme {
@@ -26,10 +38,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
   /* Poppins - Default font for all text */
   --font-sans: var(--font-poppins);
   --font-body: var(--font-poppins);
-  
+
   /* Playfair Display - Applied with font-display class */
   --font-display: var(--font-playfair);
-  
+
   /* Animation */
   --animate-bounce-slow: bounce 3s infinite;
 }
@@ -43,7 +55,12 @@ body {
 }
 
 /* All headings use Poppins by default */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -58,27 +75,54 @@ a[href],
 [role="button"]:not([aria-disabled="true"]) {
   cursor: pointer;
 }
+
 button:disabled {
   cursor: not-allowed;
 }
 
 /* ========== Focus styles for accessibility ========== */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus,
 button:focus-visible,
 a:focus-visible,
-[role="button"]:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--color-brand-cream), 0 0 0 4px var(--color-brand-orange);
+  outline: none !important;
+  box-shadow: none !important;
+  --tw-ring-offset-width: 0px !important;
+  --tw-ring-width: 0px !important;
+  --tw-ring-color: transparent !important;
+}
+
+/* Specific fix for browser default focus rings */
+input,
+select,
+textarea,
+button {
+  outline: none !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* ========== Floating Animation for Hero Images ========== */
 /* Used in HeroSection for floating image gallery effect */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-15px);
   }
@@ -89,11 +133,25 @@ textarea:focus-visible {
 }
 
 /* Staggered animation delays for natural floating effect */
-.animate-float-delay-1 { animation-delay: 0s; }
-.animate-float-delay-2 { animation-delay: 0.5s; }
-.animate-float-delay-3 { animation-delay: 1s; }
-.animate-float-delay-4 { animation-delay: 1.5s; }
-.animate-float-delay-5 { animation-delay: 2s; }
+.animate-float-delay-1 {
+  animation-delay: 0s;
+}
+
+.animate-float-delay-2 {
+  animation-delay: 0.5s;
+}
+
+.animate-float-delay-3 {
+  animation-delay: 1s;
+}
+
+.animate-float-delay-4 {
+  animation-delay: 1.5s;
+}
+
+.animate-float-delay-5 {
+  animation-delay: 2s;
+}
 
 /* ========== Explore section tab content transition ========== */
 @keyframes explore-fade-in {
@@ -101,6 +159,7 @@ textarea:focus-visible {
     opacity: 0;
     transform: translateX(-12px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -110,8 +169,9 @@ textarea:focus-visible {
 @keyframes explore-image-in {
   from {
     opacity: 0;
-    transform: scale(0.98);
+    transform: beach(0.98);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -125,4 +185,3 @@ textarea:focus-visible {
 .animate-explore-image-in {
   animation: explore-image-in 0.5s ease-out forwards;
 }
-

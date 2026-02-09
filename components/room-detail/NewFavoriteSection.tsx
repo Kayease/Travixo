@@ -28,7 +28,7 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
           src={room.image}
           alt={room.name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
@@ -56,7 +56,7 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
           href="/room-detail"
           className="inline-flex items-center gap-2 text-lg md:text-xl font-normal text-[#4B3621] hover:text-[#FF6E00] transition-colors duration-300 group/link"
         >
-          <span>Check Availability</span>
+          <span className="transition-colors duration-300">Check Availability</span>
           {/* Arrow Icon */}
           <svg
             width="24"

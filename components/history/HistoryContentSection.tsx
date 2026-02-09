@@ -26,7 +26,7 @@ const milestonesData: MilestoneData[] = [
   },
   {
     id: '2',
-    title: 'Beach Wandrer',
+    title: 'Beach Wanderer',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
     icon: 'beach',
   },

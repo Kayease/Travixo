@@ -105,7 +105,7 @@ const LocationIcon = () => (
  */
 const PARIS_TOURS = [
   {
-    id: 1,
+    id: "paris-1",
     image: "/images/paris/cards/tour-2.png",
     discount: "27% Off",
     currentPrice: "$100",
@@ -121,7 +121,7 @@ const PARIS_TOURS = [
     slug: "/products/eiffel-tower",
   },
   {
-    id: 2,
+    id: "paris-2",
     image: "/images/paris/cards/tour-3.png",
     discount: "27% Off",
     currentPrice: "$100",
@@ -137,7 +137,7 @@ const PARIS_TOURS = [
     slug: "/products/louvre-museum",
   },
   {
-    id: 3,
+    id: "paris-3",
     image: "/images/paris/cards/tour-4.png",
     discount: "27% Off",
     currentPrice: "$100",
@@ -153,7 +153,7 @@ const PARIS_TOURS = [
     slug: "/products/centre-pompidou",
   },
   {
-    id: 4,
+    id: "paris-4",
     image: "/images/paris/cards/tour-5.png",
     discount: "27% Off",
     currentPrice: "$100",
@@ -169,7 +169,7 @@ const PARIS_TOURS = [
     slug: "/products/champs-elysees",
   },
   {
-    id: 5,
+    id: "paris-5",
     image: "/images/paris/cards/tour-6.png",
     discount: "27% Off",
     currentPrice: "$100",
@@ -185,7 +185,7 @@ const PARIS_TOURS = [
     slug: "/products/catacombs-of-paris",
   },
   {
-    id: 6,
+    id: "paris-6",
     image: "/images/paris/cards/tour-1.png",
     discount: "27% Off",
     currentPrice: "$100",
@@ -207,13 +207,13 @@ const PARIS_TOURS = [
  */
 import { useRouter } from "next/navigation";
 import { useCart, CartItem } from "@/app/context/CartContext";
+import { useWishlist } from "@/app/context/WishlistContext";
+import { WishlistItem } from "@/components/wishlist/WishlistCard";
 
 // ... existing code ...
 
-/**
- * ParisTourCard Component
- */
 const ParisTourCard = ({
+  id,
   image,
   discount,
   currentPrice,
@@ -227,6 +227,7 @@ const ParisTourCard = ({
   location,
   slug,
 }: {
+  id: string | number;
   image: string;
   discount: string;
   currentPrice: string;
@@ -242,6 +243,35 @@ const ParisTourCard = ({
 }) => {
   const router = useRouter();
   const { addToCart } = useCart();
+  const { addToWishlist } = useWishlist();
+
+  const handleAddToWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
+    const originalPriceValue = parseInt(originalPrice.replace(/[^0-9]/g, "")) || 0;
+    const discountValue = parseInt(discount.replace(/[^0-9]/g, "")) || 0;
+
+    const wishlistItem: WishlistItem = {
+      id: id.toString(),
+      slug: slug,
+      title: title,
+      description: description,
+      image: image,
+      price: priceValue,
+      originalPrice: originalPriceValue,
+      rating: rating,
+      reviewCount: reviews,
+      duration: duration,
+      groupSize: people,
+      location: location,
+      type: "tour",
+      discountPercent: discountValue,
+    };
+
+    addToWishlist(wishlistItem);
+  };
 
   const handleBookNow = () => {
     // Parse price
@@ -259,7 +289,6 @@ const ParisTourCard = ({
       actionLabel: "Customize",
     };
     addToCart(cartItem);
-    router.push("/cart");
   };
 
   return (
@@ -303,8 +332,8 @@ const ParisTourCard = ({
 
           {/* Action Buttons */}
           <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-            <Link
-              href="/wishlist"
+            <button
+              onClick={handleAddToWishlist}
               className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
             >
               <div
@@ -321,7 +350,7 @@ const ParisTourCard = ({
                   WebkitMaskPosition: "center",
                 }}
               />
-            </Link>
+            </button>
             <button
               onClick={handleBookNow}
               className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
@@ -432,6 +461,7 @@ export const ParisToursSection = () => {
           {PARIS_TOURS.map((tour) => (
             <ParisTourCard
               key={tour.id}
+              id={tour.id}
               image={tour.image}
               discount={tour.discount}
               currentPrice={tour.currentPrice}

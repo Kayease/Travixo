@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useToast } from "@/app/context/ToastContext";
 
 // Types
 export interface CartItem {
@@ -32,6 +33,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isInitialized, setIsInitialized] = useState(false);
+  const { showToast } = useToast();
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -55,25 +57,21 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const addToCart = (item: CartItem) => {
     setCartItems((prev) => {
-      // Check if item already exists (optional, depends on requirements. For now allow duplicates or unique IDs)
-      // If we want to prevent duplicates based on ID:
       const exists = prev.some((i) => i.id === item.id);
       if (exists) {
-        // Maybe update quantity? For now, just simplistic add.
-        // If we want to allow adding the same tour multiple times, we might need unique IDs per instance.
-        // Let's ensure the ID being passed is unique or handle it.
-        // For this demo, let's append timestamp to ID if we want unique entries,
-        // or just ignore if it's the exact same item ID from the source.
-        // But the user might want to book multiple of the same.
-        // Let's just add it.
         return [...prev, { ...item, id: `${item.id}-${Date.now()}` }];
       }
       return [...prev, item];
     });
+    showToast(`${item.title} added to cart!`, "success");
   };
 
   const removeFromCart = (id: string) => {
+    const item = cartItems.find((i) => i.id === id);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
+    if (item) {
+      showToast(`${item.title} removed from cart`, "info");
+    }
   };
 
   const clearCart = () => {

@@ -50,7 +50,7 @@ const faqData: FAQItem[] = [
     category: "Booking & Payment",
     question: "What payment methods do you accept?",
     answer:
-      "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. All payments are processed securely through encrypted payment gateways.",
+      "We accept all major credit cards (Visa, MasterCard, American Express), UPI, and bank transfers. All payments are processed securely through encrypted payment gateways.",
   },
   {
     category: "Booking & Payment",

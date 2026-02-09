@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { ReviewModal } from "../ui/ReviewModal";
+import { Button } from "../ui/Button";
 
 /**
  * Interface for rating category data
@@ -148,6 +150,16 @@ const ReviewCard: React.FC<{ review: ReviewData }> = ({ review }) => {
  * and a button to write new reviews.
  */
 const CustomerReviewsSection: React.FC = () => {
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+
+  const handleOpenReviewModal = () => setIsReviewModalOpen(true);
+  const handleCloseReviewModal = () => setIsReviewModalOpen(false);
+
+  const handleSubmitReview = (data: any) => {
+    console.log("Room Review Submitted:", data);
+    // In a real app, you would send this to your backend
+  };
+
   // Rating categories
   const ratingCategories: RatingCategory[] = [
     { name: "Hotel", rating: 4.2, maxRating: 5 },
@@ -187,14 +199,26 @@ const CustomerReviewsSection: React.FC = () => {
           {/* Spacer */}
           <div className="hidden sm:block flex-1" />
 
-          <button className="px-6 py-2.5 bg-[#FF6E00] border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 group relative cursor-pointer">
-            {/* Fill animation from bottom to top */}
-            <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
-            <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300">
-              Write Review
-            </span>
-          </button>
+          <Button
+            onClick={handleOpenReviewModal}
+            variant="primary"
+            size="sm"
+            className="md:text-base px-5 py-2 !rounded-[8px]"
+          >
+            Write Review
+          </Button>
         </div>
+
+        {/* Review Modal */}
+        {isReviewModalOpen && (
+          <ReviewModal
+            isOpen={isReviewModalOpen}
+            onClose={handleCloseReviewModal}
+            onSubmit={handleSubmitReview}
+            title="Room Review"
+            subTitle="Share your experience for this room"
+          />
+        )}
 
         {/* ============================================
             Review Summary Card

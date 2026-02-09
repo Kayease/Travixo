@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
 
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCart, CartItem } from "@/app/context/CartContext";
+import { useToast } from "@/app/context/ToastContext";
+import { DatePicker } from "@/components/ui/DatePicker";
 
 /**
  * TourBookingCard Props Interface
@@ -23,13 +24,8 @@ interface TourBookingCardProps {
 /**
  * TourBookingCard Component
  *
- * Sticky booking card with price, date picker, and guest counter.
- *
- * Design Specifications (from Figma):
- * - Card: White background, shadow, border-radius 12px
- * - Price: Large, bold display
- * - Date picker, Adult/Children counters
- * - "Check Availability" CTA button
+ * Sticky booking card with price, date selection, and guest counters.
+ * Matches the design and functionality of the RoomDetail booking widget.
  *
  * @param {TourBookingCardProps} props - Booking data
  * @returns {JSX.Element} The rendered booking card
@@ -37,233 +33,289 @@ interface TourBookingCardProps {
 export const TourBookingCard: React.FC<TourBookingCardProps> = ({
   price,
   currency = "$",
-  defaultDate = "Jan 17, 2026",
-  title,
-  image,
-  location,
-  rating,
+  defaultDate = "2026-01-17",
 }) => {
+  const [activeTab, setActiveTab] = useState<"book" | "enquiry">("book");
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
-  const [activeTab, setActiveTab] = useState<"book" | "enquiry">("book");
+  const [selectedDate, setSelectedDate] = useState(defaultDate);
+  const [isChecking, setIsChecking] = useState(false);
+
+  // Enquiry Form State
+  const [enquiryData, setEnquiryData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    question: "",
+  });
+
   const router = useRouter();
-  const { addToCart } = useCart();
+  const { showToast } = useToast();
 
-  const handleBookNow = () => {
-    // Parse price if it's a string, though props say number.
-    // Assuming price is number based on interface.
+  const handleAction = async () => {
+    if (activeTab === "book") {
+      if (adults === 0 && children === 0) {
+        showToast("Please select at least one guest.", "warning");
+        return;
+      }
 
-    const cartItem: CartItem = {
-      id: `booking-${Date.now()}`,
-      type: "experience",
-      title: title || "Tour Booking",
-      image: image || "", // Should be provided
-      location: location || "",
-      dates: defaultDate, // Or use a selected date state if implemented
-      amenities: [`Adults: ${adults}`, `Children: ${children}`],
-      price: price, // Assuming price is total or per person? The card says /person.
-      // Ideally we'd calculate total, but for now let's pass the base price
-      // or maybe (price * (adults + children)) if user expects that.
-      // Previous impl just passed price. sticking to simple add for now.
-      actionLabel: "Customize",
-    };
+      setIsChecking(true);
+      showToast(
+        `Checking availability for ${adults} Adults and ${children} Children on ${selectedDate}...`,
+        "info",
+      );
 
-    addToCart(cartItem);
-    router.push("/cart");
+      // Simulate API call delay
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      setIsChecking(false);
+
+      // Randomly simulate availability (70% chance available)
+      const isAvailable = Math.random() > 0.3;
+
+      if (isAvailable) {
+        showToast("Great news! This experience is available for your selected dates.", "success");
+      } else {
+        showToast("Sorry, this experience is fully booked for the selected dates. Please try another date.", "error");
+      }
+    } else {
+      if (!enquiryData.name || !enquiryData.email || !enquiryData.question) {
+        showToast("Please fill in all required fields.", "warning");
+        return;
+      }
+
+      setIsChecking(true);
+      // Simulate API call delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setIsChecking(false);
+      showToast(
+        `Thank you, ${enquiryData.name}! Your enquiry has been sent. We will contact you soon!`,
+        "success",
+      );
+      // Reset form
+      setEnquiryData({
+        name: "",
+        email: "",
+        phone: "",
+        question: "",
+      });
+
+      router.push("/contact");
+    }
   };
 
   return (
     <aside
-      className="relative shrink-0"
-      style={{
-        width: "100%",
-        maxWidth: "467px",
-        height: "480px",
-        backgroundColor: "#FFF7E5",
-        borderRadius: "12px",
-        boxSizing: "border-box",
-      }}
+      className="bg-[#FFF7E5] rounded-[12px] w-full lg:w-[467px] relative p-6"
+      style={{ minHeight: "480px" }}
     >
-      <div className="relative w-full h-full">
-        {/* Price Display: Top 18px */}
-        <div className="absolute left-[18px] top-[18px]">
-          <p className="font-display italic font-medium text-[20px] leading-[27px] text-brand-brown">
-            From <br />
-            {currency}
-            {price} <span className="text-[20px]">/person</span>
-          </p>
-        </div>
+      {/* Price Section */}
+      <div className="flex flex-col mb-8">
+        <span className="font-display italic font-medium text-[20px] leading-[27px] text-[#4B3621]">
+          From
+        </span>
+        <span className="font-display italic font-medium text-[20px] leading-[27px] text-[#4B3621]">
+          {currency}{price} <span className="text-[14px]">/person</span>
+        </span>
+      </div>
 
-        {/* Tabs: Top 124px */}
-        <div className="absolute left-0 w-full top-[124px] px-[61px] flex justify-between items-center">
-          <div className="relative">
-            <button
-              onClick={() => setActiveTab("book")}
-              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown cursor-pointer"
-            >
-              Book
-            </button>
-            {activeTab === "book" && (
-              <div
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#FF6E00]"
-                style={{ width: "69px", height: "1px", borderRadius: "8px" }}
-              />
-            )}
-          </div>
-
-          <div className="relative">
-            <button
-              onClick={() => setActiveTab("enquiry")}
-              className="font-display italic font-medium text-[24px] leading-[32px] text-brand-brown cursor-pointer"
-            >
-              Enquiry
-            </button>
-            {activeTab === "enquiry" ? (
-              <div
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#FF6E00]"
-                style={{ width: "87px", height: "1px", borderRadius: "8px" }}
-              />
-            ) : (
-              <div
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[rgba(255,110,0,0.2)]"
-                style={{ width: "87px", height: "1px", borderRadius: "8px" }}
-              />
-            )}
-          </div>
-        </div>
-
-        {/* Date Row: Top 193px */}
-        <div className="absolute left-[18px] right-[18px] top-[193px] flex justify-between items-center h-[30px]">
-          <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown">
-            Date
-          </span>
-          <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown">
-            {defaultDate}
-          </span>
-        </div>
-
-        {/* Separator 1: Top 241px */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[241px] w-[431px] h-px bg-[rgba(0,0,0,0.2)]" />
-
-        {/* Adult Row: Top 259px */}
-        <div className="absolute left-[18px] right-[18px] top-[259px] flex justify-between items-center h-[30px]">
-          <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown">
-            Adult <span className="text-[20px]">( 13+ age )</span>
-          </span>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setAdults(Math.max(0, adults - 1))}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors cursor-pointer"
-            >
-              <svg
-                width="10"
-                height="2"
-                viewBox="0 0 10 2"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 1H9"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-
-            <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown min-w-[20px] text-center">
-              {adults}
-            </span>
-
-            <button
-              onClick={() => setAdults(adults + 1)}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white cursor-pointer"
-            >
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5 1V9M1 5H9"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Separator 2: Top 307px */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[307px] w-[431px] h-px bg-[rgba(0,0,0,0.2)]" />
-
-        {/* Children Row: Top 325px */}
-        <div className="absolute left-[18px] right-[18px] top-[325px] flex justify-between items-center h-[30px]">
-          <span className="font-body italic font-medium text-[20px] text-brand-brown">
-            Children <span className="text-[20px]">( age 3-12 )</span>
-          </span>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setChildren(Math.max(0, children - 1))}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors cursor-pointer"
-            >
-              <svg
-                width="10"
-                height="2"
-                viewBox="0 0 10 2"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 1H9"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-
-            <span className="font-body italic font-medium text-[20px] leading-[30px] text-brand-brown min-w-[20px] text-center">
-              {children}
-            </span>
-
-            <button
-              onClick={() => setChildren(children + 1)}
-              className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white cursor-pointer"
-            >
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5 1V9M1 5H9"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Separator 3: Top 373px */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[373px] w-[431px] h-px bg-[rgba(0,0,0,0.2)]" />
-
-        {/* CTA Button: Top 409px */}
-        <button
-          onClick={handleBookNow}
-          className="absolute left-[18px] right-[18px] top-[409px] h-[45px] bg-[#FF6E00] rounded-[12px] flex items-center justify-center transition-transform active:scale-[0.98] cursor-pointer"
+      {/* Tabs Section */}
+      <div className="flex gap-20 mb-10 justify-center">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => setActiveTab("book")}
         >
-          <span className="font-display italic font-medium text-[20px] leading-[27px] text-center text-white">
-            Book Now
+          <span className="font-display italic font-medium text-[24px] leading-[32px] text-[#4B3621]">
+            Book
+          </span>
+          <div
+            className={`absolute -bottom-1 left-[-9px] w-[69px] h-px rounded-[8px] transition-colors duration-300 ${activeTab === "book" ? "bg-[#FF6E00]" : "bg-transparent"
+              }`}
+          />
+        </div>
+
+        <div
+          className="relative cursor-pointer"
+          onClick={() => setActiveTab("enquiry")}
+        >
+          <span className="font-display italic font-medium text-[24px] leading-[32px] text-[#4B3621]">
+            Enquiry
+          </span>
+          <div
+            className={`absolute -bottom-1 left-[-2px] w-[87px] h-px rounded-[8px] transition-colors duration-300 ${activeTab === "enquiry" ? "bg-[#FF6E00]" : "bg-transparent"
+              }`}
+          />
+        </div>
+      </div>
+
+      {/* Rows */}
+      <div className="space-y-6">
+        {activeTab === "book" ? (
+          <>
+            {/* Date Row */}
+            <div className="flex justify-between items-center py-2 border-b border-black/10">
+              <label
+                className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]"
+              >
+                Date
+              </label>
+              <div className="flex-1 flex justify-end">
+                <DatePicker
+                  value={selectedDate}
+                  onChange={(val) => {
+                    if (typeof val === "string") {
+                      setSelectedDate(val);
+                    }
+                  }}
+                  variant="transparent"
+                  size="sm"
+                  align="right"
+                  className="w-auto min-w-[150px]"
+                />
+              </div>
+            </div>
+            {/* Adult Row */}
+            <div className="flex justify-between items-center py-2 border-b border-black/10">
+              <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
+                Adult ( 13+ age )
+              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setAdults(Math.max(0, adults - 1))}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors cursor-pointer"
+                >
+                  <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
+                    <rect width="10" height="2" rx="1" fill="#4B3621" />
+                  </svg>
+                </button>
+                <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621] w-[24px] text-center">
+                  {adults}
+                </span>
+                <button
+                  onClick={() => setAdults(adults + 1)}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Children Row */}
+            <div className="flex justify-between items-center py-2 border-b border-black/10">
+              <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621]">
+                Children ( age 3-12 )
+              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setChildren(Math.max(0, children - 1))}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00]/20 flex items-center justify-center hover:bg-[#FF6E00]/40 transition-colors cursor-pointer"
+                >
+                  <svg width="10" height="2" viewBox="0 0 10 2" fill="none">
+                    <rect width="10" height="2" rx="1" fill="#4B3621" />
+                  </svg>
+                </button>
+                <span className="font-sans italic font-medium text-[20px] leading-[30px] text-[#4B3621] w-[24px] text-center">
+                  {children}
+                </span>
+                <button
+                  onClick={() => setChildren(children + 1)}
+                  className="w-[24px] h-[24px] rounded-full bg-[#FF6E00] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M5 0V10M0 5H10" stroke="white" strokeWidth="2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="space-y-4 pt-2">
+            <p className="font-display italic font-normal text-[16px] leading-[21px] text-[#4B3621]/80 mb-4">
+              Have a question before booking? Message us to learn more.
+            </p>
+
+            <div className="border-b border-black/10 pb-1">
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={enquiryData.name}
+                onChange={(e) => setEnquiryData({ ...enquiryData, name: e.target.value })}
+                className="w-full bg-transparent border-none font-sans text-[16px] text-[#4B3621] placeholder:text-[#4B3621]/40 focus:outline-none"
+              />
+            </div>
+
+            <div className="border-b border-black/10 pb-1">
+              <input
+                type="email"
+                placeholder="Email"
+                value={enquiryData.email}
+                onChange={(e) => setEnquiryData({ ...enquiryData, email: e.target.value })}
+                className="w-full bg-transparent border-none font-sans text-[16px] text-[#4B3621] placeholder:text-[#4B3621]/40 focus:outline-none"
+              />
+            </div>
+
+            <div className="border-b border-black/10 pb-1">
+              <input
+                type="tel"
+                placeholder="Phone"
+                value={enquiryData.phone}
+                onChange={(e) => setEnquiryData({ ...enquiryData, phone: e.target.value })}
+                className="w-full bg-transparent border-none font-sans text-[16px] text-[#4B3621] placeholder:text-[#4B3621]/40 focus:outline-none"
+              />
+            </div>
+
+            <div className="border-b border-black/10 pb-1">
+              <textarea
+                placeholder="Your question"
+                rows={1}
+                value={enquiryData.question}
+                onChange={(e) => setEnquiryData({ ...enquiryData, question: e.target.value })}
+                className="w-full bg-transparent border-none font-sans text-[16px] text-[#4B3621] placeholder:text-[#4B3621]/40 focus:outline-none resize-none pt-1"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Button */}
+      <div className="mt-8">
+        <button
+          onClick={handleAction}
+          disabled={isChecking}
+          className={`w-full h-[50px] bg-[#FF6E00] rounded-[12px] border border-[#FF6E00] overflow-hidden transition-all duration-300 active:scale-95 group relative cursor-pointer ${isChecking ? "opacity-70 cursor-not-allowed" : ""
+            }`}
+        >
+          <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
+          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300 flex items-center justify-center gap-2">
+            {isChecking ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                {activeTab === "book" ? "Checking..." : "Sending..."}
+              </>
+            ) : (
+              activeTab === "book" ? "Check Availability" : "Send Enquiry"
+            )}
           </span>
         </button>
       </div>
@@ -272,3 +324,4 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 };
 
 export default TourBookingCard;
+

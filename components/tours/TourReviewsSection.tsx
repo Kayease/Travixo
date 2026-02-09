@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { ReviewModal } from "../ui/ReviewModal";
+import { Button } from "../ui/Button";
 
 /**
  * Review Interface
@@ -67,20 +69,23 @@ const StarRating: React.FC<{ rating: number; size?: "sm" | "md" }> = ({
  * TourReviewsSection Component
  *
  * Displays customer reviews with summary and individual reviews.
- *
- * Design Specifications (from Figma):
- * - Title: Playfair Display, italic, 600 weight, 24px
- * - Review summary card with category ratings
- * - Individual review cards with avatar, rating, comment
- * - "Write Review" CTA button
- *
- * @param {TourReviewsSectionProps} props - Reviews data
- * @returns {JSX.Element} The rendered reviews section
+ * Also handles the "Write a Review" modal.
  */
 export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
   summary,
   reviews,
 }) => {
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+
+  const handleOpenReviewModal = () => setIsReviewModalOpen(true);
+  const handleCloseReviewModal = () => setIsReviewModalOpen(false);
+
+  const handleSubmitReview = (data: any) => {
+    console.log("Review Submitted:", data);
+    // In a real app, you would send this to your backend
+    // and then refresh the reviews list or show a success message
+  };
+
   return (
     <section
       className="w-full py-6 border-t border-gray-200"
@@ -94,148 +99,87 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
         >
           Customer reviews
         </h2>
-        <button
-          className="font-display italic font-medium text-sm md:text-base text-white px-5 py-2 transition-all duration-300 hover:opacity-90 active:scale-95 cursor-pointer"
-          style={{
-            backgroundColor: "#FF6E00",
-            borderRadius: "8px",
-          }}
+        <Button
+          onClick={handleOpenReviewModal}
+          variant="primary"
+          size="sm"
+          className="md:text-base px-5 py-2 !rounded-[8px]"
         >
           Write Review
-        </button>
+        </Button>
       </div>
 
+      {/* Review Modal */}
+      {isReviewModalOpen && (
+        <ReviewModal
+          isOpen={isReviewModalOpen}
+          onClose={handleCloseReviewModal}
+          onSubmit={handleSubmitReview}
+          title="Tour Review"
+          subTitle="Share your experience for this tour"
+        />
+      )}
+
       {/* Review Summary Card */}
-      <div
-        className="relative w-full max-w-[769px] h-[132px] mb-8 hidden md:block"
-        style={{
-          backgroundColor: "#FFFFFF",
-          border: "1px solid rgba(75, 54, 33, 0.4)",
-          borderRadius: "12px",
-          boxSizing: "border-box",
-        }}
-      >
-        {/* Left Rating Section */}
-        <div className="absolute left-[32px] top-[36px] flex items-center gap-2">
-          {/* Star Icon */}
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              stroke="#FF6E00"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-
-          <span className="font-poppins font-semibold text-[20px] leading-[30px] text-brand-brown">
-            {summary.overall}/5
-          </span>
-        </div>
-
-        <div className="absolute left-[32px] top-[75px]">
+      <div className="hidden md:flex w-full max-w-[769px] min-h-[132px] mb-8 bg-white border border-brand-brown/40 rounded-[12px] overflow-hidden">
+        {/* Left Section: Overall Rating (160px wide) */}
+        <div className="w-[160px] flex flex-col justify-start pt-[36px] pl-[32px] shrink-0">
+          <div className="flex items-center gap-2 mb-[9px]">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="shrink-0"
+            >
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                stroke="#FF6E00"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="font-poppins font-semibold text-[20px] leading-[30px] text-brand-brown">
+              {summary.overall}/5
+            </span>
+          </div>
           <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
             {summary.totalReviews} review{summary.totalReviews !== 1 ? "s" : ""}
           </span>
         </div>
 
         {/* Vertical Divider */}
-        <div
-          className="absolute left-[160px] top-px w-[130px] h-px bg-[rgba(62,56,51,0.4)]"
-          style={{ transform: "rotate(90deg)", transformOrigin: "0 0" }}
-        />
+        <div className="w-px h-[130px] bg-brand-brown/40 mt-px self-stretch"></div>
 
-        {/* Right Summary Section */}
-
-        {/* Title */}
-        <div className="absolute left-[192px] top-[12px]">
-          <span className="font-display italic font-medium text-[16px] leading-[21px] text-brand-brown">
+        {/* Right Section: Category Breakdown */}
+        <div className="flex-1 pt-[12px] pl-[32px] pr-[39px] pb-[20px]">
+          <h3 className="font-display italic font-medium text-[16px] leading-[21px] text-brand-brown mb-[15px]">
             Review summary
-          </span>
-        </div>
+          </h3>
 
-        {/* Categories Grid */}
-
-        {/* Guide - Top Left of Grid */}
-        <div className="absolute left-[192px] top-[48px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
-            Guide
-          </span>
-        </div>
-        <div className="absolute left-[404px] top-[45px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
-            4.2/5
-          </span>
-        </div>
-        {/* Bar */}
-        <div className="absolute left-[192px] top-[69px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div
-            className="h-full bg-[#FF6E00] rounded-[12px]"
-            style={{ width: "80%" /* 4.2/5 */ }}
-          ></div>
-        </div>
-
-        {/* Service - Top Right of Grid */}
-        <div className="absolute left-[482px] top-[48px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
-            Service
-          </span>
-        </div>
-        <div className="absolute left-[694px] top-[45px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
-            4.2/5
-          </span>
-        </div>
-        {/* Bar */}
-        <div className="absolute left-[482px] top-[69px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div
-            className="h-full bg-[#FF6E00] rounded-[12px]"
-            style={{ width: "84%" }}
-          ></div>
-        </div>
-
-        {/* Transportation - Bottom Left of Grid */}
-        <div className="absolute left-[192px] top-[86px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
-            Transportation
-          </span>
-        </div>
-        <div className="absolute left-[404px] top-[83px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
-            4.2/5
-          </span>
-        </div>
-        {/* Bar */}
-        <div className="absolute left-[192px] top-[107px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div
-            className="h-full bg-[#FF6E00] rounded-[12px]"
-            style={{ width: "84%" }}
-          ></div>
-        </div>
-
-        {/* Organization - Bottom Right of Grid */}
-        <div className="absolute left-[482px] top-[86px]">
-          <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
-            Organization
-          </span>
-        </div>
-        <div className="absolute left-[694px] top-[83px]">
-          <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
-            4.2/5
-          </span>
-        </div>
-        {/* Bar */}
-        <div className="absolute left-[482px] top-[107px] w-[248px] h-[2px] rounded-[8px] bg-[rgba(75,54,33,0.4)]">
-          <div
-            className="h-full bg-[#FF6E00] rounded-[12px]"
-            style={{ width: "84%" }}
-          ></div>
+          <div className="grid grid-cols-2 gap-x-[42px] gap-y-[17px]">
+            {summary.categories.map((category, index) => (
+              <div key={index} className="w-full max-w-[248px]">
+                <div className="flex justify-between items-end mb-[5px]">
+                  <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
+                    {category.name}
+                  </span>
+                  <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
+                    {category.rating}/5
+                  </span>
+                </div>
+                {/* Progress Bar Container */}
+                <div className="w-full h-[2px] rounded-[8px] bg-brand-brown/20 overflow-hidden">
+                  <div
+                    className="h-full bg-brand-orange rounded-[12px] transition-all duration-500"
+                    style={{ width: `${(category.rating / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -339,3 +283,4 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
 };
 
 export default TourReviewsSection;
+

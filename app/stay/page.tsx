@@ -13,7 +13,7 @@ import {
   StayBannerSection,
   SuiteSection,
   StayStatsSection,
-  StayTestimonialSection,
+  TestimonialSection,
   StayCommunitySection,
 } from "@/components/stay";
 import { Navbar } from "@/components/layout/Navbar";
@@ -45,7 +45,7 @@ export default function StayPage() {
       <StayStatsSection />
 
       {/* Testimonial Section */}
-      <StayTestimonialSection />
+      <TestimonialSection />
 
       {/* Community Section */}
       <StayCommunitySection />

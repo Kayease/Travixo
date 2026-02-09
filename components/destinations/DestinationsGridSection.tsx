@@ -57,6 +57,8 @@ interface DestinationsGridSectionProps {
   loadMoreCount?: number;
   /** Whether to show the "Load More" button */
   showLoadMore?: boolean;
+  /** Optional search query to filter destinations */
+  searchQuery?: string;
 }
 
 /**
@@ -77,70 +79,90 @@ export const DestinationsGridSection: React.FC<
   initialCount = 6,
   loadMoreCount = 3,
   showLoadMore = true,
+  searchQuery = "",
 }) => {
-  // State for managing visible destinations count
-  const [visibleCount, setVisibleCount] = useState(initialCount);
+    // State for managing visible destinations count
+    const [visibleCount, setVisibleCount] = useState(initialCount);
 
-  // Get currently visible destinations
-  const visibleDestinations = destinations.slice(0, visibleCount);
+    // Filter destinations based on search query
+    const filteredDestinations = (destinations || SAMPLE_DESTINATIONS).filter(dest =>
+      !searchQuery || dest.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
-  // Check if there are more destinations to load
-  const hasMoreDestinations = visibleCount < destinations.length;
+    // Get currently visible destinations
+    const visibleDestinations = filteredDestinations.slice(0, visibleCount);
 
-  // Handler for loading more destinations
-  const handleLoadMore = () => {
-    setVisibleCount((prev) =>
-      Math.min(prev + loadMoreCount, destinations.length),
+    // Check if there are more destinations to load
+    const hasMoreDestinations = visibleCount < filteredDestinations.length;
+
+    // Handler for loading more destinations
+    const handleLoadMore = () => {
+      setVisibleCount((prev) =>
+        Math.min(prev + loadMoreCount, destinations.length),
+      );
+    };
+
+    return (
+      <section
+        className="relative w-full py-[52px] lg:py-[52px]"
+        style={{ backgroundColor: "#FFFCF5" }}
+        aria-labelledby="destinations-grid-title"
+      >
+        <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+          {/* Screen reader only title */}
+          <h2 id="destinations-grid-title" className="sr-only">
+            All Destinations
+          </h2>
+
+          {/* Destinations Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-16 lg:gap-y-[32px] gap-x-4 md:gap-x-6 lg:gap-x-[13px]">
+            {visibleDestinations.length > 0 ? (
+              visibleDestinations.map((destination) => (
+                <DestinationCard
+                  key={destination.id}
+                  id={destination.id}
+                  name={destination.name}
+                  imageUrl={destination.imageUrl}
+                  imageAlt={destination.imageAlt}
+                  slug={destination.slug}
+                />
+              ))
+            ) : (
+              <div className="col-span-full py-20 text-center">
+                <p className="font-display italic text-2xl text-brand-brown/60">
+                  No destinations found matching your search.
+                </p>
+                <button
+                  onClick={() => window.location.href = '/destinations'}
+                  className="mt-4 text-[#FF6E00] font-medium hover:underline"
+                >
+                  View all destinations
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Load More Button */}
+          {showLoadMore && hasMoreDestinations && (
+            <div className="flex justify-center mt-12 md:mt-20 lg:mt-[76px]">
+              <button
+                onClick={handleLoadMore}
+                className="font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-white transition-all duration-300 hover:opacity-90 hover:shadow-xl active:scale-95 cursor-pointer flex items-center justify-center"
+                style={{
+                  width: "200px",
+                  height: "45px",
+                  backgroundColor: "#FF6E00",
+                  borderRadius: "12px",
+                  boxShadow: "0px 8px 24px rgba(255, 110, 0, 0.25)",
+                }}
+              >
+                Explore More
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
     );
   };
-
-  return (
-    <section
-      className="relative w-full py-[52px] lg:py-[52px]"
-      style={{ backgroundColor: "#FFFCF5" }}
-      aria-labelledby="destinations-grid-title"
-    >
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
-        {/* Screen reader only title */}
-        <h2 id="destinations-grid-title" className="sr-only">
-          All Destinations
-        </h2>
-
-        {/* Destinations Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-16 lg:gap-y-[32px] gap-x-4 md:gap-x-6 lg:gap-x-[13px]">
-          {visibleDestinations.map((destination) => (
-            <DestinationCard
-              key={destination.id}
-              id={destination.id}
-              name={destination.name}
-              imageUrl={destination.imageUrl}
-              imageAlt={destination.imageAlt}
-              slug={destination.slug}
-            />
-          ))}
-        </div>
-
-        {/* Load More Button */}
-        {showLoadMore && hasMoreDestinations && (
-          <div className="flex justify-center mt-12 md:mt-20 lg:mt-[76px]">
-            <button
-              onClick={handleLoadMore}
-              className="font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-white transition-all duration-300 hover:opacity-90 hover:shadow-xl active:scale-95 cursor-pointer flex items-center justify-center"
-              style={{
-                width: "200px",
-                height: "45px",
-                backgroundColor: "#FF6E00",
-                borderRadius: "12px",
-                boxShadow: "0px 8px 24px rgba(255, 110, 0, 0.25)",
-              }}
-            >
-              Explore More
-            </button>
-          </div>
-        )}
-      </div>
-    </section>
-  );
-};
 
 export default DestinationsGridSection;

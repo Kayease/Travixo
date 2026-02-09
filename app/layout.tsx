@@ -40,9 +40,13 @@ export const metadata: Metadata = {
     title: "Travixo - Travel & Tour",
     description: "Your Safari Hub: News, Tips, and Inspiration",
   },
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 import { ToastProvider } from "./context/ToastContext";
+import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
 
 export default function RootLayout({
@@ -58,7 +62,9 @@ export default function RootLayout({
       >
         <div id="main-content">
           <ToastProvider>
-            <CartProvider>{children}</CartProvider>
+            <WishlistProvider>
+              <CartProvider>{children}</CartProvider>
+            </WishlistProvider>
           </ToastProvider>
         </div>
       </body>

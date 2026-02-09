@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/context/CartContext";
+import { useWishlist } from "@/app/context/WishlistContext";
+import { WishlistItem } from "@/components/wishlist/WishlistCard";
 
 /**
  * Plane Icon for badge
@@ -210,29 +212,71 @@ const TourCard = ({
   slug: string;
 }) => {
   const router = useRouter();
+  const { addToWishlist } = useWishlist();
+
+  const handleAddToWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
+    const originalPriceValue = parseInt(originalPrice.replace(/[^0-9]/g, "")) || 0;
+    const discountValue = parseInt(discount.replace(/[^0-9]/g, "")) || 0;
+
+    const wishlistItem: WishlistItem = {
+      id: id.toString(),
+      slug: slug,
+      title: title,
+      description: description,
+      image: image,
+      price: priceValue,
+      originalPrice: originalPriceValue,
+      rating: rating,
+      reviewCount: reviews,
+      duration: duration,
+      groupSize: people,
+      location: location,
+      type: "tour",
+      discountPercent: discountValue,
+    };
+
+    addToWishlist(wishlistItem);
+  };
+
   const { addToCart } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent Link navigation if wrapped
+    e.preventDefault();
     e.stopPropagation();
 
     // Parse price (remove $ and commas)
     const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
 
     const cartItem = {
-      id: `${id}-${Date.now()}`, // Unique ID for cart instance
+      id: `${id}-${Date.now()}`,
       type: "experience" as const,
       title: title,
       image: image,
       location: location,
-      dates: new Date().toISOString().split("T")[0], // Default to today
-      amenities: [duration, people], // Use duration/people as amenities for now
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [duration, people],
       price: priceValue,
       actionLabel: "Customize",
     };
 
     addToCart(cartItem);
-    router.push("/cart");
+  };
+
+  const handleBookNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Parse price (remove $ and commas)
+    const priceValue = currentPrice.replace(/[^0-9.]/g, "") || "4250";
+
+    // Redirect to checkout with params
+    router.push(
+      `/checkout?name=${encodeURIComponent(title)}&price=${priceValue}&image=${encodeURIComponent(image)}`
+    );
   };
 
   return (
@@ -276,8 +320,8 @@ const TourCard = ({
 
           {/* Action Buttons */}
           <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-            <Link
-              href="/wishlist"
+            <button
+              onClick={handleAddToWishlist}
               className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
             >
               <div
@@ -294,7 +338,7 @@ const TourCard = ({
                   WebkitMaskPosition: "center",
                 }}
               />
-            </Link>
+            </button>
             <button
               onClick={handleAddToCart}
               className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
@@ -375,7 +419,7 @@ const TourCard = ({
       {/* Book Now Button - Shows on Hover */}
       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
         <button
-          onClick={handleAddToCart}
+          onClick={handleBookNow}
           className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer"
         >
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />

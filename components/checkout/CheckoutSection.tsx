@@ -59,7 +59,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   });
 
   // Payment method state
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal">("card");
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "upi">("card");
 
   // Card details state
   const [cardData, setCardData] = useState({

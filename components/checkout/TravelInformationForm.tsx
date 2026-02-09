@@ -65,7 +65,7 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
             placeholder="Jimmy"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
-                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange
+                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
                        transition-colors"
           />
         </div>
@@ -86,7 +86,7 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
             placeholder="Jostar"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
-                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange
+                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
                        transition-colors"
           />
         </div>
@@ -107,7 +107,7 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
             placeholder="Jimmy@demo.com"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
-                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange
+                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
                        transition-colors"
           />
         </div>
@@ -128,7 +128,7 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
             placeholder="X123456789"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
-                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange
+                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
                        transition-colors"
           />
         </div>

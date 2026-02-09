@@ -116,7 +116,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
   // Related Tours
   relatedTours: [
     {
-      id: 1,
+      id: "related-eiffel-tower",
       title: "Eiffel Tower",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
@@ -129,10 +129,10 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       duration: "4 hrs",
       groupSize: "2-18",
       location: "Paris, France",
-      slug: "/products/eiffel-tower",
+      slug: "eiffel-tower",
     },
     {
-      id: 2,
+      id: "related-louvre-museum",
       title: "Louvre Museum",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
@@ -145,10 +145,10 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       duration: "4 hrs",
       groupSize: "2-18",
       location: "Paris, France",
-      slug: "/products/louvre-museum",
+      slug: "louvre-museum",
     },
     {
-      id: 3,
+      id: "related-centre-pompidou",
       title: "Centre Pompidou",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
@@ -161,7 +161,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       duration: "4 hrs",
       groupSize: "2-18",
       location: "Paris, France",
-      slug: "/products/centre-pompidou",
+      slug: "centre-pompidou",
     },
   ],
 };

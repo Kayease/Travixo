@@ -16,6 +16,8 @@ interface DatePickerProps {
   className?: string;
   mode?: "single" | "range";
   variant?: "default" | "transparent";
+  size?: "default" | "sm";
+  align?: "left" | "right";
 }
 
 const MONTHS = [
@@ -49,6 +51,8 @@ export const DatePicker = ({
   variant = "default",
   className = "",
   mode = "single",
+  size = "default",
+  align = "left",
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -262,7 +266,7 @@ export const DatePicker = ({
 
     // Empty cells for days before the first day of month
     for (let i = 0; i < firstDay; i++) {
-      days.push(<div key={`empty-${i}`} className="w-10 h-10" />);
+      days.push(<div key={`empty-${i}`} className={size === "sm" ? "w-8 h-8" : "w-10 h-10"} />);
     }
 
     // Days of the month
@@ -275,16 +279,15 @@ export const DatePicker = ({
       if (mode === "single") {
         const selected = isDateSelected(day);
         buttonClass = `
-          w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium
+          ${size === "sm" ? "w-8 h-8" : "w-10 h-10"} rounded-full flex items-center justify-center text-sm font-medium
           transition-all duration-200 cursor-pointer
-          ${
-            disabled
-              ? "text-gray-300 cursor-not-allowed"
-              : selected
-                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
-                : today
-                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+          ${disabled
+            ? "text-gray-300 cursor-not-allowed"
+            : selected
+              ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
+              : today
+                ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
           }
         `;
       } else {
@@ -293,20 +296,19 @@ export const DatePicker = ({
         const isSelected = isRangeStart || isRangeEnd;
 
         buttonClass = `
-          w-10 h-10 flex items-center justify-center text-sm font-medium
+          ${size === "sm" ? "w-8 h-8" : "w-10 h-10"} flex items-center justify-center text-sm font-medium
           transition-all duration-200 cursor-pointer relative z-10
           ${isRangeStart ? "rounded-l-full rounded-r-none" : ""} 
           ${isRangeEnd ? "rounded-r-full rounded-l-none" : ""}
           ${!isRangeStart && !isRangeEnd && !isInRange ? "rounded-full" : ""}
           ${isInRange ? "bg-brand-orange/10 !rounded-none" : ""}
-          ${
-            disabled
-              ? "text-gray-300 cursor-not-allowed"
-              : isSelected
-                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30 rounded-full" // Force round selection
-                : today && !isInRange
-                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+          ${disabled
+            ? "text-gray-300 cursor-not-allowed"
+            : isSelected
+              ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30 rounded-full" // Force round selection
+              : today && !isInRange
+                ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
           }
         `;
       }
@@ -345,34 +347,33 @@ export const DatePicker = ({
             : placeholder}
         </span>
 
-        {/* Calendar Icon - Hidden for transparent variant if desired */}
-        {variant !== "transparent" && (
-          <svg
-            className={`w-5 h-5 text-brand-brown/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-            />
-          </svg>
-        )}
+        {/* Calendar Icon */}
+        <svg
+          className={`w-5 h-5 text-brand-brown/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
       </button>
 
       {/* Calendar Dropdown - high z-index so it appears above hero and all sections */}
       {isOpen && (
         <div
           className={`
-            absolute top-full left-0 mt-2 z-10002
+            absolute top-full mt-2 z-10002
+            ${align === "right" ? "right-0" : "left-0"}
             bg-white rounded-2xl shadow-2xl shadow-brand-brown/10
             border border-brand-brown/10 overflow-hidden
             animate-in fade-in slide-in-from-top-2 duration-200
           `}
-          style={{ minWidth: "320px" }}
+          style={{ minWidth: size === "sm" ? "260px" : "320px" }}
         >
           {/* Header with month/year navigation */}
           <div className="bg-linear-to-r from-brand-orange to-amber-500 p-4">
@@ -456,12 +457,11 @@ export const DatePicker = ({
                     }}
                     className={`
                       py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer
-                      ${
-                        year === currentYear
-                          ? "bg-brand-orange text-white shadow-md"
-                          : year === new Date().getFullYear()
-                            ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                            : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+                      ${year === currentYear
+                        ? "bg-brand-orange text-white shadow-md"
+                        : year === new Date().getFullYear()
+                          ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                          : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
                       }
                     `}
                   >
@@ -484,13 +484,12 @@ export const DatePicker = ({
                     }}
                     className={`
                       py-2 px-1 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer
-                      ${
-                        index === currentMonth
-                          ? "bg-brand-orange text-white shadow-md"
-                          : index === new Date().getMonth() &&
-                              currentYear === new Date().getFullYear()
-                            ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                            : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+                      ${index === currentMonth
+                        ? "bg-brand-orange text-white shadow-md"
+                        : index === new Date().getMonth() &&
+                          currentYear === new Date().getFullYear()
+                          ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                          : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
                       }
                     `}
                   >
@@ -508,7 +507,7 @@ export const DatePicker = ({
                   {DAYS.map((day) => (
                     <div
                       key={day}
-                      className="w-10 h-8 flex items-center justify-center text-xs font-semibold text-brand-brown/50 uppercase"
+                      className={`${size === "sm" ? "w-8 h-6" : "w-10 h-8"} flex items-center justify-center text-xs font-semibold text-brand-brown/50 uppercase`}
                     >
                       {day}
                     </div>

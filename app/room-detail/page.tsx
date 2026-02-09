@@ -15,6 +15,7 @@ import {
   NewFavoriteSection,
 } from "@/components/room-detail";
 import { Navbar } from "@/components/layout/Navbar";
+import {Footer} from "@/components/layout/Footer";
 
 // Metadata for SEO
 export const metadata = {
@@ -38,6 +39,7 @@ export default function RoomDetailPage() {
 
       {/* New Favorite Rooms */}
       <NewFavoriteSection />
+      <Footer />
     </main>
   );
 }

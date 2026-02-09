@@ -35,15 +35,7 @@ const ExpeditionCard: React.FC<ExpeditionCardProps> = ({ expedition }) => {
           src={expedition.image}
           alt={expedition.title}
           fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 418px"
-        />
-        {/* Hover Image */}
-        <Image
-          src="/images/portfolio/cards/Component_68.png"
-          alt={`${expedition.title} Hover`}
-          fill
-          className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 418px"
         />
       </div>

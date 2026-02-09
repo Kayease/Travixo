@@ -217,8 +217,7 @@ export const TestimonialSection = () => {
                   left: slot.left + "px",
                   top: slot.top + "px",
                   borderRadius: "1000px",
-                  backgroundColor: "#FFFFFF",
-                  boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+                  backgroundColor: "transparent",
                   zIndex: isActive ? 20 : 10,
                   transform: isActive ? "scale(1.05)" : "scale(1)",
                 }}

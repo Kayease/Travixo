@@ -190,7 +190,7 @@ export const HeroSection = () => {
           <button
             type="button"
             onClick={() => router.push("/destinations")}
-            className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group cursor-pointer"
+            className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group cursor-pointer border border-transparent hover:border-black"
             style={{
               width: "200px",
               height: "45px",

@@ -1,7 +1,7 @@
 /**
  * PaymentDetailsForm Component
  * 
- * Payment form with Credit Card/PayPal toggle and card input fields.
+ * Payment form with Credit Card/UPI toggle and card input fields.
  * Includes card number, expiry date, CVV, and security notice.
  * 
  * Design specs from Figma:
@@ -17,8 +17,8 @@ import React from 'react';
 import Image from 'next/image';
 
 interface PaymentDetailsFormProps {
-  paymentMethod: 'card' | 'paypal';
-  onPaymentMethodChange: (method: 'card' | 'paypal') => void;
+  paymentMethod: 'card' | 'upi';
+  onPaymentMethodChange: (method: 'card' | 'upi') => void;
   cardData: {
     cardNumber: string;
     expiryDate: string;
@@ -83,19 +83,19 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
           Credit Card
         </button>
 
-        {/* PayPal Button */}
+        {/* UPI Button */}
         <button
-          onClick={() => onPaymentMethodChange('paypal')}
+          onClick={() => onPaymentMethodChange('upi')}
           className={`
             h-[60px] rounded-xl font-body font-semibold text-base leading-[30px] text-brand-brown
             transition-all duration-200 cursor-pointer
-            ${paymentMethod === 'paypal'
+            ${paymentMethod === 'upi'
               ? 'bg-brand-orange/20 border border-brand-orange'
               : 'bg-white border border-brand-brown/20 hover:border-brand-orange/50'
             }
           `}
         >
-          PayPal
+          UPI
         </button>
       </div>
 
@@ -116,7 +116,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
               maxLength={19}
               className="w-full h-[50px] bg-[#FFFCF5] border border-brand-brown/20 rounded-xl px-4
                          font-body font-normal text-base leading-[30px] text-brand-brown
-                         placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange
+                         placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
                          transition-colors"
             />
           </div>
@@ -137,7 +137,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
                 maxLength={5}
                 className="w-full h-[50px] bg-[#FFFCF5] border border-brand-brown/20 rounded-xl px-4
                            font-body font-normal text-base leading-[30px] text-brand-brown
-                           placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange
+                           placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
                            transition-colors"
               />
             </div>
@@ -156,7 +156,7 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
                 maxLength={4}
                 className="w-full h-[50px] bg-[#FFFCF5] border border-brand-brown/20 rounded-xl px-4
                            font-body font-normal text-base leading-[30px] text-brand-brown
-                           placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange
+                           placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
                            transition-colors"
               />
             </div>
@@ -164,15 +164,14 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
         </div>
       )}
 
-      {/* PayPal Content - Show only when PayPal is selected */}
-      {paymentMethod === 'paypal' && (
+      {/* UPI Content - Show only when UPI is selected */}
+      {paymentMethod === 'upi' && (
         <div className="bg-white border border-brand-brown/20 rounded-xl p-6 md:p-8 text-center">
           <p className="font-body text-brand-brown/60 mb-4">
-            You will be redirected to PayPal to complete your payment securely.
+            You will be redirected to UPI to complete your payment securely.
           </p>
-          <div className="inline-flex items-center gap-2 text-[#003087] font-bold text-2xl">
-            <span className="text-[#009cde]">Pay</span>
-            <span>Pal</span>
+          <div className="inline-flex items-center gap-2 text-brand-orange font-bold text-2xl">
+            <span>UPI</span>
           </div>
         </div>
       )}

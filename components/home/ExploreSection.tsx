@@ -199,10 +199,9 @@ export const ExploreSection = () => {
                 className={`
                   w-[224px] h-[122px] rounded-xl flex flex-col items-center justify-center gap-2
                   border-b-2 transition-all duration-300 ease-out cursor-pointer
-                  ${
-                    isActive
-                      ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"
-                      : "bg-[#FFF7E5] border-transparent hover:shadow-md hover:scale-[1.01]"
+                  ${isActive
+                    ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"
+                    : "bg-[#FFF7E5] border-transparent hover:shadow-md hover:scale-[1.01]"
                   }
                 `}
               >
@@ -221,10 +220,9 @@ export const ExploreSection = () => {
                 <span
                   className={`
                     font-display italic font-semibold text-lg text-center transition-colors duration-300 ease-out
-                    ${
-                      isActive
-                        ? "text-brand-orange drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
-                        : "text-brand-brown"
+                    ${isActive
+                      ? "text-brand-orange drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
+                      : "text-brand-brown"
                     }
                   `}
                 >

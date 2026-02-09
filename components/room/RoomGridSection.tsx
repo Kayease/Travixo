@@ -53,33 +53,29 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
         </p>
 
         {/* Check Availability Link */}
-        <Link href="/room-detail" className="block cursor-pointer">
-          <button className="group/btn relative w-full h-[45px] mt-2 bg-white border border-[#FF6E00] rounded-[12px] overflow-hidden transition-all duration-300 cursor-pointer">
-            {/* Fill animation from bottom to top */}
-            <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />
-
-            <div className="relative z-10 flex items-center justify-center gap-2">
-              <span className="font-display text-lg italic text-[#FF6E00] group-hover/btn:text-white transition-colors duration-300">
-                Check Availability
-              </span>
-              {/* Arrow Icon */}
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="text-[#FF6E00] group-hover/btn:text-white transition-colors duration-300 group-hover/btn:translate-x-1"
-              >
-                <path
-                  d="M5 12H19M19 12L13 6M19 12L13 18"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          </button>
+        <Link
+          href="/room-detail"
+          className="inline-flex items-center gap-2 mt-4 cursor-pointer hover:text-[#FF6E00] text-[#4B3621] transition-colors duration-300 group/availability"
+        >
+          <span className="font-poppins text-lg transition-colors duration-300">
+            Check Availability
+          </span>
+          {/* Arrow Icon */}
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="transition-transform duration-300 group-hover/availability:translate-x-1"
+          >
+            <path
+              d="M5 12H19M19 12L13 6M19 12L13 18"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </Link>
       </div>
     </div>

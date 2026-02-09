@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useToast } from "@/app/context/ToastContext";
 
 /**
  * Interface for individual tour comparison data
@@ -110,7 +109,6 @@ import { useCart, CartItem } from "@/app/context/CartContext";
 // ... existing code ...
 
 const CompareTableSection: React.FC = () => {
-  const { showToast } = useToast();
   const router = useRouter();
   const { addToCart } = useCart();
 
@@ -179,9 +177,7 @@ const CompareTableSection: React.FC = () => {
       actionLabel: "Customize",
     };
 
-    showToast(`Redirecting to cart for ${tour.name}...`, "info");
     addToCart(cartItem);
-    router.push("/cart");
   };
 
   return (
@@ -190,41 +186,41 @@ const CompareTableSection: React.FC = () => {
         {/* ============================================
             Header Card - Selected Tours Preview
         ============================================ */}
-        <div className="bg-white border border-[#4B3621]/20 rounded-t-xl h-[275px] flex items-start pt-[18px] px-6 lg:px-8 gap-6 lg:gap-10">
-          {/* Selected Count */}
-          <h3 className="font-display text-[28px] italic font-semibold leading-[30px] text-[#4B3621] whitespace-nowrap shrink-0 mt-[115px]">
-            {tours.length} Selected
-          </h3>
-
-          {/* Tour Image Cards */}
-          <div className="flex gap-3 lg:gap-[13px] flex-1 justify-center">
-            {tours.map((tour) => (
-              <div key={tour.id} className="flex flex-col items-center">
-                {/* Tour Image - Fixed 302px width as per Figma */}
-                <div className="relative w-[302px] h-[203px] rounded-lg overflow-hidden shrink-0">
-                  <Image
-                    src={tour.image}
-                    alt={tour.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 302px"
-                    className="object-cover"
-                  />
-                </div>
-                {/* Tour Name - Positioned 12px below image (233px from container top) */}
-                <span className="mt-[12px] font-display text-[20px] leading-[30px] italic font-semibold text-[#4B3621]">
-                  {tour.name}
-                </span>
-              </div>
-            ))}
+        <div className="bg-white border border-[#4B3621]/20 rounded-xl h-[275px] grid grid-cols-1 lg:grid-cols-[200px_1fr_1fr_1fr] mb-8 overflow-hidden">
+          {/* Selected Count Column */}
+          <div className="p-4 md:p-6 lg:p-8 flex items-start">
+            <h3 className="font-display text-[28px] italic font-semibold leading-[30px] text-[#4B3621] whitespace-nowrap lg:mt-[107px]">
+              {tours.length} Selected
+            </h3>
           </div>
+
+          {/* Tour Image Columns */}
+          {tours.map((tour) => (
+            <div key={tour.id} className="p-4 flex flex-col items-center border-t lg:border-t-0">
+              {/* Tour Image - Max width 302px as per Figma design */}
+              <div className="relative w-full max-w-[302px] h-[203px] rounded-lg overflow-hidden shrink-0">
+                <Image
+                  src={tour.image}
+                  alt={tour.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 302px"
+                  className="object-cover"
+                />
+              </div>
+              {/* Tour Name - Positioned 12px below image */}
+              <span className="mt-[12px] font-display text-[20px] leading-[30px] italic font-semibold text-[#4B3621]">
+                {tour.name}
+              </span>
+            </div>
+          ))}
         </div>
 
         {/* ============================================
             Comparison Table
         ============================================ */}
-        <div className="bg-white border border-[#4B3621]/20 border-t-0 rounded-b-xl overflow-hidden">
+        <div className="bg-white border border-[#4B3621]/20 rounded-xl overflow-hidden">
           {/* ----- Price Row (60px height) ----- */}
-          <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 rounded-t-xl bg-white">
+          <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
             <div className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center">
               <span className="font-display text-xl md:text-[22px] leading-[28px] italic font-semibold text-[#4B3621]">
                 Price
@@ -233,7 +229,7 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`price-${tour.id}`}
-                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center border-t lg:border-t-0"
+                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0"
               >
                 <span className="text-lg md:text-[22px] leading-[28px] font-medium text-[#4B3621]">
                   {tour.price} <span className="text-sm uppercase">PP</span>
@@ -252,7 +248,7 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`duration-${tour.id}`}
-                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center border-t lg:border-t-0"
+                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0"
               >
                 <span className="text-lg md:text-[22px] leading-[28px] font-medium text-[#4B3621]">
                   {tour.duration}
@@ -271,7 +267,7 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`accommodation-${tour.id}`}
-                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center border-t lg:border-t-0"
+                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0"
               >
                 <StarRating rating={tour.accommodation} />
               </div>
@@ -288,7 +284,7 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`meals-${tour.id}`}
-                className="p-4 md:p-6 lg:px-6 lg:py-8 flex items-center border-t lg:border-t-0"
+                className="p-4 md:p-6 lg:px-6 lg:py-8 flex items-center justify-center text-center border-t lg:border-t-0"
               >
                 <span className="text-lg md:text-[22px] leading-[28px] font-medium text-[#4B3621]">
                   {tour.meals}
@@ -307,11 +303,13 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`activities-${tour.id}`}
-                className="p-4 md:p-6 lg:px-6 lg:py-8 flex flex-col gap-3 border-t lg:border-t-0"
+                className="p-4 md:p-6 lg:px-6 lg:py-8 flex flex-col items-center gap-3 border-t lg:border-t-0"
               >
-                {tour.activities.map((activity, index) => (
-                  <ActivityItem key={index} activity={activity} />
-                ))}
+                <div className="flex flex-col gap-3 items-start">
+                  {tour.activities.map((activity, index) => (
+                    <ActivityItem key={index} activity={activity} />
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -326,7 +324,7 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`difficulty-${tour.id}`}
-                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center border-t lg:border-t-0"
+                className="p-4 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0"
               >
                 <DifficultyBadge difficulty={tour.difficulty} />
               </div>
@@ -339,7 +337,7 @@ const CompareTableSection: React.FC = () => {
             {tours.map((tour) => (
               <div
                 key={`book-${tour.id}`}
-                className="p-4 md:p-6 flex items-center border-t lg:border-t-0"
+                className="p-4 md:p-6 flex items-center justify-center border-t lg:border-t-0"
               >
                 <button
                   onClick={() => handleBookNow(tour)}

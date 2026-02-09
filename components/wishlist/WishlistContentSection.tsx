@@ -14,107 +14,41 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useWishlist } from "@/app/context/WishlistContext";
 import WishlistSidebar from "./WishlistSidebar";
 import WishlistCard, { WishlistItem } from "./WishlistCard";
-
-import { useToast } from "@/app/context/ToastContext";
-
-// Sample wishlist data
-const sampleWishlistItems: WishlistItem[] = [
-  {
-    id: "1",
-    slug: "eiffel-tower-tour",
-    title: "Eiffel Tower",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/wishlist-placeholder.png",
-    discountPercent: 27,
-    price: 100,
-    originalPrice: 120,
-    rating: 4.9,
-    reviewCount: 311,
-    duration: "4 hours",
-    groupSize: "2-18",
-    type: "tour",
-    location: "Paris, France",
-  },
-  {
-    id: "2",
-    slug: "eiffel-tower-sunset",
-    title: "Eiffel Tower",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/wishlist-placeholder.png",
-    discountPercent: 27,
-    price: 100,
-    originalPrice: 120,
-    rating: 4.9,
-    reviewCount: 311,
-    duration: "4 hours",
-    groupSize: "2-18",
-    type: "tour",
-    location: "Paris, France",
-  },
-  {
-    id: "3",
-    slug: "eiffel-tower-night",
-    title: "Eiffel Tower",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/wishlist-placeholder.png",
-    discountPercent: 27,
-    price: 100,
-    originalPrice: 120,
-    rating: 4.9,
-    reviewCount: 311,
-    duration: "4 hours",
-    groupSize: "2-18",
-    type: "destination",
-    location: "Paris, France",
-  },
-  {
-    id: "4",
-    slug: "eiffel-tower-morning",
-    title: "Eiffel Tower",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
-    image: "/images/wishlist/wishlist-placeholder.png",
-    discountPercent: 27,
-    price: 100,
-    originalPrice: 120,
-    rating: 4.9,
-    reviewCount: 311,
-    duration: "4 hours",
-    groupSize: "2-18",
-    type: "destination",
-    location: "Paris, France",
-  },
-];
+import { useCart, CartItem } from "@/app/context/CartContext";
 
 interface WishlistContentSectionProps {
-  items?: WishlistItem[];
+  // items prop is no longer the primary source
 }
 
-const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
-  items: initialItems = sampleWishlistItems,
-}) => {
-  const [wishlist, setWishlist] = useState<WishlistItem[]>(initialItems);
+const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
+  const { wishlistItems, removeFromWishlist } = useWishlist();
   const [activeCollection, setActiveCollection] = useState("all");
   const [showRefineMenu, setShowRefineMenu] = useState(false);
-  const { showToast } = useToast();
+  const { addToCart } = useCart();
+  const router = useRouter();
 
   const [sortBy, setSortBy] = useState("newest"); // newest, price-asc, price-desc, name-asc, name-desc, rating-desc
+  const [visibleCount, setVisibleCount] = useState(4);
+
+  // Reset visible count when collection changes
+  useEffect(() => {
+    setVisibleCount(4);
+  }, [activeCollection]);
 
   // Calculate item counts based on current wishlist
   const itemCounts = {
-    all: wishlist.length,
-    tours: wishlist.filter((item) => item.type === "tour").length,
-    destinations: wishlist.filter((item) => item.type === "destination").length,
+    all: wishlistItems.length,
+    tours: wishlistItems.filter((item) => item.type === "tour").length,
+    destinations: wishlistItems.filter((item) => item.type === "destination").length,
   };
 
   // Filter items based on active collection
-  const filteredItems = wishlist.filter((item) => {
+  const filteredItems = wishlistItems.filter((item) => {
     if (activeCollection === "all") return true;
     if (activeCollection === "tours") return item.type === "tour";
     if (activeCollection === "destinations") return item.type === "destination";
@@ -141,15 +75,27 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
 
   // Handle remove from wishlist
   const handleRemove = (id: string) => {
-    const item = wishlist.find((i) => i.id === id);
-    setWishlist((prev) => prev.filter((i) => i.id !== id));
-    showToast(`${item?.title || "Item"} removed from wishlist`, "info");
+    removeFromWishlist(id);
   };
 
   // Handle add to cart
   const handleAddToCart = (id: string) => {
-    const item = wishlist.find((i) => i.id === id);
-    showToast(`${item?.title || "Item"} added to cart`, "success");
+    const item = wishlistItems.find((i) => i.id === id);
+    if (!item) return;
+
+    const cartItem: CartItem = {
+      id: item.id,
+      type: "experience",
+      title: item.title,
+      image: item.image,
+      location: item.location,
+      dates: "Select Date",
+      amenities: [item.duration, item.groupSize],
+      price: item.price,
+      actionLabel: "Book Now",
+    };
+
+    addToCart(cartItem);
   };
 
   const sortOptions = [
@@ -239,10 +185,9 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
                           }}
                           className={`
                             w-full text-left px-4 py-2 text-sm font-medium transition-colors
-                            ${
-                              sortBy === option.value
-                                ? "bg-brand-orange/10 text-brand-orange"
-                                : "text-brand-brown hover:bg-brand-brown/5"
+                            ${sortBy === option.value
+                              ? "bg-brand-orange/10 text-brand-orange"
+                              : "text-brand-brown hover:bg-brand-brown/5"
                             }
                           `}
                         >
@@ -258,7 +203,7 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
             {/* Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-10 md:mb-12">
               {sortedItems.length > 0 ? (
-                sortedItems.map((item) => (
+                sortedItems.slice(0, visibleCount).map((item) => (
                   <WishlistCard
                     key={item.id}
                     item={item}
@@ -276,9 +221,12 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
             </div>
 
             {/* Load More Button */}
-            {sortedItems.length > 0 && (
+            {visibleCount < sortedItems.length && (
               <div className="flex justify-center">
-                <button className="relative w-full max-w-[431px] h-[45px] bg-brand-orange rounded-xl overflow-hidden group cursor-pointer">
+                <button
+                  onClick={() => setVisibleCount(sortedItems.length)}
+                  className="relative w-full max-w-[431px] h-[45px] bg-brand-orange rounded-xl overflow-hidden group cursor-pointer"
+                >
                   <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
                   <span className="relative z-10 font-display italic font-medium text-lg md:text-xl leading-[27px] text-white group-hover:text-brand-orange transition-colors duration-300">
                     Load More

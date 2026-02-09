@@ -31,7 +31,7 @@ const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone }) => {
       case 'alpine':
         return '/images/history/lineicons_alpinejs@4x.png';
       case 'beach':
-        return '/images/history/Group.png';
+        return '/images/history/beachWanderer.png';
       case 'metropolis':
         return '/images/history/mdi_building.png';
       default:

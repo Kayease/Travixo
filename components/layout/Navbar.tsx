@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 /* ============================================
    Type Definitions
@@ -77,11 +78,10 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
   return (
     <div
-      className={`w-[90vw] md:w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top h-auto md:h-[314px] overflow-hidden ${
-        isOpen
-          ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
-          : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
-      }`}
+      className={`w-[90vw] md:w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top h-auto md:h-[314px] overflow-hidden ${isOpen
+        ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+        : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
+        }`}
     >
       <div className="flex flex-col md:flex-row h-full p-4 overflow-y-auto md:overflow-visible">
         {/* Left Column - Menu Items */}
@@ -233,11 +233,10 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`w-[min(96vw,420px)] sm:w-[min(96vw,520px)] md:w-[600px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${
-        isOpen
-          ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
-          : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
-      }`}
+      className={`w-[min(96vw,420px)] sm:w-[min(96vw,520px)] md:w-[600px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${isOpen
+        ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+        : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
+        }`}
     >
       <div className="flex flex-wrap md:flex-nowrap gap-x-8 gap-y-4 px-4 py-4 md:px-6 md:py-5 md:justify-between">
         {renderColumn(pagesColumn1)}
@@ -273,11 +272,10 @@ const NavItem: React.FC<NavItemProps> = ({
     <>
       {/* Background slide effect */}
       <span
-        className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${
-          isActive
-            ? "w-full opacity-100"
-            : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
-        }`}
+        className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${isActive
+          ? "w-full opacity-100"
+          : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+          }`}
       />
 
       {/* Text content - positioned relatively to sit on top of background */}
@@ -289,9 +287,8 @@ const NavItem: React.FC<NavItemProps> = ({
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={`relative z-10 transition-transform ${
-            isActive ? "rotate-180" : ""
-          }`}
+          className={`relative z-10 transition-transform ${isActive ? "rotate-180" : ""
+            }`}
         >
           <path
             d="M6.41 8.58L12 14.17L17.59 8.58L19 10L12 17L5 10L6.41 8.58Z"
@@ -302,11 +299,10 @@ const NavItem: React.FC<NavItemProps> = ({
     </>
   );
 
-  const containerClasses = `group relative flex items-center gap-2 px-5 py-1.5 font-display italic text-[15px] md:text-[18px] transition-all overflow-hidden cursor-pointer ${
-    isActive
-      ? "text-white rounded-sm"
-      : "text-[#4B3621] hover:text-white rounded-sm"
-  } ${className || ""}`;
+  const containerClasses = `group relative flex items-center gap-2 px-5 py-1.5 font-display italic text-[15px] md:text-[18px] transition-all overflow-hidden cursor-pointer ${isActive
+    ? "text-white rounded-sm"
+    : "text-[#4B3621] hover:text-white rounded-sm"
+    } ${className || ""}`;
 
   if (href) {
     return (
@@ -402,19 +398,14 @@ const ProfileIcon = () => (
 export const Navbar = () => {
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   const [isPagesOpen, setIsPagesOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const searchBarRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close dropdowns when clicking outside
+  // Close dropdowns and search when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -424,10 +415,37 @@ export const Navbar = () => {
         setIsDestinationOpen(false);
         setIsPagesOpen(false);
       }
+
+      if (
+        searchBarRef.current &&
+        !searchBarRef.current.contains(event.target as Node)
+      ) {
+        setIsSearchOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Focus search input when opened
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
+
+  // Handle Esc key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsSearchOpen(false);
+        setIsDestinationOpen(false);
+        setIsPagesOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Handle destination dropdown toggle
@@ -442,20 +460,26 @@ export const Navbar = () => {
     setIsDestinationOpen(false);
   };
 
+  // Handle Search toggle
+  const handleSearchToggle = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
+  // Handle Search submit
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // For now, redirect to destinations with search query
+      router.push(`/destinations?search=${encodeURIComponent(searchQuery)}`);
+      setIsSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
+
   return (
-    <header
-      className={`w-full sticky top-0 z-100 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#FFFCF5]/95 backdrop-blur-md shadow-md py-1"
-          : "bg-[#FFFCF5] py-0"
-      }`}
-    >
+    <header className="w-full sticky top-0 z-[100] bg-[#FFFCF5] transition-all duration-300 shadow-sm">
       {/* Main Navbar Container */}
-      <nav
-        className={`w-full flex items-center justify-between px-4 md:px-10 lg:px-20 transition-all duration-300 ${
-          isScrolled ? "h-[50px]" : "h-[60px]"
-        }`}
-      >
+      <nav className="w-full flex items-center justify-between px-4 md:px-10 lg:px-20 h-[60px] transition-all duration-300">
         {/* Logo Section */}
         <Link
           href="/"
@@ -492,9 +516,8 @@ export const Navbar = () => {
               className="cursor-pointer"
             />
             <div
-              className={`fixed left-0 right-0 ${isScrolled ? "top-[50px]" : "top-[60px]"} flex justify-center pt-2 z-50 md:absolute md:top-full md:left-0 md:right-auto md:block ${
-                isDestinationOpen ? "" : "pointer-events-none"
-              }`}
+              className={`fixed left-0 right-0 top-[60px] flex justify-center pt-2 z-50 md:absolute md:top-full md:left-0 md:right-auto md:block ${isDestinationOpen ? "" : "pointer-events-none"
+                }`}
             >
               <DestinationDropdown
                 isOpen={isDestinationOpen}
@@ -519,9 +542,8 @@ export const Navbar = () => {
               className="cursor-pointer"
             />
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 ${
-                isPagesOpen ? "" : "pointer-events-none"
-              }`}
+              className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 ${isPagesOpen ? "" : "pointer-events-none"
+                }`}
             >
               <PagesDropdown
                 isOpen={isPagesOpen}
@@ -535,7 +557,10 @@ export const Navbar = () => {
 
         {/* Right Icons Section */}
         <div className="flex items-center gap-3 md:gap-6">
-          <div className="cursor-pointer scale-90 md:scale-100">
+          <div
+            className="cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
+            onClick={handleSearchToggle}
+          >
             <SearchIcon />
           </div>
           <Link href="/cart" className="cursor-pointer scale-90 md:scale-100">
@@ -549,6 +574,61 @@ export const Navbar = () => {
           </Link>
         </div>
       </nav>
+
+      {/* Global Search Overlay Bar */}
+      <div
+        className={`absolute top-[60px] left-0 right-0 z-40 transition-all duration-300 ease-in-out border-b border-[#FF6E00]/20 ${isSearchOpen
+          ? "translate-y-0 opacity-100 visible h-[80px]"
+          : "-translate-y-full opacity-0 invisible h-0"
+          }`}
+        ref={searchBarRef}
+      >
+        <div className="w-full h-full bg-[#FFFCF5] flex items-center justify-center px-4 md:px-10 lg:px-20">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="w-full max-w-[800px] relative"
+          >
+            <input
+              ref={searchInputRef}
+              type="text"
+              placeholder="What are you looking for? (e.g. Paris, Bangkok, Safari...)"
+              className="w-full h-[50px] bg-white border border-[#4B3621]/20 rounded-xl pl-12 pr-4 font-display italic text-lg outline-none focus:border-[#4B3621]/40 shadow-sm transition-all"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <div className="absolute left-4 top-1/2 -translate-y-1/2">
+              <SearchIcon />
+            </div>
+            {/* Close button inside input area for accessibility */}
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="absolute right-12 top-1/2 -translate-y-1/2 text-[#4B3621]/40 hover:text-[#FF6E00]"
+              >
+                Clear
+              </button>
+            )}
+            <button
+              type="submit"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FF6E00] text-white px-4 py-1.5 rounded-lg font-display italic text-sm hover:bg-[#E66300] transition-colors"
+            >
+              Search
+            </button>
+          </form>
+
+          {/* Close Search Button */}
+          <button
+            onClick={() => setIsSearchOpen(false)}
+            className="ml-4 p-2 text-[#4B3621]/60 hover:text-red-500 transition-colors"
+            aria-label="Close search"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </header>
   );
 };

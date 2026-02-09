@@ -4,7 +4,7 @@
  * Complete checkout flow for booking tours including:
  * - Progress stepper (Detail, Payment, Confirm)
  * - Travel information form
- * - Payment details with Credit Card/PayPal
+ * - Payment details with Credit Card/UPI
  * - Order summary sidebar with price breakdown
  *
  * Route: /checkout
