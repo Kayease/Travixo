@@ -25,23 +25,31 @@ interface ExpeditionCardProps {
 
 const ExpeditionCard: React.FC<ExpeditionCardProps> = ({ expedition }) => {
   return (
-    <Link 
+    <Link
       href={`/tours/${expedition.slug}`}
       className="group block cursor-pointer"
     >
       {/* Image Card */}
-      <div className="relative w-full aspect-[418/487] rounded-xl overflow-hidden border border-brand-brown/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] mb-4 md:mb-5">
+      <div className="relative w-full aspect-[418/487] rounded-xl overflow-hidden mb-4 md:mb-5">
         <Image
           src={expedition.image}
           alt={expedition.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 418px"
+        />
+        {/* Hover Image */}
+        <Image
+          src="/images/portfolio/cards/Component_68.png"
+          alt={`${expedition.title} Hover`}
+          fill
+          className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 418px"
         />
       </div>
 
       {/* Title */}
-      <h3 className="font-display italic font-semibold text-[22px] md:text-[26px] lg:text-[28px] leading-[30px] md:leading-[35px] lg:leading-[37px] text-brand-brown group-hover:text-brand-orange transition-colors">
+      <h3 className="font-display italic font-semibold text-[22px] md:text-[26px] lg:text-[28px] leading-[30px] md:leading-[35px] lg:leading-[37px] text-brand-brown">
         {expedition.title}
       </h3>
     </Link>

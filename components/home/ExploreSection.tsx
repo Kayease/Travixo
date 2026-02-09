@@ -119,7 +119,7 @@ const SelectInput = ({
     name={name}
     value={value}
     onChange={onChange}
-    className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 text-brand-brown font-medium text-lg font-body focus:outline-none focus:ring-2 focus:ring-brand-orange"
+    className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 text-brand-brown font-medium text-lg font-body outline-none focus:outline-none focus:ring-0 focus:border-brand-brown/20 !focus-visible:ring-0 !focus-visible:border-brand-brown/20 !focus-visible:shadow-none !focus-visible:outline-none focus:shadow-none"
   >
     <option value="" disabled>
       {label}
@@ -183,10 +183,9 @@ export const ExploreSection = () => {
                 className={`
                   w-[224px] h-[122px] rounded-xl flex flex-col items-center justify-center gap-2
                   border-b-2 transition-all duration-300 ease-out cursor-pointer
-                  ${
-                    isActive
-                      ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"
-                      : "bg-[#FFF7E5] border-transparent hover:shadow-md hover:scale-[1.01]"
+                  ${isActive
+                    ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"
+                    : "bg-[#FFF7E5] border-transparent hover:shadow-md hover:scale-[1.01]"
                   }
                 `}
               >
@@ -205,10 +204,9 @@ export const ExploreSection = () => {
                 <span
                   className={`
                     font-display italic font-semibold text-lg text-center transition-colors duration-300 ease-out
-                    ${
-                      isActive
-                        ? "text-brand-orange drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
-                        : "text-brand-brown"
+                    ${isActive
+                      ? "text-brand-orange drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
+                      : "text-brand-brown"
                     }
                   `}
                 >
@@ -241,7 +239,7 @@ export const ExploreSection = () => {
             </p>
 
             {/* Form Inputs - overflow-visible so date picker dropdown is not clipped */}
-            <div className="grid grid-cols-2 gap-4 mt-4 overflow-visible">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 overflow-visible">
               <SelectInput
                 label="Destination"
                 name="destination"
@@ -292,7 +290,7 @@ export const ExploreSection = () => {
           </div>
 
           {/* Right Content - Featured Image with smooth transition */}
-          <div className="relative w-full h-[556px] rounded-xl overflow-hidden shadow-2xl">
+          <div className="relative w-full h-[300px] md:h-[556px] rounded-xl overflow-hidden shadow-2xl">
             <div
               key={currentCategory.imagePath}
               className="relative w-full h-full animate-explore-image-in"

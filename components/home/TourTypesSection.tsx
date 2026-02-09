@@ -128,31 +128,49 @@ const TourTypeCard = ({
   description: string;
   icon: string;
 }) => (
-  <div className="relative w-full max-w-[221px] group">
+  <div className="relative w-full max-w-[221px] group cursor-pointer">
     {/* Number Badge */}
-    <div className="absolute top-0 left-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-brand-orange rounded-full flex items-center justify-center z-10">
+    <div className="absolute top-0 left-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-brand-orange rounded-full flex items-center justify-center z-20 shadow-md">
       <span className="font-body font-semibold text-3xl md:text-5xl text-white leading-none">
         {number}
       </span>
     </div>
 
-    {/* Card */}
-    <div className="relative bg-white border border-brand-orange rounded-tl-[100px] md:rounded-tl-[150px] pt-12 pb-6 px-4 mt-4 ml-4 overflow-hidden">
-      {/* Orange fill animation from bottom to top */}
-      <div className="absolute inset-0 bg-brand-orange h-0 group-hover:h-full transition-all duration-500 ease-out" style={{ top: 'auto', bottom: 0 }} />
-      
-      {/* Icon */}
-      <div className="relative z-10 flex justify-center mb-4 group-hover:brightness-0 group-hover:invert transition-all duration-300">{getIcon(icon)}</div>
+    {/* Card Content Outer Wrapper */}
+    <div className="relative bg-white border border-brand-orange rounded-tl-[100px] md:rounded-tl-[150px] mt-4 ml-4 overflow-hidden">
 
-      {/* Title */}
-      <h3 className="relative z-10 font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown group-hover:text-white text-center mb-3 transition-colors duration-300">
-        {title}
-      </h3>
+      {/* 1. Base Layer (Static State - Brown Text) */}
+      <div className="relative z-0 flex flex-col items-center pt-12 pb-6 px-4 h-full">
+        <div className="mb-4 transition-opacity duration-300">
+          {getIcon(icon)}
+        </div>
+        <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown text-center mb-3">
+          {title}
+        </h3>
+        <p className="font-body font-normal text-sm md:text-base leading-6 text-brand-brown text-center max-w-[185px] mx-auto">
+          {description}
+        </p>
+      </div>
 
-      {/* Description */}
-      <p className="relative z-10 font-body font-normal text-sm md:text-base leading-6 text-brand-brown group-hover:text-white text-center max-w-[185px] mx-auto transition-colors duration-300">
-        {description}
-      </p>
+      {/* 2. Overlay Layer (Hover State - Orange BG + White Text + Motion) */}
+      <div
+        className="absolute inset-0 bg-brand-orange z-10 flex flex-col items-center pt-12 pb-6 px-4 transition-all duration-700 ease-out [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)]"
+      >
+        {/* Animated Icon Container */}
+        <div className="mb-4 brightness-0 invert translate-y-[100px] group-hover:translate-y-0 transition-transform duration-700 ease-out">
+          {getIcon(icon)}
+        </div>
+
+        {/* Title Container */}
+        <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-white text-center mb-3 translate-y-[100px] group-hover:translate-y-0 transition-transform duration-700 ease-out delay-75">
+          {title}
+        </h3>
+
+        {/* Description Container */}
+        <p className="font-body font-normal text-sm md:text-base leading-6 text-white text-center max-w-[185px] mx-auto translate-y-[100px] group-hover:translate-y-0 transition-transform duration-700 ease-out delay-100">
+          {description}
+        </p>
+      </div>
     </div>
 
     {/* Bottom Border */}

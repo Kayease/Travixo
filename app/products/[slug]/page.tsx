@@ -260,7 +260,8 @@ const TourDetailPage: React.FC = () => {
           </div>
 
           {/* Related Tours Section */}
-          <div className="mt-12 md:mt-16">
+          <div className="mt-4 md:mt-2">
+            <div className="w-full max-w-[800px] h-px bg-[#4B3621] opacity-20 mb-4 md:mb-0" />
             <RelatedToursSection tours={tour.relatedTours} />
           </div>
         </div>

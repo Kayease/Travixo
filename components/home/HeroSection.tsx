@@ -129,7 +129,7 @@ export const HeroSection = () => {
         >
           {/* For responsive, position from right. No transition while swinging so physics runs every frame. */}
           <div
-            className="absolute top-0 right-[60px] md:right-[80px] lg:right-[120px] flex flex-col items-center cursor-pointer"
+            className="absolute top-0 right-[60px] md:right-[80px] lg:right-[120px] flex flex-col items-center cursor-pointer scale-[0.6] origin-top-right md:scale-100"
             style={{
               transformOrigin: "top center",
               transform: `rotate(${pendulumRotation}deg)`,

@@ -63,11 +63,11 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [hoveredCountry, setHoveredCountry] = useState<string>("View all");
+  const [hoveredCountry, setHoveredCountry] = useState<string>("");
 
   // Reset to default view when closed/opened
   useEffect(() => {
-    if (isOpen) setHoveredCountry("View all");
+    if (isOpen) setHoveredCountry("");
   }, [isOpen]);
 
   // Early return removed for transition
@@ -77,16 +77,14 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
   return (
     <div
-      className={`w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${
-        isOpen
-          ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
-          : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
-      }`}
-      style={{ height: "314px" }}
+      className={`w-[90vw] md:w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top h-auto md:h-[314px] overflow-hidden ${isOpen
+        ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+        : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
+        }`}
     >
-      <div className="flex h-full p-4">
+      <div className="flex flex-col md:flex-row h-full p-4 overflow-y-auto md:overflow-visible">
         {/* Left Column - Menu Items */}
-        <div className="flex flex-col w-[190px] pt-2">
+        <div className="flex flex-col w-full md:w-[190px] pt-2 mb-4 md:mb-0">
           {/* Top Destination Header */}
           <div className="bg-[#FF6E00] px-4 py-1.5 rounded-sm mb-1">
             <span className="font-display text-lg italic text-white whitespace-nowrap">
@@ -95,33 +93,35 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
           </div>
 
           {/* Destination Links */}
-          {topDestinations.map((destination, index) => {
-            const slug =
-              destination === "View all"
-                ? "all"
-                : destination.toLowerCase().replace(/\s+/g, "-");
-            return (
-              <Link
-                key={index}
-                href={destination === "View all" ? "/destinations" : "/paris"}
-                className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
-                onClick={onClose}
-                onMouseEnter={() => setHoveredCountry(destination)}
-              >
-                <span
-                  className={`absolute inset-0 bg-[#FF6E00] transition-all duration-500 ease-out z-0 ${hoveredCountry === destination ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"}`}
-                ></span>
-                <span className="relative z-10">{destination}</span>
-              </Link>
-            );
-          })}
+          <div className="flex flex-col">
+            {topDestinations.map((destination, index) => {
+              const slug =
+                destination === "View all"
+                  ? "all"
+                  : destination.toLowerCase().replace(/\s+/g, "-");
+              return (
+                <Link
+                  key={index}
+                  href={destination === "View all" ? "/destinations" : "/paris"}
+                  className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
+                  onClick={onClose}
+                  onMouseEnter={() => setHoveredCountry(destination)}
+                >
+                  <span
+                    className={`absolute inset-0 bg-[#FF6E00] transition-all duration-500 ease-out z-0 ${hoveredCountry === destination ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"}`}
+                  ></span>
+                  <span className="relative z-10">{destination}</span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Vertical Divider */}
-        <div className="w-px h-[278px] bg-[rgba(0,0,0,0.2)] mx-6 self-center" />
+        {/* Vertical Divider - Hidden on mobile */}
+        <div className="hidden md:block w-px h-[278px] bg-[rgba(0,0,0,0.2)] mx-6 self-center" />
 
         {/* Middle Column - Featured Destinations with Images */}
-        <div className="flex flex-col gap-5 pt-2 w-[240px]">
+        <div className="flex flex-col gap-3 md:gap-5 pt-2 w-full md:w-[240px] mb-4 md:mb-0">
           {currentCities.map((destination, index) => {
             return (
               <Link
@@ -131,7 +131,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
                 onClick={onClose}
               >
                 {/* Circular Image */}
-                <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden">
+                <div className="relative w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full overflow-hidden shrink-0">
                   <Image
                     src={destination.image}
                     alt={destination.name}
@@ -149,30 +149,23 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
           })}
         </div>
 
-        {/* Right Column - Promotional Banner */}
-        <div className="ml-auto relative w-[298px] h-[298px] rounded-lg overflow-hidden">
+        {/* Right Column - Promotional Banner - Hidden on very small screens if needed, or scaled */}
+        <div className="ml-auto relative w-full md:w-[298px] h-[150px] md:h-full rounded-lg overflow-hidden shrink-0">
           <Image
-            src="/images/destinations/cards/Component_68.png"
+            src="/images/destinations/cards/Travel.png"
             alt="Travel Holiday Promotion"
             fill
             className="object-cover"
-            sizes="298px"
+            sizes="(max-width: 768px) 100vw, 298px"
             priority
           />
           {/* Overlay Content */}
-          <div className="absolute inset-0 bg-linear-to-b from-[#FFF7E5]/90 to-[#FFF7E5]/70 flex flex-col items-center justify-center p-4">
-            <h3 className="text-3xl font-bold text-[#FF6E00] mb-1">TRAVEL</h3>
-            <h3 className="text-3xl font-bold text-[#4B3621] mb-4">HOLIDAY</h3>
-            <div className="bg-[#FF3B30] text-white px-3 py-1 rounded-lg mb-2">
-              <span className="text-sm">Get Up To</span>
-              <span className="text-2xl font-bold ml-2">50%</span>
-              <span className="text-sm"> OFF</span>
-            </div>
-            <p className="text-xs text-[#4B3621] text-center mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt.
-            </p>
-          </div>
+
+          <p className="text-[10px] md:text-xs text-[#4B3621] text-center mt-2 hidden md:block">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
+            nonummy nibh euismod tincidunt.
+          </p>
+
         </div>
       </div>
     </div>
@@ -240,11 +233,10 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`w-[min(96vw,420px)] sm:w-[min(96vw,520px)] md:w-[600px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${
-        isOpen
-          ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
-          : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
-      }`}
+      className={`w-[min(96vw,420px)] sm:w-[min(96vw,520px)] md:w-[600px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${isOpen
+        ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
+        : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
+        }`}
     >
       <div className="flex flex-wrap md:flex-nowrap gap-x-8 gap-y-4 px-4 py-4 md:px-6 md:py-5 md:justify-between">
         {renderColumn(pagesColumn1)}
@@ -280,11 +272,10 @@ const NavItem: React.FC<NavItemProps> = ({
     <>
       {/* Background slide effect */}
       <span
-        className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${
-          isActive
-            ? "w-full opacity-100"
-            : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
-        }`}
+        className={`absolute inset-0 bg-[#FF6E00] transition-all duration-300 ease-out ${isActive
+          ? "w-full opacity-100"
+          : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+          }`}
       />
 
       {/* Text content - positioned relatively to sit on top of background */}
@@ -296,9 +287,8 @@ const NavItem: React.FC<NavItemProps> = ({
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={`relative z-10 transition-transform ${
-            isActive ? "rotate-180" : ""
-          }`}
+          className={`relative z-10 transition-transform ${isActive ? "rotate-180" : ""
+            }`}
         >
           <path
             d="M6.41 8.58L12 14.17L17.59 8.58L19 10L12 17L5 10L6.41 8.58Z"
@@ -309,11 +299,10 @@ const NavItem: React.FC<NavItemProps> = ({
     </>
   );
 
-  const containerClasses = `group relative flex items-center gap-2 px-3 py-1.5 font-display italic text-[18px] transition-all overflow-hidden cursor-pointer ${
-    isActive
-      ? "text-white rounded-lg"
-      : "text-[#4B3621] hover:text-white rounded-lg"
-  } ${className || ""}`;
+  const containerClasses = `group relative flex items-center gap-2 px-5 py-1.5 font-display italic text-[15px] md:text-[18px] transition-all overflow-hidden cursor-pointer ${isActive
+    ? "text-white rounded-sm"
+    : "text-[#4B3621] hover:text-white rounded-sm"
+    } ${className || ""}`;
 
   if (href) {
     return (
@@ -451,20 +440,18 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`w-full sticky top-0 z-100 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#FFFCF5]/95 backdrop-blur-md shadow-md py-1"
-          : "bg-[#FFFCF5] py-0"
-      }`}
+      className={`w-full sticky top-0 z-100 transition-all duration-300 ${isScrolled
+        ? "bg-[#FFFCF5]/95 backdrop-blur-md shadow-md py-1"
+        : "bg-[#FFFCF5] py-0"
+        }`}
     >
       {/* Main Navbar Container */}
       <nav
-        className={`w-full flex items-center justify-between px-5 md:px-10 lg:px-20 transition-all duration-300 ${
-          isScrolled ? "h-[50px]" : "h-[60px]"
-        }`}
+        className={`w-full flex items-center justify-between px-4 md:px-10 lg:px-20 transition-all duration-300 ${isScrolled ? "h-[50px]" : "h-[60px]"
+          }`}
       >
         {/* Logo Section */}
-        <Link href="/" className="relative w-[150px] h-[50px] cursor-pointer">
+        <Link href="/" className="relative w-[120px] md:w-[150px] h-[40px] md:h-[50px] cursor-pointer">
           <Image
             src="/images/logo/logo.png"
             alt="Travixo Logo"
@@ -476,7 +463,7 @@ export const Navbar = () => {
         </Link>
 
         {/* Center Navigation Links */}
-        <div className="flex items-center gap-[35px]" ref={dropdownRef}>
+        <div className="flex items-center gap-2 md:gap-[35px]" ref={dropdownRef}>
           {/* Destination with Dropdown */}
           <div
             className="relative"
@@ -493,9 +480,8 @@ export const Navbar = () => {
               className="cursor-pointer"
             />
             <div
-              className={`absolute top-full left-0 pt-2 z-50 ${
-                isDestinationOpen ? "" : "pointer-events-none"
-              }`}
+              className={`fixed left-0 right-0 ${isScrolled ? "top-[50px]" : "top-[60px]"} flex justify-center pt-2 z-50 md:absolute md:top-full md:left-0 md:right-auto md:block ${isDestinationOpen ? "" : "pointer-events-none"
+                }`}
             >
               <DestinationDropdown
                 isOpen={isDestinationOpen}
@@ -520,9 +506,8 @@ export const Navbar = () => {
               className="cursor-pointer"
             />
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 ${
-                isPagesOpen ? "" : "pointer-events-none"
-              }`}
+              className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 ${isPagesOpen ? "" : "pointer-events-none"
+                }`}
             >
               <PagesDropdown
                 isOpen={isPagesOpen}
@@ -535,14 +520,14 @@ export const Navbar = () => {
         </div>
 
         {/* Right Icons Section */}
-        <div className="flex items-center gap-6">
-          <div className="cursor-pointer">
+        <div className="flex items-center gap-3 md:gap-6">
+          <div className="cursor-pointer scale-90 md:scale-100">
             <SearchIcon />
           </div>
-          <Link href="/cart" className="cursor-pointer">
+          <Link href="/cart" className="cursor-pointer scale-90 md:scale-100">
             <CartIcon />
           </Link>
-          <Link href="/profile" className="cursor-pointer">
+          <Link href="/profile" className="cursor-pointer scale-90 md:scale-100">
             <ProfileIcon />
           </Link>
         </div>

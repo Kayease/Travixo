@@ -63,43 +63,43 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({
       </div>
 
       {/* Price Breakdown */}
-      <div className="p-4 md:p-5 lg:p-6">
+      <div className="p-4 md:p-[17px]">
         {/* Price per Person */}
         <div className="flex items-center justify-between mb-3">
-          <span className="font-body font-normal text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-normal text-[18px] leading-[30px] text-brand-brown">
             Price per Person
           </span>
-          <span className="font-body font-semibold text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-semibold text-[18px] leading-[30px] text-brand-brown">
             {formatCurrency(pricePerPerson)}
           </span>
         </div>
 
         {/* Person Count */}
         <div className="flex items-center justify-between mb-3">
-          <span className="font-body font-normal text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-normal text-[18px] leading-[30px] text-brand-brown">
             Person
           </span>
-          <span className="font-body font-semibold text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-semibold text-[18px] leading-[30px] text-brand-brown">
             {personCount.toString().padStart(2, "0")}
           </span>
         </div>
 
         {/* Luxury Tax */}
         <div className="flex items-center justify-between mb-3">
-          <span className="font-body font-normal text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-normal text-[18px] leading-[30px] text-brand-brown">
             Luxury Tax ( {taxPercent}% )
           </span>
-          <span className="font-body font-semibold text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-semibold text-[18px] leading-[30px] text-brand-brown">
             {formatCurrency(taxAmount)}
           </span>
         </div>
 
         {/* Booking Fee */}
         <div className="flex items-center justify-between mb-4">
-          <span className="font-body font-normal text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-normal text-[18px] leading-[30px] text-brand-brown">
             Booking Fee
           </span>
-          <span className="font-body font-semibold text-base md:text-lg leading-[30px] text-brand-brown">
+          <span className="font-body font-semibold text-[18px] leading-[30px] text-brand-brown">
             {formatCurrency(bookingFee)}
           </span>
         </div>
@@ -128,104 +128,6 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({
             Pay
           </span>
         </button>
-
-        {/* Security Badges */}
-        <div className="flex items-center justify-center gap-2 md:gap-4 mt-5 flex-wrap">
-          {/* Norton Secured */}
-          <div className="flex items-center gap-1.5">
-            <svg
-              className="w-5 h-5 md:w-6 md:h-6"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <rect
-                x="4"
-                y="8"
-                width="16"
-                height="12"
-                rx="2"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1"
-              />
-              <path
-                d="M8 8V6C8 3.79086 9.79086 2 12 2C14.2091 2 16 3.79086 16 6V8"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1"
-              />
-              <circle
-                cx="12"
-                cy="14"
-                r="1.5"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1"
-              />
-            </svg>
-            <span className="font-body font-medium text-xs md:text-sm leading-7 text-brand-brown/60 uppercase tracking-wide">
-              Norton Secured
-            </span>
-          </div>
-
-          {/* PCI Compliant */}
-          <div className="flex items-center gap-1.5">
-            <svg
-              className="w-5 h-5 md:w-6 md:h-6"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <rect
-                x="4"
-                y="8"
-                width="16"
-                height="12"
-                rx="2"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1"
-              />
-              <path
-                d="M8 8V6C8 3.79086 9.79086 2 12 2C14.2091 2 16 3.79086 16 6V8"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1"
-              />
-              <circle
-                cx="12"
-                cy="14"
-                r="1.5"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1"
-              />
-            </svg>
-            <span className="font-body font-medium text-xs md:text-sm leading-7 text-brand-brown/60 uppercase tracking-wide">
-              PCI Compliant
-            </span>
-          </div>
-
-          {/* Truste */}
-          <div className="flex items-center gap-1.5">
-            <svg
-              className="w-5 h-5 md:w-6 md:h-6"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="9"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1"
-              />
-              <path
-                d="M8 12L11 15L16 9"
-                stroke="rgba(75,54,33,0.6)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="font-body font-medium text-xs md:text-sm leading-7 text-brand-brown/60 uppercase tracking-wide">
-              Truste
-            </span>
-          </div>
-        </div>
       </div>
     </div>
   );

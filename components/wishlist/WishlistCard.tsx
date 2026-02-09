@@ -262,13 +262,13 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
       </div>
 
       {/* Hover State - Book Now Button - Slides up from bottom on card hover */}
-      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out w-[260px]">
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out w-[253px]">
         <Link
           href={`/checkout?name=${encodeURIComponent(item.title)}&price=${item.price}&image=${encodeURIComponent(item.image)}`}
-          className="block w-full bg-brand-orange rounded-xl py-3 shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer text-center"
+          className="flex items-center justify-center w-full h-[50px] bg-white border border-[#FF6E00] rounded-xl shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer"
         >
-          <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
-          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover/btn:text-brand-orange transition-colors duration-300">
+          <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />
+          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-brand-brown group-hover/btn:text-white transition-colors duration-300">
             Book Now
           </span>
         </Link>

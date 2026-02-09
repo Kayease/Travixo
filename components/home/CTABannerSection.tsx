@@ -59,13 +59,15 @@ export const CTABannerSection = ({
             />
           </div>
 
+
           {/* CTA Card */}
           <div
             className="relative py-10 md:py-12 px-6 md:px-8 lg:px-12"
             style={{
               width: "1280px",
               maxWidth: "100%",
-              height: "200px",
+              height: "auto",
+              minHeight: "200px",
               backgroundColor: "#FFF7E5",
               // backgroundImage: "url('/images/hero/hero-pattern.png')",
               backgroundSize: "cover",
@@ -73,7 +75,7 @@ export const CTABannerSection = ({
               borderRadius: "12px",
             }}
           >
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 pl-[200px]">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[200px]">
               {/* Content */}
               <div className="flex-1">
                 {/* Title */}

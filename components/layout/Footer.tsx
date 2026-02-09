@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Toast } from "../ui/Toast";
 
 /**
  * Facebook Icon
@@ -96,8 +97,11 @@ const PhoneIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M22 16.92V19.92C22 20.48 21.56 20.95 21 21C20.76 21.02 20.51 21.03 20.25 21.03C10.84 21.03 3.25 13.44 3.25 4C3.25 3.74 3.26 3.49 3.28 3.25C3.33 2.69 3.8 2.25 4.36 2.25H7.36C7.86 2.25 8.29 2.61 8.36 3.1C8.42 3.55 8.53 4 8.69 4.42C8.84 4.83 8.74 5.28 8.43 5.59L6.89 7.13C8.17 9.52 10.23 11.58 12.62 12.86L14.16 11.32C14.47 11.01 14.92 10.91 15.33 11.06C15.75 11.22 16.2 11.33 16.65 11.39C17.14 11.46 17.5 11.89 17.5 12.39V16.92C17.5 17.48 17.02 17.95 16.46 17.93L22 16.92Z"
-      fill="white"
+      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.03 12.03 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -134,24 +138,26 @@ const MailIcon = () => (
 /**
  * Arrow Icon for Newsletter
  */
-const ArrowIcon = () => (
+const ArrowIcon = ({ className }: { className?: string }) => (
   <svg
     width="24"
     height="24"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={className}
   >
     <path
       d="M5 12H19M19 12L12 5M19 12L12 19"
-      stroke="#4B3621"
+      stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      transform="rotate(-30 12 12)"
     />
   </svg>
 );
+
+
 
 /**
  * Footer links data
@@ -177,13 +183,31 @@ const EXPLORE_LINKS = [
  */
 export const Footer = () => {
   const [email, setEmail] = React.useState("");
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastMessage, setToastMessage] = React.useState({ message: "", type: "success" as "success" | "error" });
 
   const handleSubscribe = () => {
     if (!email) {
-      console.log("Please enter your email address.");
+      setToastMessage({ message: "Please enter your email address.", type: "error" });
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
       return;
     }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setToastMessage({ message: "Please enter a valid email address.", type: "error" });
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+      return;
+    }
+
+    // Success simulation
     console.log(`Subscribed with: ${email}`);
+    setToastMessage({ message: "Thank you for subscribing to our newsletter!", type: "success" });
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
     setEmail("");
   };
 
@@ -192,6 +216,17 @@ export const Footer = () => {
       className="relative w-full overflow-hidden"
       style={{ backgroundColor: "#FF8930" }}
     >
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="fixed bottom-5 right-5 z-50 animate-slide-up">
+          <Toast
+            message={toastMessage.message}
+            type={toastMessage.type}
+            onClose={() => setShowToast(false)}
+          />
+        </div>
+      )}
+
       {/* Container to match 1440px design width */}
       <div className="w-full max-w-[1440px] mx-auto relative px-4 md:px-20 py-12">
         {/* Top Section: Logo and Socials */}
@@ -301,7 +336,7 @@ export const Footer = () => {
                 <div className="flex items-center gap-2">
                   <MailIcon />
                   <span className="font-body font-medium text-[18px] leading-[28px] text-white">
-                    Travixo@demo.com
+                    example@example.com
                   </span>
                 </div>
               </div>
@@ -323,9 +358,12 @@ export const Footer = () => {
               />
               <button
                 onClick={handleSubscribe}
-                className="absolute right-0 top-0 w-[50px] h-[45px] bg-[#FFFCF5] border border-[#FF6E00] rounded-[12px] flex items-center justify-center cursor-pointer hover:bg-orange-50 transition-colors"
+                className="group absolute right-0 top-0 w-[50px] h-[45px] bg-[#FFFCF5] border border-[#FF6E00] rounded-[12px] flex items-center justify-center cursor-pointer overflow-hidden"
               >
-                <ArrowIcon />
+                <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
+                <div className="relative z-10">
+                  <ArrowIcon className="text-[#4B3621] group-hover:text-white transform -rotate-45 group-hover:rotate-0 transition-all duration-300" />
+                </div>
               </button>
             </div>
           </div>

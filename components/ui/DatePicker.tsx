@@ -182,14 +182,13 @@ export const DatePicker = ({
           className={`
             w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium
             transition-all duration-200 cursor-pointer
-            ${
-              disabled
-                ? "text-gray-300 cursor-not-allowed"
-                : selected
-                  ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
-                  : today
-                    ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                    : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+            ${disabled
+              ? "text-gray-300 cursor-not-allowed"
+              : selected
+                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
+                : today
+                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
             }
           `}
         >
@@ -209,8 +208,8 @@ export const DatePicker = ({
         onClick={() => setIsOpen(!isOpen)}
         className={
           variant === "transparent"
-            ? "w-full bg-transparent border-none p-0 flex items-center justify-between text-brand-brown font-normal text-[16px] md:text-[18px] leading-[28px] font-body focus:outline-none cursor-pointer"
-            : `w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 flex items-center justify-between gap-3 text-brand-brown font-medium text-lg font-body focus:outline-none focus:ring-2 focus:ring-brand-orange transition-all duration-200 cursor-pointer ${isOpen ? "ring-2 ring-brand-orange" : ""}`
+            ? "w-full bg-transparent border-none p-0 flex items-center justify-between text-brand-brown font-normal text-[16px] md:text-[18px] leading-[28px] font-body outline-none focus:outline-none !focus-visible:ring-0 !focus-visible:shadow-none !focus-visible:outline-none focus:shadow-none cursor-pointer"
+            : `w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 flex items-center justify-between gap-3 text-brand-brown font-medium text-lg font-body outline-none focus:outline-none focus:ring-0 focus:border-brand-brown/20 !focus-visible:ring-0 !focus-visible:shadow-none !focus-visible:outline-none focus:shadow-none transition-all duration-200 cursor-pointer`
         }
       >
         <span className={value ? "text-brand-brown" : "text-brand-brown/60"}>
@@ -328,12 +327,11 @@ export const DatePicker = ({
                     }}
                     className={`
                       py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer
-                      ${
-                        year === currentYear
-                          ? "bg-brand-orange text-white shadow-md"
-                          : year === new Date().getFullYear()
-                            ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                            : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+                      ${year === currentYear
+                        ? "bg-brand-orange text-white shadow-md"
+                        : year === new Date().getFullYear()
+                          ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                          : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
                       }
                     `}
                   >
@@ -356,13 +354,12 @@ export const DatePicker = ({
                     }}
                     className={`
                       py-2 px-1 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer
-                      ${
-                        index === currentMonth
-                          ? "bg-brand-orange text-white shadow-md"
-                          : index === new Date().getMonth() &&
-                              currentYear === new Date().getFullYear()
-                            ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                            : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+                      ${index === currentMonth
+                        ? "bg-brand-orange text-white shadow-md"
+                        : index === new Date().getMonth() &&
+                          currentYear === new Date().getFullYear()
+                          ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                          : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
                       }
                     `}
                   >

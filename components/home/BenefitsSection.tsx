@@ -7,10 +7,10 @@ import Image from "next/image";
  */
 const PlaneIcon = () => (
   <Image
-    src="/images/home/benefits/component-31.png"
+    src="/images/home/benefits/simple-line-icons_plane (1).png"
     alt="Plane Icon"
-    width={60}
-    height={60}
+    width={30}
+    height={30}
   />
 );
 
@@ -19,10 +19,10 @@ const PlaneIcon = () => (
  */
 const TentIcon = () => (
   <Image
-    src="/images/home/benefits/component-32.png"
+    src="/images/home/benefits/lucide_tent-tree (1).png"
     alt="Tent Icon"
-    width={60}
-    height={60}
+    width={30}
+    height={30}
   />
 );
 
@@ -31,10 +31,10 @@ const TentIcon = () => (
  */
 const SailboatIcon = () => (
   <Image
-    src="/images/home/benefits/component-33.png"
+    src="/images/home/benefits/ph_sailboat-light.png"
     alt="Sailboat Icon"
-    width={60}
-    height={60}
+    width={30}
+    height={30}
   />
 );
 
@@ -43,10 +43,10 @@ const SailboatIcon = () => (
  */
 const BalloonIcon = () => (
   <Image
-    src="/images/home/benefits/component-34.png"
+    src="/images/home/benefits/et_hotairballoon (1).png"
     alt="Balloon Icon"
-    width={60}
-    height={60}
+    width={30}
+    height={30}
   />
 );
 
@@ -120,18 +120,20 @@ const StepItem = ({
     {/* Icon and Connector Line */}
     <div className="flex flex-col items-center">
       {/* Icon Container */}
-      <div className="w-[60px] h-[60px] flex items-center justify-center shrink-0">
-        {getIcon(icon)}
+      <div className="w-[50px] h-[50px] flex items-center justify-center shrink-0 rounded-full border border-brand-orange bg-white z-10 transition-colors duration-300 ease-in-out hover:bg-brand-orange cursor-pointer group/icon shadow-sm">
+        <div className="transition-all duration-300 group-hover/icon:brightness-0 group-hover/icon:invert">
+          {getIcon(icon)}
+        </div>
       </div>
 
       {/* Vertical Line */}
       {!isLast && (
-        <div className="w-px h-[80px] md:h-[127px] bg-brand-orange/50 mt-2" />
+        <div className="w-px h-full bg-brand-orange/50 absolute left-[25px] top-[50px] bottom-0 -z-0" />
       )}
     </div>
 
     {/* Content */}
-    <div className="pt-1">
+    <div className="pt-2 pb-12">
       <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-2">
         {title}
       </h3>
@@ -151,7 +153,7 @@ export const BenefitsSection = () => {
   return (
     <section
       className="relative w-full py-12 lg:py-16"
-      style={{ 
+      style={{
         backgroundColor: "#FFF7E5",
         // backgroundImage: "url('/images/hero/hero-pattern.png')",
         backgroundSize: "cover",
@@ -193,7 +195,7 @@ export const BenefitsSection = () => {
 
           {/* Right Side - Steps */}
           <div className="lg:w-[450px] shrink-0">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
               {STEPS.map((step, index) => (
                 <StepItem
                   key={step.id}

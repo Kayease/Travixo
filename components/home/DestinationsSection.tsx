@@ -277,9 +277,8 @@ export const DestinationsSection = () => {
           <div className="flex-1 pt-[52px] overflow-hidden">
             <div
               ref={scrollRef}
-              className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${
-                isDragging ? "cursor-grabbing" : "cursor-grab"
-              }`}
+              className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
+                }`}
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
