@@ -2,6 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCart, CartItem } from "@/app/context/CartContext";
 
 /**
  * Related Tour Card Interface
@@ -32,23 +34,29 @@ interface RelatedToursSectionProps {
   title?: string;
 }
 
-/**
- * RelatedToursSection Component
- *
- * Displays related tour recommendations.
- *
- * Design Specifications (from Figma):
- * - Title: Playfair Display, italic, 600 weight, 28px
- * - Tour cards with image, discount badge, price, rating
- * - Quick info: duration, group size, location
- *
- * @param {RelatedToursSectionProps} props - Related tours data
- * @returns {JSX.Element} The rendered related tours section
- */
 export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
   tours,
   title = "You might also like...",
 }) => {
+  const router = useRouter();
+  const { addToCart } = useCart();
+
+  const handleBookNow = (tour: RelatedTour) => {
+    const cartItem: CartItem = {
+      id: `${tour.id}-${Date.now()}`,
+      type: "experience",
+      title: tour.title,
+      image: tour.imageUrl,
+      location: tour.location,
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [tour.duration, tour.groupSize],
+      price: tour.price,
+      actionLabel: "Customize",
+    };
+    addToCart(cartItem);
+    router.push("/cart");
+  };
+
   return (
     <section
       className="w-full py-8 md:py-12"
@@ -78,7 +86,6 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                 boxSizing: "border-box",
               }}
             >
-              {/* Image Container (Frame 51) */}
               {/* Image Container (Frame 51) */}
               <div className="absolute left-[18px] top-[18px] w-[calc(100%-36px)] h-[283px] overflow-hidden rounded-[12px] group">
                 <Link
@@ -113,15 +120,20 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                 {/* Hover Icons: Slide in from Right */}
                 <div className="absolute top-[12px] right-[12px] flex flex-col gap-2 translate-x-[50px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10">
                   {/* Heart Icon */}
-                  <Link href="/wishlist" className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#FF6E00] transition-colors duration-300">
+                  <Link
+                    href="/wishlist"
+                    className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#FF6E00] transition-colors duration-300"
+                  >
                     <div
                       className="w-[24px] h-[24px] bg-[#4B3621] group-hover/icon:bg-white transition-colors duration-300"
                       style={{
-                        maskImage: 'url("/images/untitled folder/line-md_heart.png")',
+                        maskImage:
+                          'url("/images/untitled folder/line-md_heart.png")',
                         maskSize: "contain",
                         maskRepeat: "no-repeat",
                         maskPosition: "center",
-                        WebkitMaskImage: 'url("/images/untitled folder/line-md_heart.png")',
+                        WebkitMaskImage:
+                          'url("/images/untitled folder/line-md_heart.png")',
                         WebkitMaskSize: "contain",
                         WebkitMaskRepeat: "no-repeat",
                         WebkitMaskPosition: "center",
@@ -130,7 +142,10 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                   </Link>
 
                   {/* Cart Icon */}
-                  <Link href="/cart" className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#FF6E00] transition-colors duration-300">
+                  <button
+                    onClick={() => handleBookNow(tour)}
+                    className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#FF6E00] transition-colors duration-300"
+                  >
                     <svg
                       width="18"
                       height="14"
@@ -143,10 +158,9 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                         className="fill-[#4B3621] group-hover/icon:fill-white transition-colors duration-300"
                       />
                     </svg>
-                  </Link>
+                  </button>
                 </div>
 
-                {/* Price Tag (Frame 53) - Always visible */}
                 {/* Price Tag (Frame 53) - Always visible */}
                 <div className="absolute bottom-[12px] right-0 w-[102px] h-[47px] bg-white rounded-[100px_100px_0px_100px] shadow-sm">
                   <div className="relative w-full h-full">
@@ -323,15 +337,15 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               {/* Book Now Button - Positioned at bottom outside image */}
               {/* Book Now Button - Matches FeaturedToursSection implementation */}
               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                <Link
-                  href={`/checkout?name=${encodeURIComponent(tour.title)}&price=${tour.price}&image=${encodeURIComponent(tour.imageUrl)}`}
+                <button
+                  onClick={() => handleBookNow(tour)}
                   className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-[#FF6E00] rounded-[12px] font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer"
                 >
                   <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />
                   <span className="relative z-10 font-medium text-[20px] group-hover/btn:text-white transition-colors duration-300">
                     Book Now
                   </span>
-                </Link>
+                </button>
               </div>
             </article>
           </div>

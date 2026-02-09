@@ -43,6 +43,7 @@ export const metadata: Metadata = {
 };
 
 import { ToastProvider } from "./context/ToastContext";
+import { CartProvider } from "./context/CartContext";
 
 export default function RootLayout({
   children,
@@ -56,7 +57,9 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <div id="main-content">
-          <ToastProvider>{children}</ToastProvider>
+          <ToastProvider>
+            <CartProvider>{children}</CartProvider>
+          </ToastProvider>
         </div>
       </body>
     </html>

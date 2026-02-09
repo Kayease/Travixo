@@ -344,7 +344,9 @@ export const HeroSection = () => {
               </label>
               <DatePicker
                 value={date}
-                onChange={setDate}
+                onChange={(newDate) => {
+                  if (typeof newDate === "string") setDate(newDate);
+                }}
                 placeholder="Feb 14, 2025"
                 variant="transparent"
                 className="w-full"

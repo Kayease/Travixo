@@ -254,6 +254,10 @@ const TourDetailPage: React.FC = () => {
                   price={tour.price}
                   currency="$"
                   defaultDate="Jan 17, 2026"
+                  title={tour.title}
+                  image={tour.images[0]?.url || ""}
+                  location={`${tour.city}, ${tour.country}`}
+                  rating={tour.rating}
                 />
               </div>
             </div>

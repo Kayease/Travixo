@@ -104,6 +104,8 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
   const [showRefineMenu, setShowRefineMenu] = useState(false);
   const { showToast } = useToast();
 
+  const [sortBy, setSortBy] = useState("newest"); // newest, price-asc, price-desc, name-asc, name-desc, rating-desc
+
   // Calculate item counts based on current wishlist
   const itemCounts = {
     all: wishlist.length,
@@ -119,6 +121,24 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
     return true;
   });
 
+  // Sort items based on selected option
+  const sortedItems = [...filteredItems].sort((a, b) => {
+    switch (sortBy) {
+      case "price-asc":
+        return a.price - b.price;
+      case "price-desc":
+        return b.price - a.price;
+      case "name-asc":
+        return a.title.localeCompare(b.title);
+      case "name-desc":
+        return b.title.localeCompare(a.title);
+      case "rating-desc":
+        return b.rating - a.rating;
+      default:
+        return 0; // Newest/Default
+    }
+  });
+
   // Handle remove from wishlist
   const handleRemove = (id: string) => {
     const item = wishlist.find((i) => i.id === id);
@@ -131,6 +151,15 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
     const item = wishlist.find((i) => i.id === id);
     showToast(`${item?.title || "Item"} added to cart`, "success");
   };
+
+  const sortOptions = [
+    { label: "Newest Added", value: "newest" },
+    { label: "Price: Low to High", value: "price-asc" },
+    { label: "Price: High to Low", value: "price-desc" },
+    { label: "Name: A to Z", value: "name-asc" },
+    { label: "Name: Z to A", value: "name-desc" },
+    { label: "Check Rating", value: "rating-desc" },
+  ];
 
   return (
     <section className="relative w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-20">
@@ -149,37 +178,87 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
           {/* Main Content Area */}
           <div className="flex-1">
             {/* Header: Title + Refine Button */}
-            <div className="flex items-center justify-between mb-6 md:mb-8">
+            <div className="flex items-center justify-between mb-6 md:mb-8 z-30 relative">
               {/* Favorites Count Title */}
               <h2 className="font-display italic font-semibold text-xl md:text-[24px] leading-[30px] text-brand-brown">
                 {filteredItems.length} Favorites
               </h2>
 
-              {/* Refine Button */}
-              <button
-                onClick={() => setShowRefineMenu(!showRefineMenu)}
-                className="flex items-center gap-2 bg-brand-orange px-4 py-1.5 rounded-xl hover:bg-brand-orange/90 transition-colors cursor-pointer"
-              >
-                {/* Filter Icon */}
-                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M2.5 5H17.5M5 10H15M7.5 15H12.5"
-                    stroke="#FFFFFF"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span className="font-display italic font-semibold text-lg md:text-xl leading-[30px] text-white">
-                  Refine
-                </span>
-              </button>
+              {/* Refine Button & Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowRefineMenu(!showRefineMenu)}
+                  className="flex items-center gap-2 bg-brand-orange px-4 py-1.5 rounded-xl hover:bg-brand-orange/90 transition-colors cursor-pointer"
+                >
+                  <span className="text-white">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.5 5H17.5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M5 10H15"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M7.5 15H12.5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span className="font-display italic font-semibold text-lg md:text-xl leading-[30px] text-white">
+                    Refine
+                  </span>
+                </button>
+
+                {/* Dropdown Menu */}
+                {showRefineMenu && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-brand-brown/10 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                    <div className="py-1">
+                      {sortOptions.map((option) => (
+                        <button
+                          key={option.value}
+                          onClick={() => {
+                            setSortBy(option.value);
+                            setShowRefineMenu(false);
+                          }}
+                          className={`
+                            w-full text-left px-4 py-2 text-sm font-medium transition-colors
+                            ${
+                              sortBy === option.value
+                                ? "bg-brand-orange/10 text-brand-orange"
+                                : "text-brand-brown hover:bg-brand-brown/5"
+                            }
+                          `}
+                        >
+                          {option.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-10 md:mb-12">
-              {filteredItems.length > 0 ? (
-                filteredItems.map((item) => (
+              {sortedItems.length > 0 ? (
+                sortedItems.map((item) => (
                   <WishlistCard
                     key={item.id}
                     item={item}
@@ -197,7 +276,7 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = ({
             </div>
 
             {/* Load More Button */}
-            {filteredItems.length > 0 && (
+            {sortedItems.length > 0 && (
               <div className="flex justify-center">
                 <button className="relative w-full max-w-[431px] h-[45px] bg-brand-orange rounded-xl overflow-hidden group cursor-pointer">
                   <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />

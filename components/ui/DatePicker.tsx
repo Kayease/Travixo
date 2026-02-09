@@ -2,13 +2,20 @@
 /** Calendar-style date picker for tour and stay search. */
 import React, { useState, useRef, useEffect } from "react";
 
+export interface DateRange {
+  from: string | null;
+  to: string | null;
+}
+
 interface DatePickerProps {
-  value: string;
-  onChange: (date: string) => void;
+  value: string | DateRange;
+  onChange: (date: string | DateRange) => void;
   placeholder?: string;
   minDate?: string;
   maxDate?: string;
   className?: string;
+  mode?: "single" | "range";
+  variant?: "default" | "transparent";
 }
 
 const MONTHS = [
@@ -39,9 +46,10 @@ export const DatePicker = ({
   placeholder = "Select Date",
   minDate,
   maxDate,
-  variant,
+  variant = "default",
   className = "",
-}: DatePickerProps & { variant?: "default" | "transparent" }) => {
+  mode = "single",
+}: DatePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -60,8 +68,16 @@ export const DatePicker = ({
     return years;
   };
 
-  // Parse selected date
-  const selectedDate = value ? new Date(value) : null;
+  // Helper to parse date string YYYY-MM-DD to Date object
+  const parseDate = (dateStr: string | null) => {
+    if (!dateStr) return null;
+    const parts = dateStr.split("-");
+    return new Date(
+      parseInt(parts[0]),
+      parseInt(parts[1]) - 1,
+      parseInt(parts[2]),
+    );
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -117,8 +133,39 @@ export const DatePicker = ({
     return false;
   };
 
-  // Check if date is selected
+  // Range specific logic
+  const getRangeState = (day: number) => {
+    if (mode === "single" || typeof value === "string")
+      return {
+        isSelected: false,
+        isRangeStart: false,
+        isRangeEnd: false,
+        isInRange: false,
+      };
+
+    const date = new Date(currentYear, currentMonth, day);
+    date.setHours(0, 0, 0, 0);
+
+    const fromDate = value?.from ? parseDate(value.from) : null;
+    const toDate = value?.to ? parseDate(value.to) : null;
+
+    if (fromDate) fromDate.setHours(0, 0, 0, 0);
+    if (toDate) toDate.setHours(0, 0, 0, 0);
+
+    const isRangeStart = fromDate
+      ? date.getTime() === fromDate.getTime()
+      : false;
+    const isRangeEnd = toDate ? date.getTime() === toDate.getTime() : false;
+    const isInRange =
+      fromDate && toDate ? date > fromDate && date < toDate : false;
+
+    return { isRangeStart, isRangeEnd, isInRange };
+  };
+
+  // Check if date is selected (Single selection)
   const isDateSelected = (day: number) => {
+    if (mode === "range") return false;
+    const selectedDate = typeof value === "string" ? parseDate(value) : null;
     if (!selectedDate) return false;
     return (
       selectedDate.getDate() === day &&
@@ -142,12 +189,63 @@ export const DatePicker = ({
     if (isDateDisabled(day)) return;
 
     const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    onChange(dateStr);
-    setIsOpen(false);
+    const selectedDateObj = new Date(currentYear, currentMonth, day);
+
+    if (mode === "single") {
+      onChange(dateStr);
+      setIsOpen(false);
+    } else {
+      // Range Mode
+      const currentRange =
+        typeof value === "object" && value ? value : { from: null, to: null };
+
+      let newRange = { ...currentRange };
+
+      if (!newRange.from || (newRange.from && newRange.to)) {
+        // Start new range
+        newRange = { from: dateStr, to: null };
+      } else {
+        // Have start, selecting end
+        const fromDate = parseDate(newRange.from);
+        if (fromDate && selectedDateObj < fromDate) {
+          // Clicked before start, reset start
+          newRange = { from: dateStr, to: null };
+        } else {
+          // Valid end date
+          newRange = { ...newRange, to: dateStr };
+          // Auto close when range is complete? distinct choice. Let's keep open or close.
+          // Usually better to keep open or close after Short delay. Let's close for now to be snappy.
+          setIsOpen(false);
+        }
+      }
+      onChange(newRange);
+    }
   };
 
   // Format display value
   const formatDisplayValue = () => {
+    if (mode === "range") {
+      const range =
+        typeof value === "object" && value ? value : { from: null, to: null };
+      if (!range.from) return "";
+
+      const fromDate = parseDate(range.from);
+      const toDate = range.to ? parseDate(range.to) : null;
+
+      const options: Intl.DateTimeFormatOptions = {
+        month: "short",
+        day: "numeric",
+      };
+      const fromStr = fromDate?.toLocaleDateString("en-US", options);
+
+      if (toDate) {
+        const toStr = toDate.toLocaleDateString("en-US", options);
+        return `${fromStr} - ${toStr}`;
+      }
+      return fromStr;
+    }
+
+    const selectedDate = typeof value === "string" ? parseDate(value) : null;
     if (!selectedDate) return "";
     return selectedDate.toLocaleDateString("en-US", {
       day: "numeric",
@@ -170,8 +268,48 @@ export const DatePicker = ({
     // Days of the month
     for (let day = 1; day <= daysInMonth; day++) {
       const disabled = isDateDisabled(day);
-      const selected = isDateSelected(day);
       const today = isToday(day);
+
+      let buttonClass = "";
+
+      if (mode === "single") {
+        const selected = isDateSelected(day);
+        buttonClass = `
+          w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium
+          transition-all duration-200 cursor-pointer
+          ${
+            disabled
+              ? "text-gray-300 cursor-not-allowed"
+              : selected
+                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
+                : today
+                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+          }
+        `;
+      } else {
+        // Range Logic styling
+        const { isRangeStart, isRangeEnd, isInRange } = getRangeState(day);
+        const isSelected = isRangeStart || isRangeEnd;
+
+        buttonClass = `
+          w-10 h-10 flex items-center justify-center text-sm font-medium
+          transition-all duration-200 cursor-pointer relative z-10
+          ${isRangeStart ? "rounded-l-full rounded-r-none" : ""} 
+          ${isRangeEnd ? "rounded-r-full rounded-l-none" : ""}
+          ${!isRangeStart && !isRangeEnd && !isInRange ? "rounded-full" : ""}
+          ${isInRange ? "bg-brand-orange/10 !rounded-none" : ""}
+          ${
+            disabled
+              ? "text-gray-300 cursor-not-allowed"
+              : isSelected
+                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30 rounded-full" // Force round selection
+                : today && !isInRange
+                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+          }
+        `;
+      }
 
       days.push(
         <button
@@ -179,18 +317,7 @@ export const DatePicker = ({
           type="button"
           disabled={disabled}
           onClick={() => handleDateSelect(day)}
-          className={`
-            w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium
-            transition-all duration-200 cursor-pointer
-            ${disabled
-              ? "text-gray-300 cursor-not-allowed"
-              : selected
-                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
-                : today
-                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
-            }
-          `}
+          className={buttonClass}
         >
           {day}
         </button>,
@@ -213,10 +340,12 @@ export const DatePicker = ({
         }
       >
         <span className={value ? "text-brand-brown" : "text-brand-brown/60"}>
-          {value ? formatDisplayValue() : placeholder}
+          {value && (typeof value === "string" || value.from)
+            ? formatDisplayValue()
+            : placeholder}
         </span>
 
-        {/* Calendar Icon - Hidden for transparent variant if desired, or styled differently. Keeping for dropdown indication but maybe smaller/subtle? */}
+        {/* Calendar Icon - Hidden for transparent variant if desired */}
         {variant !== "transparent" && (
           <svg
             className={`w-5 h-5 text-brand-brown/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
@@ -327,11 +456,12 @@ export const DatePicker = ({
                     }}
                     className={`
                       py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer
-                      ${year === currentYear
-                        ? "bg-brand-orange text-white shadow-md"
-                        : year === new Date().getFullYear()
-                          ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                          : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+                      ${
+                        year === currentYear
+                          ? "bg-brand-orange text-white shadow-md"
+                          : year === new Date().getFullYear()
+                            ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                            : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
                       }
                     `}
                   >
@@ -354,12 +484,13 @@ export const DatePicker = ({
                     }}
                     className={`
                       py-2 px-1 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer
-                      ${index === currentMonth
-                        ? "bg-brand-orange text-white shadow-md"
-                        : index === new Date().getMonth() &&
-                          currentYear === new Date().getFullYear()
-                          ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                          : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+                      ${
+                        index === currentMonth
+                          ? "bg-brand-orange text-white shadow-md"
+                          : index === new Date().getMonth() &&
+                              currentYear === new Date().getFullYear()
+                            ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                            : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
                       }
                     `}
                   >
@@ -397,7 +528,11 @@ export const DatePicker = ({
                   onClick={() => {
                     const today = new Date();
                     const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-                    onChange(dateStr);
+                    if (mode === "single") {
+                      onChange(dateStr);
+                    } else {
+                      onChange({ from: dateStr, to: null });
+                    }
                     setIsOpen(false);
                   }}
                   className="text-sm font-medium text-brand-orange hover:text-brand-orange/80 transition-colors cursor-pointer"
@@ -409,7 +544,11 @@ export const DatePicker = ({
                   <button
                     type="button"
                     onClick={() => {
-                      onChange("");
+                      if (mode === "single") {
+                        onChange("");
+                      } else {
+                        onChange({ from: null, to: null });
+                      }
                       setIsOpen(false);
                     }}
                     className="text-sm font-medium text-brand-brown/50 hover:text-brand-brown transition-colors cursor-pointer"

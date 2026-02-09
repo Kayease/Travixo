@@ -8,28 +8,12 @@
  * and a comprehensive booking summary with pricing breakdown.
  */
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Button } from "../ui/Button";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { DatePicker } from "../ui/DatePicker";
-
-/* ============================================
-   Type Definitions
-============================================ */
-
-interface CartItem {
-  id: string;
-  type: "room" | "experience";
-  title: string;
-  image: string;
-  location: string;
-  dates: string;
-  amenities: string[];
-  price: number;
-  actionLabel: string;
-}
+import { DatePicker, DateRange } from "../ui/DatePicker";
+import { Button } from "../ui/Button"; // If needed for BookingSummaryCard
+import { useCart, CartItem } from "@/app/context/CartContext";
 
 interface BookingSummary {
   roomSubtotal: number;
@@ -38,44 +22,10 @@ interface BookingSummary {
   taxesAndFee: number;
 }
 
-/* ============================================
-   Sample Data
-============================================ */
-
-const cartItems: CartItem[] = [
-  {
-    id: "1",
-    type: "room",
-    title: "Deluxe Ocean Suite",
-    image: "/images/cart/cart-item.png",
-    location: "Amalfi Paims,Italy",
-    dates: "2026-10-12",
-    amenities: ["Private Balcony", "Butler Service", "King Bed"],
-    price: 2500,
-    actionLabel: "Customize",
-  },
-  {
-    id: "2",
-    type: "experience",
-    title: "Amalfi Coast Private Boat Tour",
-    image: "/images/cart/cart-item.png",
-    location: "Amalfi Paims,Italy",
-    dates: "2026-10-12",
-    amenities: ["Private Balcony", "Butler Service", "King Bed"],
-    price: 2500,
-    actionLabel: "Customize",
-  },
-];
-
-const bookingSummary: BookingSummary = {
-  roomSubtotal: 2500,
-  experienceSubtotal: 2500,
-  comboSaving: 500,
-  taxesAndFee: 500,
-};
+// ... [Imports]
 
 /* ============================================
-   Location Icon Component
+   Icon Components
 ============================================ */
 
 const LocationIcon: React.FC = () => (
@@ -95,10 +45,6 @@ const LocationIcon: React.FC = () => (
   </svg>
 );
 
-/* ============================================
-   Calendar Icon Component
-============================================ */
-
 const CalendarIcon: React.FC = () => (
   <svg
     width="24"
@@ -113,10 +59,6 @@ const CalendarIcon: React.FC = () => (
     />
   </svg>
 );
-
-/* ============================================
-   Pencil Icon Component
-============================================ */
 
 const PencilIcon: React.FC = () => (
   <svg
@@ -134,111 +76,6 @@ const PencilIcon: React.FC = () => (
     />
   </svg>
 );
-
-/* ============================================
-   CartItemCard Component
-============================================ */
-
-interface CartItemCardProps {
-  item: CartItem;
-}
-
-const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
-  const [currentDate, setCurrentDate] = useState(item.dates);
-  const datePickerWrapperRef = React.useRef<HTMLDivElement>(null);
-
-  const handleEditClick = () => {
-    // Find the button inside the DatePicker wrapper and click it to open the calendar
-    const button = datePickerWrapperRef.current?.querySelector("button");
-    if (button) {
-      button.click();
-    }
-  };
-
-  return (
-    <div className="bg-white rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] p-3 flex flex-col md:flex-row gap-4">
-      {/* Item Image */}
-      <div className="relative w-full md:w-[278px] h-[200px] md:h-[238px] shrink-0 rounded-xl overflow-hidden">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 278px"
-        />
-      </div>
-
-      {/* Item Details */}
-      <div className="flex-1 py-2 relative">
-        {/* Type & Price Row */}
-        <div className="flex justify-between items-start mb-2">
-          <span className="text-lg text-[#4B3621]">
-            {item.type === "room" ? "Rooms Selection" : "Experience"}
-          </span>
-          <span className="font-display text-2xl italic font-medium text-[#4B3621]">
-            $ {item.price.toLocaleString()}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h3 className="font-display text-xl md:text-2xl italic font-semibold text-[#4B3621] mb-4">
-          {item.title}
-        </h3>
-
-        {/* Location & Dates */}
-        <div className="flex flex-wrap gap-4 md:gap-6 mb-4">
-          {/* Location */}
-          <div className="flex items-center gap-2">
-            <LocationIcon />
-            <span className="text-lg text-[#4B3621]">{item.location}</span>
-          </div>
-
-          {/* Dates */}
-          <div className="flex items-center gap-2 relative">
-            <CalendarIcon />
-            <div ref={datePickerWrapperRef} className="w-[160px]">
-              <DatePicker
-                value={currentDate}
-                onChange={setCurrentDate}
-                variant="transparent"
-                placeholder="Select Date"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Amenities */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {item.amenities.map((amenity, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-[#FFF7E5] rounded-xl text-lg text-[#4B3621]"
-            >
-              {amenity}
-            </span>
-          ))}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-4">
-          {/* Edit/Customize Button */}
-          <button
-            onClick={handleEditClick}
-            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6E00] rounded-xl text-white text-lg hover:bg-[#e56200] transition-colors cursor-pointer"
-          >
-            <PencilIcon />
-            <span>{item.actionLabel}</span>
-          </button>
-
-          {/* Remove Button */}
-          <button className="flex items-center gap-2 px-3 py-1.5 bg-[#FF3B30] rounded-xl text-white text-lg hover:bg-[#e53530] transition-colors cursor-pointer">
-            <span>Remove</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 /* ============================================
    BookingSummaryCard Component
@@ -356,11 +193,161 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
 };
 
 /* ============================================
+   CartItemCard Component
+*/
+
+interface CartItemCardProps {
+  item: CartItem;
+  onRemove: (id: string) => void;
+}
+
+const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
+  // Initialize date state.
+  // If item.dates is a simple string, treat as start date of a range.
+  // If we wanted to persist the range, we'd need to parse "start/end" string from item.dates if it was saved that way.
+  const [dateValue, setDateValue] = useState<string | DateRange>(() => {
+    // Simple check if it looks like a range string (e.g. "2026-10-12 - 2026-10-15")
+    // For now, assuming item.dates is a single date string from "Book Now"
+    return { from: item.dates, to: null };
+  });
+
+  const datePickerWrapperRef = React.useRef<HTMLDivElement>(null);
+
+  const handleEditClick = () => {
+    // Find the button inside the DatePicker wrapper and click it to open the calendar
+    const button = datePickerWrapperRef.current?.querySelector("button");
+    if (button) {
+      button.click();
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] p-3 flex flex-col md:flex-row gap-4">
+      {/* Item Image */}
+      <div className="relative w-full md:w-[278px] h-[200px] md:h-[238px] shrink-0 rounded-xl overflow-hidden">
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 278px"
+        />
+      </div>
+
+      {/* Item Details */}
+      <div className="flex-1 py-2 relative">
+        {/* Type & Price Row */}
+        <div className="flex justify-between items-start mb-2">
+          <span className="text-lg text-[#4B3621]">
+            {item.type === "room" ? "Rooms Selection" : "Experience"}
+          </span>
+          <span className="font-display text-2xl italic font-medium text-[#4B3621]">
+            $ {item.price.toLocaleString()}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="font-display text-xl md:text-2xl italic font-semibold text-[#4B3621] mb-4">
+          {item.title}
+        </h3>
+
+        {/* Location & Dates */}
+        <div className="flex flex-wrap gap-4 md:gap-6 mb-4">
+          {/* Location */}
+          <div className="flex items-center gap-2">
+            <LocationIcon />
+            <span className="text-lg text-[#4B3621]">{item.location}</span>
+          </div>
+
+          {/* Dates */}
+          <div className="flex items-center gap-2 relative">
+            <div onClick={handleEditClick} className="cursor-pointer">
+              <CalendarIcon />
+            </div>
+            <div ref={datePickerWrapperRef} className="w-[240px]">
+              <DatePicker
+                value={dateValue}
+                onChange={setDateValue}
+                variant="transparent"
+                placeholder="Select Dates"
+                mode="range"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Amenities */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {item.amenities &&
+            item.amenities.map((amenity, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 bg-[#FFF7E5] rounded-xl text-lg text-[#4B3621]"
+              >
+                {amenity}
+              </span>
+            ))}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-4">
+          {/* Edit/Customize Button */}
+          <button
+            onClick={handleEditClick}
+            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6E00] rounded-xl text-white text-lg hover:bg-[#e56200] transition-colors cursor-pointer"
+          >
+            <PencilIcon />
+            <span>{item.actionLabel}</span>
+          </button>
+
+          {/* Remove Button */}
+          <button
+            onClick={() => onRemove(item.id)}
+            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF3B30] rounded-xl text-white text-lg hover:bg-[#e53530] transition-colors cursor-pointer"
+          >
+            <span>Remove</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ============================================
+   BookingSummaryCard Component
+   ... [Keep existing implementation logic, just ensure types match]
+*/
+
+// ...
+
+/* ============================================
    Main CartItemsSection Component
-============================================ */
+*/
 
 const CartItemsSection: React.FC = () => {
+  const { cartItems, removeFromCart } = useCart();
   const itemCount = cartItems.length;
+
+  // Calculate Summary
+  const roomSubtotal = cartItems
+    .filter((item) => item.type === "room")
+    .reduce((sum, item) => sum + item.price, 0);
+
+  const experienceSubtotal = cartItems
+    .filter((item) => item.type === "experience")
+    .reduce((sum, item) => sum + item.price, 0);
+
+  // Simplified logic for combo saving and tax
+  const comboSaving = itemCount > 1 ? 50 : 0; // Example: $50 off if more than 1 item
+  const subtotal = roomSubtotal + experienceSubtotal;
+  const taxesAndFee = Math.round(subtotal * 0.1); // 10% tax
+
+  const bookingSummary: BookingSummary = {
+    roomSubtotal,
+    experienceSubtotal,
+    comboSaving,
+    taxesAndFee,
+  };
 
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16">
@@ -384,19 +371,33 @@ const CartItemsSection: React.FC = () => {
 
             {/* Cart Items List */}
             <div className="space-y-6">
-              {cartItems.map((item) => (
-                <CartItemCard key={item.id} item={item} />
-              ))}
+              {cartItems.length > 0 ? (
+                cartItems.map((item) => (
+                  <CartItemCard
+                    key={item.id}
+                    item={item}
+                    onRemove={removeFromCart}
+                  />
+                ))
+              ) : (
+                <div className="text-center py-10">
+                  <p className="text-xl text-brand-brown/60 italic font-display">
+                    Your cart is empty.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Right Column - Booking Summary */}
-          <div className="w-full lg:w-[467px] shrink-0">
-            <BookingSummaryCard
-              summary={bookingSummary}
-              itemCount={itemCount}
-            />
-          </div>
+          {cartItems.length > 0 && (
+            <div className="w-full lg:w-[467px] shrink-0">
+              <BookingSummaryCard
+                summary={bookingSummary}
+                itemCount={itemCount}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

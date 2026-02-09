@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 
+import { useRouter } from "next/navigation";
+import { useCart, CartItem } from "@/app/context/CartContext";
+
 /**
  * TourBookingCard Props Interface
  */
@@ -11,6 +14,10 @@ interface TourBookingCardProps {
   currency?: string;
   /** Default date */
   defaultDate?: string;
+  title?: string;
+  image?: string;
+  location?: string;
+  rating?: number;
 }
 
 /**
@@ -31,10 +38,39 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
   price,
   currency = "$",
   defaultDate = "Jan 17, 2026",
+  title,
+  image,
+  location,
+  rating,
 }) => {
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [activeTab, setActiveTab] = useState<"book" | "enquiry">("book");
+  const router = useRouter();
+  const { addToCart } = useCart();
+
+  const handleBookNow = () => {
+    // Parse price if it's a string, though props say number.
+    // Assuming price is number based on interface.
+
+    const cartItem: CartItem = {
+      id: `booking-${Date.now()}`,
+      type: "experience",
+      title: title || "Tour Booking",
+      image: image || "", // Should be provided
+      location: location || "",
+      dates: defaultDate, // Or use a selected date state if implemented
+      amenities: [`Adults: ${adults}`, `Children: ${children}`],
+      price: price, // Assuming price is total or per person? The card says /person.
+      // Ideally we'd calculate total, but for now let's pass the base price
+      // or maybe (price * (adults + children)) if user expects that.
+      // Previous impl just passed price. sticking to simple add for now.
+      actionLabel: "Customize",
+    };
+
+    addToCart(cartItem);
+    router.push("/cart");
+  };
 
   return (
     <aside
@@ -53,7 +89,8 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         <div className="absolute left-[18px] top-[18px]">
           <p className="font-display italic font-medium text-[20px] leading-[27px] text-brand-brown">
             From <br />
-            {currency}{price} <span className="text-[20px]">/person</span>
+            {currency}
+            {price} <span className="text-[20px]">/person</span>
           </p>
         </div>
 
@@ -119,8 +156,19 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
               onClick={() => setAdults(Math.max(0, adults - 1))}
               className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors cursor-pointer"
             >
-              <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <svg
+                width="10"
+                height="2"
+                viewBox="0 0 10 2"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1H9"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
 
@@ -132,8 +180,19 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
               onClick={() => setAdults(adults + 1)}
               className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white cursor-pointer"
             >
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 1V9M1 5H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 1V9M1 5H9"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
           </div>
@@ -153,8 +212,19 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
               onClick={() => setChildren(Math.max(0, children - 1))}
               className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-[rgba(255,110,0,0.4)] text-white hover:bg-brand-orange transition-colors cursor-pointer"
             >
-              <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <svg
+                width="10"
+                height="2"
+                viewBox="0 0 10 2"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1H9"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
 
@@ -166,8 +236,19 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
               onClick={() => setChildren(children + 1)}
               className="w-[20px] h-[20px] rounded-full flex items-center justify-center bg-brand-orange text-white cursor-pointer"
             >
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 1V9M1 5H9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 1V9M1 5H9"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
           </div>
@@ -178,13 +259,13 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
         {/* CTA Button: Top 409px */}
         <button
+          onClick={handleBookNow}
           className="absolute left-[18px] right-[18px] top-[409px] h-[45px] bg-[#FF6E00] rounded-[12px] flex items-center justify-center transition-transform active:scale-[0.98] cursor-pointer"
         >
           <span className="font-display italic font-medium text-[20px] leading-[27px] text-center text-white">
-            Check Availability
+            Book Now
           </span>
         </button>
-
       </div>
     </aside>
   );

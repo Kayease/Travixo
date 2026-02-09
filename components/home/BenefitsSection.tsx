@@ -166,7 +166,7 @@ export const BenefitsSection = () => {
           <div className="flex-1">
             {/* Label */}
             <span className="font-body italic font-semibold text-lg md:text-[22px] leading-[33px] text-brand-brown block mb-4">
-              OUR BENIFITS
+              OUR BENEFITS
             </span>
 
             {/* Title */}

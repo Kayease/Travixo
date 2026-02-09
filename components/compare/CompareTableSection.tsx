@@ -102,8 +102,17 @@ const DifficultyBadge: React.FC<{
  * Displays a comparison table of selected tours with details like price,
  * duration, accommodation, meals, activities, and difficulty level
  */
+import { useRouter } from "next/navigation";
+import { useCart, CartItem } from "@/app/context/CartContext";
+
+// ... existing imports ...
+
+// ... existing code ...
+
 const CompareTableSection: React.FC = () => {
   const { showToast } = useToast();
+  const router = useRouter();
+  const { addToCart } = useCart();
 
   // Sample tour data for comparison
   const tours: TourData[] = [
@@ -153,6 +162,27 @@ const CompareTableSection: React.FC = () => {
       difficulty: "EASY",
     },
   ];
+
+  const handleBookNow = (tour: TourData) => {
+    // Parse price - remove $ and commas
+    const priceValue = parseInt(tour.price.replace(/[^0-9]/g, "")) || 0;
+
+    const cartItem: CartItem = {
+      id: `${tour.id}-${Date.now()}`,
+      type: "experience",
+      title: tour.name,
+      image: tour.image,
+      location: tour.name, // Using name as location/title proxy
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [tour.duration, tour.meals, tour.difficulty],
+      price: priceValue,
+      actionLabel: "Customize",
+    };
+
+    showToast(`Redirecting to cart for ${tour.name}...`, "info");
+    addToCart(cartItem);
+    router.push("/cart");
+  };
 
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16">
@@ -311,22 +341,16 @@ const CompareTableSection: React.FC = () => {
                 key={`book-${tour.id}`}
                 className="p-4 md:p-6 flex items-center border-t lg:border-t-0"
               >
-                <Link
-                  href={`/checkout?name=${encodeURIComponent(tour.name)}&price=${encodeURIComponent(tour.price)}&image=${encodeURIComponent(tour.image)}`}
+                <button
+                  onClick={() => handleBookNow(tour)}
                   className="w-full max-w-[233px] block group/btn relative h-[45px] bg-[#FF6E00] text-white font-display text-[20px] leading-[27px] italic font-medium rounded-xl overflow-hidden transition-all duration-300 cursor-pointer"
-                  onClick={(e) => {
-                    showToast(
-                      `Redirecting to checkout for ${tour.name} excursion...`,
-                      "info",
-                    );
-                  }}
                 >
                   <span className="relative z-10 flex items-center justify-center h-full group-hover/btn:text-[#4B3621] transition-colors duration-300">
                     Book Now
                   </span>
                   {/* Bottom-to-top fill animation */}
                   <span className="absolute bottom-0 left-0 w-full h-0 bg-white transition-all duration-500 ease-out group-hover/btn:h-full"></span>
-                </Link>
+                </button>
               </div>
             ))}
           </div>

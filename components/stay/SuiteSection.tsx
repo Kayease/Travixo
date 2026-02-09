@@ -20,7 +20,35 @@ interface RoomData {
  * RoomCard Component
  * Displays a room type with image and hover overlay showing details
  */
+import { useRouter } from "next/navigation";
+import { useCart, CartItem } from "@/app/context/CartContext";
+
+// ... existing RoomData interface ...
+
+/**
+ * RoomCard Component
+ * Displays a room type with image and hover overlay showing details
+ */
 const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
+  const router = useRouter();
+  const { addToCart } = useCart();
+
+  const handleBookNow = () => {
+    const cartItem: CartItem = {
+      id: `${room.id}-${Date.now()}`,
+      type: "room", // Using 'room' type as per existing cart items logic
+      title: room.name,
+      image: room.image,
+      location: "Hotel Suite", // Default location for rooms
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [room.size, room.occupancy, room.bed],
+      price: 250, // Hardcoded in previous Link: price=250. Should ideally come from room data.
+      actionLabel: "Customize",
+    };
+    addToCart(cartItem);
+    router.push("/cart");
+  };
+
   return (
     <div className="relative w-full h-[400px] md:h-[480px] lg:h-[523px] rounded-xl overflow-hidden group cursor-pointer">
       {/* Room Image */}
@@ -35,8 +63,8 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
       {/* Gradient to hide baked-in text on images */}
       <div className="absolute inset-x-0 bottom-0 h-[100px] bg-linear-to-t from-[#1a1a1a] to-transparent z-5" />
 
-      {/* Hover Overlay - Slides in from left, only covers bottom portion */}
-      <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-[#9A4C04] via-[#9A4C04]/70 to-transparent -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-10" />
+      {/* Hover Overlay - Fades in, only covers bottom portion */}
+      <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-[#9A4C04] via-[#9A4C04]/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-10" />
 
       {/* Room Name - Always visible, moves up on hover */}
       <h3 className="absolute left-6 md:left-8 bottom-6 md:bottom-8 group-hover:bottom-[200px] md:group-hover:bottom-[220px] font-display text-2xl md:text-[28px] italic font-semibold text-white z-30 transition-all duration-500 ease-out drop-shadow-lg">
@@ -59,9 +87,8 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
         </div>
 
         {/* Book Now Button with bottom-to-top fill animation */}
-        {/* Book Now Button with bottom-to-top fill animation */}
-        <Link
-          href={`/checkout?name=${encodeURIComponent(room.name)}&image=${encodeURIComponent(room.image)}&price=250`}
+        <button
+          onClick={handleBookNow}
           className="flex items-center justify-center relative w-[180px] md:w-[200px] h-[45px] md:h-[50px] bg-white rounded-lg font-display italic text-[16px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-0 group-hover:opacity-100 delay-200 overflow-hidden group/btn cursor-pointer"
         >
           {/* Fill animation from bottom to top */}
@@ -70,7 +97,7 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
           <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">
             Book Now
           </span>
-        </Link>
+        </button>
       </div>
     </div>
   );

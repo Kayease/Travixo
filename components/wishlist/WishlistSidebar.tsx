@@ -132,83 +132,139 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
                     : "text-brand-brown"
                 }
               >
-                {collection.id === "all" && active === collection.id ? (
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                    <rect
-                      x="3"
-                      y="3"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      fill="#FF6E00"
-                    />
-                    <rect
-                      x="14"
-                      y="3"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      fill="#FF6E00"
-                    />
-                    <rect
-                      x="3"
-                      y="14"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      fill="#FF6E00"
-                    />
-                    <rect
-                      x="14"
-                      y="14"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      fill="#FF6E00"
-                    />
-                  </svg>
-                ) : collection.id === "all" ? (
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                    <rect
-                      x="3"
-                      y="3"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      stroke="#4B3621"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="14"
-                      y="3"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      stroke="#4B3621"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="3"
-                      y="14"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      stroke="#4B3621"
-                      strokeWidth="1.5"
-                    />
-                    <rect
-                      x="14"
-                      y="14"
-                      width="7"
-                      height="7"
-                      rx="1"
-                      stroke="#4B3621"
-                      strokeWidth="1.5"
-                    />
-                  </svg>
-                ) : (
-                  collection.icon
-                )}
+                {/* Icon Logic based on ID and Active State */}
+                {collection.id === "all" ? (
+                  active === "all" ? (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <rect
+                        x="3"
+                        y="3"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        fill="#FF6E00"
+                      />
+                      <rect
+                        x="14"
+                        y="3"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        fill="#FF6E00"
+                      />
+                      <rect
+                        x="3"
+                        y="14"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        fill="#FF6E00"
+                      />
+                      <rect
+                        x="14"
+                        y="14"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        fill="#FF6E00"
+                      />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <rect
+                        x="3"
+                        y="3"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="14"
+                        y="3"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="3"
+                        y="14"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                      />
+                      <rect
+                        x="14"
+                        y="14"
+                        width="7"
+                        height="7"
+                        rx="1"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                      />
+                    </svg>
+                  )
+                ) : collection.id === "tours" ? (
+                  active === "tours" ? (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="9" fill="#FF6E00" />
+                      <path
+                        d="M12 7V12L15 14"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="9"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M12 7V12L15 14"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )
+                ) : collection.id === "destinations" ? (
+                  active === "destinations" ? (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z"
+                        fill="#FF6E00"
+                      />
+                      <circle cx="12" cy="9" r="2" fill="white" />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                      />
+                      <circle
+                        cx="12"
+                        cy="9"
+                        r="2"
+                        stroke="#4B3621"
+                        strokeWidth="1.5"
+                      />
+                    </svg>
+                  )
+                ) : null}
               </div>
 
               {/* Name */}

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { DatePicker } from "@/components/ui/DatePicker";
+import { DatePicker, DateRange } from "@/components/ui/DatePicker";
 
 /**
  * Activity category data
@@ -143,7 +143,7 @@ export const ExploreSection = () => {
   const [destination, setDestination] = useState("");
   const [travelType, setTravelType] = useState("");
   const [duration, setDuration] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState<string | DateRange>("");
   const router = useRouter();
 
   // Get current active category data
@@ -154,7 +154,23 @@ export const ExploreSection = () => {
   const handleSearch = () => {
     const params = new URLSearchParams();
     if (destination) params.set("destination", destination);
-    if (date) params.set("date", date);
+
+    if (date) {
+      if (typeof date === "string") {
+        params.set("date", date);
+      } else {
+        // It's a DateRange object
+        const fromDate = date.from ? new Date(date.from) : null;
+        const toDate = date.to ? new Date(date.to) : null;
+
+        if (fromDate) {
+          const fromStr = fromDate.toLocaleDateString("en-CA");
+          const toStr = toDate ? toDate.toLocaleDateString("en-CA") : "";
+          params.set("date", toStr ? `${fromStr} - ${toStr}` : fromStr);
+        }
+      }
+    }
+
     if (travelType) params.set("travelType", travelType);
     if (duration) params.set("duration", duration);
     const query = params.toString();
@@ -183,9 +199,10 @@ export const ExploreSection = () => {
                 className={`
                   w-[224px] h-[122px] rounded-xl flex flex-col items-center justify-center gap-2
                   border-b-2 transition-all duration-300 ease-out cursor-pointer
-                  ${isActive
-                    ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"
-                    : "bg-[#FFF7E5] border-transparent hover:shadow-md hover:scale-[1.01]"
+                  ${
+                    isActive
+                      ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"
+                      : "bg-[#FFF7E5] border-transparent hover:shadow-md hover:scale-[1.01]"
                   }
                 `}
               >
@@ -204,9 +221,10 @@ export const ExploreSection = () => {
                 <span
                   className={`
                     font-display italic font-semibold text-lg text-center transition-colors duration-300 ease-out
-                    ${isActive
-                      ? "text-brand-orange drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
-                      : "text-brand-brown"
+                    ${
+                      isActive
+                        ? "text-brand-orange drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
+                        : "text-brand-brown"
                     }
                   `}
                 >
@@ -250,8 +268,9 @@ export const ExploreSection = () => {
               <div className="overflow-visible">
                 <DatePicker
                   value={date}
-                  onChange={(newDate) => setDate(newDate)}
+                  onChange={setDate}
                   placeholder="Select Date"
+                  mode="range"
                 />
               </div>
               <SelectInput

@@ -25,7 +25,7 @@ const DESTINATIONS = [
     id: "india",
     name: "India",
     listings: 3,
-    image: "/images/home/destination/cards/india.png",
+    image: "/images/home/destination/cards/india2.png",
   },
   {
     id: "japan",
