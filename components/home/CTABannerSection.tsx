@@ -62,14 +62,10 @@ export const CTABannerSection = ({
 
           {/* CTA Card */}
           <div
-            className="relative py-10 md:py-12 px-6 md:px-8 lg:px-12"
+            className="relative py-10 md:py-12 px-6 md:px-8 lg:px-12 w-full max-w-7xl mx-auto"
             style={{
-              width: "1280px",
-              maxWidth: "100%",
-              height: "auto",
               minHeight: "200px",
               backgroundColor: "#FFF7E5",
-              // backgroundImage: "url('/images/hero/hero-pattern.png')",
               backgroundSize: "cover",
               boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
               borderRadius: "12px",

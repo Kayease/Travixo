@@ -1,5 +1,10 @@
-/* ===== Scrollbar Hiding ===== */
 /* Hide scrollbar for all browsers */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 html,
 body,
 * {

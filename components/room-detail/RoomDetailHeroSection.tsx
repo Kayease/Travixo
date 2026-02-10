@@ -27,7 +27,7 @@ const RoomDetailHeroSection: React.FC = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative container mx-auto px-4 md:px-8 lg:px-20 h-full min-h-[500px] md:min-h-[600px] lg:min-h-[705px] flex items-center">
+      <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-20 h-full min-h-[500px] md:min-h-[600px] lg:min-h-[705px] flex items-center">
         <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 w-full py-8 md:py-16">
           {/* ============================================
               Left - Featured Room Image

@@ -27,7 +27,7 @@ const FavoriteRoomSection: React.FC = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative container mx-auto px-5 md:px-6 lg:px-20 py-8 md:py-16 lg:py-20">
+      <div className="relative w-full max-w-7xl mx-auto px-5 md:px-6 lg:px-20 py-8 md:py-16 lg:py-20">
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 lg:gap-16">
           {/* ============================================
               Left - Room Card

@@ -180,14 +180,14 @@ export const ExploreSection = () => {
       className="relative w-full py-12"
       style={{ backgroundColor: "#FFFCF5" }}
     >
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         {/* Section Title */}
-        <h2 className="font-display italic font-semibold text-[28px] leading-[37px] text-center text-brand-brown mb-8">
+        <h2 className="font-display italic font-semibold text-[22px] md:text-[28px] leading-[37px] text-center text-brand-brown mb-8">
           Explore The World
         </h2>
 
         {/* Activity Category Cards - smooth tab change animation */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 md:mb-16">
           {ACTIVITY_CATEGORIES.map((category) => {
             const isActive = activeCategory === category.id;
             return (
@@ -195,7 +195,7 @@ export const ExploreSection = () => {
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={`
-                  w-[224px] h-[122px] rounded-xl flex flex-col items-center justify-center gap-2
+                  w-[140px] md:w-[224px] h-[90px] md:h-[122px] rounded-xl flex flex-col items-center justify-center gap-1 md:gap-2
                   border-b-2 transition-all duration-300 ease-out cursor-pointer group
                   ${isActive
                     ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"

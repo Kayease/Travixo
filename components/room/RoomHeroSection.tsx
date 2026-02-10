@@ -19,7 +19,7 @@ import Image from "next/image";
 const RoomHeroSection: React.FC = () => {
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-0">
-      <div className="container mx-auto px-4 md:px-6 lg:px-0 max-w-[1440px]">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-0">
         {/* Desktop Layout - Absolute Positioning per Figma */}
         <div className="hidden lg:block relative h-[646px]">
           {/* Section Title */}

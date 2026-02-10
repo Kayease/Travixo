@@ -158,7 +158,7 @@ export const TestimonialSection = () => {
     >
       {/* Frame 479 Container - Fixed 1440px width context for desktop */}
       <div
-        className="relative hidden md:block"
+        className="relative hidden xl:block mx-auto"
         style={{ width: "1440px", height: "575px", flex: "none" }}
       >
         {/* Component 86 Centered */}
@@ -303,7 +303,7 @@ export const TestimonialSection = () => {
       </div>
 
       {/* Mobile Fallback - Simplified */}
-      <div className="block md:hidden w-full px-4 py-8">
+      <div className="block xl:hidden w-full px-4 py-8">
         <div className="bg-[#FFF7E5] rounded-xl p-6 min-h-[400px] flex flex-col justify-center items-center">
           <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-[340px]">
             <div className="flex gap-1 mb-4">

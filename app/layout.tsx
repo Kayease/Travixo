@@ -57,10 +57,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${poppins.variable} antialiased`}
+        className={`${playfair.variable} ${poppins.variable} antialiased overflow-x-hidden max-w-[100vw]`}
         suppressHydrationWarning
       >
-        <div id="main-content">
+        <div id="main-content" className="w-full overflow-x-hidden">
           <ToastProvider>
             <WishlistProvider>
               <CartProvider>{children}</CartProvider>

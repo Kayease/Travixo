@@ -22,7 +22,7 @@ const RoomDetailContentSection: React.FC = () => {
 
   return (
     <section className="w-full bg-[#FFFCF5] py-8 md:py-16 lg:py-20 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 lg:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-20">
         {/* ============================================
             Top Section - Description & Booking Widget Side by Side
         ============================================ */}

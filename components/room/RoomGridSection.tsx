@@ -143,7 +143,7 @@ const RoomGridSection: React.FC = () => {
 
   return (
     <section className="w-full bg-white py-12 md:py-16 lg:py-20">
-      <div className="container mx-auto px-4 md:px-6 lg:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-20">
         {/* Room Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-[18px]">
           {rooms.map((room) => (

@@ -140,7 +140,7 @@ const SuiteSection: React.FC = () => {
 
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-20">
-      <div className="container mx-auto px-4 md:px-6 lg:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-20">
         {/* ============================================
             Top Section - Title, Description & Featured Image
         ============================================ */}
@@ -190,7 +190,7 @@ const SuiteSection: React.FC = () => {
         {/* ============================================
             Room Cards Grid
         ============================================ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-[13px]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-6">
           {rooms.map((room) => (
             <RoomCard key={room.id} room={room} />
           ))}

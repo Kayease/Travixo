@@ -228,7 +228,7 @@ export const Footer = () => {
       )}
 
       {/* Container to match 1440px design width */}
-      <div className="w-full max-w-[1440px] mx-auto relative px-4 md:px-20 py-12">
+      <div className="w-full max-w-[1440px] mx-auto relative px-4 md:px-10 lg:px-20 py-12">
         {/* Top Section: Logo and Socials */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 md:gap-0">
           {/* Logo */}
@@ -277,7 +277,7 @@ export const Footer = () => {
         {/* Main Content Grid */}
         <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-0 relative">
           {/* Columns Container */}
-          <div className="flex flex-col md:flex-row gap-10 md:gap-24 lg:gap-[134px]">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-10 md:gap-12 lg:gap-[134px]">
             {/* Company Column */}
             <div className="flex flex-col">
               <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">

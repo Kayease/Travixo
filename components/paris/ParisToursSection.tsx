@@ -459,14 +459,14 @@ const ParisTourCard = ({
 export const ParisToursSection = () => {
   return (
     <section className="w-full bg-white py-20 flex justify-center">
-      <div className="w-full max-w-[1440px] px-4 md:px-20 relative">
+      <div className="w-full max-w-[1440px] px-4 md:px-6 lg:px-20 relative">
         {/* Title */}
         <h2 className="font-display italic font-semibold text-[28px] leading-[37px] text-[#4B3621] text-center mb-12">
           Most Favorite Tour in Paris
         </h2>
 
         {/* Tour Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 lg:gap-y-[62px] justify-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-16 lg:gap-y-[62px] justify-items-center">
           {PARIS_TOURS.map((tour) => (
             <ParisTourCard
               key={tour.id}

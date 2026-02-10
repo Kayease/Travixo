@@ -179,10 +179,10 @@ export const HeroSection = () => {
         </div>
 
         {/* ========== Main Content Area ========== */}
-        <div className="relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px]">
+        <div className="relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px] max-[932px]:landscape:pt-12 max-[932px]:landscape:px-10 max-[932px]:landscape:pr-[30%]">
           {/* Main Heading */}
           <h1
-            className="font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px]"
+            className="font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px] max-[932px]:landscape:text-[28px] max-[932px]:landscape:mb-2"
             style={{ color: "#4B3621" }}
           >
             Let Travixo Guide You to
@@ -191,7 +191,7 @@ export const HeroSection = () => {
 
           {/* Description */}
           <p
-            className="font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8"
+            className="font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8 max-[932px]:landscape:mt-1 max-[932px]:landscape:text-sm max-[932px]:landscape:leading-relaxed"
             style={{ color: "#4B3621" }}
           >
             Discover the soul of Africa through iconic wildlife, breathtaking
@@ -203,7 +203,7 @@ export const HeroSection = () => {
           <button
             type="button"
             onClick={() => router.push("/destinations")}
-            className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group cursor-pointer border border-transparent hover:border-black"
+            className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group cursor-pointer border border-transparent hover:border-black max-[932px]:landscape:mt-4 max-[932px]:landscape:scale-90 max-[932px]:landscape:origin-left"
             style={{
               width: "200px",
               height: "45px",
@@ -225,12 +225,12 @@ export const HeroSection = () => {
           className="absolute left-1/2 z-10"
           style={{
             top: "420px",
-            width: "200vw",
+            width: "200%",
             transform: "translateX(-50%) rotate(-8.6deg)",
             transformOrigin: "center center",
           }}
         >
-          <div className="flex items-center gap-4 animate-scroll-infinite">
+          <div className="flex items-center gap-4 animate-scroll-infinite max-[932px]:landscape:gap-16">
             {/* Render images multiple times for infinite scroll effect */}
             {[...HERO_IMAGES, ...HERO_IMAGES, ...HERO_IMAGES].map(
               (image, index) => (
@@ -262,9 +262,9 @@ export const HeroSection = () => {
       {/* End clipped area */}
 
       {/* ========== Glassmorphism Search Bar (outside clip so date picker dropdown can show) ========== */}
-      <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] md:w-[900px] z-10 px-4 md:px-0 overflow-visible">
+      <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] lg:w-[900px] z-10 px-4 md:px-0 overflow-visible max-[932px]:landscape:bottom-4">
         <div
-          className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0 overflow-visible"
+          className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0 overflow-visible max-[932px]:landscape:flex-row max-[932px]:landscape:h-[70px] max-[932px]:landscape:gap-0 max-[932px]:landscape:p-0"
           style={{
             width: "100%",
             maxWidth: "900px",
@@ -276,24 +276,24 @@ export const HeroSection = () => {
           }}
         >
           {/* Destination Field */}
-          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0">
+          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 max-[932px]:landscape:py-0 max-[932px]:landscape:px-3">
             <svg
               width="28"
               height="28"
               viewBox="0 0 28 28"
               fill="none"
-              className="shrink-0"
+              className="shrink-0 max-[932px]:landscape:w-5 max-[932px]:landscape:h-5 text-[#4B3621]"
             >
               <path
                 d="M14 14.875C15.2426 14.875 16.25 13.8676 16.25 12.625C16.25 11.3824 15.2426 10.375 14 10.375C12.7574 10.375 11.75 11.3824 11.75 12.625C11.75 13.8676 12.7574 14.875 14 14.875Z"
-                stroke="#4B3621"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M14 3.5C11.5136 3.5 9.12903 4.48772 7.37087 6.24587C5.61272 8.00403 4.625 10.3886 4.625 12.875C4.625 15.0575 5.12125 16.52 6.3125 18L14 26.25L21.6875 18C22.8788 16.52 23.375 15.0575 23.375 12.875C23.375 10.3886 22.3873 8.00403 20.6291 6.24587C18.871 4.48772 16.4864 3.5 14 3.5Z"
-                stroke="#4B3621"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -301,7 +301,7 @@ export const HeroSection = () => {
             </svg>
             <div className="flex flex-col">
               <label
-                className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
+                className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px] max-[932px]:landscape:text-sm max-[932px]:landscape:leading-tight"
                 style={{ color: "#4B3621" }}
               >
                 Destination
@@ -312,7 +312,7 @@ export const HeroSection = () => {
                 onChange={(e) => setDestination(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="Enter Location"
-                className="font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60"
+                className="font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60 max-[932px]:landscape:text-[13px] max-[932px]:landscape:leading-tight"
                 style={{ color: "#4B3621" }}
               />
             </div>
@@ -320,12 +320,12 @@ export const HeroSection = () => {
 
           {/* Divider */}
           <div
-            className="hidden md:block w-px h-[70px]"
+            className="hidden md:block w-px h-[70px] max-[932px]:landscape:h-[40px]"
             style={{ backgroundColor: "rgba(75, 54, 33, 0.2)" }}
           />
 
           {/* Date Field - overflow-visible so calendar dropdown is not clipped */}
-          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 border-t md:border-t-0 border-[rgba(75,54,33,0.1)] overflow-visible">
+          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 border-t md:border-t-0 border-[rgba(75,54,33,0.1)] overflow-visible max-[932px]:landscape:border-none max-[932px]:landscape:py-0 max-[932px]:landscape:px-3">
             <div
               ref={dateIconRef}
               onClick={() => setIsDatePickerOpen(!isDatePickerOpen)}
