@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useToast } from "../context/ToastContext";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
@@ -31,6 +32,7 @@ const SettingsHeroSection = () => {
  * Settings Content Section
  */
 const SettingsContentSection = () => {
+  const { showToast } = useToast();
   const [settings, setSettings] = useState({
     emailNotifications: true,
     smsNotifications: false,
@@ -47,10 +49,30 @@ const SettingsContentSection = () => {
   });
 
   const handleToggle = (key: keyof typeof settings) => {
+    const newValue = !settings[key];
     setSettings({
       ...settings,
-      [key]: !settings[key],
+      [key]: newValue,
     });
+
+    const labels: { [key: string]: string } = {
+      emailNotifications: "Email Notifications",
+      smsNotifications: "SMS Notifications",
+      pushNotifications: "Push Notifications",
+      marketingEmails: "Marketing Emails",
+      weeklyNewsletter: "Weekly Newsletter",
+      bookingReminders: "Booking Reminders",
+      priceAlerts: "Price Alerts",
+      specialOffers: "Special Offers",
+      travelTips: "Travel Tips",
+    };
+
+    const label = labels[key as string] || "Setting";
+
+    showToast(
+      `${label} ${newValue ? "Enabled" : "Disabled"}`,
+      "success",
+    );
   };
 
   const handleSelect = (key: keyof typeof settings, value: string) => {
@@ -94,14 +116,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("emailNotifications")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.emailNotifications ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.emailNotifications ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.emailNotifications ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.emailNotifications ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>
@@ -117,14 +137,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("smsNotifications")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.smsNotifications ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.smsNotifications ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.smsNotifications ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.smsNotifications ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>
@@ -140,14 +158,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("pushNotifications")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.pushNotifications ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.pushNotifications ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.pushNotifications ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.pushNotifications ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>
@@ -171,14 +187,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("bookingReminders")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.bookingReminders ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.bookingReminders ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.bookingReminders ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.bookingReminders ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>
@@ -194,14 +208,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("priceAlerts")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.priceAlerts ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.priceAlerts ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.priceAlerts ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.priceAlerts ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>
@@ -217,14 +229,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("marketingEmails")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.marketingEmails ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.marketingEmails ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.marketingEmails ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.marketingEmails ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>
@@ -240,14 +250,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("weeklyNewsletter")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.weeklyNewsletter ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.weeklyNewsletter ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.weeklyNewsletter ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.weeklyNewsletter ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>
@@ -263,14 +271,12 @@ const SettingsContentSection = () => {
                 </div>
                 <button
                   onClick={() => handleToggle("travelTips")}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                    settings.travelTips ? "bg-brand-orange" : "bg-gray-300"
-                  }`}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings.travelTips ? "bg-brand-orange" : "bg-gray-300"
+                    }`}
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.travelTips ? "translate-x-6" : "translate-x-1"
-                    }`}
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.travelTips ? "translate-x-6" : "translate-x-1"
+                      }`}
                   />
                 </button>
               </div>

@@ -76,20 +76,11 @@ const ProfileContentSection = () => {
     );
   };
 
-  const handleDeleteAccount = () => {
-    if (
-      window.confirm(
-        "Are you sure you want to delete your account? This action cannot be undone.",
-      )
-    ) {
-      showToast("Account deleted successfully.", "success");
-      window.location.href = "/";
-    }
-  };
+
 
   const handleLogout = () => {
     showToast("Logged out successfully.", "success");
-    window.location.href = "/";
+    window.location.href = "/login";
   };
 
   const handleChange = (
@@ -151,6 +142,7 @@ const ProfileContentSection = () => {
       status: "Confirmed",
       price: "$2,499",
       image: "/images/travixo-tours/cards/community-2.png",
+      link: "/paris",
     },
     {
       id: "BK-2026-002",
@@ -159,6 +151,7 @@ const ProfileContentSection = () => {
       status: "Pending",
       price: "$1,899",
       image: "/images/travixo-tours/cards/community-4.png",
+      link: "#",
     },
     {
       id: "BK-2025-003",
@@ -167,6 +160,7 @@ const ProfileContentSection = () => {
       status: "Completed",
       price: "$1,599",
       image: "/images/travixo-tours/cards/community-3.png",
+      link: "#",
     },
   ];
 
@@ -226,8 +220,8 @@ const ProfileContentSection = () => {
                 <button
                   onClick={() => setActiveTab("profile")}
                   className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "profile"
-                      ? "bg-brand-orange text-white"
-                      : "text-gray-700 hover:bg-gray-100"
+                    ? "bg-brand-orange text-white"
+                    : "text-gray-700 hover:bg-gray-100"
                     }`}
                 >
                   <svg
@@ -249,8 +243,8 @@ const ProfileContentSection = () => {
                 <button
                   onClick={() => setActiveTab("bookings")}
                   className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "bookings"
-                      ? "bg-brand-orange text-white"
-                      : "text-gray-700 hover:bg-gray-100"
+                    ? "bg-brand-orange text-white"
+                    : "text-gray-700 hover:bg-gray-100"
                     }`}
                 >
                   <svg
@@ -272,8 +266,8 @@ const ProfileContentSection = () => {
                 <button
                   onClick={() => setActiveTab("security")}
                   className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "security"
-                      ? "bg-brand-orange text-white"
-                      : "text-gray-700 hover:bg-gray-100"
+                    ? "bg-brand-orange text-white"
+                    : "text-gray-700 hover:bg-gray-100"
                     }`}
                 >
                   <svg
@@ -602,14 +596,12 @@ const ProfileContentSection = () => {
                       </div>
 
                       <div className="flex flex-wrap gap-2 md:gap-3">
-                        <button className="flex-1 sm:flex-none px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[13px] md:text-[14px] hover:bg-orange-50 transition-colors cursor-pointer text-center">
+                        <Link
+                          href={booking.link}
+                          className="flex-1 sm:flex-none px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[13px] md:text-[14px] hover:bg-orange-50 transition-colors cursor-pointer text-center"
+                        >
                           View Details
-                        </button>
-                        {booking.status !== "Completed" && (
-                          <button className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[13px] md:text-[14px] hover:bg-orange-600 transition-colors cursor-pointer text-center">
-                            Manage Booking
-                          </button>
-                        )}
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -697,22 +689,7 @@ const ProfileContentSection = () => {
                   </button>
                 </div>
 
-                {/* Delete Account */}
-                <div>
-                  <h3 className="font-body font-semibold text-[18px] md:text-[20px] text-red-600 mb-2">
-                    Delete Account
-                  </h3>
-                  <p className="font-body text-[14px] text-gray-600 mb-4">
-                    Once you delete your account, there is no going back. Please
-                    be certain.
-                  </p>
-                  <button
-                    onClick={handleDeleteAccount}
-                    className="w-full sm:w-auto px-6 py-3 rounded-lg bg-red-500 text-white font-body font-medium text-[16px] hover:bg-red-600 transition-colors cursor-pointer"
-                  >
-                    Delete Account
-                  </button>
-                </div>
+
               </div>
             )}
           </div>

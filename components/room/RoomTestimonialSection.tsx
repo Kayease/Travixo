@@ -228,6 +228,7 @@ export const TestimonialSection = () => {
                     src={item.url}
                     alt={item.author.name}
                     fill
+                    sizes="100px"
                     className={`object-cover transition-opacity duration-100 ${isActive ? "opacity-100" : "opacity-80"
                       }`}
                   />
@@ -280,6 +281,7 @@ export const TestimonialSection = () => {
                 src={activeTestimonial.url}
                 alt={activeTestimonial.author.name}
                 fill
+                sizes="60px"
                 className="object-cover"
               />
             </div>
@@ -319,6 +321,7 @@ export const TestimonialSection = () => {
                   src={activeTestimonial.url}
                   alt={activeTestimonial.author.name}
                   fill
+                  sizes="50px"
                   className="object-cover"
                 />
               </div>
@@ -347,6 +350,7 @@ export const TestimonialSection = () => {
                 <Image
                   src={item.url}
                   fill
+                  sizes="(max-width: 768px) 48px, 100vw"
                   className="object-cover"
                   alt={item.author.name}
                 />

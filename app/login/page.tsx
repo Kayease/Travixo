@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
@@ -32,6 +33,7 @@ const LoginHeroSection = () => {
  * Login Form Section
  */
 const LoginFormSection = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -60,7 +62,7 @@ const LoginFormSection = () => {
       localStorage.setItem("userEmail", formData.email);
 
       // Redirect to home page
-      window.location.href = "/";
+      router.push("/");
     }
   };
 
