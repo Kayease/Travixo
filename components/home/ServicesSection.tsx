@@ -9,76 +9,7 @@ import Image from "next/image";
 /**
  * Icons
  */
-const GuideIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-    <circle cx="8.5" cy="7" r="4" />
-    <line x1="20" y1="8" x2="20" y2="14" />
-    <line x1="23" y1="11" x2="17" y2="11" />
-  </svg>
-);
 
-const HotelIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M3 21h18M5 21V7l8-4 8 4v14" />
-    <path d="M9 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-    <path d="M9 21v-5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5" />
-  </svg>
-);
-
-const TransportIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-    <circle cx="7" cy="17" r="2" />
-    <path d="M9 17h6" />
-    <circle cx="17" cy="17" r="2" />
-  </svg>
-);
-
-const FoodIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
-    <path d="M7 2v20" />
-    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3" />
-    <path d="M21 21v-6" />
-  </svg>
-);
 
 /**
  * Service data
@@ -89,7 +20,7 @@ const SERVICES = [
     title: "Personalized guide",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    Icon: GuideIcon,
+    iconPath: "/images/home/whatwedo/map_surfing.png",
     borderRadius: "63% 37% 30% 70% / 50% 45% 55% 50%",
   },
   {
@@ -97,7 +28,7 @@ const SERVICES = [
     title: "Accommodation booking",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    Icon: HotelIcon,
+    iconPath: "/images/home/whatwedo/mingcute_tree-4-line.png",
     borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
   },
   {
@@ -105,7 +36,7 @@ const SERVICES = [
     title: "Transportation service",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    Icon: TransportIcon,
+    iconPath: "/images/home/whatwedo/mdi_transportation.png",
     borderRadius: "70% 30% 30% 70% / 60% 40% 60% 40%",
   },
   {
@@ -113,7 +44,7 @@ const SERVICES = [
     title: "Culinary experiences",
     description:
       "Set in lush jungle, our modern spa embodies the calm of nature",
-    Icon: FoodIcon,
+    iconPath: "/images/home/whatwedo/Group.png",
     borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
   },
 ];
@@ -126,12 +57,12 @@ const SERVICES = [
 const ServiceCard = ({
   title,
   description,
-  Icon,
+  iconPath,
   borderRadius,
 }: {
   title: string;
   description: string;
-  Icon: React.FC;
+  iconPath: string;
   borderRadius: string;
 }) => (
   <div className="flex flex-col items-center gap-[18px] w-[208px] group cursor-pointer">
@@ -147,8 +78,14 @@ const ServiceCard = ({
       />
 
       {/* Icon */}
-      <div className="relative z-10 transition-colors duration-500 ease-in-out group-hover:text-[#FFFCF5]">
-        <Icon />
+      <div className="relative w-10 h-10 z-10 transition-all duration-500 ease-in-out group-hover:brightness-0 group-hover:invert text-brand-orange">
+        <Image
+          src={iconPath}
+          alt={title}
+          fill
+          sizes="40px"
+          className="object-contain transition-all duration-500"
+        />
       </div>
     </div>
 
@@ -212,31 +149,31 @@ export const ServicesSection = () => {
         {/* Section Header */}
         <div className="text-center mb-[43px]">
           {/* Small Title - Poppins 500, 24px/36px */}
-          <span className="font-body font-medium text-[24px] leading-[36px] text-brand-brown">
+          <span className="font-body font-medium text-[18px] leading-[27px] text-brand-brown">
             what we do
           </span>
 
           {/* Main Title - Playfair Display italic 600, 32px/43px */}
-          <h2 className="font-display italic font-semibold text-[32px] leading-[43px] text-brand-brown mt-5">
+          <h2 className="font-display italic font-semibold text-[32px] leading-[43px] text-brand-brown mt-2">
             We provide travel arrangement services
           </h2>
         </div>
 
         {/* Services Grid */}
-        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8 lg:gap-[90px]">
+        <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap justify-center gap-8 lg:gap-[40px] xl:gap-[90px]">
           {SERVICES.map((service) => (
             <ServiceCard
               key={service.id}
               title={service.title}
               description={service.description}
-              Icon={service.Icon}
+              iconPath={service.iconPath}
               borderRadius={service.borderRadius}
             />
           ))}
         </div>
 
         {/* Read More Links Row (Desktop Only) */}
-        <div className="hidden lg:flex justify-center gap-[90px] mt-[32px]">
+        <div className="hidden lg:flex justify-center gap-[40px] xl:gap-[90px] mt-[32px]">
           {SERVICES.map((service) => (
             <div
               key={`read-more-${service.id}`}

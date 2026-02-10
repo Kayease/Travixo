@@ -53,6 +53,27 @@ const ProfileContentSection = () => {
     postalCode: "10001",
   });
 
+  // Load data from localStorage on mount
+  React.useEffect(() => {
+    const savedData = localStorage.getItem("userProfile");
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        setProfileData(parsed);
+        setFormData(parsed);
+      } catch (e) {
+        console.error("Failed to parse profile data", e);
+      }
+    } else {
+      // If no profile data, check if we have email from login
+      const savedEmail = localStorage.getItem("userEmail");
+      if (savedEmail) {
+        setProfileData(prev => ({ ...prev, email: savedEmail }));
+        setFormData(prev => ({ ...prev, email: savedEmail }));
+      }
+    }
+  }, []);
+
   // Temporary state for editing
   const [formData, setFormData] = useState(profileData);
 
@@ -65,18 +86,45 @@ const ProfileContentSection = () => {
 
   // 2FA state
   const [is2FAEnabled, setIs2FAEnabled] = useState(false);
+  const [avatarImage, setAvatarImage] = useState<string | null>(null);
+
+  // Load secondary data from localStorage
+  React.useEffect(() => {
+    const saved2FA = localStorage.getItem("is2FAEnabled");
+    if (saved2FA) setIs2FAEnabled(saved2FA === "true");
+
+    const savedAvatar = localStorage.getItem("userAvatar");
+    if (savedAvatar) setAvatarImage(savedAvatar);
+  }, []);
 
   const handleToggle2FA = () => {
-    setIs2FAEnabled(!is2FAEnabled);
+    const newState = !is2FAEnabled;
+    setIs2FAEnabled(newState);
+    localStorage.setItem("is2FAEnabled", newState.toString());
     showToast(
-      is2FAEnabled
-        ? "Two-Factor Authentication Disabled!"
-        : "Two-Factor Authentication Enabled!",
-      is2FAEnabled ? "info" : "success",
+      newState
+        ? "Two-Factor Authentication Enabled!"
+        : "Two-Factor Authentication Disabled!",
+      newState ? "success" : "info",
     );
   };
 
-
+  const handleAvatarUpload = () => {
+    // Mock image selection
+    showToast("Opening file picker...", "info");
+    setTimeout(() => {
+      const mockAvatars = [
+        "/images/room/cards/testimonial-1.png",
+        "/images/room/cards/testimonial-2.png",
+        "/images/room/cards/testimonial-3.png",
+        "/images/room/cards/testimonial-4.png"
+      ];
+      const randomAvatar = mockAvatars[Math.floor(Math.random() * mockAvatars.length)];
+      setAvatarImage(randomAvatar);
+      localStorage.setItem("userAvatar", randomAvatar);
+      showToast("Avatar Updated!", "success");
+    }, 1000);
+  };
 
   const handleLogout = () => {
     showToast("Logged out successfully.", "success");
@@ -111,6 +159,7 @@ const ProfileContentSection = () => {
 
   const handleSave = () => {
     setProfileData(formData); // Commit changes
+    localStorage.setItem("userProfile", JSON.stringify(formData));
     setIsEditing(false);
     showToast("Profile Updated Successfully!", "success");
   };
@@ -181,13 +230,27 @@ const ProfileContentSection = () => {
             <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
               {/* Profile Avatar */}
               <div className="text-center mb-6">
-                <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-4">
-                  <div className="w-full h-full rounded-full bg-brand-orange flex items-center justify-center text-white font-display text-2xl md:text-3xl">
-                    {getInitials()}
+                <div className="relative w-24 h-24 md:w-28 md:h-28 mx-auto mb-4 group">
+                  <div className="w-full h-full rounded-full bg-brand-orange flex items-center justify-center text-white font-display text-2xl md:text-3xl overflow-hidden relative border-4 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
+                    {avatarImage ? (
+                      <Image
+                        src={avatarImage}
+                        alt="Profile"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 96px, 112px"
+                      />
+                    ) : (
+                      getInitials()
+                    )}
                   </div>
-                  <button className="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer">
+                  <button
+                    onClick={handleAvatarUpload}
+                    className="absolute bottom-0 right-0 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-orange-50 transition-all duration-300 cursor-pointer border-2 border-brand-orange/20 hover:scale-110 z-20"
+                    title="Change Avatar"
+                  >
                     <svg
-                      className="w-4 h-4 text-gray-600"
+                      className="w-5 h-5 text-brand-orange"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -540,6 +603,7 @@ const ProfileContentSection = () => {
                         src={booking.image}
                         alt={booking.destination}
                         fill
+                        sizes="(max-width: 768px) 100vw, 200px"
                         className="object-cover"
                       />
                     </div>

@@ -227,6 +227,7 @@ export const TestimonialSection = () => {
                     src={item.url}
                     alt={item.author.name}
                     fill
+                    sizes="100px"
                     className={`object-cover transition-opacity duration-100 ${isActive ? "opacity-100" : "opacity-80"
                       }`}
                   />
@@ -279,6 +280,7 @@ export const TestimonialSection = () => {
                 src={activeTestimonial.url}
                 alt={activeTestimonial.author.name}
                 fill
+                sizes="60px"
                 className="object-cover"
               />
             </div>
@@ -318,6 +320,7 @@ export const TestimonialSection = () => {
                   src={activeTestimonial.url}
                   alt={activeTestimonial.author.name}
                   fill
+                  sizes="50px"
                   className="object-cover"
                 />
               </div>
@@ -340,7 +343,7 @@ export const TestimonialSection = () => {
                 onClick={() => setActiveId(item.id)}
                 className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer ${activeId === item.id ? 'border-brand-orange' : 'border-transparent'}`}
               >
-                <Image src={item.url} fill className="object-cover" alt="avatar" />
+                <Image src={item.url} fill sizes="40px" className="object-cover" alt="avatar" />
               </div>
             ))}
           </div>

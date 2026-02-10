@@ -47,7 +47,6 @@ const BalloonIcon = () => (
     alt="Balloon Icon"
     width={30}
     height={30}
-    style={{ height: "auto" }}
   />
 );
 
