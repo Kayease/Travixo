@@ -155,9 +155,10 @@ export const BenefitsSection = () => {
       className="relative w-full py-12 lg:py-16"
       style={{
         backgroundColor: "#FFF7E5",
-        // backgroundImage: "url('/images/hero/hero-pattern.png')",
+        backgroundImage: "url('/images/home/Frame480.png')",
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
       }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">

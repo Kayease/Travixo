@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { DatePicker, DateRange } from "@/components/ui/DatePicker";
+import { useToast } from "@/app/context/ToastContext";
 
 /**
  * Activity category data
@@ -143,6 +144,7 @@ export const ExploreSection = () => {
   const [duration, setDuration] = useState("");
   const [date, setDate] = useState<string | DateRange>("");
   const router = useRouter();
+  const { showToast } = useToast();
 
   // Get current active category data
   const currentCategory =
@@ -150,6 +152,11 @@ export const ExploreSection = () => {
     ACTIVITY_CATEGORIES[0];
 
   const handleSearch = () => {
+    if (!destination || !date || !travelType || !duration) {
+      showToast("Please fill in all fields to search", "error");
+      return;
+    }
+
     const params = new URLSearchParams();
     if (destination) params.set("destination", destination);
 
@@ -292,12 +299,12 @@ export const ExploreSection = () => {
                 onClick={handleSearch}
                 className="relative w-full sm:w-[384px] h-[50px] bg-brand-orange border border-brand-orange rounded-xl 
                            flex items-center justify-center overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)]
-                           hover:shadow-lg hover:border-black transition-all duration-300 group cursor-pointer"
+                           hover:shadow-lg hover:border-[#FF6E00] transition-all duration-300 group/btn cursor-pointer"
               >
                 {/* Bottom-to-top fill animation overlay */}
-                <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
+                <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
                 {/* Button text - centered */}
-                <span className="relative z-10 font-display italic font-medium text-xl text-white group-hover:text-black transition-colors duration-300">
+                <span className="relative z-10 font-display italic font-medium text-xl text-white group-hover/btn:text-[#FF6E00] transition-colors duration-300">
                   Search Now
                 </span>
               </button>
@@ -305,7 +312,7 @@ export const ExploreSection = () => {
           </div>
 
           {/* Right Content - Featured Image with smooth transition */}
-          <div className="relative w-full h-[300px] md:h-[556px] rounded-xl overflow-hidden shadow-2xl">
+          <div className="relative w-full h-[300px] md:h-[556px] rounded-xl overflow-hidden">
             <div
               key={currentCategory.imagePath}
               className="relative w-full h-full animate-explore-image-in"

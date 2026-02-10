@@ -16,9 +16,10 @@ import React, { useState } from "react";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import TravelInformationForm from "./TravelInformationForm";
 import PaymentDetailsForm from "./PaymentDetailsForm";
-import OrderSummaryCard from "./OrderSummaryCard";
+import OrderSummaryCard, { BookingSummary } from "./OrderSummaryCard";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Toast } from "../ui/Toast";
+import { useToast } from "@/app/context/ToastContext";
+import { useCart } from "@/app/context/CartContext";
 
 interface CheckoutSectionProps {
   tourData?: {
@@ -32,6 +33,8 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   tourData: initialTourData,
 }) => {
   const searchParams = useSearchParams();
+  const { cartItems } = useCart();
+  const router = useRouter();
 
   // Prioritize search params, fallback to props, then default
   const tourData = {
@@ -47,6 +50,48 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
       initialTourData?.image ||
       "/images/checkout/success.png",
   };
+
+  // Helper to calculate duration in days
+  const calculateDuration = (dates: string): number => {
+    if (!dates) return 1;
+    if (dates.includes(" - ")) {
+      const [startStr, endStr] = dates.split(" - ");
+      const startDate = new Date(startStr);
+      const endDate = new Date(endStr);
+      const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays > 0 ? diffDays : 1; // Minimum 1 day
+    }
+    return 1; // Single date is 1 day
+  };
+
+  // Calculate Cart Summary
+  let cartSummary: BookingSummary | undefined;
+
+  if (cartItems.length > 0) {
+    const itemCount = cartItems.length;
+
+    // Calculate subtotals considering duration
+    const roomSubtotal = cartItems
+      .filter((item) => item.type === "room")
+      .reduce((sum, item) => sum + item.price * calculateDuration(item.dates), 0);
+
+    const experienceSubtotal = cartItems
+      .filter((item) => item.type === "experience")
+      .reduce((sum, item) => sum + item.price * calculateDuration(item.dates), 0);
+
+    const comboSaving = itemCount > 1 ? 50 : 0;
+    const subtotal = roomSubtotal + experienceSubtotal;
+    const taxesAndFee = Math.round(subtotal * 0.1);
+
+    cartSummary = {
+      roomSubtotal,
+      experienceSubtotal,
+      comboSaving,
+      taxesAndFee,
+    };
+  }
+
   // Current step state
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(3);
 
@@ -68,6 +113,9 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
     cvv: "",
   });
 
+  // UPI ID state
+  const [upiId, setUpiId] = useState("");
+
   // Handle travel info change
   const handleTravelInfoChange = (field: string, value: string) => {
     setTravelInfo((prev) => ({ ...prev, [field]: value }));
@@ -78,19 +126,14 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
     setCardData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const router = useRouter();
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState({ message: "", type: "success" as "success" | "error" });
+  const { showToast } = useToast();
 
-  // Handle payment
   // Handle payment
   const handlePay = () => {
     // 1. Validate Travel Information
     const isTravelInfoValid = Object.values(travelInfo).every(val => val.trim() !== "");
     if (!isTravelInfoValid) {
-      setToastMessage({ message: "Please fill in all Travel Information fields.", type: "error" });
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 3000);
+      showToast("Please fill in all Travel Information fields.", "error");
       return;
     }
 
@@ -98,9 +141,21 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
     if (paymentMethod === "card") {
       const isCardDataValid = Object.values(cardData).every(val => val.trim() !== "");
       if (!isCardDataValid) {
-        setToastMessage({ message: "Please fill in all Payment Details.", type: "error" });
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
+        showToast("Please fill in all Payment Details.", "error");
+        return;
+      }
+    }
+
+    // 3. Validate UPI Details (if UPI method)
+    if (paymentMethod === "upi") {
+      if (!upiId.trim()) {
+        showToast("Please enter your UPI ID.", "error");
+        return;
+      }
+      // Simple format check (basic regex for id@bank)
+      const upiRegex = /^[\w.-]+@[\w.-]+$/;
+      if (!upiRegex.test(upiId)) {
+        showToast("Please enter a valid UPI ID.", "error");
         return;
       }
     }
@@ -109,11 +164,13 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
       travelInfo,
       paymentMethod,
       cardData,
+      upiId,
+      cartSummary,
+      cartItems
     });
 
     // Show success toast
-    setToastMessage({ message: "Payment successful! Redirecting to home...", type: "success" });
-    setShowToast(true);
+    showToast("Payment successful! Redirecting to home...", "success");
 
     // Redirect after delay
     setTimeout(() => {
@@ -126,16 +183,6 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
 
   return (
     <section className="relative w-full bg-[#FFFCF5] py-8 md:py-12 lg:py-16">
-      {/* Toast Notification */}
-      {showToast && (
-        <div className="fixed top-24 right-5 z-50 animate-slide-up">
-          <Toast
-            message={toastMessage.message}
-            type={toastMessage.type}
-            onClose={() => setShowToast(false)}
-          />
-        </div>
-      )}
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Progress Bar */}
         <div className="mb-8 md:mb-12">
@@ -158,18 +205,21 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
               onPaymentMethodChange={setPaymentMethod}
               cardData={cardData}
               onCardChange={handleCardChange}
+              upiId={upiId}
+              onUpiChange={setUpiId}
             />
           </div>
 
           {/* Right Column: Order Summary */}
           <div className="w-full xl:w-[440px] xl:shrink-0">
             <OrderSummaryCard
-              tourImage={tourData.image}
-              tourName={tourData.name}
+              tourImage={cartItems.length > 0 ? cartItems[0].image : tourData.image}
+              tourName={cartItems.length > 0 ? "Multiple Items" : tourData.name}
               pricePerPerson={tourData.pricePerPerson}
               personCount={5}
               taxPercent={18}
               bookingFee={125}
+              cartSummary={cartSummary}
               onPay={handlePay}
             />
             {/* Security Badges */}

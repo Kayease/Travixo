@@ -210,7 +210,7 @@ export const TestimonialSection = () => {
               <div
                 key={item.id}
                 onClick={() => handleAvatarClick(item.id)}
-                className="absolute cursor-pointer transition-all duration-150 ease-in-out"
+                className="absolute cursor-pointer transition-all duration-700 ease-in-out"
                 style={{
                   width: "100px",
                   height: "100px",
@@ -228,7 +228,7 @@ export const TestimonialSection = () => {
                     alt={item.author.name}
                     fill
                     sizes="100px"
-                    className={`object-cover transition-opacity duration-100 ${isActive ? "opacity-100" : "opacity-80"
+                    className={`object-cover transition-opacity duration-700 ${isActive ? "opacity-100" : "opacity-80"
                       }`}
                   />
                 </div>

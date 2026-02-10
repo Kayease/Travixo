@@ -96,7 +96,7 @@ export const CTABannerSection = ({
                   {buttonText}
                 </span>
                 <span className="relative z-10 group-hover:translate-x-1 transition-transform text-brand-orange group-hover:text-white">
-                  <ArrowIcon />
+                  <ArrowIcon className="transition-transform duration-300 group-hover:rotate-0" />
                 </span>
               </Link>
             </div>

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-
 /**
  * Star Icon (Tabler Star)
  */
@@ -211,7 +210,7 @@ export const TestimonialSection = () => {
               <div
                 key={item.id}
                 onClick={() => handleAvatarClick(item.id)}
-                className="absolute cursor-pointer transition-all duration-150 ease-in-out"
+                className="absolute cursor-pointer transition-all duration-700 ease-in-out"
                 style={{
                   width: "100px",
                   height: "100px",
@@ -229,7 +228,7 @@ export const TestimonialSection = () => {
                     alt={item.author.name}
                     fill
                     sizes="100px"
-                    className={`object-cover transition-opacity duration-100 ${isActive ? "opacity-100" : "opacity-80"
+                    className={`object-cover transition-opacity duration-700 ${isActive ? "opacity-100" : "opacity-80"
                       }`}
                   />
                 </div>
@@ -304,19 +303,19 @@ export const TestimonialSection = () => {
       </div>
 
       {/* Mobile Fallback - Simplified */}
-      <div className="block xl:hidden w-full px-4 py-8 bg-[#FFFCF5]">
-        <div className="bg-[#FFF7E5] rounded-xl p-6 min-h-[400px] flex flex-col justify-center items-center w-full max-w-[400px] mx-auto">
-          <div className="bg-white rounded-xl shadow-md p-6 w-full mb-6">
+      <div className="block xl:hidden w-full px-4 py-8">
+        <div className="bg-[#FFF7E5] rounded-xl p-6 min-h-[400px] flex flex-col justify-center items-center">
+          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-[340px]">
             <div className="flex gap-1 mb-4">
               {[...Array(activeTestimonial.rating)].map((_, i) => (
                 <StarIcon key={i} />
               ))}
             </div>
-            <p className="font-poppins text-lg leading-relaxed text-[#4B3621] mb-6">
+            <p className="font-poppins text-lg text-brand-brown mb-6">
               “{activeTestimonial.text}”
             </p>
-            <div className="flex items-center gap-4 border-t border-gray-100 pt-4">
-              <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden shrink-0">
+            <div className="flex items-center gap-4">
+              <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden">
                 <Image
                   src={activeTestimonial.url}
                   alt={activeTestimonial.author.name}
@@ -326,10 +325,10 @@ export const TestimonialSection = () => {
                 />
               </div>
               <div>
-                <div className="font-display italic font-semibold text-lg text-[#4B3621]">
+                <div className="font-display italic font-semibold text-base text-brand-brown">
                   {activeTestimonial.author.name}
                 </div>
-                <div className="text-sm font-medium text-[#4B3621]/60">
+                <div className="text-sm text-brand-brown/80">
                   {activeTestimonial.author.role}
                 </div>
               </div>
@@ -337,23 +336,14 @@ export const TestimonialSection = () => {
           </div>
 
           {/* Mini avatars for mobile */}
-          <div className="flex gap-3 flex-wrap justify-center">
+          <div className="flex gap-2 mt-8 flex-wrap justify-center">
             {TESTIMONIALS_DATA.map((item) => (
               <div
                 key={item.id}
                 onClick={() => setActiveId(item.id)}
-                className={`relative w-12 h-12 rounded-full overflow-hidden border-2 cursor-pointer transition-all duration-200 ${activeId === item.id
-                  ? 'border-[#FF6E00] scale-110 shadow-sm'
-                  : 'border-transparent opacity-70 hover:opacity-100'
-                  }`}
+                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer ${activeId === item.id ? 'border-brand-orange' : 'border-transparent'}`}
               >
-                <Image
-                  src={item.url}
-                  fill
-                  sizes="48px"
-                  className="object-cover"
-                  alt={item.author.name}
-                />
+                <Image src={item.url} fill sizes="40px" className="object-cover" alt="avatar" />
               </div>
             ))}
           </div>
@@ -362,4 +352,3 @@ export const TestimonialSection = () => {
     </section>
   );
 };
-export default TestimonialSection;

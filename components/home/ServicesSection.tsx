@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Service data for the What We Do section
@@ -68,12 +69,12 @@ const ServiceCard = ({
   <div className="flex flex-col items-center gap-[18px] w-[208px] group cursor-pointer">
     {/* Icon Container with Organic Border */}
     <div
-      className="relative w-[100px] h-[100px] flex items-center justify-center border border-brand-orange text-brand-orange overflow-hidden transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:shadow-lg"
+      className="relative w-[100px] h-[100px] flex items-center justify-center border border-brand-orange text-brand-orange overflow-hidden transition-all duration-500 ease-in-out group-hover:shadow-lg"
       style={{ borderRadius }}
     >
       {/* Fill Animation Layer */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-0 group-hover:h-full bg-brand-orange transition-all duration-500 ease-in-out z-0"
+        className="absolute inset-0 bg-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out z-0"
         style={{ borderRadius: "inherit" }}
       />
 
@@ -114,7 +115,7 @@ const ServiceCard = ({
  * Poppins 400, 14px/21px with 24px arrow icon, 4px gap
  */
 const ReadMoreLink = () => (
-  <button className="flex items-center gap-1 text-brand-brown font-body font-normal text-[14px] leading-[21px] hover:text-brand-orange transition-colors group cursor-pointer">
+  <Link href="/about" className="flex items-center gap-1 text-brand-brown font-body font-normal text-[14px] leading-[21px] hover:text-brand-orange transition-colors group cursor-pointer">
     <span>Read More</span>
     <svg
       width="24"
@@ -132,7 +133,7 @@ const ReadMoreLink = () => (
         strokeLinejoin="round"
       />
     </svg>
-  </button>
+  </Link>
 );
 
 /**

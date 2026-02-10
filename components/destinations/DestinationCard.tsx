@@ -49,12 +49,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
     >
       {/* Image Container - Rectangular with 12px radius */}
       <div
-        className="relative w-full aspect-[418/487] overflow-hidden transition-all duration-300 group-hover:shadow-xl"
-        style={{
-          border: "1px solid rgba(75, 54, 33, 0.2)",
-          boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-          borderRadius: "12px",
-        }}
+        className="relative w-full aspect-[418/487] overflow-hidden transition-all duration-300 group-hover:shadow-xl rounded-xl"
       >
         <Image
           src={imageUrl}

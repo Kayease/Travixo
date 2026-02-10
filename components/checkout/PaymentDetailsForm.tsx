@@ -25,6 +25,8 @@ interface PaymentDetailsFormProps {
     cvv: string;
   };
   onCardChange: (field: string, value: string) => void;
+  upiId?: string;
+  onUpiChange?: (value: string) => void;
 }
 
 const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
@@ -32,6 +34,8 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
   onPaymentMethodChange,
   cardData,
   onCardChange,
+  upiId = "",
+  onUpiChange,
 }) => {
   // Format card number with spaces
   const formatCardNumber = (value: string) => {
@@ -166,13 +170,24 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
 
       {/* UPI Content - Show only when UPI is selected */}
       {paymentMethod === 'upi' && (
-        <div className="bg-white border border-brand-brown/20 rounded-xl p-6 md:p-8 text-center">
-          <p className="font-body text-brand-brown/60 mb-4">
-            You will be redirected to UPI to complete your payment securely.
+        <div className="bg-white border border-brand-brown/20 rounded-xl p-4 md:p-6">
+          <label htmlFor="checkout-upi" className="block font-display italic font-semibold text-[20px] leading-[30px] text-brand-brown mb-2">
+           UPI ID
+          </label>
+          <input
+            id="checkout-upi"
+            type="text"
+            value={upiId}
+            onChange={(e) => onUpiChange?.(e.target.value)}
+            placeholder="example@upi"
+            className="w-full h-[50px] bg-[#FFFCF5] border border-brand-brown/20 rounded-xl px-4
+                       font-body font-normal text-base leading-[30px] text-brand-brown
+                       placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
+                       transition-colors"
+          />
+          <p className="font-body text-sm text-brand-brown/60 mt-2">
+            You will be redirected to your UPI app to complete the payment securely.
           </p>
-          <div className="inline-flex items-center gap-2 text-brand-orange font-bold text-2xl">
-            <span>UPI</span>
-          </div>
         </div>
       )}
 

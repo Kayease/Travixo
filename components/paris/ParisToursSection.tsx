@@ -6,17 +6,19 @@ import Link from "next/link";
 /**
  * Heart Icon
  */
-const HeartIcon = () => (
+const HeartIcon = ({ filled, className }: { filled?: boolean; className?: string }) => (
   <svg
     width="24"
     height="24"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={className}
   >
     <path
       d="M12 21C12 21 3 13.5 3 8.5C3 5.5 5.5 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.5 3 23 5.5 23 8.5C23 13.5 14 21 14 21"
-      stroke="#4B3621"
+      stroke="currentColor"
+      fill={filled ? "currentColor" : "none"}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -118,7 +120,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/eiffel-tower",
+    slug: "/products/grand-palace-tour",
   },
   {
     id: "paris-2",
@@ -134,7 +136,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/louvre-museum",
+    slug: "/products/grand-palace-tour",
   },
   {
     id: "paris-3",
@@ -150,7 +152,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/centre-pompidou",
+    slug: "/products/grand-palace-tour",
   },
   {
     id: "paris-4",
@@ -166,7 +168,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/champs-elysees",
+    slug: "/products/grand-palace-tour",
   },
   {
     id: "paris-5",
@@ -182,7 +184,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/catacombs-of-paris",
+    slug: "/products/grand-palace-tour",
   },
   {
     id: "paris-6",
@@ -198,7 +200,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/seine-river-cruises",
+    slug: "/products/grand-palace-tour",
   },
 ];
 
@@ -242,12 +244,20 @@ const ParisTourCard = ({
   slug: string;
 }) => {
   const router = useRouter();
-  const { addToCart } = useCart();
-  const { addToWishlist } = useWishlist();
+  const { addToCart, cartItems } = useCart();
+  const { addToWishlist, isInWishlist } = useWishlist();
+  const isWishlisted = isInWishlist(id.toString());
+  const isInCart = cartItems.some((item) => item.title === title);
 
   const handleAddToWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (isWishlisted) {
+      // Optional: Remove from wishlist if already added, or show message?
+      // For now, just show message via addToWishlist logic or do nothing
+      // But typically toggle is expected. The context handles "already in wishlist" toast.
+    }
 
     const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
     const originalPriceValue = parseInt(originalPrice.replace(/[^0-9]/g, "")) || 0;
@@ -273,7 +283,10 @@ const ParisTourCard = ({
     addToWishlist(wishlistItem);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     // Parse price
     const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
 
@@ -291,20 +304,34 @@ const ParisTourCard = ({
     addToCart(cartItem);
   };
 
-  const handleBookNow = () => {
-    const params = new URLSearchParams({
-      name: title,
-      price: currentPrice,
+  const handleBookNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Parse price
+    const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
+
+    const cartItem: CartItem = {
+      id: `${title}-${Date.now()}`,
+      type: "experience",
+      title: title,
       image: image,
-    });
-    router.push(`/checkout?${params.toString()}`);
+      location: location,
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [duration, people],
+      price: priceValue,
+      actionLabel: "Customize",
+    };
+
+    addToCart(cartItem);
+    router.push("/cart");
   };
 
   return (
-    <div className="relative w-full max-w-[418px] group">
+    <div className="relative w-full max-w-[418px] group hover:z-50">
       {/* Card Container */}
       <div
-        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg h-full"
+        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg h-full z-10"
         style={{ backgroundColor: "#FFFCF5" }}
       >
         {/* Image Container */}
@@ -330,7 +357,7 @@ const ParisTourCard = ({
           </div>
 
           {/* Price Badge */}
-          <div className="absolute bottom-3 right-3 bg-white rounded-tl-full rounded-tr-full rounded-bl-full px-3 py-2 flex items-center gap-2">
+          <div className="absolute bottom-0 right-0 bg-white rounded-[100px_100px_0px_100px] px-3 py-2.5 flex items-center gap-2 min-w-[102px] shadow-sm z-10">
             <span className="font-body font-medium text-lg text-brand-orange">
               {currentPrice}
             </span>
@@ -340,13 +367,17 @@ const ParisTourCard = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+          <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20">
             <button
               onClick={handleAddToWishlist}
-              className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
+                }`}
             >
               <div
-                className="w-[24px] h-[24px] bg-[#4B3621] group-hover/icon:bg-white transition-colors duration-300"
+                className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
+                  ? "bg-white"
+                  : "bg-[#4B3621] group-hover/icon:bg-white"
+                  }`}
                 style={{
                   maskImage: 'url("/images/untitled folder/line-md_heart.png")',
                   maskSize: "contain",
@@ -362,7 +393,8 @@ const ParisTourCard = ({
             </button>
             <button
               onClick={handleAddToCart}
-              className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCart ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
+                }`}
             >
               <div className="relative w-[18px] h-[14px]">
                 <svg
@@ -374,7 +406,10 @@ const ParisTourCard = ({
                 >
                   <path
                     d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
-                    className="fill-[#4B3621] group-hover/icon:fill-white transition-colors duration-300"
+                    className={`transition-colors duration-300 ${isInCart
+                      ? "fill-white"
+                      : "fill-[#4B3621] group-hover/icon:fill-white"
+                      }`}
                   />
                 </svg>
               </div>

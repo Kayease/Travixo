@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { DatePicker, DateRange } from "../ui/DatePicker";
 import { HERO_IMAGES } from "@/app/constants/data";
+import { useToast } from "@/app/context/ToastContext";
 
 /** Pendulum physics constants (damped harmonic motion) */
 const PENDULUM_AMPLITUDE = 18; // degrees
@@ -26,8 +27,14 @@ export const HeroSection = () => {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const dateIconRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const { showToast } = useToast();
 
   const handleSearch = () => {
+    if (!destination.trim()) {
+      showToast("Please enter a destination to search", "error");
+      return;
+    }
+
     const params = new URLSearchParams();
     if (destination.trim()) params.set("destination", destination.trim());
 
@@ -43,7 +50,7 @@ export const HeroSection = () => {
     }
 
     const query = params.toString();
-    router.push(query ? `/paris?${query}` : "/paris");
+    router.push(query ? `/products/grand-palace-tour?${query}` : "/products/grand-palace-tour");
   };
 
   /** Cancel any running pendulum swing animation */
@@ -124,7 +131,7 @@ export const HeroSection = () => {
       className="relative w-full h-screen"
       style={{
         backgroundColor: "#FFF7E5",
-        // backgroundImage: "url('/images/hero/hero-pattern.png')",
+        backgroundImage: "url('/images/home/Desktop43.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -203,7 +210,7 @@ export const HeroSection = () => {
           <button
             type="button"
             onClick={() => router.push("/destinations")}
-            className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group cursor-pointer border border-transparent hover:border-black max-[932px]:landscape:mt-4 max-[932px]:landscape:scale-90 max-[932px]:landscape:origin-left"
+            className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group/btn cursor-pointer border border-transparent hover:border-[#FF6E00] max-[932px]:landscape:mt-4 max-[932px]:landscape:scale-90 max-[932px]:landscape:origin-left"
             style={{
               width: "200px",
               height: "45px",
@@ -212,9 +219,9 @@ export const HeroSection = () => {
             }}
           >
             {/* Bottom-to-top fill animation overlay */}
-            <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
+            <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
             {/* Button text */}
-            <span className="relative z-10 group-hover:text-black transition-colors duration-300">
+            <span className="relative z-10 group-hover/btn:text-[#FF6E00] transition-colors duration-300">
               Explore More
             </span>
           </button>
@@ -366,7 +373,7 @@ export const HeroSection = () => {
                   // which calls setIsDatePickerOpen(false).
                   // So we just update date here.
                 }}
-                placeholder="Feb 14, 2025"
+                placeholder="Select date range"
                 variant="transparent"
                 className="w-full"
                 mode="range"

@@ -199,19 +199,45 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
 interface CartItemCardProps {
   item: CartItem;
   onRemove: (id: string) => void;
+  onUpdate: (id: string, updates: Partial<CartItem>) => void;
 }
 
-const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
-  // Initialize date state.
-  // If item.dates is a simple string, treat as start date of a range.
-  // If we wanted to persist the range, we'd need to parse "start/end" string from item.dates if it was saved that way.
+const CartItemCard: React.FC<CartItemCardProps> = ({
+  item,
+  onRemove,
+  onUpdate,
+}) => {
+  // Initialize date state from item.dates
   const [dateValue, setDateValue] = useState<string | DateRange>(() => {
-    // Simple check if it looks like a range string (e.g. "2026-10-12 - 2026-10-15")
-    // For now, assuming item.dates is a single date string from "Book Now"
+    // If item.dates contains " - ", assume it's a range string
+    if (item.dates.includes(" - ")) {
+      const [from, to] = item.dates.split(" - ");
+      return { from, to };
+    }
     return { from: item.dates, to: null };
   });
 
   const datePickerWrapperRef = React.useRef<HTMLDivElement>(null);
+
+  // Handle date change and update cart item
+  const handleDateChange = (newDate: string | DateRange) => {
+    setDateValue(newDate);
+
+    let dateString = "";
+    if (typeof newDate === "string") {
+      dateString = newDate;
+    } else {
+      if (newDate.from && newDate.to) {
+        dateString = `${newDate.from} - ${newDate.to}`;
+      } else if (newDate.from) {
+        dateString = newDate.from;
+      }
+    }
+
+    if (dateString) {
+      onUpdate(item.id, { dates: dateString });
+    }
+  };
 
   const handleEditClick = () => {
     // Find the button inside the DatePicker wrapper and click it to open the calendar
@@ -267,7 +293,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
             <div ref={datePickerWrapperRef} className="w-[240px]">
               <DatePicker
                 value={dateValue}
-                onChange={setDateValue}
+                onChange={handleDateChange}
                 variant="transparent"
                 placeholder="Select Dates"
                 mode="range"
@@ -325,17 +351,31 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
 */
 
 const CartItemsSection: React.FC = () => {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, updateCartItem } = useCart();
   const itemCount = cartItems.length;
+
+  // Helper to calculate duration in days
+  const calculateDuration = (dates: string): number => {
+    if (!dates) return 1;
+    if (dates.includes(" - ")) {
+      const [startStr, endStr] = dates.split(" - ");
+      const startDate = new Date(startStr);
+      const endDate = new Date(endStr);
+      const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays > 0 ? diffDays : 1; // Minimum 1 day
+    }
+    return 1; // Single date is 1 day
+  };
 
   // Calculate Summary
   const roomSubtotal = cartItems
     .filter((item) => item.type === "room")
-    .reduce((sum, item) => sum + item.price, 0);
+    .reduce((sum, item) => sum + item.price * calculateDuration(item.dates), 0);
 
   const experienceSubtotal = cartItems
     .filter((item) => item.type === "experience")
-    .reduce((sum, item) => sum + item.price, 0);
+    .reduce((sum, item) => sum + item.price * calculateDuration(item.dates), 0);
 
   // Simplified logic for combo saving and tax
   const comboSaving = itemCount > 1 ? 50 : 0; // Example: $50 off if more than 1 item
@@ -377,6 +417,7 @@ const CartItemsSection: React.FC = () => {
                     key={item.id}
                     item={item}
                     onRemove={removeFromCart}
+                    onUpdate={updateCartItem}
                   />
                 ))
               ) : (

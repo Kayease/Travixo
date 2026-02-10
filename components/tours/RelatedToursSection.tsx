@@ -65,14 +65,36 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
     addToWishlist(wishlistItem);
   };
 
-  const handleBookNow = (tour: RelatedTour) => {
-    const queryString = new URLSearchParams({
-      name: tour.title,
-      price: tour.price.toString(),
+  const handleAddToCart = (tour: RelatedTour) => {
+    const cartItem: CartItem = {
+      id: `${tour.id}-${Date.now()}`,
+      type: "experience",
+      title: tour.title,
       image: tour.imageUrl,
-    }).toString();
+      location: tour.location,
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [tour.duration, tour.groupSize],
+      price: tour.price,
+      actionLabel: "Customize",
+    };
+    addToCart(cartItem);
+  };
 
-    router.push(`/checkout?${queryString}`);
+  const handleBookNow = (tour: RelatedTour) => {
+    const cartItem: CartItem = {
+      id: `${tour.id}-${Date.now()}`,
+      type: "experience",
+      title: tour.title,
+      image: tour.imageUrl,
+      location: tour.location,
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [tour.duration, tour.groupSize],
+      price: tour.price,
+      actionLabel: "Customize",
+    };
+
+    addToCart(cartItem);
+    router.push("/cart");
   };
 
   return (
@@ -91,8 +113,10 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
       {/* Tours Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tours.map((tour) => {
-          const isInWishlistState = useWishlist().isInWishlist(tour.id.toString());
-          const { removeFromWishlist } = useWishlist();
+          const { isInWishlist, removeFromWishlist } = useWishlist();
+          const { cartItems } = useCart();
+          const isInWishlistState = isInWishlist(tour.id.toString());
+          const isInCartState = cartItems.some(item => item.title === tour.title);
 
           const handleToggleWishlist = () => {
             if (isInWishlistState) {
@@ -119,9 +143,9 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
           };
 
           return (
-            <div key={tour.id} className="group block relative">
+            <div key={tour.id} className="group block relative hover:z-50">
               <article
-                className="relative shrink-0"
+                className="relative shrink-0 z-10"
                 style={{
                   width: "100%",
                   maxWidth: "418px",
@@ -135,7 +159,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                 {/* Image Container (Frame 51) */}
                 <div className="absolute left-[18px] top-[18px] w-[calc(100%-36px)] h-[283px] overflow-hidden rounded-[12px] group">
                   <Link
-                    href={`/products/${tour.slug}`}
+                    href={`/products/grand-palace-tour`}
                     className="block w-full h-full relative cursor-pointer"
                   >
                     <Image
@@ -201,9 +225,10 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        handleBookNow(tour);
+                        handleAddToCart(tour);
                       }}
-                      className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-[#FF6E00] transition-colors duration-300"
+                      className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 ${isInCartState ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
+                        }`}
                     >
                       <svg
                         width="18"
@@ -214,24 +239,23 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                       >
                         <path
                           d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
-                          className="fill-[#4B3621] group-hover/icon:fill-white transition-colors duration-300"
+                          className={`transition-colors duration-300 ${isInCartState ? "fill-white" : "fill-[#4B3621] group-hover/icon:fill-white"
+                            }`}
                         />
                       </svg>
                     </button>
                   </div>
 
                   {/* Price Tag (Frame 53) - Always visible */}
-                  <div className="absolute bottom-[12px] right-0 w-[102px] h-[47px] bg-white rounded-[100px_100px_0px_100px] shadow-sm">
-                    <div className="relative w-full h-full">
-                      <span className="absolute left-[7px] top-[10px] font-poppins font-medium text-[18px] leading-[27px] text-[#FF6E00]">
-                        ${tour.price}
+                  <div className="absolute bottom-0 right-0 min-w-[102px] h-[47px] bg-white rounded-[100px_100px_0px_100px] shadow-sm flex items-center px-3 gap-2">
+                    <span className="font-poppins font-medium text-[18px] leading-[27px] text-[#FF6E00]">
+                      ${tour.price}
+                    </span>
+                    {tour.originalPrice && (
+                      <span className="font-poppins font-medium text-[14px] leading-[21px] text-[#000000] opacity-60 line-through">
+                        ${tour.originalPrice}
                       </span>
-                      {tour.originalPrice && (
-                        <span className="absolute left-[55px] top-[16px] font-poppins font-medium text-[14px] leading-[21px] text-[#000000] opacity-60 line-through">
-                          ${tour.originalPrice}
-                        </span>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </div>
 
@@ -283,7 +307,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
 
                 {/* Title */}
                 <div className="absolute left-[18px] top-[346px]">
-                  <Link href={`/products/${tour.slug}`} className="cursor-pointer">
+                  <Link href={`/products/grand-palace-tour`} className="cursor-pointer">
                     <h3 className="font-display italic font-semibold text-[22px] leading-[29px] text-brand-brown line-clamp-1 hover:text-brand-orange transition-colors">
                       {tour.title}
                     </h3>
@@ -397,7 +421,10 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                 {/* Book Now Button - Matches FeaturedToursSection implementation */}
                 <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out">
                   <button
-                    onClick={() => handleBookNow(tour)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleBookNow(tour);
+                    }}
                     className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-[#FF6E00] rounded-[12px] font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer"
                   >
                     <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover/btn:h-full transition-all duration-300 ease-out" />

@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/app/context/CartContext";
 
 /* ============================================
    Type Definitions
@@ -404,6 +405,7 @@ export const Navbar = () => {
   const searchBarRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const { cartItems } = useCart();
 
   // Close dropdowns and search when clicking outside
   useEffect(() => {
@@ -469,8 +471,8 @@ export const Navbar = () => {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // For now, redirect to destinations with search query
-      router.push(`/destinations?search=${encodeURIComponent(searchQuery)}`);
+      // Always redirect to paris page with search query
+      router.push(`/paris?search=${encodeURIComponent(searchQuery)}`);
       setIsSearchOpen(false);
       setSearchQuery("");
     }
@@ -563,8 +565,13 @@ export const Navbar = () => {
           >
             <SearchIcon />
           </div>
-          <Link href="/cart" className="cursor-pointer scale-90 md:scale-100">
+          <Link href="/cart" className="relative cursor-pointer scale-90 md:scale-100">
             <CartIcon />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
           <Link
             href="/profile"
@@ -596,9 +603,11 @@ export const Navbar = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <div className="absolute left-4 top-1/2 -translate-y-1/2">
-              <SearchIcon />
-            </div>
+            {!searchQuery && (
+              <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                <SearchIcon />
+              </div>
+            )}
             {/* Close button inside input area for accessibility */}
             {searchQuery && (
               <button

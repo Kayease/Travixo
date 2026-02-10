@@ -143,7 +143,7 @@ const TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Italy, Rome",
-    slug: "/products/boathouse-neighborhood",
+    slug: "/products/grand-palace-tour",
   },
   {
     id: 2,
@@ -159,7 +159,7 @@ const TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Italy, Venice",
-    slug: "/products/venice-tour",
+    slug: "/products/grand-palace-tour",
   },
   {
     id: 3,
@@ -175,7 +175,7 @@ const TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "France, Paris",
-    slug: "/products/paris-adventure",
+    slug: "/products/grand-palace-tour",
   },
 ];
 
@@ -212,7 +212,10 @@ const TourCard = ({
   slug: string;
 }) => {
   const router = useRouter();
-  const { addToWishlist } = useWishlist();
+  const { addToWishlist, isInWishlist } = useWishlist();
+  const { addToCart, cartItems } = useCart();
+  const isWishlisted = isInWishlist(id.toString());
+  const isInCart = cartItems.some((item) => item.title === title);
 
   const handleAddToWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -242,7 +245,6 @@ const TourCard = ({
     addToWishlist(wishlistItem);
   };
 
-  const { addToCart } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -271,19 +273,29 @@ const TourCard = ({
     e.stopPropagation();
 
     // Parse price (remove $ and commas)
-    const priceValue = currentPrice.replace(/[^0-9.]/g, "") || "4250";
+    const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
 
-    // Redirect to checkout with params
-    router.push(
-      `/checkout?name=${encodeURIComponent(title)}&price=${priceValue}&image=${encodeURIComponent(image)}`
-    );
+    const cartItem = {
+      id: `${id}-${Date.now()}`,
+      type: "experience" as const,
+      title: title,
+      image: image,
+      location: location,
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [duration, people],
+      price: priceValue,
+      actionLabel: "Customize",
+    };
+
+    addToCart(cartItem);
+    router.push("/cart");
   };
 
   return (
-    <div className="relative w-full max-w-[418px] group">
+    <div className="relative w-full max-w-[418px] group hover:z-50">
       {/* Card Container */}
       <div
-        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg"
+        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg z-10"
         style={{ backgroundColor: "#FFFCF5" }}
       >
         {/* Image Container */}
@@ -309,7 +321,7 @@ const TourCard = ({
           </div>
 
           {/* Price Badge */}
-          <div className="absolute bottom-3 right-3 bg-white rounded-tl-full rounded-tr-full rounded-bl-full px-3 py-2 flex items-center gap-2">
+          <div className="absolute bottom-0 right-0 bg-white rounded-[100px_100px_0px_100px] px-3 py-2.5 flex items-center gap-2 min-w-[102px] shadow-sm z-10">
             <span className="font-body font-medium text-lg text-brand-orange">
               {currentPrice}
             </span>
@@ -319,13 +331,15 @@ const TourCard = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+          <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20">
             <button
               onClick={handleAddToWishlist}
-              className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
+                }`}
             >
               <div
-                className="w-[24px] h-[24px] bg-[#4B3621] group-hover/icon:bg-white transition-colors duration-300"
+                className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted ? "bg-white" : "bg-[#4B3621] group-hover/icon:bg-white"
+                  }`}
                 style={{
                   maskImage: 'url("/images/untitled folder/line-md_heart.png")',
                   maskSize: "contain",
@@ -341,7 +355,8 @@ const TourCard = ({
             </button>
             <button
               onClick={handleAddToCart}
-              className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCart ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
+                }`}
             >
               <div className="relative w-[18px] h-[14px]">
                 <svg
@@ -353,7 +368,8 @@ const TourCard = ({
                 >
                   <path
                     d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
-                    className="fill-[#4B3621] group-hover/icon:fill-white transition-colors duration-300"
+                    className={`transition-colors duration-300 ${isInCart ? "fill-white" : "fill-[#4B3621] group-hover/icon:fill-white"
+                      }`}
                   />
                 </svg>
               </div>

@@ -7,42 +7,15 @@ import { DestinationCard, DestinationCardProps } from "./DestinationCard";
  * Replace with actual data from CMS or API
  */
 const SAMPLE_DESTINATIONS: DestinationCardProps[] = [
-  {
-    id: 1,
-    name: "France",
-    imageUrl: "/images/destinations/cards/Component_68.png",
-    slug: "/paris",
-  },
-  {
-    id: 2,
-    name: "United Kingdom",
-    imageUrl: "/images/destinations/cards/Component_69.png",
-    slug: "/paris",
-  },
-  {
-    id: 3,
-    name: "Indonesia",
-    imageUrl: "/images/destinations/cards/Component_70.png",
-    slug: "/paris",
-  },
-  {
-    id: 4,
-    name: "Thailand",
-    imageUrl: "/images/destinations/cards/Component_71.png",
-    slug: "/paris",
-  },
-  {
-    id: 5,
-    name: "India",
-    imageUrl: "/images/destinations/cards/Component_72.png",
-    slug: "/paris",
-  },
-  {
-    id: 6,
-    name: "Japan",
-    imageUrl: "/images/destinations/cards/Component_73.png",
-    slug: "/paris",
-  },
+  { id: 1, name: "France", imageUrl: "/images/destinations/cards/Component_68.png", slug: "/paris" },
+  { id: 2, name: "United Kingdom", imageUrl: "/images/destinations/cards/Component_69.png", slug: "/paris" },
+  { id: 3, name: "Indonesia", imageUrl: "/images/destinations/cards/Component_70.png", slug: "/paris" },
+  { id: 4, name: "Thailand", imageUrl: "/images/destinations/cards/Component_71.png", slug: "/paris" },
+  { id: 5, name: "India", imageUrl: "/images/destinations/cards/Component_72.png", slug: "/paris" },
+  { id: 6, name: "Japan", imageUrl: "/images/destinations/cards/Component_73.png", slug: "/paris" },
+  { id: 7, name: "Italy", imageUrl: "/images/destinations/cards/Component_68.png", slug: "/paris" },
+  { id: 8, name: "Spain", imageUrl: "/images/destinations/cards/Component_69.png", slug: "/paris" },
+  { id: 9, name: "Greece", imageUrl: "/images/destinations/cards/Component_70.png", slug: "/paris" },
 ];
 
 /**
@@ -76,7 +49,7 @@ export const DestinationsGridSection: React.FC<
   DestinationsGridSectionProps
 > = ({
   destinations = SAMPLE_DESTINATIONS,
-  initialCount = 6,
+  initialCount = 3,
   loadMoreCount = 3,
   showLoadMore = true,
   searchQuery = "",
@@ -147,16 +120,15 @@ export const DestinationsGridSection: React.FC<
             <div className="flex justify-center mt-8 md:mt-12 lg:mt-[76px]">
               <button
                 onClick={handleLoadMore}
-                className="font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-white transition-all duration-300 hover:opacity-90 hover:shadow-xl active:scale-95 cursor-pointer flex items-center justify-center"
-                style={{
-                  width: "200px",
-                  height: "45px",
-                  backgroundColor: "#FF6E00",
-                  borderRadius: "12px",
-                  boxShadow: "0px 8px 24px rgba(255, 110, 0, 0.25)",
-                }}
+                className="group relative flex items-center justify-center w-[200px] h-[50px] bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer shadow-[0px_8px_24px_rgba(255,110,0,0.15)]"
               >
-                Explore More
+                {/* Fill animation from bottom to top */}
+                <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
+
+                {/* Button Text */}
+                <span className="relative z-10 font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-[#FF6E00] group-hover:text-white transition-colors duration-300">
+                  Load More
+                </span>
               </button>
             </div>
           )}

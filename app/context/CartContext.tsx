@@ -20,8 +20,10 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
+  updateCartItem: (id: string, updates: Partial<CartItem>) => void;
   clearCart: () => void;
   cartTotal: number;
+  isInCart: (title: string) => boolean;
 }
 
 // Default Context
@@ -56,13 +58,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [cartItems, isInitialized]);
 
   const addToCart = (item: CartItem) => {
-    setCartItems((prev) => {
-      const exists = prev.some((i) => i.id === item.id);
-      if (exists) {
-        return [...prev, { ...item, id: `${item.id}-${Date.now()}` }];
-      }
-      return [...prev, item];
-    });
+    const exists = cartItems.some((i) => i.title === item.title);
+    if (exists) {
+      showToast(`${item.title} is already in your cart`, "info");
+      return;
+    }
+
+    setCartItems((prev) => [...prev, item]);
     showToast(`${item.title} added to cart!`, "success");
   };
 
@@ -74,15 +76,25 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const updateCartItem = (id: string, updates: Partial<CartItem>) => {
+    setCartItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, ...updates } : item))
+    );
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
 
   const cartTotal = cartItems.reduce((total, item) => total + item.price, 0);
 
+  const isInCart = (title: string) => {
+    return cartItems.some((item) => item.title === title);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart, cartTotal }}
+      value={{ cartItems, addToCart, removeFromCart, updateCartItem, clearCart, cartTotal, isInCart }}
     >
       {children}
     </CartContext.Provider>

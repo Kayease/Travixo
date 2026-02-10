@@ -5,8 +5,8 @@ import Link from "next/link";
 
 // Static imports for images to ensure they load correctly in production
 import planeIconImg from "@/public/images/home/about/mynaui_plane.png";
-import travelIconImg from "@/public/images/home/about/component-29.png";
-import luggageIconImg from "@/public/images/home/about/component-30.png";
+import travelIconImg from "@/public/images/home/about/healthicons_travel-outline.png";
+import luggageIconImg from "@/public/images/home/about/material-symbols-light_travel-luggage-and-bags-outline.png";
 import checkIconImg from "@/public/images/home/about/mask-group.png";
 import gettoknow1Img from "@/public/images/gettoknow/gettoknow-1.png";
 import gettoknow2Img from "@/public/images/gettoknow/gettoknow-2.png";
@@ -139,7 +139,7 @@ export const AboutSection = () => {
           {/* Left Side - Images */}
           <div className="relative lg:w-[611px] shrink-0">
             {/* Main Image Frame 4 */}
-            <div className="relative w-full h-[500px] md:h-[650px] lg:w-[611px] lg:h-[754px] rounded-2xl overflow-hidden shadow-sm">
+            <div className="relative w-full h-[500px] md:h-[650px] lg:w-[611px] lg:h-[754px] overflow-hidden shadow-sm">
               <Image
                 src={gettoknow1Img}
                 alt="Experience Travel"
@@ -172,7 +172,7 @@ export const AboutSection = () => {
 
             {/* Overlapping Secondary Image - Frame 27 */}
             <div
-              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[308px] lg:-translate-x-0 w-[280px] md:w-[350px] lg:w-[401px] h-[180px] md:h-[220px] lg:h-[242px] z-20 overflow-hidden"
+              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[250px] lg:-translate-x-0 w-[280px] md:w-[350px] lg:w-[401px] h-[180px] md:h-[220px] lg:h-[242px] z-20 overflow-hidden"
               style={{
                 boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.1)',
                 borderRadius: '32px',
@@ -221,17 +221,19 @@ export const AboutSection = () => {
               {FEATURES.map((feature, index) => (
                 <div
                   key={feature.id}
-                  className={`py-8 md:py-10 px-4 ${index === 0 ? 'border-r border-b border-black/10' : 'border-b border-black/10'}`}
+                  className={`py-8 md:py-10 px-4 group transition-all duration-500 hover:bg-[#FFF9F0] ${index === 0 ? 'border-r border-b border-black/10' : 'border-b border-black/10'}`}
                 >
                   <div className="flex items-start gap-4">
                     {/* Icon Container - Component 29/30 */}
-                    <div className="w-[50px] h-[50px] bg-white border border-[#FF6E00] rounded-full flex items-center justify-center shrink-0">
-                      {feature.icon === "travel" ? <TravelIcon /> : <LuggageIcon />}
+                    <div className="w-[50px] h-[50px] bg-white border border-[#FF6E00] rounded-full flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#FF6E00]">
+                      <div className="transition-all duration-300 group-hover:brightness-0 group-hover:invert">
+                        {feature.icon === "travel" ? <TravelIcon /> : <LuggageIcon />}
+                      </div>
                     </div>
 
                     {/* Content */}
                     <div>
-                      <h4 className="font-display italic font-normal text-xl leading-[27px] text-brand-brown">
+                      <h4 className="font-display italic font-normal text-xl leading-[27px] text-brand-brown group-hover:text-[#FF6E00] transition-colors duration-300">
                         {feature.title}
                       </h4>
                       <p className="font-body font-normal text-base leading-6 text-brand-brown/70 mt-2 max-w-[240px]">

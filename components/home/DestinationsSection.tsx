@@ -107,7 +107,7 @@ const DestinationCard = ({
         src={image}
         alt={name}
         fill
-        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+        className="object-cover transition-transform duration-700 ease-in-out"
         style={{ transformOrigin: "top center" }}
         sizes="418px"
       />
@@ -166,9 +166,6 @@ const DestinationCard = ({
 export const DestinationsSection = () => {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [startX, setStartX] = React.useState(0);
-  const [scrollLeft, setScrollLeft] = React.useState(0);
   const [isHovering, setIsHovering] = React.useState(false);
 
   // Auto-scroll logic using requestAnimationFrame for maximum smoothness
@@ -182,15 +179,13 @@ export const DestinationsSection = () => {
       const deltaTime = time - lastTime;
       lastTime = time;
 
-      if (!isDragging && !isHovering && scrollRef.current) {
-        scrollRef.current.scrollLeft += speed * deltaTime;
+      if (!isHovering && scrollRef.current) {
+        scrollRef.current.scrollLeft += 1;
 
-        // Midpoint of the duplicated items
-        const halfScroll = scrollRef.current.scrollWidth / 2;
-
-        // Reset to beginning when we've scrolled through the first set
-        if (scrollRef.current.scrollLeft >= halfScroll) {
-          scrollRef.current.scrollLeft -= halfScroll;
+        // Midpoint of the duplicated items - assuming content is duplicated once
+        // We need to check if we've scrolled past the first set of items
+        if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 2) {
+          scrollRef.current.scrollLeft = 0;
         }
       }
       animationFrameId = requestAnimationFrame(step);
@@ -198,31 +193,9 @@ export const DestinationsSection = () => {
 
     animationFrameId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isDragging, isHovering]);
+  }, [isHovering]);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
 
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-    setIsHovering(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll-fast
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
 
   // Duplicate the destinations for a seamless visual loop
   const displayDestinations = [...DESTINATIONS, ...DESTINATIONS];
@@ -277,17 +250,13 @@ export const DestinationsSection = () => {
           <div className="flex-1 pt-8 lg:pt-[52px] overflow-hidden">
             <div
               ref={scrollRef}
-              className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
-                }`}
+              className="flex gap-8 overflow-x-hidden pb-8 pr-8 select-none"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
               }}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseLeave}
               onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
             >
               {displayDestinations.map((destination, idx) => (
                 <DestinationCard

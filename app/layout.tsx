@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description: "Your Safari Hub: News, Tips, and Inspiration",
   },
   icons: {
-    icon: "/icon.svg",
+    icon: "/images/logo/logo.png",
   },
 };
 
