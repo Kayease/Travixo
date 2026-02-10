@@ -28,11 +28,11 @@ const RoomDetailHeroSection: React.FC = () => {
 
       {/* Content Container */}
       <div className="relative container mx-auto px-4 md:px-8 lg:px-20 h-full min-h-[500px] md:min-h-[600px] lg:min-h-[705px] flex items-center">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 w-full py-12 md:py-16">
+        <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 w-full py-8 md:py-16">
           {/* ============================================
               Left - Featured Room Image
           ============================================ */}
-          <div className="relative w-full max-w-[350px] md:max-w-[400px] lg:max-w-[445px] h-[450px] md:h-[550px] lg:h-[650px] rounded-2xl overflow-hidden shadow-2xl shrink-0">
+          <div className="relative w-full max-w-[300px] md:max-w-[400px] lg:max-w-[445px] h-[400px] md:h-[550px] lg:h-[650px] rounded-2xl overflow-hidden shadow-2xl shrink-0">
             <Image
               src="/images/room_detail/cards/detail-hero-2.png"
               alt="Serenity Suite with mountain view"
@@ -50,7 +50,7 @@ const RoomDetailHeroSection: React.FC = () => {
           ============================================ */}
           <div className="flex flex-col justify-center text-center lg:text-left max-w-[600px]">
             {/* Room Title */}
-            <h1 className="font-display text-3xl md:text-4xl lg:text-[42px] italic font-medium leading-tight lg:leading-[56px] text-white mb-4 md:mb-6">
+            <h1 className="font-display text-3xl md:text-4xl lg:text-[42px] italic font-medium leading-tight lg:leading-[56px] text-white mb-3 md:mb-6">
               Serenity Suite
             </h1>
 

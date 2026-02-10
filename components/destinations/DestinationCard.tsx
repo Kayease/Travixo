@@ -49,7 +49,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
     >
       {/* Image Container - Rectangular with 12px radius */}
       <div
-        className="relative w-full aspect-418/487 overflow-hidden transition-all duration-300 group-hover:shadow-xl"
+        className="relative w-full aspect-[418/487] overflow-hidden transition-all duration-300 group-hover:shadow-xl"
         style={{
           border: "1px solid rgba(75, 54, 33, 0.2)",
           boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
@@ -66,7 +66,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
       </div>
 
       {/* Destination Name - Playfair Display Italic */}
-      <h3 className="font-display italic font-semibold text-xl md:text-2xl lg:text-[28px] leading-[37px] text-[#4B3621] text-center mt-4 md:mt-6 lg:mt-8 transition-colors duration-300 group-hover:text-[#FF6E00]">
+      <h3 className="font-display italic font-semibold text-lg md:text-xl lg:text-[28px] leading-[37px] text-[#4B3621] text-center mt-3 md:mt-6 lg:mt-8 transition-colors duration-300 group-hover:text-[#FF6E00]">
         {name}
       </h3>
     </Link>

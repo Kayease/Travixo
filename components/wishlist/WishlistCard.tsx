@@ -101,7 +101,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
   return (
     <article className="group relative bg-[#FFFCF5] border border-[rgba(255,110,0,0.2)] rounded-xl transition-all duration-300 hover:shadow-lg hover:z-10">
       {/* Card Inner Container */}
-      <div className="p-[18px]">
+      <div className="p-3 md:p-[18px]">
         {/* Image Container */}
         <div className="relative w-full aspect-382/283 rounded-xl overflow-hidden mb-4">
           <Link

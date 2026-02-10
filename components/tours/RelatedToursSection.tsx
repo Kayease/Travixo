@@ -66,18 +66,13 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
   };
 
   const handleBookNow = (tour: RelatedTour) => {
-    const cartItem: CartItem = {
-      id: `${tour.id}-${Date.now()}`,
-      type: "experience",
-      title: tour.title,
+    const queryString = new URLSearchParams({
+      name: tour.title,
+      price: tour.price.toString(),
       image: tour.imageUrl,
-      location: tour.location,
-      dates: new Date().toISOString().split("T")[0],
-      amenities: [tour.duration, tour.groupSize],
-      price: tour.price,
-      actionLabel: "Customize",
-    };
-    addToCart(cartItem);
+    }).toString();
+
+    router.push(`/checkout?${queryString}`);
   };
 
   return (
@@ -400,7 +395,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
 
                 {/* Book Now Button - Positioned at bottom outside image */}
                 {/* Book Now Button - Matches FeaturedToursSection implementation */}
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out">
                   <button
                     onClick={() => handleBookNow(tour)}
                     className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-[#FF6E00] rounded-[12px] font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer"

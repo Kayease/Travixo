@@ -31,7 +31,7 @@ const WishlistHeroSection: React.FC = () => {
           </h1>
 
           {/* Page Subtitle */}
-          <p className="font-body font-medium text-[16px] md:text-[17px] lg:text-[18px] leading-[26px] md:leading-[28px] lg:leading-[30px] text-center text-brand-brown max-w-[320px] md:max-w-[400px] lg:max-w-[478px]">
+          <p className="font-body font-medium text-[16px] md:text-[17px] lg:text-[18px] leading-[26px] md:leading-[28px] lg:leading-[30px] text-center text-brand-brown max-w-[360px] md:max-w-[400px] lg:max-w-[478px]">
             Your curated sanctuary of dream escaped and luxuary journeys across the globe
           </p>
         </div>

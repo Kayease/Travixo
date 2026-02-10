@@ -221,7 +221,7 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
         <Link
           key={index}
           href={page.href}
-          className="group relative block text-left px-3 py-1 font-display text-[15px] md:text-base italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
+          className="group relative flex items-center w-[148px] h-[39px] text-left px-3 font-display text-[15px] md:text-base italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
           onClick={onClose}
         >
           <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover:w-full group-hover:opacity-100 transition-all duration-500 ease-out z-0" />
@@ -233,12 +233,12 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`w-[min(96vw,420px)] sm:w-[min(96vw,520px)] md:w-[600px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top ${isOpen
+      className={`w-[90vw] md:w-[830px] h-auto md:h-[314px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top flex flex-col justify-center ${isOpen
         ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
         : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
         }`}
     >
-      <div className="flex flex-wrap md:flex-nowrap gap-x-8 gap-y-4 px-4 py-4 md:px-6 md:py-5 md:justify-between">
+      <div className="grid grid-cols-3 w-full items-center justify-items-center">
         {renderColumn(pagesColumn1)}
         {renderColumn(pagesColumn2)}
         {renderColumn(pagesColumn3)}
@@ -299,7 +299,7 @@ const NavItem: React.FC<NavItemProps> = ({
     </>
   );
 
-  const containerClasses = `group relative flex items-center gap-2 px-5 py-1.5 font-display italic text-[15px] md:text-[18px] transition-all overflow-hidden cursor-pointer ${isActive
+  const containerClasses = `group relative flex items-center gap-2 px-1 md:px-5 py-1.5 font-display italic text-[15px] md:text-[18px] transition-all overflow-hidden cursor-pointer ${isActive
     ? "text-white rounded-sm"
     : "text-[#4B3621] hover:text-white rounded-sm"
     } ${className || ""}`;

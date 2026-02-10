@@ -37,25 +37,25 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
       {/* Room Details */}
       <div className="p-4 md:p-5">
         {/* Room Name */}
-        <h3 className="font-display text-xl md:text-2xl italic font-semibold leading-8 text-[#4B3621] mb-2">
+        <h3 className="font-display text-lg md:text-2xl italic font-semibold leading-7 md:leading-8 text-[#4B3621] mb-1 md:mb-2">
           {room.name}
         </h3>
 
         {/* Price */}
-        <p className="font-display text-lg md:text-xl italic font-medium leading-[27px] text-[#4B3621] mb-3">
+        <p className="font-display text-lg md:text-xl italic font-medium leading-[27px] text-[#4B3621] mb-2 md:mb-3">
           {room.price}{" "}
-          <span className="text-base font-normal not-italic">/Night</span>
+          <span className="text-sm md:text-base font-normal not-italic">/Night</span>
         </p>
 
         {/* Description */}
-        <p className="text-base md:text-lg font-normal leading-7 text-[#4B3621] mb-4 line-clamp-3">
+        <p className="text-sm md:text-lg font-normal leading-6 md:leading-7 text-[#4B3621] mb-3 md:mb-4 line-clamp-3">
           {room.description}
         </p>
 
         {/* Check Availability Link */}
         <Link
           href="/room-detail"
-          className="inline-flex items-center gap-2 mt-4 cursor-pointer hover:text-[#FF6E00] text-[#4B3621] transition-colors duration-300 group/availability"
+          className="inline-flex items-center gap-2 mt-2 md:mt-4 cursor-pointer hover:text-[#FF6E00] text-[#4B3621] transition-colors duration-300 group/availability"
         >
           <span className="font-poppins text-lg transition-colors duration-300">
             Check Availability

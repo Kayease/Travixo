@@ -31,7 +31,7 @@ const PortfolioHeroSection: React.FC = () => {
           </h1>
 
           {/* Page Subtitle */}
-          <p className="font-body font-medium text-[16px] md:text-[17px] lg:text-[18px] leading-[26px] md:leading-[28px] lg:leading-[30px] text-center text-brand-brown max-w-[320px] md:max-w-[480px] lg:max-w-[589px]">
+          <p className="font-body font-medium text-[16px] md:text-[17px] lg:text-[18px] leading-[26px] md:leading-[28px] lg:leading-[30px] text-center text-brand-brown max-w-[360px] md:max-w-[480px] lg:max-w-[589px]">
             A Curated odyssey through the world&apos;s most breathtaking sanctuaries, documented with precision and a refined lens.
           </p>
         </div>

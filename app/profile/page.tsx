@@ -12,15 +12,15 @@ import { Footer } from "@/components/layout/Footer";
 const ProfileHeroSection = () => {
   return (
     <section
-      className="relative w-full py-16 lg:py-[98px]"
+      className="relative w-full py-12 md:py-16 lg:py-[98px]"
       style={{ backgroundColor: "#FFF7E5" }}
     >
-      <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20">
         <div className="text-center">
-          <h1 className="font-display italic font-semibold text-[24px] md:text-[28px] leading-[37px] text-brand-brown mb-6">
+          <h1 className="font-display italic font-semibold text-2xl md:text-[28px] leading-[30px] md:leading-[37px] text-brand-brown mb-4 md:mb-6">
             My Profile
           </h1>
-          <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown max-w-[780px] mx-auto">
+          <p className="font-body font-medium text-sm md:text-[18px] leading-[24px] md:leading-[30px] text-brand-brown max-w-[780px] mx-auto px-4">
             Manage your account information and preferences
           </p>
         </div>
@@ -183,12 +183,12 @@ const ProfileContentSection = () => {
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
-          <div className="lg:w-[280px] shrink-0">
-            <div className="bg-white rounded-xl shadow-sm p-6">
+          <div className="w-full lg:w-[280px] shrink-0">
+            <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
               {/* Profile Avatar */}
               <div className="text-center mb-6">
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <div className="w-full h-full rounded-full bg-brand-orange flex items-center justify-center text-white font-display text-3xl">
+                <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-4">
+                  <div className="w-full h-full rounded-full bg-brand-orange flex items-center justify-center text-white font-display text-2xl md:text-3xl">
                     {getInitials()}
                   </div>
                   <button className="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer">
@@ -222,17 +222,16 @@ const ProfileContentSection = () => {
               </div>
 
               {/* Navigation Tabs */}
-              <nav className="space-y-2">
+              <nav className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
                 <button
                   onClick={() => setActiveTab("profile")}
-                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors cursor-pointer ${
-                    activeTab === "profile"
+                  className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "profile"
                       ? "bg-brand-orange text-white"
                       : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   <svg
-                    className="w-5 h-5 mr-3"
+                    className="w-5 h-5 mr-2 md:mr-3"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -249,14 +248,13 @@ const ProfileContentSection = () => {
 
                 <button
                   onClick={() => setActiveTab("bookings")}
-                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors cursor-pointer ${
-                    activeTab === "bookings"
+                  className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "bookings"
                       ? "bg-brand-orange text-white"
                       : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   <svg
-                    className="w-5 h-5 mr-3"
+                    className="w-5 h-5 mr-2 md:mr-3"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -273,14 +271,13 @@ const ProfileContentSection = () => {
 
                 <button
                   onClick={() => setActiveTab("security")}
-                  className={`w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] transition-colors cursor-pointer ${
-                    activeTab === "security"
+                  className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "security"
                       ? "bg-brand-orange text-white"
                       : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   <svg
-                    className="w-5 h-5 mr-3"
+                    className="w-5 h-5 mr-2 md:mr-3"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -297,10 +294,10 @@ const ProfileContentSection = () => {
 
                 <Link
                   href="/settings"
-                  className="w-full flex items-center px-4 py-3 rounded-lg font-body font-medium text-[16px] text-gray-700 hover:bg-gray-100 transition-colors"
+                  className="flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] text-gray-700 hover:bg-gray-100 transition-colors whitespace-nowrap"
                 >
                   <svg
-                    className="w-5 h-5 mr-3"
+                    className="w-5 h-5 mr-2 md:mr-3"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -325,7 +322,7 @@ const ProfileContentSection = () => {
               {/* Logout Button */}
               <button
                 onClick={handleLogout}
-                className="w-full mt-6 flex items-center justify-center px-4 py-3 rounded-lg border border-red-500 text-red-500 font-body font-medium text-[16px] hover:bg-red-50 transition-colors cursor-pointer"
+                className="w-full mt-4 lg:mt-6 flex items-center justify-center px-4 py-2 lg:py-3 rounded-lg border border-red-500 text-red-500 font-body font-medium text-[14px] md:text-[16px] hover:bg-red-50 transition-colors cursor-pointer"
               >
                 <svg
                   className="w-5 h-5 mr-2"
@@ -349,15 +346,15 @@ const ProfileContentSection = () => {
           <div className="flex-1">
             {/* Profile Tab */}
             {activeTab === "profile" && (
-              <div className="bg-white rounded-xl shadow-sm p-8">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="font-display italic font-semibold text-[28px] text-brand-brown">
+              <div className="bg-white rounded-xl shadow-sm p-4 md:p-8">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                  <h2 className="font-display italic font-semibold text-2xl md:text-[28px] text-brand-brown">
                     Personal Information
                   </h2>
                   {!isEditing ? (
                     <button
                       onClick={handleEditClick}
-                      className="flex items-center px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors cursor-pointer"
+                      className="flex items-center justify-center w-full sm:w-auto px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors cursor-pointer"
                     >
                       <svg
                         className="w-4 h-4 mr-2"
@@ -375,16 +372,16 @@ const ProfileContentSection = () => {
                       Edit Profile
                     </button>
                   ) : (
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 w-full sm:w-auto">
                       <button
                         onClick={handleCancel}
-                        className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-body font-medium text-[14px] hover:bg-gray-50 transition-colors cursor-pointer"
+                        className="flex-1 sm:flex-none px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-body font-medium text-[14px] hover:bg-gray-50 transition-colors cursor-pointer"
                       >
                         Cancel
                       </button>
                       <button
                         onClick={handleSave}
-                        className="px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[14px] hover:bg-orange-600 transition-colors cursor-pointer"
+                        className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[14px] hover:bg-orange-600 transition-colors cursor-pointer"
                       >
                         Save Changes
                       </button>
@@ -533,18 +530,18 @@ const ProfileContentSection = () => {
 
             {/* Bookings Tab */}
             {activeTab === "bookings" && (
-              <div className="space-y-6">
-                <h2 className="font-display italic font-semibold text-[28px] text-brand-brown">
+              <div className="space-y-4 md:space-y-6">
+                <h2 className="font-display italic font-semibold text-2xl md:text-[28px] text-brand-brown">
                   My Bookings
                 </h2>
 
                 {bookings.map((booking) => (
                   <div
                     key={booking.id}
-                    className="bg-white rounded-xl shadow-sm p-6 flex flex-col md:flex-row gap-6"
+                    className="bg-white rounded-xl shadow-sm p-4 md:p-6 flex flex-col md:flex-row gap-4 md:gap-6"
                   >
                     {/* Image */}
-                    <div className="relative w-full md:w-[200px] h-[150px] rounded-lg overflow-hidden shrink-0">
+                    <div className="relative w-full md:w-[200px] h-[160px] md:h-[150px] rounded-lg overflow-hidden shrink-0">
                       <Image
                         src={booking.image}
                         alt={booking.destination}
@@ -554,61 +551,62 @@ const ProfileContentSection = () => {
                     </div>
 
                     {/* Details */}
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <h3 className="font-body font-semibold text-[20px] text-brand-brown mb-1">
-                            {booking.destination}
-                          </h3>
-                          <p className="font-body text-[14px] text-gray-600">
-                            Booking ID: {booking.id}
-                          </p>
-                        </div>
-                        <span
-                          className={`px-3 py-1 rounded-full font-body text-[12px] font-medium ${
-                            booking.status === "Confirmed"
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="flex flex-col sm:flex-row justify-between items-start mb-3 gap-2">
+                          <div>
+                            <h3 className="font-body font-semibold text-[18px] md:text-[20px] text-brand-brown mb-1">
+                              {booking.destination}
+                            </h3>
+                            <p className="font-body text-[13px] md:text-[14px] text-gray-600">
+                              Booking ID: {booking.id}
+                            </p>
+                          </div>
+                          <span
+                            className={`px-3 py-1 rounded-full font-body text-[12px] font-medium self-start ${booking.status === "Confirmed"
                               ? "bg-green-100 text-green-700"
                               : booking.status === "Pending"
                                 ? "bg-yellow-100 text-yellow-700"
                                 : "bg-gray-100 text-gray-700"
-                          }`}
-                        >
-                          {booking.status}
-                        </span>
-                      </div>
-
-                      <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                        <div className="flex items-center text-gray-600">
-                          <svg
-                            className="w-5 h-5 mr-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                              }`}
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                          <span className="font-body text-[14px]">
-                            {booking.date}
+                            {booking.status}
                           </span>
                         </div>
-                        <div className="flex items-center text-brand-orange">
-                          <span className="font-body font-semibold text-[18px]">
-                            {booking.price}
-                          </span>
+
+                        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 mb-4">
+                          <div className="flex items-center text-gray-600">
+                            <svg
+                              className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span className="font-body text-[13px] md:text-[14px]">
+                              {booking.date}
+                            </span>
+                          </div>
+                          <div className="flex items-center text-brand-orange">
+                            <span className="font-body font-semibold text-[16px] md:text-[18px]">
+                              {booking.price}
+                            </span>
+                          </div>
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
-                        <button className="px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[14px] hover:bg-orange-50 transition-colors cursor-pointer">
+                      <div className="flex flex-wrap gap-2 md:gap-3">
+                        <button className="flex-1 sm:flex-none px-4 py-2 rounded-lg border border-brand-orange text-brand-orange font-body font-medium text-[13px] md:text-[14px] hover:bg-orange-50 transition-colors cursor-pointer text-center">
                           View Details
                         </button>
                         {booking.status !== "Completed" && (
-                          <button className="px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[14px] hover:bg-orange-600 transition-colors cursor-pointer">
+                          <button className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-brand-orange text-white font-body font-medium text-[13px] md:text-[14px] hover:bg-orange-600 transition-colors cursor-pointer text-center">
                             Manage Booking
                           </button>
                         )}
@@ -621,14 +619,14 @@ const ProfileContentSection = () => {
 
             {/* Security Tab */}
             {activeTab === "security" && (
-              <div className="bg-white rounded-xl shadow-sm p-8">
-                <h2 className="font-display italic font-semibold text-[28px] text-brand-brown mb-6">
+              <div className="bg-white rounded-xl shadow-sm p-4 md:p-8">
+                <h2 className="font-display italic font-semibold text-2xl md:text-[28px] text-brand-brown mb-6">
                   Security Settings
                 </h2>
 
                 {/* Change Password */}
                 <div className="mb-8 pb-8 border-b">
-                  <h3 className="font-body font-semibold text-[20px] text-brand-brown mb-4">
+                  <h3 className="font-body font-semibold text-[18px] md:text-[20px] text-brand-brown mb-4">
                     Change Password
                   </h3>
                   <div className="space-y-4 max-w-md">
@@ -673,7 +671,7 @@ const ProfileContentSection = () => {
                     </div>
                     <button
                       onClick={handleUpdatePassword}
-                      className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors cursor-pointer"
+                      className="w-full sm:w-auto px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors cursor-pointer"
                     >
                       Update Password
                     </button>
@@ -682,7 +680,7 @@ const ProfileContentSection = () => {
 
                 {/* Two-Factor Authentication */}
                 <div className="mb-8 pb-8 border-b">
-                  <h3 className="font-body font-semibold text-[20px] text-brand-brown mb-2">
+                  <h3 className="font-body font-semibold text-[18px] md:text-[20px] text-brand-brown mb-2">
                     Two-Factor Authentication
                   </h3>
                   <p className="font-body text-[14px] text-gray-600 mb-4">
@@ -690,11 +688,10 @@ const ProfileContentSection = () => {
                   </p>
                   <button
                     onClick={handleToggle2FA}
-                    className={`px-6 py-3 rounded-lg border font-body font-medium text-[16px] transition-colors cursor-pointer ${
-                      is2FAEnabled
-                        ? "border-green-600 text-green-600 hover:bg-green-50"
-                        : "border-brand-orange text-brand-orange hover:bg-orange-50"
-                    }`}
+                    className={`w-full sm:w-auto px-6 py-3 rounded-lg border font-body font-medium text-[16px] transition-colors cursor-pointer ${is2FAEnabled
+                      ? "border-green-600 text-green-600 hover:bg-green-50"
+                      : "border-brand-orange text-brand-orange hover:bg-orange-50"
+                      }`}
                   >
                     {is2FAEnabled ? "2FA Enabled" : "Enable 2FA"}
                   </button>
@@ -702,7 +699,7 @@ const ProfileContentSection = () => {
 
                 {/* Delete Account */}
                 <div>
-                  <h3 className="font-body font-semibold text-[20px] text-red-600 mb-2">
+                  <h3 className="font-body font-semibold text-[18px] md:text-[20px] text-red-600 mb-2">
                     Delete Account
                   </h3>
                   <p className="font-body text-[14px] text-gray-600 mb-4">
@@ -711,7 +708,7 @@ const ProfileContentSection = () => {
                   </p>
                   <button
                     onClick={handleDeleteAccount}
-                    className="px-6 py-3 rounded-lg bg-red-500 text-white font-body font-medium text-[16px] hover:bg-red-600 transition-colors cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-3 rounded-lg bg-red-500 text-white font-body font-medium text-[16px] hover:bg-red-600 transition-colors cursor-pointer"
                   >
                     Delete Account
                   </button>

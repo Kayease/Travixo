@@ -109,7 +109,9 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
             {/* Milestones Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {milestones.map((milestone) => (
-                <MilestoneCard key={milestone.id} milestone={milestone} />
+                <div key={milestone.id} className="mx-auto w-full max-w-[246px]">
+                  <MilestoneCard milestone={milestone} />
+                </div>
               ))}
             </div>
           </div>

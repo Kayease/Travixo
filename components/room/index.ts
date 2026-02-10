@@ -8,4 +8,4 @@
 export { default as RoomHeroSection } from './RoomHeroSection';
 export { default as RoomGridSection } from './RoomGridSection';
 export { default as FavoriteRoomSection } from './FavoriteRoomSection';
-export { default as RoomTestimonialSection } from './RoomTestimonialSection';
+export { default as TestimonialSection } from './RoomTestimonialSection';

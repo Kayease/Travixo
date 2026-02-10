@@ -21,24 +21,24 @@ const RoomDetailContentSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-20 overflow-hidden">
+    <section className="w-full bg-[#FFFCF5] py-8 md:py-16 lg:py-20 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 lg:px-20">
         {/* ============================================
             Top Section - Description & Booking Widget Side by Side
         ============================================ */}
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 mb-8 md:mb-10">
           {/* Left Content - Description & Rules */}
           <div className="flex-1 max-w-[792px]">
             {/* Section Title */}
-            <h2 className="font-display text-2xl md:text-[28px] italic font-semibold leading-7 text-[#4B3621] mb-4">
+            <h2 className="font-display text-xl md:text-[28px] italic font-semibold leading-7 text-[#4B3621] mb-3 md:mb-4">
               Peaceful Escape
             </h2>
 
             {/* Divider */}
-            <div className="w-full h-[0.5px] bg-black/40 mb-5" />
+            <div className="w-full h-[0.5px] bg-black/40 mb-4 md:mb-5" />
 
             {/* Description */}
-            <p className="text-base md:text-lg font-normal leading-7 text-[#4B3621] mb-10">
+            <p className="text-sm md:text-lg font-normal leading-6 md:leading-7 text-[#4B3621] mb-6 md:mb-10">
               Discover pure relaxation in the Serenity Suite, a tranquil space
               designed to soothe your senses and provide the ultimate comfort.
               With soft, calming colors and carefully chosen decor, this suite
@@ -51,7 +51,7 @@ const RoomDetailContentSection: React.FC = () => {
             </p>
 
             {/* House Rules Title */}
-            <h3 className="font-display text-xl md:text-2xl italic font-semibold leading-7 text-[#4B3621] mb-4">
+            <h3 className="font-display text-lg md:text-2xl italic font-semibold leading-7 text-[#4B3621] mb-3 md:mb-4">
               House Rules
             </h3>
 

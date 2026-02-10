@@ -273,7 +273,7 @@ const ParisTourCard = ({
     addToWishlist(wishlistItem);
   };
 
-  const handleBookNow = () => {
+  const handleAddToCart = () => {
     // Parse price
     const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
 
@@ -289,6 +289,15 @@ const ParisTourCard = ({
       actionLabel: "Customize",
     };
     addToCart(cartItem);
+  };
+
+  const handleBookNow = () => {
+    const params = new URLSearchParams({
+      name: title,
+      price: currentPrice,
+      image: image,
+    });
+    router.push(`/checkout?${params.toString()}`);
   };
 
   return (
@@ -352,7 +361,7 @@ const ParisTourCard = ({
               />
             </button>
             <button
-              onClick={handleBookNow}
+              onClick={handleAddToCart}
               className="group/icon w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center hover:bg-[#FF6E00] transition-colors duration-300 cursor-pointer"
             >
               <div className="relative w-[18px] h-[14px]">
@@ -429,7 +438,7 @@ const ParisTourCard = ({
       </div>
 
       {/* Book Now Button - Shows on Hover */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out">
         <button
           onClick={handleBookNow}
           className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 shadow-lg cursor-pointer"

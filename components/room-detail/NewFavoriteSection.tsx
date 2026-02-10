@@ -36,25 +36,25 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
       {/* Room Details */}
       <div className="p-4 md:p-5">
         {/* Room Name */}
-        <h3 className="font-display text-xl md:text-2xl italic font-semibold leading-8 text-[#4B3621] mb-2">
+        <h3 className="font-display text-lg md:text-2xl italic font-semibold leading-7 md:leading-8 text-[#4B3621] mb-1 md:mb-2">
           {room.name}
         </h3>
 
         {/* Price */}
-        <p className="font-display text-lg md:text-xl italic font-medium leading-[27px] text-[#4B3621] mb-3">
+        <p className="font-display text-lg md:text-xl italic font-medium leading-[27px] text-[#4B3621] mb-2 md:mb-3">
           {room.price}{" "}
-          <span className="text-base font-normal not-italic">/Night</span>
+          <span className="text-sm md:text-base font-normal not-italic">/Night</span>
         </p>
 
         {/* Description */}
-        <p className="text-base md:text-lg font-normal leading-7 text-[#4B3621] mb-4 line-clamp-3">
+        <p className="text-sm md:text-lg font-normal leading-6 md:leading-7 text-[#4B3621] mb-3 md:mb-4 line-clamp-3">
           {room.description}
         </p>
 
         {/* Check Availability Link */}
         <Link
           href="/room-detail"
-          className="inline-flex items-center gap-2 text-lg md:text-xl font-normal text-[#4B3621] hover:text-[#FF6E00] transition-colors duration-300 group/link"
+          className="inline-flex items-center gap-2 text-base md:text-xl font-normal text-[#4B3621] hover:text-[#FF6E00] transition-colors duration-300 group/link"
         >
           <span className="transition-colors duration-300">Check Availability</span>
           {/* Arrow Icon */}
@@ -120,14 +120,14 @@ const NewFavoriteSection: React.FC = () => {
         {/* ============================================
             Header - Title & Description
         ============================================ */}
-        <div className="text-center mb-10 md:mb-12">
+        <div className="text-center mb-8 md:mb-12">
           {/* Section Title */}
-          <h2 className="font-display text-2xl md:text-[28px] lg:text-[32px] italic font-semibold leading-7 text-[#4B3621] mb-4">
+          <h2 className="font-display text-xl md:text-[28px] lg:text-[32px] italic font-semibold leading-7 text-[#4B3621] mb-3 md:mb-4">
             The new favorite
           </h2>
 
           {/* Description */}
-          <p className="text-base md:text-lg lg:text-xl font-normal leading-7 text-[#4B3621] max-w-[753px] mx-auto">
+          <p className="text-sm md:text-lg lg:text-xl font-normal leading-6 md:leading-7 text-[#4B3621] max-w-[753px] mx-auto">
             Whether you&apos;re seeking calm, sunlight, or a touch of luxury,
             Lodr offers the perfect space to rest, recharge, and feel at home.
           </p>

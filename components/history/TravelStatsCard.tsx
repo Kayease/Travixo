@@ -28,15 +28,15 @@ const TravelStatsCard: React.FC<TravelStatsCardProps> = ({
   globalProgress = 60,
 }) => {
   return (
-    <div className="relative bg-white border border-[#4B3621]/40 rounded-xl w-[469px] h-[280px]">
+    <div className="relative bg-white border border-[#4B3621]/40 rounded-xl w-full sm:w-[469px] h-auto sm:h-[280px] p-5 sm:p-0">
       {/* Card Title - positioned at 18px, 24px from top */}
-      <h3 className="absolute left-[18px] top-6 font-display italic font-semibold text-[20px] leading-[30px] text-[#4B3621]">
+      <h3 className="relative sm:absolute sm:left-[18px] sm:top-6 font-display italic font-semibold text-[20px] leading-[30px] text-[#4B3621] mb-6 sm:mb-0">
         Travel stats
       </h3>
 
       {/* Stats List - positioned absolutely as per Figma */}
       {/* Avg. Duration - top: 86px */}
-      <div className="absolute left-[18px] top-[86px] flex items-center justify-between w-[433px]">
+      <div className="relative sm:absolute sm:left-[18px] sm:top-[86px] flex items-center justify-between w-full sm:w-[433px] mb-4 sm:mb-0">
         <span className="font-display italic font-semibold text-[18px] leading-[30px] text-[#4B3621]">
           Avg. Duration
         </span>
@@ -46,7 +46,7 @@ const TravelStatsCard: React.FC<TravelStatsCardProps> = ({
       </div>
 
       {/* Favt. Region - top: 124px */}
-      <div className="absolute left-[18px] top-[124px] flex items-center justify-between w-[433px]">
+      <div className="relative sm:absolute sm:left-[18px] sm:top-[124px] flex items-center justify-between w-full sm:w-[433px] mb-4 sm:mb-0">
         <span className="font-display italic font-semibold text-[18px] leading-[30px] text-[#4B3621]">
           Favt. Region
         </span>
@@ -56,7 +56,7 @@ const TravelStatsCard: React.FC<TravelStatsCardProps> = ({
       </div>
 
       {/* Miles Flown - top: 162px */}
-      <div className="absolute left-[18px] top-[162px] flex items-center justify-between w-[433px]">
+      <div className="relative sm:absolute sm:left-[18px] sm:top-[162px] flex items-center justify-between w-full sm:w-[433px] mb-6 sm:mb-0">
         <span className="font-display italic font-semibold text-[18px] leading-[30px] text-[#4B3621]">
           Miles Flown
         </span>
@@ -66,7 +66,7 @@ const TravelStatsCard: React.FC<TravelStatsCardProps> = ({
       </div>
 
       {/* Progress Bar Container - top: 216px, width: 431px */}
-      <div className="absolute left-5 top-[216px] w-[431px]">
+      <div className="relative sm:absolute sm:left-5 sm:top-[216px] w-full sm:w-[431px]">
         {/* Progress Track */}
         <div className="relative w-full h-[2px] border-[0.2px] border-[#4B3621]/40 rounded-xl">
           {/* Progress Fill */}
@@ -77,7 +77,7 @@ const TravelStatsCard: React.FC<TravelStatsCardProps> = ({
         </div>
 
         {/* Progress Label - top: 226px (10px below progress bar) */}
-        <p className="absolute left-0 top-[10px] font-display italic font-semibold text-[12px] leading-[30px] text-[#FF6E00]">
+        <p className="relative sm:absolute sm:left-0 sm:top-[10px] font-display italic font-semibold text-[12px] leading-[30px] text-[#FF6E00] mt-2 sm:mt-0">
           Global {globalProgress}%
         </p>
       </div>

@@ -108,55 +108,55 @@ const RoomHeroSection: React.FC = () => {
         </div>
 
         {/* Mobile/Tablet Responsive Layout */}
-        <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="lg:hidden flex flex-col gap-8 md:gap-10">
           {/* Left Content - Title & Description */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center text-center md:text-left">
             {/* Section Title */}
-            <h1 className="font-display text-2xl md:text-[28px] italic font-semibold leading-tight text-[#4B3621] mb-5 md:mb-6">
+            <h1 className="font-display text-2xl md:text-[28px] italic font-semibold leading-tight text-[#4B3621] mb-3 md:mb-6">
               Where style meets rest
             </h1>
 
             {/* Description */}
-            <p className="text-base md:text-lg font-normal leading-[28px] md:leading-[30px] text-[#4B3621]">
+            <p className="text-base md:text-lg font-normal leading-[26px] md:leading-[30px] text-[#4B3621] max-w-lg mx-auto md:mx-0">
               Whether you choose a cozy Classic or a spacious Suite, our rooms
               are made to help you relax and feel at home.
             </p>
           </div>
 
           {/* Image Gallery */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {/* Left Tall Image */}
-            <div className="relative h-[300px] md:h-[350px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
+            <div className="relative h-[240px] xs:h-[300px] md:h-[350px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
               <Image
                 src="/images/room/cards/hero-1.png"
                 alt="Stylish room with yellow wall and plants"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 350px"
+                sizes="(max-width: 768px) 50vw, 350px"
               />
             </div>
 
             {/* Right Column - Two Stacked Images */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 md:gap-4">
               {/* Top Image */}
-              <div className="relative h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
+              <div className="relative h-[114px] xs:h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
                 <Image
                   src="/images/room/cards/hero-2.png"
                   alt="Bright living room with pink chairs"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 168px"
+                  sizes="(max-width: 768px) 50vw, 168px"
                 />
               </div>
 
               {/* Bottom Image */}
-              <div className="relative h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
+              <div className="relative h-[114px] xs:h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
                 <Image
                   src="/images/room/cards/hero-3.png"
                   alt="Elegant white bedroom"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 168px"
+                  sizes="(max-width: 768px) 50vw, 168px"
                 />
               </div>
             </div>

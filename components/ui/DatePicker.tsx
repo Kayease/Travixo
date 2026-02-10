@@ -18,6 +18,10 @@ interface DatePickerProps {
   variant?: "default" | "transparent";
   size?: "default" | "sm";
   align?: "left" | "right";
+  hideIcon?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  externalTriggerRef?: React.RefObject<HTMLElement>;
 }
 
 const MONTHS = [
@@ -53,13 +57,27 @@ export const DatePicker = ({
   mode = "single",
   size = "default",
   align = "left",
+  hideIcon = false,
+  open,
+  onOpenChange,
+  externalTriggerRef,
 }: DatePickerProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [showYearPicker, setShowYearPicker] = useState(false);
   const [showMonthPicker, setShowMonthPicker] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const isControlled = open !== undefined;
+  const isOpen = isControlled ? open : internalIsOpen;
+
+  const setIsOpen = (value: boolean) => {
+    if (!isControlled) {
+      setInternalIsOpen(value);
+    }
+    onOpenChange?.(value);
+  };
 
   // Generate years array for year picker (current year ± 10 years)
   const getYearsRange = () => {
@@ -88,7 +106,8 @@ export const DatePicker = ({
     const handleClickOutside = (event: MouseEvent) => {
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        !containerRef.current.contains(event.target as Node) &&
+        (!externalTriggerRef?.current || !externalTriggerRef.current.contains(event.target as Node))
       ) {
         setIsOpen(false);
       }
@@ -96,7 +115,7 @@ export const DatePicker = ({
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [externalTriggerRef]);
 
   // Get days in month
   const getDaysInMonth = (month: number, year: number) => {
@@ -348,19 +367,21 @@ export const DatePicker = ({
         </span>
 
         {/* Calendar Icon */}
-        <svg
-          className={`w-5 h-5 text-brand-brown/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
-        </svg>
+        {!hideIcon && (
+          <svg
+            className={`w-5 h-5 text-brand-brown/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+        )}
       </button>
 
       {/* Calendar Dropdown - high z-index so it appears above hero and all sections */}

@@ -9,7 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 const FAQHeroSection = () => {
   return (
     <section
-      className="relative w-full py-16 lg:py-[98px]"
+      className="relative w-full py-12 md:py-16 lg:py-[98px]"
       style={{ backgroundColor: "#FFF7E5" }}
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
@@ -17,7 +17,7 @@ const FAQHeroSection = () => {
           <h1 className="font-display italic font-semibold text-[24px] md:text-[28px] leading-[37px] text-brand-brown mb-6">
             Frequently Asked Questions
           </h1>
-          <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown max-w-[780px] mx-auto">
+          <p className="font-body font-medium text-[15px] sm:text-[16px] md:text-[18px] leading-[26px] md:leading-[30px] text-brand-brown max-w-[90%] md:max-w-[780px] mx-auto">
             Find answers to common questions about our tours, bookings, and
             travel services
           </p>
@@ -144,10 +144,10 @@ const FAQAccordionItem: React.FC<FAQAccordionItemProps> = ({
     <div className="border-b border-gray-200">
       <button
         onClick={onToggle}
-        className="w-full py-6 flex justify-between items-start text-left hover:bg-gray-50 transition-colors duration-200 px-6 cursor-pointer"
+        className="w-full py-4 md:py-6 flex justify-between items-start text-left hover:bg-gray-50 transition-colors duration-200 px-4 md:px-6 cursor-pointer"
       >
-        <div className="flex-1 pr-8">
-          <h3 className="font-body font-semibold text-[18px] leading-[28px] text-brand-brown">
+        <div className="flex-1 pr-4 md:pr-8">
+          <h3 className="font-body font-semibold text-[16px] md:text-[18px] leading-[24px] md:leading-[28px] text-brand-brown">
             {item.question}
           </h3>
         </div>
@@ -172,8 +172,8 @@ const FAQAccordionItem: React.FC<FAQAccordionItemProps> = ({
         className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"
           }`}
       >
-        <div className="px-6 pb-6">
-          <p className="font-body font-normal text-[16px] leading-[28px] text-gray-700">
+        <div className="px-4 md:px-6 pb-4 md:pb-6">
+          <p className="font-body font-normal text-[15px] sm:text-[16px] leading-[24px] md:leading-[28px] text-gray-700">
             {item.answer}
           </p>
         </div>
@@ -200,7 +200,7 @@ const FAQContentSection = () => {
         {categories.map((category, categoryIndex) => (
           <div key={category} className={categoryIndex > 0 ? "mt-12" : ""}>
             {/* Category Title */}
-            <h2 className="font-display italic font-semibold text-[28px] md:text-[32px] leading-[40px] text-brand-brown mb-6">
+            <h2 className="font-display italic font-semibold text-[24px] md:text-[28px] lg:text-[32px] leading-[34px] md:leading-[40px] text-brand-brown mb-4 md:mb-6">
               {category}
             </h2>
 
@@ -237,14 +237,14 @@ const FAQContentSection = () => {
 const StillHaveQuestionsSection = () => {
   return (
     <section
-      className="relative w-full py-12 lg:py-[60px]"
+      className="relative w-full py-8 md:py-12 lg:py-[60px]"
       style={{ backgroundColor: "#FFF7E5" }}
     >
       <div className="max-w-[1080px] mx-auto px-5 md:px-10 text-center">
-        <h2 className="font-display italic font-semibold text-[28px] md:text-[36px] leading-[44px] text-brand-brown mb-4">
+        <h2 className="font-display italic font-semibold text-[24px] md:text-[28px] lg:text-[36px] leading-[32px] md:leading-[44px] text-brand-brown mb-3 md:mb-4">
           Still have questions?
         </h2>
-        <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-8 max-w-[600px] mx-auto">
+        <p className="font-body font-medium text-[15px] sm:text-[16px] md:text-[18px] leading-[26px] md:leading-[30px] text-brand-brown mb-6 md:mb-8 max-w-[90%] md:max-w-[600px] mx-auto">
           Can't find the answer you're looking for? Our friendly team is here to
           help you plan your perfect adventure.
         </p>

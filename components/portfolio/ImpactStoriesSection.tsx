@@ -19,7 +19,7 @@ const ImpactStoriesSection: React.FC = () => {
     <section className="relative w-full bg-[#FFF7E5] py-12 md:py-16 lg:py-[52px]">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Main Content Grid */}
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 xl:gap-24">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-16 xl:gap-24">
           {/* Left: Image with Stats Card */}
           <div className="relative w-full lg:w-[630px] shrink-0">
             {/* Main Image */}

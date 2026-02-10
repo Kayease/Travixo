@@ -143,9 +143,9 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
         </div>
 
         {/* Main Content: Form + Summary */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+        <div className="flex flex-col xl:flex-row gap-6 xl:gap-8">
           {/* Left Column: Forms */}
-          <div className="flex-1 w-full lg:max-w-[812px]">
+          <div className="flex-1 w-full xl:max-w-[812px]">
             {/* Travel Information Form */}
             <TravelInformationForm
               formData={travelInfo}
@@ -162,7 +162,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
           </div>
 
           {/* Right Column: Order Summary */}
-          <div className="w-full lg:w-[440px] lg:shrink-0">
+          <div className="w-full xl:w-[440px] xl:shrink-0">
             <OrderSummaryCard
               tourImage={tourData.image}
               tourName={tourData.name}

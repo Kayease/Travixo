@@ -104,18 +104,18 @@ export const DestinationsGridSection: React.FC<
 
     return (
       <section
-        className="relative w-full py-[52px] lg:py-[52px]"
+        className="relative w-full py-8 md:py-12 lg:py-[52px]"
         style={{ backgroundColor: "#FFFCF5" }}
         aria-labelledby="destinations-grid-title"
       >
-        <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-10 lg:px-20">
           {/* Screen reader only title */}
           <h2 id="destinations-grid-title" className="sr-only">
             All Destinations
           </h2>
 
           {/* Destinations Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-16 lg:gap-y-[32px] gap-x-4 md:gap-x-6 lg:gap-x-[13px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-y-12 lg:gap-y-[32px] gap-x-4 md:gap-x-6 lg:gap-x-[13px]">
             {visibleDestinations.length > 0 ? (
               visibleDestinations.map((destination) => (
                 <DestinationCard
@@ -144,7 +144,7 @@ export const DestinationsGridSection: React.FC<
 
           {/* Load More Button */}
           {showLoadMore && hasMoreDestinations && (
-            <div className="flex justify-center mt-12 md:mt-20 lg:mt-[76px]">
+            <div className="flex justify-center mt-8 md:mt-12 lg:mt-[76px]">
               <button
                 onClick={handleLoadMore}
                 className="font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-white transition-all duration-300 hover:opacity-90 hover:shadow-xl active:scale-95 cursor-pointer flex items-center justify-center"

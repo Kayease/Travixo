@@ -40,7 +40,7 @@ const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone }) => {
   };
 
   return (
-    <div className="relative bg-white border border-[#4B3621]/40 rounded-xl w-[246px] h-[227px]">
+    <div className="relative bg-white border border-[#4B3621]/40 rounded-xl w-full max-w-[246px] h-[227px]">
       {/* Icon - positioned at left: 18px, top: 21px */}
       <div className="absolute left-[18px] top-[21px] w-[46px] h-[46px]">
         <Image

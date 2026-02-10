@@ -100,7 +100,7 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
   return (
     <div className="bg-[#FFF7E5] rounded-xl p-5 md:p-8 h-fit sticky top-8">
       {/* Title */}
-      <h2 className="font-display text-2xl md:text-[32px] italic font-semibold leading-[43px] text-[#4B3621] mb-10">
+      <h2 className="font-display text-2xl md:text-[32px] italic font-semibold leading-[32px] md:leading-[43px] text-[#4B3621] mb-6 md:mb-10">
         Booking Summary
       </h2>
 
@@ -108,40 +108,40 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
       <div className="space-y-4">
         {/* Room Subtotal */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">
+          <span className="text-base md:text-2xl text-[#4B3621]">
             Room Subtotal
           </span>
-          <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#4B3621]">
+          <span className="font-display text-lg md:text-[26px] italic font-semibold text-[#4B3621]">
             ${summary.roomSubtotal.toLocaleString()}.00
           </span>
         </div>
 
         {/* Experience Subtotal */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">
+          <span className="text-base md:text-2xl text-[#4B3621]">
             Experience Subtotal
           </span>
-          <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#4B3621]">
+          <span className="font-display text-lg md:text-[26px] italic font-semibold text-[#4B3621]">
             ${summary.experienceSubtotal.toLocaleString()}.00
           </span>
         </div>
 
         {/* Combo Saving */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">
+          <span className="text-base md:text-2xl text-[#4B3621]">
             Combo Saving
           </span>
-          <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#34C759]">
+          <span className="font-display text-lg md:text-[26px] italic font-semibold text-[#34C759]">
             -${summary.comboSaving.toLocaleString()}.00
           </span>
         </div>
 
         {/* Taxes & Fee */}
         <div className="flex justify-between items-center">
-          <span className="text-xl md:text-2xl text-[#4B3621]">
+          <span className="text-base md:text-2xl text-[#4B3621]">
             Taxes &amp; Fee
           </span>
-          <span className="font-display text-xl md:text-[26px] italic font-semibold text-[#4B3621]">
+          <span className="font-display text-lg md:text-[26px] italic font-semibold text-[#4B3621]">
             ${summary.taxesAndFee.toLocaleString()}.00
           </span>
         </div>
@@ -152,10 +152,10 @@ const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
 
       {/* Total Amount */}
       <div className="flex justify-between items-center mb-8">
-        <span className="text-xl md:text-[26px] font-medium text-[#4B3621]">
+        <span className="text-lg md:text-[26px] font-medium text-[#4B3621]">
           Total Amount
         </span>
-        <span className="font-display text-2xl md:text-[28px] italic font-semibold text-[#4B3621]">
+        <span className="font-display text-xl md:text-[28px] italic font-semibold text-[#4B3621]">
           ${totalAmount.toLocaleString()}.00
         </span>
       </div>
@@ -238,10 +238,10 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
       <div className="flex-1 py-2 relative">
         {/* Type & Price Row */}
         <div className="flex justify-between items-start mb-2">
-          <span className="text-lg text-[#4B3621]">
+          <span className="text-base md:text-lg text-[#4B3621]">
             {item.type === "room" ? "Rooms Selection" : "Experience"}
           </span>
-          <span className="font-display text-2xl italic font-medium text-[#4B3621]">
+          <span className="font-display text-xl md:text-2xl italic font-medium text-[#4B3621]">
             $ {item.price.toLocaleString()}
           </span>
         </div>
@@ -256,7 +256,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
           {/* Location */}
           <div className="flex items-center gap-2">
             <LocationIcon />
-            <span className="text-lg text-[#4B3621]">{item.location}</span>
+            <span className="text-base md:text-lg text-[#4B3621]">{item.location}</span>
           </div>
 
           {/* Dates */}
@@ -282,7 +282,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
             item.amenities.map((amenity, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-[#FFF7E5] rounded-xl text-lg text-[#4B3621]"
+                className="px-3 py-1 bg-[#FFF7E5] rounded-xl text-sm md:text-lg text-[#4B3621]"
               >
                 {amenity}
               </span>
@@ -290,11 +290,11 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2 md:gap-4">
           {/* Edit/Customize Button */}
           <button
             onClick={handleEditClick}
-            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6E00] rounded-xl text-white text-lg hover:bg-[#e56200] transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6E00] rounded-xl text-white text-sm md:text-lg hover:bg-[#e56200] transition-colors cursor-pointer"
           >
             <PencilIcon />
             <span>{item.actionLabel}</span>
@@ -303,7 +303,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item, onRemove }) => {
           {/* Remove Button */}
           <button
             onClick={() => onRemove(item.id)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF3B30] rounded-xl text-white text-lg hover:bg-[#e53530] transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF3B30] rounded-xl text-white text-sm md:text-lg hover:bg-[#e53530] transition-colors cursor-pointer"
           >
             <span>Remove</span>
           </button>

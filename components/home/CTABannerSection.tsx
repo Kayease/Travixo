@@ -47,7 +47,7 @@ export const CTABannerSection = ({
     <section className="relative w-full py-12 lg:py-16 bg-white overflow">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         {/* Container with relative positioning for the image */}
-        <div className="relative ml-[80px]">
+        <div className="relative ml-0 lg:ml-[80px]">
           {/* Traveler Image - Positioned to overlap */}
           <div className="hidden md:block absolute -left-[40px] -top-[135px] w-[232px] h-[334px] z-10">
             <Image

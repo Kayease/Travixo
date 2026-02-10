@@ -107,7 +107,7 @@ export const TeamGridSection: React.FC<TeamGridSectionProps> = ({
           </h2>
 
           {/* Subtitle - Poppins Medium */}
-          <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown max-w-[478px] mx-auto">
+          <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown max-w-[360px] md:max-w-[478px] mx-auto">
             {subtitle}
           </p>
         </div>

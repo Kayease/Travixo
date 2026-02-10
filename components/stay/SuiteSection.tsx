@@ -66,21 +66,21 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-[#9A4C04] via-[#9A4C04]/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-10" />
 
       {/* Room Name - Always visible, moves up on hover */}
-      <h3 className="absolute left-6 md:left-8 bottom-6 md:bottom-8 group-hover:bottom-[200px] md:group-hover:bottom-[220px] font-display text-2xl md:text-[28px] italic font-semibold text-white z-30 transition-all duration-500 ease-out drop-shadow-lg">
+      <h3 className="absolute left-5 md:left-8 bottom-5 md:bottom-8 group-hover:bottom-[180px] md:group-hover:bottom-[220px] font-display text-xl md:text-[28px] italic font-semibold text-white z-30 transition-all duration-500 ease-out drop-shadow-lg">
         {room.name}
       </h3>
 
       {/* Content at Bottom - Details and Button slide in from left */}
-      <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 z-20 flex flex-col justify-end -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out">
+      <div className="absolute inset-x-0 bottom-0 p-5 md:p-8 z-20 flex flex-col justify-end -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out">
         {/* Room Details */}
-        <div className="space-y-1 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
-          <p className="text-white text-sm md:text-base font-normal">
+        <div className="space-y-1 mb-3 md:mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+          <p className="text-white text-xs md:text-base font-normal">
             Average size: {room.size}
           </p>
-          <p className="text-white text-sm md:text-base font-normal">
+          <p className="text-white text-xs md:text-base font-normal">
             Occupancy: {room.occupancy}
           </p>
-          <p className="text-white text-sm md:text-base font-normal">
+          <p className="text-white text-xs md:text-base font-normal">
             Bed: {room.bed}
           </p>
         </div>
@@ -88,7 +88,7 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
         {/* Book Now Button with bottom-to-top fill animation */}
         <button
           onClick={handleBookNow}
-          className="flex items-center justify-center relative w-[180px] md:w-[200px] h-[45px] md:h-[50px] bg-white rounded-lg font-display italic text-[16px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-0 group-hover:opacity-100 delay-200 overflow-hidden group/btn cursor-pointer"
+          className="flex items-center justify-center relative w-[160px] md:w-[200px] h-[40px] md:h-[50px] bg-white rounded-lg font-display italic text-[14px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-0 group-hover:opacity-100 delay-200 overflow-hidden group/btn cursor-pointer"
         >
           {/* Fill animation from bottom to top */}
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />

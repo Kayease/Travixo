@@ -25,12 +25,12 @@ const StatCard: React.FC<{ stat: StatItem }> = ({ stat }) => {
   return (
     <div className="flex flex-col items-center gap-4 md:gap-[18px] text-center">
       {/* Stat Value */}
-      <span className="font-display text-4xl md:text-5xl lg:text-[52px] font-medium leading-tight lg:leading-[69px] text-[#4B3621]">
+      <span className="font-display text-3xl md:text-5xl lg:text-[52px] font-medium leading-tight lg:leading-[69px] text-[#4B3621]">
         {stat.value}
       </span>
 
       {/* Stat Label */}
-      <span className="text-lg md:text-xl lg:text-2xl font-normal leading-9 text-[#4B3621]">
+      <span className="text-sm md:text-xl lg:text-2xl font-normal leading-tight md:leading-9 text-[#4B3621]">
         {stat.label}
       </span>
     </div>

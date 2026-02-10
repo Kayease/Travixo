@@ -137,8 +137,7 @@ export const ExperienceSection = () => {
       <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         {/* Cards positioned to overlap the hero */}
         <div
-          className="flex flex-col lg:flex-row justify-center items-start gap-8 lg:gap-6"
-          style={{ marginTop: "-260px" }}
+          className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8 lg:gap-6 mt-[-100px] lg:mt-[-260px]"
         >
           {EXPERIENCES.map((experience) => (
             <ExperienceCard

@@ -64,7 +64,7 @@ const Blog2ContentSection: React.FC = () => {
           {blogPosts.map((post) => (
             <article
               key={post.id}
-              className="bg-white border border-black/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] rounded-xl w-full max-w-[1280px] min-h-[417px] mx-auto flex flex-col lg:flex-row items-center p-4 lg:px-[18px] gap-6 lg:gap-[18px]"
+              className="bg-white border border-black/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] rounded-xl w-full max-w-[1280px] min-h-auto lg:min-h-[417px] mx-auto flex flex-col lg:flex-row items-center p-4 lg:px-[18px] gap-6 lg:gap-[18px]"
             >
               {/* Image */}
               <div className="relative w-full lg:w-[511px] h-[250px] lg:h-[381px] rounded-xl overflow-hidden shrink-0">
@@ -78,9 +78,9 @@ const Blog2ContentSection: React.FC = () => {
               </div>
 
               {/* Content */}
-              <div className="flex-1 flex flex-col justify-center relative min-h-[381px] py-4">
+              <div className="w-full flex-1 flex flex-col justify-center relative min-h-auto lg:min-h-[381px] py-4">
                 {/* Title */}
-                <h2 className="font-display italic font-semibold text-[24px] leading-[32px] text-[#4B3621] mb-[19px]">
+                <h2 className="font-display italic font-semibold text-[20px] md:text-[24px] leading-[28px] md:leading-[32px] text-[#4B3621] mb-3 md:mb-[19px]">
                   {post.title}
                 </h2>
 

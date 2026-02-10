@@ -2,7 +2,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { DatePicker } from "../ui/DatePicker";
+import { DatePicker, DateRange } from "../ui/DatePicker";
 import { HERO_IMAGES } from "@/app/constants/data";
 
 /** Pendulum physics constants (damped harmonic motion) */
@@ -22,13 +22,26 @@ export const HeroSection = () => {
   const swingRAF = useRef<number | null>(null);
   const swingStartTime = useRef<number>(0);
   const [destination, setDestination] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState<string | DateRange>("");
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const dateIconRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const handleSearch = () => {
     const params = new URLSearchParams();
     if (destination.trim()) params.set("destination", destination.trim());
-    if (date) params.set("date", date);
+
+    if (date) {
+      if (typeof date === "string") {
+        params.set("date", date);
+      } else {
+        if (date.from) {
+          const toStr = date.to ? date.to : "";
+          params.set("date", toStr ? `${date.from} - ${toStr}` : date.from);
+        }
+      }
+    }
+
     const query = params.toString();
     router.push(query ? `/paris?${query}` : "/paris");
   };
@@ -201,7 +214,7 @@ export const HeroSection = () => {
             {/* Bottom-to-top fill animation overlay */}
             <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
             {/* Button text */}
-            <span className="relative z-10 group-hover:text-[#FF6E00] transition-colors duration-300">
+            <span className="relative z-10 group-hover:text-black transition-colors duration-300">
               Explore More
             </span>
           </button>
@@ -249,7 +262,7 @@ export const HeroSection = () => {
       {/* End clipped area */}
 
       {/* ========== Glassmorphism Search Bar (outside clip so date picker dropdown can show) ========== */}
-      <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] md:w-auto z-10 px-4 md:px-0 overflow-visible">
+      <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] md:w-[900px] z-10 px-4 md:px-0 overflow-visible">
         <div
           className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0 overflow-visible"
           style={{
@@ -313,28 +326,27 @@ export const HeroSection = () => {
 
           {/* Date Field - overflow-visible so calendar dropdown is not clipped */}
           <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 border-t md:border-t-0 border-[rgba(75,54,33,0.1)] overflow-visible">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 28 28"
-              fill="none"
-              className="shrink-0"
+            <div
+              ref={dateIconRef}
+              onClick={() => setIsDatePickerOpen(!isDatePickerOpen)}
+              className="cursor-pointer"
             >
-              <path
-                d="M14 14.875C15.2426 14.875 16.25 13.8676 16.25 12.625C16.25 11.3824 15.2426 10.375 14 10.375C12.7574 10.375 11.75 11.3824 11.75 12.625C11.75 13.8676 12.7574 14.875 14 14.875Z"
-                stroke="#4B3621"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M14 3.5C11.5136 3.5 9.12903 4.48772 7.37087 6.24587C5.61272 8.00403 4.625 10.3886 4.625 12.875C4.625 15.0575 5.12125 16.52 6.3125 18L14 26.25L21.6875 18C22.8788 16.52 23.375 15.0575 23.375 12.875C23.375 10.3886 22.3873 8.00403 20.6291 6.24587C18.871 4.48772 16.4864 3.5 14 3.5Z"
-                stroke="#4B3621"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="shrink-0"
+              >
+                <path
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  stroke="#4B3621"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
             <div className="flex flex-col w-full overflow-visible">
               <label
                 className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
@@ -345,11 +357,23 @@ export const HeroSection = () => {
               <DatePicker
                 value={date}
                 onChange={(newDate) => {
-                  if (typeof newDate === "string") setDate(newDate);
+                  setDate(newDate);
+                  // Optional: Close on selection if you prefer, though range usually stays open until complete
+                  // For range, DatePicker handles internal logic, but we can close it if newDate is complete.
+                  // Current DatePicker implementation closes itself on single select.
+                  // For range, it closes on second click.
+                  // But since we control it, we need to respect DatePicker's internal logic calling onOpenChange(false)
+                  // which calls setIsDatePickerOpen(false).
+                  // So we just update date here.
                 }}
                 placeholder="Feb 14, 2025"
                 variant="transparent"
                 className="w-full"
+                mode="range"
+                hideIcon={true}
+                open={isDatePickerOpen}
+                onOpenChange={setIsDatePickerOpen}
+                externalTriggerRef={dateIconRef as React.RefObject<HTMLElement>}
               />
             </div>
           </div>

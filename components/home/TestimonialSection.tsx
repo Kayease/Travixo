@@ -210,7 +210,7 @@ export const TestimonialSection = () => {
               <div
                 key={item.id}
                 onClick={() => handleAvatarClick(item.id)}
-                className="absolute cursor-pointer transition-all duration-500 ease-in-out"
+                className="absolute cursor-pointer transition-all duration-150 ease-in-out"
                 style={{
                   width: "100px",
                   height: "100px",
@@ -227,7 +227,7 @@ export const TestimonialSection = () => {
                     src={item.url}
                     alt={item.author.name}
                     fill
-                    className={`object-cover transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-80"
+                    className={`object-cover transition-opacity duration-100 ${isActive ? "opacity-100" : "opacity-80"
                       }`}
                   />
                 </div>
@@ -237,7 +237,7 @@ export const TestimonialSection = () => {
 
           {/* Fixed Card (Frame 478) */}
           <div
-            className="absolute bg-white transition-all duration-300"
+            className="absolute bg-white transition-all duration-100"
             style={{
               width: "610px",
               height: "416px",
@@ -285,7 +285,7 @@ export const TestimonialSection = () => {
 
             <div
               className="absolute font-display italic font-semibold text-[18px] leading-[24px] text-[#4B3621]"
-              style={{ width: "114px", height: "24px", left: "132px", top: "314px" }}
+              style={{ width: "300px", height: "24px", left: "132px", top: "314px" }}
             >
               {activeTestimonial.author.name}
             </div>

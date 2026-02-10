@@ -31,7 +31,7 @@ export const AboutHeroSection = () => {
         <div className="flex flex-col gap-8">
           {/* Header Texts */}
           <div className="space-y-6 text-center md:text-left">
-            <h1 className="font-display italic font-semibold text-3xl md:text-5xl text-brand-brown">
+            <h1 className="font-display italic font-semibold text-3xl sm:text-4xl md:text-5xl text-brand-brown">
               The Story of Travixo
             </h1>
             <p className="font-body font-medium text-base md:text-lg leading-relaxed text-brand-brown">

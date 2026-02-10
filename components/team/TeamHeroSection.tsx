@@ -50,7 +50,7 @@ export const TeamHeroSection: React.FC<TeamHeroSectionProps> = ({
           </h1>
 
           {/* Subtitle - Poppins Medium */}
-          <p className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] md:leading-[30px] text-brand-brown max-w-[478px] mx-auto">
+          <p className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] md:leading-[30px] text-brand-brown max-w-[360px] md:max-w-[478px] mx-auto">
             {subtitle}
           </p>
         </div>

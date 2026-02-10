@@ -163,6 +163,11 @@ const ServiceCard = ({
       <p className="font-body font-normal text-[14px] leading-[21px] text-center text-brand-brown w-full">
         {description}
       </p>
+
+      {/* Mobile Only: Read More Link */}
+      <div className="lg:hidden mt-2">
+        <ReadMoreLink />
+      </div>
     </div>
   </div>
 );
@@ -203,7 +208,7 @@ export const ServicesSection = () => {
       className="relative w-full"
       style={{ backgroundColor: "#FFFCF5", minHeight: "551px" }}
     >
-      <div className="max-w-[1440px] mx-auto px-[170px] py-[52px]">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-[170px] py-[52px]">
         {/* Section Header */}
         <div className="text-center mb-[43px]">
           {/* Small Title - Poppins 500, 24px/36px */}
@@ -218,7 +223,7 @@ export const ServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="flex justify-center gap-[90px]">
+        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8 lg:gap-[90px]">
           {SERVICES.map((service) => (
             <ServiceCard
               key={service.id}
@@ -230,8 +235,8 @@ export const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Read More Links Row */}
-        <div className="flex justify-center gap-[90px] mt-[32px]">
+        {/* Read More Links Row (Desktop Only) */}
+        <div className="hidden lg:flex justify-center gap-[90px] mt-[32px]">
           {SERVICES.map((service) => (
             <div
               key={`read-more-${service.id}`}

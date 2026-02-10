@@ -120,7 +120,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
       </div>
 
       {/* Tabs Section */}
-      <div className="flex gap-20 mb-10 justify-center">
+      <div className="flex gap-8 md:gap-20 mb-10 justify-center">
         <div
           className="relative cursor-pointer"
           onClick={() => setActiveTab("book")}

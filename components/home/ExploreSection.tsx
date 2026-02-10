@@ -72,21 +72,19 @@ const ActivityIcon = ({
 }) => {
   return (
     <div
-      className="relative w-[46px] h-[46px] transition-all duration-300"
-      style={{
-        filter: isActive ? "none" : "grayscale(0) brightness(0.4)",
-      }}
+      className={`relative w-[46px] h-[46px] transition-all duration-300 ${isActive
+        ? "filter-none"
+        : "brightness-[0.4] group-hover:filter-none group-hover:brightness-100"
+        }`}
     >
       <Image
         src={iconPath}
         alt={alt}
         fill
-        className="object-contain"
-        style={{
-          filter: isActive
-            ? "invert(45%) sepia(98%) saturate(1500%) hue-rotate(360deg) brightness(100%)"
-            : "none",
-        }}
+        className={`object-contain ${isActive
+          ? "[filter:invert(45%)_sepia(98%)_saturate(1500%)_hue-rotate(360deg)_brightness(100%)]"
+          : "group-hover:[filter:invert(45%)_sepia(98%)_saturate(1500%)_hue-rotate(360deg)_brightness(100%)]"
+          }`}
         sizes="46px"
       />
     </div>
@@ -198,10 +196,10 @@ export const ExploreSection = () => {
                 onClick={() => setActiveCategory(category.id)}
                 className={`
                   w-[224px] h-[122px] rounded-xl flex flex-col items-center justify-center gap-2
-                  border-b-2 transition-all duration-300 ease-out cursor-pointer
+                  border-b-2 transition-all duration-300 ease-out cursor-pointer group
                   ${isActive
                     ? "bg-[#FFF7E5] border-brand-orange shadow-[0px_0px_4px_rgba(255,110,0,0.1)] scale-[1.02]"
-                    : "bg-[#FFF7E5] border-transparent hover:shadow-md hover:scale-[1.01]"
+                    : "bg-[#FFF7E5] border-transparent hover:border-brand-orange hover:shadow-[0px_0px_4px_rgba(255,110,0,0.1)] hover:scale-[1.02]"
                   }
                 `}
               >
@@ -222,7 +220,7 @@ export const ExploreSection = () => {
                     font-display italic font-semibold text-lg text-center transition-colors duration-300 ease-out
                     ${isActive
                       ? "text-brand-orange drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
-                      : "text-brand-brown"
+                      : "text-brand-brown group-hover:text-brand-orange group-hover:drop-shadow-[0px_0px_4px_rgba(0,0,0,0.1)]"
                     }
                   `}
                 >
@@ -292,14 +290,14 @@ export const ExploreSection = () => {
               <button
                 type="button"
                 onClick={handleSearch}
-                className="relative w-[384px] h-[50px] bg-brand-orange border border-brand-orange rounded-xl 
+                className="relative w-full sm:w-[384px] h-[50px] bg-brand-orange border border-brand-orange rounded-xl 
                            flex items-center justify-center overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.1)]
-                           hover:shadow-lg transition-shadow group cursor-pointer"
+                           hover:shadow-lg hover:border-black transition-all duration-300 group cursor-pointer"
               >
                 {/* Bottom-to-top fill animation overlay */}
                 <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
                 {/* Button text - centered */}
-                <span className="relative z-10 font-display italic font-medium text-xl text-white group-hover:text-brand-orange transition-colors duration-300">
+                <span className="relative z-10 font-display italic font-medium text-xl text-white group-hover:text-black transition-colors duration-300">
                   Search Now
                 </span>
               </button>

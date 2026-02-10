@@ -121,7 +121,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
       )}
 
       {/* Review Summary Card */}
-      <div className="hidden md:flex w-full max-w-[769px] min-h-[132px] mb-8 bg-white border border-brand-brown/40 rounded-[12px] overflow-hidden">
+      <div className="hidden lg:flex w-full max-w-[769px] min-h-[132px] mb-8 bg-white border border-brand-brown/40 rounded-[12px] overflow-hidden">
         {/* Left Section: Overall Rating (160px wide) */}
         <div className="w-[160px] flex flex-col justify-start pt-[36px] pl-[32px] shrink-0">
           <div className="flex items-center gap-2 mb-[9px]">
@@ -184,7 +184,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
       </div>
 
       {/* Mobile Fallback for Summary (Simple list) */}
-      <div className="md:hidden mb-8 p-4 border border-brand-brown/10 rounded-xl bg-white">
+      <div className="lg:hidden mb-8 p-4 border border-brand-brown/10 rounded-xl bg-white">
         <div className="flex items-center gap-2 mb-4">
           <span className="font-display italic font-semibold text-xl text-brand-brown">
             Review summary

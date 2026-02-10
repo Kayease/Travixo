@@ -21,7 +21,7 @@ const CompareHeroSection: React.FC = () => {
       {/* Content Container */}
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Hero Content - Centered */}
-        <div className="flex flex-col items-center justify-center py-12 md:py-16 lg:py-[68px] min-h-[200px] md:min-h-[250px] lg:min-h-[285px]">
+        <div className="flex flex-col items-center justify-center py-10 md:py-16 lg:py-[68px] min-h-[200px] md:min-h-[250px] lg:min-h-[285px]">
           {/* Page Title */}
           <h1
             id="compare-title"
@@ -31,7 +31,7 @@ const CompareHeroSection: React.FC = () => {
           </h1>
 
           {/* Page Subtitle */}
-          <p className="font-body font-medium text-[16px] md:text-[17px] lg:text-[18px] leading-[26px] md:leading-[28px] lg:leading-[30px] text-center text-brand-brown max-w-[320px] md:max-w-[480px] lg:max-w-[589px]">
+          <p className="font-body font-medium text-[16px] md:text-[17px] lg:text-[18px] leading-[26px] md:leading-[28px] lg:leading-[30px] text-center text-brand-brown max-w-[360px] md:max-w-[480px] lg:max-w-[589px]">
             A Curated odyssey through the world&apos;s most breathtaking sanctuaries, documented with precision and a refined lens.
           </p>
         </div>

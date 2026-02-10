@@ -89,7 +89,7 @@ export const ValuesSection = () => {
         {/* Values Grid - 2 Rows */}
         <div className="space-y-[32px]">
           {/* Row 1: Image | Card | Image */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[13px]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[13px]">
             {/* Video 1 - Hot Air Balloons */}
             <div className="relative h-[250px] md:h-[279px] rounded-xl overflow-hidden">
               <video
@@ -123,7 +123,7 @@ export const ValuesSection = () => {
           </div>
 
           {/* Row 2: Card | Image | Card */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[13px]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[13px]">
             {/* Value Card 2 */}
             <ValueCard
               title={VALUES_DATA[1].title}

@@ -240,9 +240,9 @@ export const DestinationsSection = () => {
       }}
     >
       <div className="max-w-[1440px] mx-auto relative">
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row">
           {/* Left Content */}
-          <div className="w-[422px] shrink-0 pl-[80px] pt-[138px]">
+          <div className="w-full lg:w-[422px] shrink-0 px-4 pt-10 lg:pl-[80px] lg:pt-[138px]">
             <div
               className="inline-flex items-center justify-center gap-2 w-[204px] h-[30px] rounded-xl mb-[32px] cursor-default"
               style={{ backgroundColor: "#FF6E00" }}
@@ -253,11 +253,11 @@ export const DestinationsSection = () => {
               </span>
             </div>
 
-            <h2 className="font-display italic font-semibold text-[28px] leading-[37px] text-brand-brown mb-[18px] max-w-[322px]">
+            <h2 className="font-display italic font-semibold text-2xl lg:text-[28px] leading-[37px] text-brand-brown mb-[18px] max-w-none lg:max-w-[322px]">
               Explore the Beautiful Places Around World
             </h2>
 
-            <p className="font-body font-medium text-[18px] leading-[27px] text-brand-brown mb-[52px] max-w-[390px]">
+            <p className="font-body font-medium text-base lg:text-[18px] leading-[27px] text-brand-brown mb-8 lg:mb-[52px] max-w-none lg:max-w-[390px]">
               Flexible classes refers to the process of acquiring is knowledge
               free.
             </p>
@@ -274,7 +274,7 @@ export const DestinationsSection = () => {
           </div>
 
           {/* Right Content */}
-          <div className="flex-1 pt-[52px] overflow-hidden">
+          <div className="flex-1 pt-8 lg:pt-[52px] overflow-hidden">
             <div
               ref={scrollRef}
               className={`flex gap-8 overflow-x-auto pb-8 pr-8 select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"

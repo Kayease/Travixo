@@ -33,12 +33,12 @@ export const DestinationsHeroSection: React.FC<DestinationsHeroSectionProps> = (
 }) => {
   return (
     <section
-      className="relative w-full py-12 md:py-16 lg:py-[68px]"
+      className="relative w-full py-10 md:py-16 lg:py-[68px]"
       style={{ backgroundColor: "#FFF7E5" }}
       aria-labelledby="destinations-hero-title"
     >
       {/* Container with max-width for content alignment */}
-      <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20">
         {/* Centered Header Content */}
         <div className="text-center">
           {/* Main Title - Playfair Display Italic */}
