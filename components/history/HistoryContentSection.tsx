@@ -90,7 +90,7 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
         {/* Top Section: Stats + Milestones */}
         <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-10 mb-12 md:mb-16">
           {/* Left: Travel Stats Card */}
-          <div className="w-full lg:w-auto shrink-0">
+          <div className="w-full lg:w-auto shrink-0 flex justify-center">
             <TravelStatsCard
               avgDuration={travelStats.avgDuration}
               favtRegion={travelStats.favtRegion}
@@ -107,7 +107,7 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
             </h2>
 
             {/* Milestones Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 justify-center place-items-center">
               {milestones.map((milestone) => (
                 <div key={milestone.id} className="mx-auto w-full max-w-[246px]">
                   <MilestoneCard milestone={milestone} />

@@ -171,17 +171,10 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                     />
                   </Link>
 
-                  {/* 27% Off Badge (Frame 52) */}
+                  {/* Discount Badge */}
                   {tour.discount && (
-                    <div
-                      className="absolute left-[12px] top-[12px] flex items-center justify-center px-2 gap-[10px]"
-                      style={{
-                        width: "67px",
-                        height: "25px",
-                        backgroundColor: "#FF6E00",
-                      }}
-                    >
-                      <span className="font-poppins font-medium text-[14px] leading-[21px] text-white">
+                    <div className="absolute top-3 left-3 bg-[#FF6E00] px-3 py-1 z-20">
+                      <span className="font-poppins font-bold text-[14px] text-white uppercase tracking-wider">
                         {tour.discount}
                       </span>
                     </div>
@@ -246,13 +239,20 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                     </button>
                   </div>
 
-                  {/* Price Tag (Frame 53) - Always visible */}
-                  <div className="absolute bottom-0 right-0 min-w-[102px] h-[47px] bg-white rounded-[100px_100px_0px_100px] shadow-sm flex items-center px-3 gap-2">
+                  {/* Price Tag (Frame 53) */}
+                  <div
+                    className="absolute bottom-0 right-0 bg-white shadow-sm z-10 flex items-center justify-center gap-2"
+                    style={{
+                      width: '102px',
+                      height: '47px',
+                      borderRadius: '100px 100px 0px 100px'
+                    }}
+                  >
                     <span className="font-poppins font-medium text-[18px] leading-[27px] text-[#FF6E00]">
                       ${tour.price}
                     </span>
                     {tour.originalPrice && (
-                      <span className="font-poppins font-medium text-[14px] leading-[21px] text-[#000000] opacity-60 line-through">
+                      <span className="font-poppins font-medium text-[14px] leading-[21px] text-black/60 line-through">
                         ${tour.originalPrice}
                       </span>
                     )}

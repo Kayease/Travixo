@@ -277,7 +277,7 @@ export const Footer = () => {
         {/* Main Content Grid */}
         <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-0 relative">
           {/* Columns Container */}
-          <div className="flex flex-col md:flex-row lg:flex-row gap-10 md:gap-12 lg:gap-[134px]">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-10 md:gap-12 lg:gap-12 xl:gap-[134px]">
             {/* Company Column */}
             <div className="flex flex-col">
               <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">
@@ -344,7 +344,7 @@ export const Footer = () => {
           </div>
 
           {/* Newsletter Box (Right aligned) */}
-          <div className="lg:absolute lg:right-0 lg:top-0 w-[291px] h-[145px] bg-[#FFFCF5] rounded-[12px] p-[18px] flex flex-col justify-between shadow-lg">
+          <div className="xl:absolute xl:right-0 xl:top-0 w-[291px] h-[145px] bg-[#FFFCF5] rounded-[12px] p-[18px] flex flex-col justify-between shadow-lg mx-auto lg:mx-0">
             <h4 className="font-display italic font-medium text-[18px] leading-[28px] text-[#4B3621] text-center w-full">
               Signup for our latest news & articles
             </h4>

@@ -135,11 +135,11 @@ export const AboutSection = () => {
       style={{ backgroundColor: "#FFFCF5" }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 relative">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-12 xl:gap-24 relative">
           {/* Left Side - Images */}
-          <div className="relative lg:w-[611px] shrink-0">
+          <div className="relative lg:w-[450px] xl:w-[611px] shrink-0">
             {/* Main Image Frame 4 */}
-            <div className="relative w-full h-[500px] md:h-[650px] lg:w-[611px] lg:h-[754px] overflow-hidden shadow-sm">
+            <div className="relative w-full h-[500px] md:h-[650px] lg:w-[450px] lg:h-[600px] xl:w-[611px] xl:h-[754px] overflow-hidden shadow-sm">
               <Image
                 src={gettoknow1Img}
                 alt="Experience Travel"
@@ -153,7 +153,7 @@ export const AboutSection = () => {
 
               {/* 50% Off Text */}
               <div
-                className="absolute left-[418px] top-[93px] hidden lg:block z-10"
+                className="absolute lg:left-[320px] xl:left-[418px] top-[93px] hidden lg:block z-10"
                 style={{
                   width: '103px',
                   height: '37px',
@@ -172,7 +172,7 @@ export const AboutSection = () => {
 
             {/* Overlapping Secondary Image - Frame 27 */}
             <div
-              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[250px] lg:-translate-x-0 w-[280px] md:w-[350px] lg:w-[401px] h-[180px] md:h-[220px] lg:h-[242px] z-20 overflow-hidden"
+              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[150px] xl:left-[250px] lg:-translate-x-0 w-[280px] md:w-[350px] lg:w-[320px] xl:w-[401px] h-[180px] md:h-[220px] lg:h-[200px] xl:h-[242px] z-20 overflow-hidden"
               style={{
                 boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.1)',
                 borderRadius: '32px',
@@ -183,7 +183,7 @@ export const AboutSection = () => {
                 alt="Beach View"
                 fill
                 className="object-cover scale-110"
-                sizes="(max-width: 768px) 280px, (max-width: 1024px) 350px, 401px"
+                sizes="(max-width: 768px) 280px, (max-width: 1024px) 350px, (max-width: 1280px) 320px, 401px"
               />
             </div>
           </div>
@@ -260,14 +260,16 @@ export const AboutSection = () => {
             </div>
 
             {/* CTA Button - Component 1 */}
-            <Link href="/destinations" className="inline-block">
-              <button className="w-[244px] h-[50px] bg-white border border-[#FF6E00] rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer shadow-sm">
-                <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-                  Explore More
-                </span>
-              </button>
-            </Link>
+            <div className="flex justify-center xl:justify-start">
+              <Link href="/destinations" className="inline-block">
+                <button className="w-[244px] h-[50px] bg-white border border-[#FF6E00] rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer shadow-sm">
+                  <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                    Explore More
+                  </span>
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

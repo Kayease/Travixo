@@ -161,7 +161,7 @@ export const ServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap justify-center gap-8 lg:gap-[40px] xl:gap-[90px]">
+        <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap justify-center items-center gap-8 lg:gap-[40px] xl:gap-[90px]">
           {SERVICES.map((service) => (
             <ServiceCard
               key={service.id}

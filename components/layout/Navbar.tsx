@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/context/CartContext";
+import { useWishlist } from "@/app/context/WishlistContext";
 
 /* ============================================
    Type Definitions
@@ -361,6 +362,28 @@ const CartIcon = () => (
 );
 
 /**
+ * WishlistIcon Component
+ * SVG icon for wishlist/favorites
+ */
+const WishlistIcon = () => (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="cursor-pointer hover:opacity-70 transition-opacity"
+  >
+    <path
+      d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z"
+      stroke="#4B3621"
+      strokeWidth="2"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+/**
  * ProfileIcon Component
  * SVG icon for user profile
  */
@@ -400,12 +423,35 @@ export const Navbar = () => {
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   const [isPagesOpen, setIsPagesOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
+  const [isMobilePagesExpanded, setIsMobilePagesExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchBarRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const { cartItems } = useCart();
+  const { wishlistItems } = useWishlist();
+
+  // Close everything when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsDestinationOpen(false);
+    setIsPagesOpen(false);
+    setIsSearchOpen(false);
+    setIsMobilePagesExpanded(false);
+    setExpandedCountry(null);
+  }, [router]);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileMenuOpen]);
 
   // Close dropdowns and search when clicking outside
   useEffect(() => {
@@ -479,166 +525,373 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="w-full sticky top-0 z-[100] bg-[#FFFCF5] transition-all duration-300 shadow-sm">
-      {/* Main Navbar Container */}
-      <nav className="w-full flex items-center justify-between px-4 md:px-10 lg:px-20 h-[60px] transition-all duration-300">
-        {/* Logo Section */}
-        <Link
-          href="/"
-          className="relative w-[120px] md:w-[150px] h-[40px] md:h-[50px] cursor-pointer"
-        >
-          <Image
-            src="/images/logo/logo.png"
-            alt="Travixo Logo"
-            fill
-            className="object-contain"
-            sizes="150px"
-            priority
-          />
-        </Link>
-
-        {/* Center Navigation Links */}
-        <div
-          className="flex items-center gap-2 md:gap-[35px]"
-          ref={dropdownRef}
-        >
-          {/* Destination with Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => {
-              setIsDestinationOpen(true);
-              setIsPagesOpen(false);
-            }}
-            onMouseLeave={() => setIsDestinationOpen(false)}
-          >
-            <NavItem
-              label="Destination"
-              hasDropdown
-              isActive={isDestinationOpen}
-              className="cursor-pointer"
-            />
-            <div
-              className={`fixed left-0 right-0 top-[60px] flex justify-center pt-2 z-50 md:absolute md:top-full md:left-0 md:right-auto md:block ${isDestinationOpen ? "" : "pointer-events-none"
-                }`}
-            >
-              <DestinationDropdown
-                isOpen={isDestinationOpen}
-                onClose={() => setIsDestinationOpen(false)}
-              />
-            </div>
-          </div>
-
-          {/* Pages with Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => {
-              setIsPagesOpen(true);
-              setIsDestinationOpen(false);
-            }}
-            onMouseLeave={() => setIsPagesOpen(false)}
-          >
-            <NavItem
-              label="Pages"
-              hasDropdown
-              isActive={isPagesOpen}
-              className="cursor-pointer"
-            />
-            <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 ${isPagesOpen ? "" : "pointer-events-none"
-                }`}
-            >
-              <PagesDropdown
-                isOpen={isPagesOpen}
-                onClose={() => setIsPagesOpen(false)}
-              />
-            </div>
-          </div>
-
-          <NavItem label="Stay" href="/stay" />
-        </div>
-
-        {/* Right Icons Section */}
-        <div className="flex items-center gap-3 md:gap-6">
-          <div
-            className="cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
-            onClick={handleSearchToggle}
-          >
-            <SearchIcon />
-          </div>
-          <Link href="/cart" className="relative cursor-pointer scale-90 md:scale-100">
-            <CartIcon />
-            {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
-                {cartItems.length}
-              </span>
-            )}
-          </Link>
+    <>
+      <header className="fixed top-0 left-0 w-full z-[100] bg-[#FFFCF5] transition-all duration-300 shadow-sm">
+        {/* Main Navbar Container */}
+        <nav className="w-full flex items-center justify-between px-4 md:px-10 lg:px-20 h-[60px] transition-all duration-300">
+          {/* Logo Section */}
           <Link
-            href="/profile"
-            className="cursor-pointer scale-90 md:scale-100"
+            href="/"
+            className="relative w-[120px] md:w-[150px] h-[40px] md:h-[50px] cursor-pointer"
           >
-            <ProfileIcon />
-          </Link>
-        </div>
-      </nav>
-
-      {/* Global Search Overlay Bar */}
-      <div
-        className={`absolute top-[60px] left-0 right-0 z-40 transition-all duration-300 ease-in-out border-b border-[#FF6E00]/20 ${isSearchOpen
-          ? "translate-y-0 opacity-100 visible h-[80px]"
-          : "-translate-y-full opacity-0 invisible h-0"
-          }`}
-        ref={searchBarRef}
-      >
-        <div className="w-full h-full bg-[#FFFCF5] flex items-center justify-center px-4 md:px-10 lg:px-20">
-          <form
-            onSubmit={handleSearchSubmit}
-            className="w-full max-w-[800px] relative"
-          >
-            <input
-              ref={searchInputRef}
-              type="text"
-              placeholder="What are you looking for? (e.g. Paris, Bangkok, Safari...)"
-              className="w-full h-[50px] bg-white border border-[#4B3621]/20 rounded-xl pl-12 pr-4 font-display italic text-lg outline-none focus:border-[#4B3621]/40 shadow-sm transition-all"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+            <Image
+              src="/images/logo/logo.png"
+              alt="Travixo Logo"
+              fill
+              className="object-contain"
+              sizes="150px"
+              priority
             />
-            {!searchQuery && (
-              <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                <SearchIcon />
-              </div>
-            )}
-            {/* Close button inside input area for accessibility */}
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery("")}
-                className="absolute right-12 top-1/2 -translate-y-1/2 text-[#4B3621]/40 hover:text-[#FF6E00]"
-              >
-                Clear
-              </button>
-            )}
-            <button
-              type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FF6E00] text-white px-4 py-1.5 rounded-lg font-display italic text-sm hover:bg-[#E66300] transition-colors"
-            >
-              Search
-            </button>
-          </form>
+          </Link>
 
-          {/* Close Search Button */}
-          <button
-            onClick={() => setIsSearchOpen(false)}
-            className="ml-4 p-2 text-[#4B3621]/60 hover:text-red-500 transition-colors"
-            aria-label="Close search"
+          {/* Center Navigation Links - Hidden on Mobile */}
+          <div
+            className="hidden lg:flex items-center gap-[35px]"
+            ref={dropdownRef}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+            {/* Destination with Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                setIsDestinationOpen(true);
+                setIsPagesOpen(false);
+              }}
+              onMouseLeave={() => setIsDestinationOpen(false)}
+            >
+              <NavItem
+                label="Destination"
+                hasDropdown
+                isActive={isDestinationOpen}
+                className="cursor-pointer"
+              />
+              <div
+                className={`absolute top-full left-0 pt-2 z-50 ${isDestinationOpen ? "" : "pointer-events-none"
+                  }`}
+              >
+                <DestinationDropdown
+                  isOpen={isDestinationOpen}
+                  onClose={() => setIsDestinationOpen(false)}
+                />
+              </div>
+            </div>
+
+            {/* Pages with Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                setIsPagesOpen(true);
+                setIsDestinationOpen(false);
+              }}
+              onMouseLeave={() => setIsPagesOpen(false)}
+            >
+              <NavItem
+                label="Pages"
+                hasDropdown
+                isActive={isPagesOpen}
+                className="cursor-pointer"
+              />
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 ${isPagesOpen ? "" : "pointer-events-none"
+                  }`}
+              >
+                <PagesDropdown
+                  isOpen={isPagesOpen}
+                  onClose={() => setIsPagesOpen(false)}
+                />
+              </div>
+            </div>
+
+            <NavItem label="Stay" href="/stay" />
+          </div>
+
+          {/* Right Icons Section */}
+          <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
+            <div
+              className="cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
+              onClick={handleSearchToggle}
+            >
+              <SearchIcon />
+            </div>
+            <Link href="/cart" className="relative cursor-pointer scale-90 md:scale-100">
+              <CartIcon />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
+                  {cartItems.length}
+                </span>
+              )}
+            </Link>
+
+            {/* Icons shown only on Large Screens */}
+            <div className="hidden lg:flex items-center gap-4 lg:gap-6">
+              <Link href="/wishlist" className="relative cursor-pointer scale-90 md:scale-100">
+                <WishlistIcon />
+                {wishlistItems.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
+                    {wishlistItems.length}
+                  </span>
+                )}
+              </Link>
+              <Link
+                href="/profile"
+                className="cursor-pointer scale-90 md:scale-100"
+              >
+                <ProfileIcon />
+              </Link>
+            </div>
+
+            {/* Hamburger Menu Toggle Button - Mobile Only */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 text-[#4B3621] hover:bg-[#FF6E00]/10 rounded-lg transition-colors"
+              aria-label="Toggle Menu"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d={isMobileMenuOpen ? "M18 6L6 18M6 6L18 18" : "M4 6H20M4 12H20M4 18H20"}
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Menu Overlay */}
+        <div
+          className={`fixed inset-0 bg-black/40 z-[90] backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+
+        {/* Mobile Menu Content Drawer */}
+        <div
+          className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[#FFFCF5] z-[100] lg:hidden transition-transform duration-300 shadow-2xl overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+        >
+          <div className="flex flex-col p-6 h-full">
+            {/* Logo in Menu */}
+            <div className="flex justify-between items-center mb-8 border-b border-black/10 pb-4">
+              <Image
+                src="/images/logo/logo.png"
+                alt="Travixo Logo"
+                width={100}
+                height={33}
+                className="object-contain"
+                style={{ width: 'auto', height: 'auto' }}
+              />
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-1 hover:bg-black/5 rounded-full"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6L6 18M6 6L18 18" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Navigation Items */}
+            <div className="flex flex-col gap-2">
+              <h3 className="text-xs font-bold text-black/40 uppercase px-3 mb-2 mt-2">Destinations</h3>
+
+              <div className="flex flex-col gap-1">
+                {topDestinations.map((country) => {
+                  const hasSubMenu = country !== "View all" && destinationCities[country];
+                  const isExpanded = expandedCountry === country;
+
+                  return (
+                    <div key={country} className="flex flex-col">
+                      {hasSubMenu ? (
+                        <button
+                          onClick={() => setExpandedCountry(isExpanded ? null : country)}
+                          className={`flex items-center justify-between w-full p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00]/10 rounded-lg transition-all ${isExpanded ? "bg-[#FF6E00]/5" : ""}`}
+                        >
+                          <span>{country}</span>
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                          >
+                            <path d="M6 9l6 6 6-6" />
+                          </svg>
+                        </button>
+                      ) : (
+                        <Link
+                          href={country === "View all" ? "/destinations" : "/paris"}
+                          className="p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00] hover:text-white rounded-lg transition-all"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {country}
+                        </Link>
+                      )}
+
+                      {/* Submenu for Cities */}
+                      {hasSubMenu && (
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[300px] opacity-100 mb-2" : "max-h-0 opacity-0"}`}
+                        >
+                          <div className="flex flex-col gap-1 pl-6 pt-1">
+                            {destinationCities[country].map((city) => (
+                              <Link
+                                key={city.name}
+                                href="/paris"
+                                className="flex items-center gap-3 p-2 font-display italic text-base text-[#4B3621]/80 hover:text-brand-orange transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-black/5">
+                                  <Image
+                                    src={city.image}
+                                    alt={city.name}
+                                    fill
+                                    className="object-cover"
+                                    sizes="32px"
+                                  />
+                                </div>
+                                {city.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="border-b border-black/5 my-2" />
+              <h3 className="text-xs font-bold text-black/40 uppercase px-3 mb-2">Activities</h3>
+              <Link
+                href="/stay"
+                className="p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00] hover:text-white rounded-lg transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Stay
+              </Link>
+
+              <div className="border-b border-black/5 my-2" />
+              <h3 className="text-xs font-bold text-black/40 uppercase px-3 mb-2">More</h3>
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setIsMobilePagesExpanded(!isMobilePagesExpanded)}
+                  className={`flex items-center justify-between w-full p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00]/10 rounded-lg transition-all ${isMobilePagesExpanded ? "bg-[#FF6E00]/5" : ""}`}
+                >
+                  <span>Pages</span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`transition-transform duration-300 ${isMobilePagesExpanded ? "rotate-180" : ""}`}
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isMobilePagesExpanded ? "max-h-[800px] opacity-100 mb-2" : "max-h-0 opacity-0"}`}
+                >
+                  <div className="flex flex-col gap-1 pl-6 pt-1">
+                    {[...pagesColumn1, ...pagesColumn2, ...pagesColumn3].map((page) => (
+                      <Link
+                        key={page.label}
+                        href={page.href}
+                        className="flex items-center gap-3 p-3 font-display italic text-base text-[#4B3621]/80 hover:text-brand-orange transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {page.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-b border-black/5 my-2" />
+              <div className="flex flex-col gap-2 pt-2">
+                <Link
+                  href="/wishlist"
+                  className="flex items-center gap-3 p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00] hover:text-white rounded-lg transition-all"
+                >
+                  <WishlistIcon /> Wishlist ({wishlistItems.length})
+                </Link>
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-3 p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00] hover:text-white rounded-lg transition-all"
+                >
+                  <ProfileIcon /> Profile
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
+        {/* Global Search Overlay Bar */}
+        <div
+          className={`absolute top-[60px] left-0 right-0 z-40 transition-all duration-300 ease-in-out border-b border-[#FF6E00]/20 ${isSearchOpen
+            ? "translate-y-0 opacity-100 visible h-[80px]"
+            : "-translate-y-full opacity-0 invisible h-0"
+            }`}
+          ref={searchBarRef}
+        >
+          <div className="w-full h-full bg-[#FFFCF5] flex items-center justify-center px-4 md:px-10 lg:px-20">
+            <form
+              onSubmit={handleSearchSubmit}
+              className="w-full max-w-[800px] relative"
+            >
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="What are you looking for? (e.g. Paris, Bangkok, Safari...)"
+                className="w-full h-[50px] bg-white border border-[#4B3621]/20 rounded-xl pl-12 pr-4 font-display italic text-lg outline-none focus:border-[#4B3621]/40 shadow-sm transition-all"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {!searchQuery && (
+                <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                  <SearchIcon />
+                </div>
+              )}
+              {/* Close button inside input area for accessibility */}
+
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FF6E00] text-white px-4 py-1.5 rounded-lg font-display italic text-sm hover:bg-[#E66300] transition-colors"
+              >
+                Search
+              </button>
+            </form>
+
+            {/* Close Search Button */}
+            <button
+              onClick={() => setIsSearchOpen(false)}
+              className="ml-4 p-2 text-[#4B3621]/60 hover:text-red-500 transition-colors"
+              aria-label="Close search"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+      {/* Spacer to push content down below fixed header */}
+      <div className="h-[60px]" aria-hidden="true" />
+    </>
   );
 };
 

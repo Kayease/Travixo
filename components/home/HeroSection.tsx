@@ -128,7 +128,7 @@ export const HeroSection = () => {
 
   return (
     <section
-      className="relative w-full h-screen"
+      className="relative w-full h-screen lg:h-[120vh]"
       style={{
         backgroundColor: "#FFF7E5",
         backgroundImage: "url('/images/home/Desktop43.png')",
@@ -142,14 +142,14 @@ export const HeroSection = () => {
         {/* ========== Pendulum Discount Badge ========== */}
         <div
           ref={pendulumRef}
-          className="absolute top-0 right-[5%] md:right-[10%] lg:right-[15%] z-50 flex flex-col items-center"
+          className="absolute top-0 right-[2%] md:right-[1%] lg:right-[8%] z-50 flex flex-col items-center"
           onMouseMove={handlePendulumMouseMove}
           onMouseEnter={handlePendulumMouseEnter}
           onMouseLeave={handlePendulumMouseLeave}
         >
           {/* For responsive, position from right. No transition while swinging so physics runs every frame. */}
           <div
-            className="absolute top-0 right-[60px] md:right-[80px] lg:right-[120px] flex flex-col items-center cursor-pointer scale-[0.6] origin-top-right md:scale-100"
+            className="absolute top-0 right-[40px] md:right-[50px] lg:right-[60px] flex flex-col items-center cursor-pointer scale-[0.6] origin-top-right md:scale-[0.8] lg:scale-100"
             style={{
               transformOrigin: "top center",
               transform: `rotate(${pendulumRotation}deg)`,
@@ -166,17 +166,17 @@ export const HeroSection = () => {
             />
             {/* Badge Circle - 150px diameter */}
             <div
-              className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px] lg:w-[150px] lg:h-[150px] rounded-full flex flex-col items-center justify-center text-white"
+              className="relative w-[120px] h-[120px] md:w-[130px] md:h-[130px] lg:w-[150px] lg:h-[150px] rounded-full flex flex-col items-center justify-center text-white"
               style={{
                 backgroundColor: "#FF6E00",
                 boxShadow:
                   "0px 0px 20px 2px rgba(255, 110, 0, 0.2), inset 0px 0px 20px 10px rgba(0, 0, 0, 0.25)",
               }}
             >
-              <span className="font-display italic font-normal text-[22px] md:text-[26px] lg:text-[28px] leading-[28px] text-white">
+              <span className="font-display italic font-normal text-[22px] md:text-[24px] lg:text-[28px] leading-[28px] text-white">
                 50% off
               </span>
-              <span className="font-display italic font-normal text-[14px] md:text-[16px] lg:text-[18px] leading-[28px] text-center text-white mt-1">
+              <span className="font-display italic font-normal text-[14px] md:text-[15px] lg:text-[18px] leading-[28px] text-center text-white mt-1">
                 For First
                 <br />
                 Traveller
@@ -186,19 +186,19 @@ export const HeroSection = () => {
         </div>
 
         {/* ========== Main Content Area ========== */}
-        <div className="relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px] max-[932px]:landscape:pt-12 max-[932px]:landscape:px-10 max-[932px]:landscape:pr-[30%]">
+        <div className="relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px] max-[932px]:landscape:pt-8 max-[932px]:landscape:px-10 max-[932px]:landscape:pr-[30%]">
           {/* Main Heading */}
           <h1
-            className="font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px] max-[932px]:landscape:text-[28px] max-[932px]:landscape:mb-2"
+            className="font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px] max-[932px]:landscape:text-[22px] max-[932px]:landscape:mb-1 max-[932px]:landscape:leading-tight"
             style={{ color: "#4B3621" }}
           >
             Let Travixo Guide You to
-            <br className="hidden sm:block" /> Your Next Adventure
+            <br className="hidden sm:block max-[932px]:landscape:hidden" /> Your Next Adventure
           </h1>
 
           {/* Description */}
           <p
-            className="font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8 max-[932px]:landscape:mt-1 max-[932px]:landscape:text-sm max-[932px]:landscape:leading-relaxed"
+            className="font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8 max-[932px]:landscape:mt-1 max-[932px]:landscape:text-[12px] max-[932px]:landscape:leading-snug"
             style={{ color: "#4B3621" }}
           >
             Discover the soul of Africa through iconic wildlife, breathtaking
@@ -210,7 +210,7 @@ export const HeroSection = () => {
           <button
             type="button"
             onClick={() => router.push("/destinations")}
-            className="relative mt-8 md:mt-10 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group/btn cursor-pointer border border-transparent hover:border-[#FF6E00] max-[932px]:landscape:mt-4 max-[932px]:landscape:scale-90 max-[932px]:landscape:origin-left"
+            className="relative mt-8 md:mt-6 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group/btn cursor-pointer border border-transparent hover:border-[#FF6E00] max-[932px]:landscape:mt-2 max-[932px]:landscape:scale-90 max-[932px]:landscape:origin-left max-[932px]:landscape:text-[14px]"
             style={{
               width: "200px",
               height: "45px",
@@ -229,9 +229,8 @@ export const HeroSection = () => {
 
         {/* ========== Diagonal Image Strip ========== */}
         <div
-          className="absolute left-1/2 z-10"
+          className="absolute left-1/2 z-10 top-[420px] md:top-[480px] lg:top-[530px]"
           style={{
-            top: "420px",
             width: "200%",
             transform: "translateX(-50%) rotate(-8.6deg)",
             transformOrigin: "center center",
@@ -269,9 +268,9 @@ export const HeroSection = () => {
       {/* End clipped area */}
 
       {/* ========== Glassmorphism Search Bar (outside clip so date picker dropdown can show) ========== */}
-      <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] lg:w-[900px] z-10 px-4 md:px-0 overflow-visible max-[932px]:landscape:bottom-4">
+      <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] lg:w-[900px] z-10 px-4 md:px-0 overflow-visible max-[932px]:landscape:bottom-2">
         <div
-          className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0 overflow-visible max-[932px]:landscape:flex-row max-[932px]:landscape:h-[70px] max-[932px]:landscape:gap-0 max-[932px]:landscape:p-0"
+          className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0 overflow-visible max-[932px]:landscape:flex-row max-[932px]:landscape:h-[50px] max-[932px]:landscape:gap-0 max-[932px]:landscape:p-0"
           style={{
             width: "100%",
             maxWidth: "900px",
@@ -422,7 +421,7 @@ export const HeroSection = () => {
           }
         }
         .animate-scroll-infinite {
-          animation: scroll-infinite 30s linear infinite;
+          animation: scroll-infinite 12s linear infinite;
         }
       `}</style>
     </section>

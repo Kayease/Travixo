@@ -65,6 +65,7 @@ const RoomHeroSection: React.FC = () => {
               fill
               className="object-cover"
               sizes="295px"
+              priority
             />
           </div>
 
@@ -84,6 +85,7 @@ const RoomHeroSection: React.FC = () => {
               fill
               className="object-cover"
               sizes="551px"
+              priority
             />
           </div>
 
@@ -103,6 +105,7 @@ const RoomHeroSection: React.FC = () => {
               fill
               className="object-cover"
               sizes="551px"
+              priority
             />
           </div>
         </div>
@@ -133,6 +136,7 @@ const RoomHeroSection: React.FC = () => {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 50vw, 350px"
+                priority
               />
             </div>
 
@@ -146,6 +150,7 @@ const RoomHeroSection: React.FC = () => {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 168px"
+                  priority
                 />
               </div>
 
@@ -157,6 +162,7 @@ const RoomHeroSection: React.FC = () => {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 168px"
+                  priority
                 />
               </div>
             </div>

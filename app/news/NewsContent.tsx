@@ -112,7 +112,7 @@ const FeaturedArticleCard: React.FC<typeof FEATURED_ARTICLE> = ({
 }) => {
   return (
     <div className="group">
-      <div className="relative bg-white border border-brand-brown/20 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300">
+      <div className="relative bg-white border border-brand-brown/20 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 ">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Image */}
           <div className="relative h-[300px] lg:h-[450px]">

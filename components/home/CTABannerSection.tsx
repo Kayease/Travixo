@@ -47,9 +47,9 @@ export const CTABannerSection = ({
     <section className="relative w-full py-12 lg:py-16 bg-white overflow">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         {/* Container with relative positioning for the image */}
-        <div className="relative ml-0 lg:ml-[80px]">
+        <div className="relative ml-0">
           {/* Traveler Image - Positioned to overlap */}
-          <div className="hidden md:block absolute -left-[40px] -top-[135px] w-[232px] h-[334px] z-10">
+          <div className="hidden md:block absolute left-[80px] -top-[135px] w-[232px] h-[334px] z-10">
             <Image
               src="/images/home/cta/cta-banner.png"
               alt="Travel expert"
@@ -62,16 +62,17 @@ export const CTABannerSection = ({
 
           {/* CTA Card */}
           <div
-            className="relative py-10 md:py-12 px-6 md:px-8 lg:px-12 w-full max-w-7xl mx-auto"
+            className="relative py-10 md:py-12 px-6 md:px-8 lg:px-12 w-full max-w-[1280px] mx-auto"
             style={{
               minHeight: "200px",
-              backgroundColor: "#FFF7E5",
-              backgroundSize: "cover",
-              boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+              backgroundImage: "url('/images/home/cta/bg.png')",
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
               borderRadius: "12px",
             }}
           >
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[200px]">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[320px]">
               {/* Content */}
               <div className="flex-1">
                 {/* Title */}

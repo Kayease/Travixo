@@ -11,6 +11,7 @@ const PlaneIcon = () => (
     alt="Plane Icon"
     width={30}
     height={30}
+    style={{ width: "auto", height: "auto" }}
   />
 );
 
@@ -23,6 +24,7 @@ const TentIcon = () => (
     alt="Tent Icon"
     width={30}
     height={30}
+    style={{ width: "auto", height: "auto" }}
   />
 );
 
@@ -35,6 +37,7 @@ const SailboatIcon = () => (
     alt="Sailboat Icon"
     width={30}
     height={30}
+    style={{ width: "auto", height: "auto" }}
   />
 );
 
@@ -47,6 +50,7 @@ const BalloonIcon = () => (
     alt="Balloon Icon"
     width={30}
     height={30}
+    style={{ width: "auto", height: "auto" }}
   />
 );
 

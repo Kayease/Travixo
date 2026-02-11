@@ -24,15 +24,13 @@ export const BlogDetailContent: React.FC = () => {
         {/* Back to Blog - Frame 338 */}
         <Link
           href={backLink}
-          className="flex lg:absolute items-center gap-2 group px-5 lg:px-0 py-6 lg:py-0"
+          className="flex lg:absolute items-center gap-2 group px-5 lg:px-0 py-2 lg:py-0"
           style={{
             left: "297px",
             top: "52px",
-            width: "116px",
-            height: "24px",
           }}
         >
-          <div className="w-6 h-6 flex items-center justify-center">
+          <div className="w-6 h-6 flex items-center justify-center shrink-0">
             <svg
               width="24"
               height="24"
@@ -50,7 +48,7 @@ export const BlogDetailContent: React.FC = () => {
               />
             </svg>
           </div>
-          <span className="font-['Inter'] font-medium text-[14px] leading-[17px] text-[#4B3621] text-center">
+          <span className="font-['Inter'] font-medium text-[14px] leading-[17px] text-[#4B3621] text-center whitespace-nowrap">
             Back to Blog
           </span>
         </Link>
@@ -85,7 +83,7 @@ export const BlogDetailContent: React.FC = () => {
 
         {/* Featured Video - Desktop 39 */}
         <div
-          className="relative lg:absolute mx-auto mt-12 lg:mt-0 rounded-xl overflow-hidden shadow-sm"
+          className="lg:absolute mx-auto mt-6 lg:mt-0 rounded-xl overflow-hidden shadow-sm"
           style={{
             width: "min(1280px, 95%)",
             height: "auto",
@@ -111,7 +109,7 @@ export const BlogDetailContent: React.FC = () => {
 
         {/* Main Detailed Content */}
         <div
-          className="px-5 lg:px-0 lg:absolute mt-12 lg:mt-0"
+          className="px-5 lg:px-0 lg:absolute mt-6 lg:mt-0"
           style={{
             left: "297px",
             top: "996px",

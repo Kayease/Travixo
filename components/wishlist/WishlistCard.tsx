@@ -124,25 +124,30 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
 
             {/* Discount Badge */}
             {item.discountPercent && (
-              <div className="absolute top-3 left-3 bg-brand-orange px-2 py-0.5 rounded-sm">
-                <span className="font-body font-medium text-sm leading-[21px] text-white">
+              <div className="absolute top-3 left-3 bg-[#FF6E00] px-3 py-1 z-20">
+                <span className="font-body font-bold text-[14px] text-white uppercase tracking-wider">
                   {item.discountPercent}% Off
                 </span>
               </div>
             )}
 
-            {/* Price Bubble */}
-            <div className="absolute bottom-0 right-0 bg-white px-2 py-2.5 rounded-[100px_100px_0px_100px] min-w-[102px]">
-              <div className="flex items-center gap-1">
-                <span className="font-body font-medium text-lg leading-[27px] text-brand-orange">
-                  ${item.price}
+            {/* Price Bubble (Frame 53) */}
+            <div
+              className="absolute bottom-0 right-0 bg-white shadow-sm z-10 flex items-center justify-center gap-2"
+              style={{
+                width: '102px',
+                height: '47px',
+                borderRadius: '100px 100px 0px 100px'
+              }}
+            >
+              <span className="font-body font-medium text-[18px] leading-[27px] text-[#FF6E00]">
+                ${item.price}
+              </span>
+              {item.originalPrice && (
+                <span className="font-body font-medium text-[14px] leading-[21px] text-black/60 line-through">
+                  ${item.originalPrice}
                 </span>
-                {item.originalPrice && (
-                  <span className="font-body font-medium text-sm leading-[21px] text-brand-brown/60 line-through">
-                    ${item.originalPrice}
-                  </span>
-                )}
-              </div>
+              )}
             </div>
 
             {/* Action Buttons - Heart & Cart */}

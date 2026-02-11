@@ -191,7 +191,7 @@ const CustomerReviewsSection: React.FC = () => {
         {/* ============================================
             Header - Title & Write Review Button
         ============================================ */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 md:mb-8 max-w-[769px]">
+        <div className="flex flex-row items-center justify-between sm:justify-start gap-4 mb-6 md:mb-8 max-w-[769px]">
           <h2 className="font-display text-xl md:text-[28px] italic font-semibold leading-[30px] md:leading-[37px] text-[#4B3621]">
             Customer reviews
           </h2>

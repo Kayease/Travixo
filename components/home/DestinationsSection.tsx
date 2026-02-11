@@ -166,6 +166,7 @@ const DestinationCard = ({
 export const DestinationsSection = () => {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isManualScrolling = useRef(false);
   const [isHovering, setIsHovering] = React.useState(false);
 
   // Auto-scroll logic using requestAnimationFrame for maximum smoothness
@@ -179,7 +180,7 @@ export const DestinationsSection = () => {
       const deltaTime = time - lastTime;
       lastTime = time;
 
-      if (!isHovering && scrollRef.current) {
+      if (!isHovering && !isManualScrolling.current && scrollRef.current) {
         scrollRef.current.scrollLeft += 1;
 
         // Midpoint of the duplicated items - assuming content is duplicated once
@@ -194,6 +195,18 @@ export const DestinationsSection = () => {
     animationFrameId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animationFrameId);
   }, [isHovering]);
+
+  const handleManualScroll = (offset: number) => {
+    if (scrollRef.current) {
+      isManualScrolling.current = true;
+      scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
+
+      // Resume auto-scroll after animation completes (approx 500ms)
+      setTimeout(() => {
+        isManualScrolling.current = false;
+      }, 500);
+    }
+  };
 
 
 
@@ -244,13 +257,60 @@ export const DestinationsSection = () => {
                 Discover More
               </span>
             </button>
+
+
           </div>
 
           {/* Right Content */}
-          <div className="flex-1 pt-8 lg:pt-[52px] overflow-hidden">
+          <div className="flex-1 pt-8 lg:pt-[52px] overflow-hidden lg:pr-[60px] relative px-4">
+            {/* Left Navigation Button */}
+            <button
+              onClick={() => handleManualScroll(-450)}
+              className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/80 border border-brand-orange text-brand-orange flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-md backdrop-blur-sm"
+              aria-label="Previous slide"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 19L8 12L15 5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
+            {/* Right Navigation Button */}
+            <button
+              onClick={() => handleManualScroll(450)}
+              className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/80 border border-brand-orange text-brand-orange flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-md backdrop-blur-sm"
+              aria-label="Next slide"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 5L16 12L9 19"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
             <div
               ref={scrollRef}
-              className="flex gap-8 overflow-x-hidden pb-8 pr-8 select-none"
+              className="flex gap-8 overflow-x-hidden pb-8 pr-8 pl-4 lg:pl-[120px] select-none"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",

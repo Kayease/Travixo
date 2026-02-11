@@ -50,13 +50,13 @@ const ExperienceCard = ({
 }) => (
   <div className={`flex flex-col items-center ${offset ? "lg:mt-8" : ""}`}>
     {/* Image Container */}
-    <div className="relative w-[320px] md:w-[380px] lg:w-[405px] h-[400px] md:h-[450px] lg:h-[500px] rounded-xl overflow-hidden shadow-lg">
+    <div className="relative w-[320px] md:w-[380px] lg:w-[300px] xl:w-[405px] h-[400px] md:h-[450px] lg:h-[400px] xl:h-[500px] rounded-xl overflow-hidden shadow-lg">
       <Image
         src={image}
         alt={title}
         fill
         className="object-cover"
-        sizes="(max-width: 768px) 320px, (max-width: 1024px) 380px, 405px"
+        sizes="(max-width: 768px) 320px, (max-width: 1024px) 380px, (max-width: 1280px) 300px, 405px"
       />
     </div>
 

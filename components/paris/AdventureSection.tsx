@@ -5,7 +5,7 @@ export const AdventureSection = () => {
     <section className="w-full h-[476px] relative overflow-hidden flex justify-center bg-gray-900">
       {/* Background Video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-fill opacity-80"
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
         autoPlay
         loop
         muted
