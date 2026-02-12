@@ -123,7 +123,7 @@ const DestinationCard = ({
 
     {/* Orange hover: hover-bg.png in place of white, in front of image in lower band */}
     <div
-      className="absolute left-0 w-full h-[24px] group-hover:h-[50%] transition-all duration-500 ease-in-out"
+      className="absolute left-0 w-full h-[15px] group-hover:h-[55%] transition-all duration-500 ease-in-out"
       style={{
         top: "var(--overlay-top, 316px)",
         zIndex: 0,
@@ -221,7 +221,10 @@ export const DestinationsSection = () => {
   const handleCardMouseLeave = useCallback(() => setIsHovering(false), []);
 
   // Duplicate the destinations for a seamless visual loop
-  const displayDestinations = useMemo(() => [...DESTINATIONS, ...DESTINATIONS], []);
+  const displayDestinations = useMemo(
+    () => [...DESTINATIONS, ...DESTINATIONS],
+    [],
+  );
 
   return (
     <section
@@ -267,8 +270,6 @@ export const DestinationsSection = () => {
                 Discover More
               </span>
             </button>
-
-
           </div>
 
           {/* Right Content */}
