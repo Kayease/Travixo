@@ -76,7 +76,13 @@ const RoomDetailContentSection: React.FC = () => {
 
           {/* Right Sidebar - Booking Widget */}
           <div className="w-full lg:w-auto">
-            <TourBookingCard price={45} />
+            <TourBookingCard
+              price={45}
+              title="Serenity Suite"
+              image="/images/room_detail/cards/room-1.png"
+              location="Serenity Suite, Travixo"
+              type="room"
+            />
           </div>
         </div>
 

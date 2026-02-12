@@ -305,8 +305,8 @@ export const TestimonialSection = () => {
 
       {/* Mobile Fallback - Simplified */}
       <div className="block xl:hidden w-full px-4 py-8">
-        <div className="bg-[#FFF7E5] rounded-xl p-6 min-h-[400px] flex flex-col justify-center items-center">
-          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-[340px]">
+        <div className="bg-[#FFF7E5] rounded-xl p-6 min-h-[400px] flex flex-col justify-center items-center mobile-testimonial-container">
+          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-[340px] mobile-testimonial-card">
             <div className="flex gap-1 mb-4">
               {[...Array(activeTestimonial.rating)].map((_, i) => (
                 <StarIcon key={i} />
@@ -337,12 +337,12 @@ export const TestimonialSection = () => {
           </div>
 
           {/* Mini avatars for mobile */}
-          <div className="flex gap-2 mt-8 flex-wrap justify-center">
+          <div className="flex gap-2 mt-8 flex-wrap justify-center mobile-avatars-list">
             {TESTIMONIALS_DATA.map((item) => (
               <div
                 key={item.id}
                 onClick={() => setActiveId(item.id)}
-                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer ${activeId === item.id ? 'border-brand-orange' : 'border-transparent'}`}
+                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer transition-all ${activeId === item.id ? 'border-brand-orange scale-110' : 'border-transparent opacity-60 hover:opacity-100'}`}
               >
                 <Image src={item.url} fill sizes="40px" className="object-cover" alt="avatar" />
               </div>
@@ -350,7 +350,53 @@ export const TestimonialSection = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        /* Base stability for all mobile/tablet versions */
+        .mobile-testimonial-card {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 340px;
+        }
+
+        @media (max-width: 450px) and (orientation: portrait) {
+          /* Already handled by base rule, keeping for clarity */
+          .mobile-testimonial-card {
+            min-height: 340px;
+          }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+          .mobile-testimonial-container {
+            flex-direction: row !important;
+            justify-content: center !important;
+            gap: 60px !important;
+            padding: 20px !important;
+            min-height: 320px !important;
+          }
+          .mobile-avatars-list {
+            order: -1;
+            flex-direction: column !important;
+            margin-top: 0 !important;
+            gap: 12px !important;
+          }
+          .mobile-testimonial-card {
+            max-width: 420px !important;
+            min-height: 260px;
+          }
+        }
+
+        /* iPad and Tablet Fix (Portrait & Landscape) */
+        @media (min-width: 768px) and (max-width: 1279px) {
+          .mobile-testimonial-card {
+            min-height: 300px;
+            max-width: 500px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
+
 export default TestimonialSection;

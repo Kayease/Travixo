@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/context/ToastContext";
+import { useCart, CartItem } from "@/app/context/CartContext";
 import { DatePicker } from "@/components/ui/DatePicker";
 
 /**
@@ -19,6 +20,8 @@ interface TourBookingCardProps {
   image?: string;
   location?: string;
   rating?: number;
+  /** Item type in cart */
+  type?: "room" | "experience";
 }
 
 /**
@@ -33,13 +36,45 @@ interface TourBookingCardProps {
 export const TourBookingCard: React.FC<TourBookingCardProps> = ({
   price,
   currency = "$",
-  defaultDate = "2026-01-17",
+  defaultDate,
+  title = "",
+  image = "",
+  location = "",
+  type = "experience",
 }) => {
   const [activeTab, setActiveTab] = useState<"book" | "enquiry">("book");
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(defaultDate || "2026-01-17");
+
+  // Default to today's date in YYYY-MM-DD format
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const [selectedDate, setSelectedDate] = useState(defaultDate || getTodayDate());
   const [isChecking, setIsChecking] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(false);
+
+  const { addToCart } = useCart();
+
+  // Mock list of fully booked dates (red dates)
+  const bookedDates = [
+    "2026-02-03",
+    "2026-02-14",
+    "2026-02-15",
+    "2026-02-25",
+    "2026-03-05",
+    "2026-03-10",
+  ];
+
+  // Reset availability when inputs change
+  useEffect(() => {
+    setIsAvailable(false);
+  }, [selectedDate, adults, children]);
 
   // Enquiry Form State
   const [enquiryData, setEnquiryData] = useState({
@@ -92,14 +127,45 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
   const handleAction = async () => {
     if (activeTab === "book") {
+      // Robust date validation
+      const isInvalidDate = !selectedDate ||
+        selectedDate === "Invalid Date" ||
+        selectedDate.includes("Invalid") ||
+        selectedDate.trim() === "";
+
+      if (isInvalidDate) {
+        showToast("Please select a valid date first.", "warning");
+        setIsAvailable(false); // Force reset
+        return;
+      }
+
       if (adults === 0 && children === 0) {
         showToast("Please select at least one guest.", "warning");
         return;
       }
 
+      if (isAvailable) {
+        // Step 2: Book Now
+        const cartItem: CartItem = {
+          id: `${title}-${Date.now()}`,
+          type: type,
+          title: title,
+          image: image,
+          location: location,
+          dates: selectedDate,
+          amenities: [`${adults} Adults, ${children} Children`],
+          price: price * (adults + children),
+          actionLabel: "Customize",
+        };
+        addToCart(cartItem);
+        router.push("/cart");
+        return;
+      }
+
+      // Step 1: Check Availability
       setIsChecking(true);
       showToast(
-        `Checking availability for ${adults} Adults and ${children} Children on ${selectedDate}...`,
+        `Checking availability for ${selectedDate}...`,
         "info",
       );
 
@@ -108,12 +174,14 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
       setIsChecking(false);
 
-      // Demo: simulated availability (70% chance available)
-      const isAvailable = Math.random() > 0.3;
+      // Simple availability logic: if it's not a "red" date, it's available
+      const isActuallyBooked = bookedDates.includes(selectedDate);
 
-      if (isAvailable) {
+      if (!isActuallyBooked) {
+        setIsAvailable(true);
         showToast("Great news! This experience is available for your selected dates.", "success");
       } else {
+        setIsAvailable(false);
         showToast("Sorry, this experience is fully booked for the selected dates. Please try another date.", "error");
       }
     } else {
@@ -137,8 +205,6 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         phone: "",
         question: "",
       });
-
-      router.push("/contact");
     }
   };
 
@@ -218,8 +284,8 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         <div
           ref={bookRef}
           className={`w-full transition-all duration-500 ease-in-out ${activeTab === "book"
-            ? "opacity-100 translate-x-0 relative z-10"
-            : "opacity-0 -translate-x-10 absolute top-0 left-0 pointer-events-none z-0"
+            ? "opacity-100 translate-x-0 relative z-50"
+            : "opacity-0 -translate-y-4 absolute top-0 left-0 pointer-events-none z-0"
             }`}
         >
           {/* Date Row */}
@@ -235,6 +301,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
                     setSelectedDate(val);
                   }
                 }}
+                bookedDates={bookedDates}
                 variant="transparent"
                 size="sm"
                 align="right"
@@ -302,7 +369,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         <div
           ref={enquiryRef}
           className={`w-full transition-all duration-500 ease-in-out ${activeTab === "enquiry"
-            ? "opacity-100 translate-x-0 relative z-10"
+            ? "opacity-100 translate-x-0 relative z-50"
             : "opacity-0 translate-x-10 absolute top-0 left-0 pointer-events-none z-0"
             }`}
         >
@@ -357,7 +424,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
             }`}
         >
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
-          <span className="relative z-10 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300 flex items-center justify-center gap-2">
+          <span className="relative z-0 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300 flex items-center justify-center gap-2">
             {isChecking ? (
               <>
                 <svg
@@ -388,7 +455,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-4"
                   }`}>
-                  Check Availability
+                  {isAvailable ? "Book Now" : "Check Availability"}
                 </span>
                 <span className={`absolute transition-all duration-500 ease-in-out ${activeTab === "enquiry"
                   ? "opacity-100 translate-y-0"

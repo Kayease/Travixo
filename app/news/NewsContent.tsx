@@ -120,7 +120,6 @@ const FeaturedArticleCard: React.FC<typeof FEATURED_ARTICLE> = ({
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
             />
             <div className="absolute top-4 left-4">
               <span className="bg-brand-orange text-white px-4 py-2 rounded-full font-body font-semibold text-sm">
@@ -227,8 +226,8 @@ export default function NewsContent() {
     selectedCategory === "All"
       ? NEWS_ARTICLES
       : NEWS_ARTICLES.filter(
-          (article) => article.category === selectedCategory,
-        );
+        (article) => article.category === selectedCategory,
+      );
 
   return (
     <>
@@ -269,10 +268,9 @@ export default function NewsContent() {
                   onClick={() => setSelectedCategory(category)}
                   className={`
                     px-6 py-2 rounded-full font-body font-medium text-sm transition-all duration-300 cursor-pointer
-                    ${
-                      selectedCategory === category
-                        ? "bg-brand-orange text-white"
-                        : "bg-[#FFFCF5] text-brand-brown border border-brand-brown/20 hover:border-brand-orange"
+                    ${selectedCategory === category
+                      ? "bg-brand-orange text-white"
+                      : "bg-[#FFFCF5] text-brand-brown border border-brand-brown/20 hover:border-brand-orange"
                     }
                   `}
                 >

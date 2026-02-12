@@ -323,7 +323,6 @@ export const ExploreSection = () => {
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 630px"
-                priority
               />
               {/* Subtle gradient overlay for better text readability if needed */}
               <div className="absolute inset-0 bg-linear-to-t from-brand-brown/10 to-transparent pointer-events-none" />

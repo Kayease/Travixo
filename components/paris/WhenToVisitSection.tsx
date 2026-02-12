@@ -17,8 +17,8 @@ const MONTHS = [
 
 export const WhenToVisitSection = () => {
   return (
-    <section className="w-full bg-[#FFFCF5] py-12 lg:h-[385px] relative overflow-hidden flex justify-center">
-      <div className="w-full max-w-[1440px] h-full relative px-4 flex flex-col items-center">
+    <section className="w-full bg-[#FFFCF5] py-12 lg:py-20 relative overflow-hidden flex justify-center">
+      <div className="w-full max-w-[1440px] px-4 flex flex-col items-center">
         {/* Title */}
         <h2 className="font-display italic font-semibold text-[28px] leading-[37px] text-[#4B3621] mb-4 text-center">
           When to visit Paris

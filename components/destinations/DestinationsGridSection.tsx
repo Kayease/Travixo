@@ -13,9 +13,9 @@ const SAMPLE_DESTINATIONS: DestinationCardProps[] = [
   { id: 4, name: "Thailand", imageUrl: "/images/destinations/cards/Component_71.png", slug: "/paris" },
   { id: 5, name: "India", imageUrl: "/images/destinations/cards/Component_72.png", slug: "/paris" },
   { id: 6, name: "Japan", imageUrl: "/images/destinations/cards/Component_73.png", slug: "/paris" },
-  { id: 7, name: "Italy", imageUrl: "/images/destinations/cards/Component_68.png", slug: "/paris" },
-  { id: 8, name: "Spain", imageUrl: "/images/destinations/cards/Component_69.png", slug: "/paris" },
-  { id: 9, name: "Greece", imageUrl: "/images/destinations/cards/Component_70.png", slug: "/paris" },
+  { id: 7, name: "Italy", imageUrl: "/images/destinations/cards/tour-4.png", slug: "/paris" },
+  { id: 8, name: "Spain", imageUrl: "/images/destinations/cards/tour-6.png", slug: "/paris" },
+  { id: 9, name: "Greece", imageUrl: "/images/destinations/cards/tour-7.png", slug: "/paris" },
 ];
 
 /**

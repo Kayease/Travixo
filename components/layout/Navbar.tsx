@@ -159,7 +159,6 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 298px"
-            priority
           />
           {/* Overlay Content */}
 
@@ -432,6 +431,12 @@ export const Navbar = () => {
   const pathname = usePathname();
   const { cartItems } = useCart();
   const { wishlistItems } = useWishlist();
+  const [mounted, setMounted] = useState(false);
+
+  // Set mounted state
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close everything when route changes
   useEffect(() => {
@@ -444,34 +449,27 @@ export const Navbar = () => {
     setExpandedCountry(null);
   }, [pathname]);
 
+  // Reset mobile menu on resize to desktop to prevent scroll lock being stuck
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMobileMenuOpen]);
+
   // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
-      document.documentElement.style.scrollBehavior = "auto";
     } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      }
-      setTimeout(() => {
-        document.documentElement.style.scrollBehavior = "";
-      }, 0);
+      document.body.style.removeProperty("overflow");
     }
 
     return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
+      document.body.style.removeProperty("overflow");
     };
   }, [isMobileMenuOpen]);
 
@@ -548,7 +546,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-100 bg-[#FFFCF5] transition-all duration-300 shadow-sm">
+      <header className="fixed top-0 left-0 w-full z-[1000] bg-[#FFFCF5] transition-all duration-300 shadow-sm">
         {/* Main Navbar Container */}
         <nav className="w-full flex items-center justify-between px-4 md:px-10 lg:px-20 h-[60px] transition-all duration-300">
           {/* Logo Section */}
@@ -645,7 +643,7 @@ export const Navbar = () => {
             </div>
             <Link href="/cart" className="relative cursor-pointer scale-90 md:scale-100">
               <CartIcon />
-              {cartItems.length > 0 && (
+              {mounted && cartItems.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
                   {cartItems.length}
                 </span>
@@ -656,7 +654,7 @@ export const Navbar = () => {
             <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
               <Link href="/wishlist" className="relative cursor-pointer scale-90 md:scale-100">
                 <WishlistIcon />
-                {wishlistItems.length > 0 && (
+                {mounted && wishlistItems.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
                     {wishlistItems.length}
                   </span>
@@ -697,14 +695,14 @@ export const Navbar = () => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 bg-black/40 z-90 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-            } touch-none`}
+          className={`fixed inset-0 bg-black/40 z-[990] backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           onClick={() => setIsMobileMenuOpen(false)}
         />
 
         {/* Mobile Menu Content Drawer */}
         <div
-          className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[#FFFCF5] z-100 lg:hidden transition-transform duration-300 shadow-2xl overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[#FFFCF5] z-[1000] lg:hidden transition-transform duration-300 shadow-2xl overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
         >
           <div className="flex flex-col p-6 h-full">

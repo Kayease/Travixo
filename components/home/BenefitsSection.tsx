@@ -123,7 +123,7 @@ const StepItem = ({
     {/* Icon and Connector Line */}
     <div className="flex flex-col items-center">
       {/* Icon Container */}
-      <div className="w-[50px] h-[50px] flex items-center justify-center shrink-0 rounded-full border border-brand-orange bg-white z-10 transition-colors duration-300 ease-in-out hover:bg-brand-orange cursor-pointer group/icon shadow-sm">
+      <div className="w-[50px] h-[50px] flex items-center justify-center shrink-0 rounded-full border-[0.5px] border-brand-orange bg-white z-10 transition-colors duration-300 ease-in-out hover:bg-brand-orange cursor-pointer group/icon shadow-sm">
         <div className="transition-all duration-300 group-hover/icon:brightness-0 group-hover/icon:invert">
           {getIcon(icon)}
         </div>

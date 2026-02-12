@@ -10,9 +10,9 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { RoomHeroSection } from "@/components/room";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 const RoomGridSection = dynamic(
   () => import("@/components/room/RoomGridSection"),
@@ -23,7 +23,7 @@ const FavoriteRoomSection = dynamic(
   { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
 );
 const RoomTestimonialSection = dynamic(
-  () => import("@/components/room/RoomTestimonialSection"),
+  () => import("@/components/room/TestimonialSection"),
   { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
 );
 

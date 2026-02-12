@@ -59,16 +59,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${poppins.variable} antialiased overflow-x-hidden max-w-[100vw]`}
+        className={`${playfair.variable} ${poppins.variable} antialiased`}
         suppressHydrationWarning
       >
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-9999 focus:bg-brand-orange focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:text-lg focus:font-display focus:italic focus:shadow-lg"
-        >
-          Skip to main content
-        </a>
-        <div id="main-content" className="w-full overflow-x-hidden">
+        <div id="main-content" className="w-full">
           <ToastProvider>
             <WishlistProvider>
               <CartProvider>{children}</CartProvider>

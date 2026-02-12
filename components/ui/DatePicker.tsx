@@ -22,6 +22,7 @@ interface DatePickerProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   externalTriggerRef?: React.RefObject<HTMLElement>;
+  bookedDates?: string[];
 }
 
 const MONTHS = [
@@ -61,6 +62,7 @@ export const DatePicker = ({
   open,
   onOpenChange,
   externalTriggerRef,
+  bookedDates = [],
 }: DatePickerProps) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -292,6 +294,8 @@ export const DatePicker = ({
     for (let day = 1; day <= daysInMonth; day++) {
       const disabled = isDateDisabled(day);
       const today = isToday(day);
+      const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      const isBooked = bookedDates.includes(dateStr);
 
       let buttonClass = "";
 
@@ -302,11 +306,13 @@ export const DatePicker = ({
           transition-all duration-200 cursor-pointer
           ${disabled
             ? "text-gray-300 cursor-not-allowed"
-            : selected
-              ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
-              : today
-                ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+            : isBooked
+              ? "bg-red-500 text-white shadow-lg shadow-red-500/30"
+              : selected
+                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
+                : today
+                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
           }
         `;
       } else {
@@ -323,11 +329,13 @@ export const DatePicker = ({
           ${isInRange ? "bg-brand-orange/10 !rounded-none" : ""}
           ${disabled
             ? "text-gray-300 cursor-not-allowed"
-            : isSelected
-              ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30 rounded-full" // Force round selection
-              : today && !isInRange
-                ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+            : isBooked
+              ? "bg-red-500 text-white rounded-full shadow-lg shadow-red-500/30"
+              : isSelected
+                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30 rounded-full" // Force round selection
+                : today && !isInRange
+                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
           }
         `;
       }
@@ -388,11 +396,12 @@ export const DatePicker = ({
       {isOpen && (
         <div
           className={`
-            absolute top-full mt-2 z-10002
+            absolute top-full mt-2 z-[1100]
             ${align === "right" ? "right-0" : "left-0"}
             bg-white rounded-2xl shadow-2xl shadow-brand-brown/10
             border border-brand-brown/10 overflow-hidden
             animate-in fade-in slide-in-from-top-2 duration-200
+            iphone-14-pro-max-small-picker
           `}
           style={{ minWidth: size === "sm" ? "260px" : "320px" }}
         >
@@ -581,6 +590,22 @@ export const DatePicker = ({
           )}
         </div>
       )}
+      <style jsx>{`
+        /* iPhone 14 Pro Max Portrait */
+        @media only screen and (min-width: 430px) and (max-width: 430px) and (min-height: 932px) and (max-height: 932px) {
+          .iphone-14-pro-max-small-picker {
+            transform: scale(0.85) !important;
+            transform-origin: top ${align === "right" ? "right" : "left"} !important;
+          }
+        }
+        /* iPhone 14 Pro Max Landscape */
+        @media only screen and (min-width: 932px) and (max-width: 932px) and (min-height: 430px) and (max-height: 430px) {
+          .iphone-14-pro-max-small-picker {
+            transform: scale(0.7) !important;
+            transform-origin: top ${align === "right" ? "right" : "left"} !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

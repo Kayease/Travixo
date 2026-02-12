@@ -101,7 +101,6 @@ export const ExperienceSection = () => {
           fill
           className="object-cover"
           sizes="100vw"
-          priority
         />
 
         {/* Dark Overlay */}

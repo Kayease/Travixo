@@ -264,7 +264,6 @@ const TourDetailPage: React.FC = () => {
                 <TourBookingCard
                   price={tour.price}
                   currency="$"
-                  defaultDate="2026-01-17"
                   title={tour.title}
                   image={tour.images[0]?.url || ""}
                   location={`${tour.city}, ${tour.country}`}
@@ -300,7 +299,6 @@ const TourDetailPage: React.FC = () => {
                 <TourBookingCard
                   price={tour.price}
                   currency="$"
-                  defaultDate="Jan 17, 2026"
                   title={tour.title}
                   image={tour.images[0]?.url || ""}
                   location={`${tour.city}, ${tour.country}`}

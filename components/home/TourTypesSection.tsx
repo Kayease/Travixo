@@ -69,57 +69,32 @@ const TOUR_TYPES = [
     id: 1,
     number: "1",
     title: "Windsurfing",
-    description:
-      "Ride the waves at world-class surf spots with expert instructors guiding every session.",
-    icon: "windsurfing",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: "/images/home/tourtypes/temaki_wind-surfing.png",
   },
   {
     id: 2,
     number: "2",
     title: "Paragliding",
-    description:
-      "Soar above stunning landscapes and feel the rush of free flight over mountains and valleys.",
-    icon: "paragliding",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: "/images/home/tourtypes/material-symbols-light_paragliding-outline.png",
   },
   {
     id: 3,
     number: "3",
     title: "Wildlife",
-    description:
-      "Encounter majestic creatures in their natural habitats on guided safari and wildlife treks.",
-    icon: "wildlife",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: "/images/home/tourtypes/game-icons_deer.png",
   },
   {
     id: 4,
     number: "4",
     title: "Hang Gliding",
-    description:
-      "Experience breathtaking aerial views as you glide peacefully over scenic coastlines and hills.",
-    icon: "hanggliding",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: "/images/home/tourtypes/temaki_hang-gliding.png",
   },
 ];
 
-/**
- * Get icon component by type
- */
-const getIcon = (iconType: string) => {
-  switch (iconType) {
-    case "windsurfing":
-      return <WindsurfingIcon />;
-    case "paragliding":
-      return <ParaglidingIcon />;
-    case "wildlife":
-      return <WildlifeIcon />;
-    case "hanggliding":
-      return <HangGlidingIcon />;
-    default:
-      return <WindsurfingIcon />;
-  }
-};
-
-/**
- * TourTypeCard Component
- */
 const TourTypeCard = ({
   number,
   title,
@@ -131,50 +106,79 @@ const TourTypeCard = ({
   description: string;
   icon: string;
 }) => (
-  <div className="relative w-full max-w-[221px] group cursor-pointer">
-    {/* Number Badge */}
-    <div className="absolute top-0 left-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-brand-orange rounded-full flex items-center justify-center z-20 shadow-md">
-      <span className="font-body font-semibold text-3xl md:text-5xl text-white leading-none">
+  <div className="relative w-[221px] h-[245px] group cursor-pointer shrink-0">
+    {/* Main Card */}
+    <div className="absolute inset-0 bg-white border border-[#FF6E00] rounded-[150px_0px_0px_0px] overflow-hidden">
+      {/* 1. Base Layer (Figma CSS Specs) */}
+      <div className="relative w-full h-full">
+        {/* Icon (top: 36px) */}
+        <div
+          className="absolute left-[calc(50%-42px/2+0.5px)] top-[36px] w-[42px] h-[42px] bg-[#FF6E00]"
+          style={{
+            maskImage: `url(${icon})`,
+            maskSize: "contain",
+            maskRepeat: "no-repeat",
+            maskPosition: "center",
+            WebkitMaskImage: `url(${icon})`,
+            WebkitMaskSize: "contain",
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskPosition: "center",
+          }}
+        />
+
+        {/* Title (top: 96px) */}
+        <h3
+          className="absolute left-[calc(50%-190px/2)] top-[96px] w-[190px] font-display italic font-semibold text-[22px] leading-[29px] text-[#4B3621] text-center whitespace-nowrap"
+        >
+          {title}
+        </h3>
+
+        {/* Description (top: 137px) */}
+        <p
+          className="absolute left-[calc(50%-185px/2)] top-[137px] w-[185px] font-body font-normal text-[16px] leading-[24px] text-[#4B3621] text-center"
+        >
+          {description}
+        </p>
+      </div>
+
+      {/* 2. Hover Layer (Orange BG + White Text + Motion) */}
+      <div className="absolute inset-0 bg-brand-orange z-10 flex flex-col items-center transition-all duration-700 [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)]">
+        {/* Animated White Icon */}
+        <div
+          className="absolute left-[calc(50%-42px/2+0.5px)] top-[36px] w-[42px] h-[42px] bg-white translate-y-[50px] group-hover:translate-y-0 transition-transform duration-700 ease-out"
+          style={{
+            maskImage: `url(${icon})`,
+            maskSize: "contain",
+            maskRepeat: "no-repeat",
+            maskPosition: "center",
+            WebkitMaskImage: `url(${icon})`,
+            WebkitMaskSize: "contain",
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskPosition: "center",
+          }}
+        />
+
+        {/* Title */}
+        <h3 className="absolute left-[calc(50%-190px/2)] top-[96px] w-[190px] font-display italic font-semibold text-[22px] leading-[29px] text-white text-center whitespace-nowrap translate-y-[50px] group-hover:translate-y-0 transition-transform duration-700 ease-out delay-75">
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p className="absolute left-[calc(50%-185px/2)] top-[137px] w-[185px] font-body font-normal text-[16px] leading-[24px] text-white text-center translate-y-[50px] group-hover:translate-y-0 transition-transform duration-700 ease-out delay-100">
+          {description}
+        </p>
+      </div>
+    </div>
+
+    {/* Number Badge - Positioned to overlap the curved top-left corner */}
+    <div className="absolute top-2 left-2 w-[70px] h-[70px] bg-brand-orange rounded-full flex items-center justify-center z-20 shadow-md select-none">
+      <span className="font-body font-semibold text-4xl text-white leading-none">
         {number}
       </span>
     </div>
 
-    {/* Card Content Outer Wrapper */}
-    <div className="relative bg-white border border-brand-orange rounded-tl-[100px] md:rounded-tl-[150px] mt-4 ml-4 overflow-hidden">
-      {/* 1. Base Layer (Static State - Brown Text) */}
-      <div className="relative z-0 flex flex-col items-center pt-12 pb-6 px-4 h-full">
-        <div className="mb-4 transition-opacity duration-300">
-          {getIcon(icon)}
-        </div>
-        <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown text-center mb-3">
-          {title}
-        </h3>
-        <p className="font-body font-normal text-sm md:text-base leading-6 text-brand-brown text-center max-w-[185px] mx-auto">
-          {description}
-        </p>
-      </div>
-
-      {/* 2. Overlay Layer (Hover State - Orange BG + White Text + Motion) */}
-      <div className="absolute inset-0 bg-brand-orange z-10 flex flex-col items-center pt-12 pb-6 px-4 transition-all duration-700 ease-out [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)]">
-        {/* Animated Icon Container */}
-        <div className="mb-4 brightness-0 invert translate-y-[100px] group-hover:translate-y-0 transition-transform duration-700 ease-out">
-          {getIcon(icon)}
-        </div>
-
-        {/* Title Container */}
-        <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-white text-center mb-3 translate-y-[100px] group-hover:translate-y-0 transition-transform duration-700 ease-out delay-75">
-          {title}
-        </h3>
-
-        {/* Description Container */}
-        <p className="font-body font-normal text-sm md:text-base leading-6 text-white text-center max-w-[185px] mx-auto translate-y-[100px] group-hover:translate-y-0 transition-transform duration-700 ease-out delay-100">
-          {description}
-        </p>
-      </div>
-    </div>
-
-    {/* Bottom Border */}
-    <div className="absolute bottom-0 left-4 right-0 h-[2px] bg-brand-orange" />
+    {/* Bottom Border (Frame 42: top 243px) */}
+    <div className="absolute left-0 top-[243px] w-[221px] h-[2px] bg-[#FF6E00] z-20" />
   </div>
 );
 
@@ -186,31 +190,31 @@ const TourTypeCard = ({
 export const TourTypesSection = () => {
   return (
     <section
-      className="relative w-full py-12 lg:py-16"
+      className="relative w-full py-16 lg:py-24"
       style={{ backgroundColor: "#FFFCF5" }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center mb-12 lg:mb-16">
+        <div className="flex flex-col items-center mb-16 lg:mb-20">
           {/* Badge */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl mb-6"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl mb-6 shadow-sm"
             style={{ backgroundColor: "#FF6E00" }}
           >
             <PlaneIcon />
-            <span className="font-display italic font-medium text-sm text-white">
-              SERVICE
+            <span className="font-display italic font-medium text-sm text-white uppercase tracking-wider">
+              Service
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="font-display italic font-semibold text-2xl md:text-[28px] leading-tight md:leading-[37px] text-brand-brown text-center max-w-[338px]">
+          <h2 className="font-display italic font-semibold text-2xl md:text-[32px] leading-tight md:leading-[42px] text-brand-brown text-center max-w-xl">
             Choose Our Tour Types & Enjoy Now
           </h2>
         </div>
 
         {/* Tour Type Cards */}
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12 lg:gap-[75px]">
+        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-14 lg:gap-[80px]">
           {TOUR_TYPES.map((tour) => (
             <TourTypeCard
               key={tour.id}

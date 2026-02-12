@@ -19,6 +19,7 @@ export const HeroSection = () => {
   const [pendulumRotation, setPendulumRotation] = useState(0);
   const pendulumRotationRef = useRef(0); // keep in sync so leave animation starts from current position
   const [isSwinging, setIsSwinging] = useState(false);
+  const lastTouchTime = useRef(0);
   const pendulumRef = useRef<HTMLDivElement>(null);
   const swingRAF = useRef<number | null>(null);
   const swingStartTime = useRef<number>(0);
@@ -66,6 +67,8 @@ export const HeroSection = () => {
    * Handle mouse movement over pendulum area (follow cursor while hovering)
    */
   const handlePendulumMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Ignore mouse events for 500ms after a touch to prevent swing interruption on mobile
+    if (performance.now() - lastTouchTime.current < 500) return;
     if (!pendulumRef.current) return;
     cancelSwing();
 
@@ -119,6 +122,7 @@ export const HeroSection = () => {
 
   /** On mouse enter: stop swing so hover can control again */
   const handlePendulumMouseEnter = () => {
+    if (performance.now() - lastTouchTime.current < 500) return;
     cancelSwing();
   };
 
@@ -142,10 +146,16 @@ export const HeroSection = () => {
         {/* ========== Pendulum Discount Badge ========== */}
         <div
           ref={pendulumRef}
-          className="hero-pendulum absolute top-0 right-[2%] md:right-[1%] lg:right-[8%] z-50 flex flex-col items-center"
+          className="hero-pendulum absolute top-0 right-[2%] md:right-[1%] lg:right-[8%] z-50 flex flex-col items-center cursor-pointer"
           onMouseMove={handlePendulumMouseMove}
           onMouseEnter={handlePendulumMouseEnter}
           onMouseLeave={handlePendulumMouseLeave}
+          onClick={() => handlePendulumMouseLeave()}
+          onTouchStart={() => {
+            lastTouchTime.current = performance.now();
+            cancelSwing();
+          }}
+          onTouchEnd={handlePendulumMouseLeave}
         >
           {/* For responsive, position from right. No transition while swinging so physics runs every frame. */}
           <div
@@ -257,7 +267,6 @@ export const HeroSection = () => {
                     fill
                     className="object-cover"
                     sizes="272px"
-                    priority={index < 5}
                   />
                 </div>
               ),
@@ -431,10 +440,14 @@ export const HeroSection = () => {
             min-height: 100svh;
           }
           .hero-pendulum {
-            display: none;
+            display: flex !important;
+            top: -10px !important;
+            right: 200px !important; 
+            transform: scale(0.6);
+            transform-origin: top right;
           }
           .hero-content {
-            padding-top: 70px;
+            padding-top: 40px;
             padding-right: 38%;
           }
           .hero-heading {
@@ -445,8 +458,8 @@ export const HeroSection = () => {
             display: none;
           }
           .hero-cta {
-            margin-top: 8px;
-            width: 170px;
+            margin-top: 18px;
+            width: 140px;
             height: 40px;
             font-size: 15px;
           }
@@ -481,6 +494,20 @@ export const HeroSection = () => {
           .hero-search-icon {
             width: 22px;
             height: 22px;
+          }
+        }
+
+        /* Hide pendulum on narrow phone portrait screens (iPhone) */
+        @media (max-width: 500px) and (orientation: portrait) {
+          .hero-pendulum {
+            display: none !important;
+          }
+        }
+
+        /* Adjust content spacing for all mobile portrait */
+        @media (max-width: 767px) and (orientation: portrait) {
+          .hero-content {
+            padding-top: 75px !important;
           }
         }
       `}</style>

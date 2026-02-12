@@ -103,7 +103,7 @@ export const ProcessSection = () => {
                       alt=""
                       fill
                       role="presentation"
-                      className="object-contain transition-all duration-300 group-hover:scale-[0.96] group-hover:filter-[brightness(0)_invert(1)_drop-shadow(1px_1px_0_#FF6E00)_drop-shadow(-1px_-1px_0_#FF6E00)_drop-shadow(1px_-1px_0_#FF6E00)_drop-shadow(-1px_1px_0_#FF6E00)_drop-shadow(2px_0_0_#FF6E00)_drop-shadow(-2px_0_0_#FF6E00)_drop-shadow(0_2px_0_#FF6E00)_drop-shadow(0_-2px_0_#FF6E00)]"
+                      className="object-contain transition-all duration-300 group-hover:scale-[0.96] group-hover:filter-[brightness(0)_invert(1)_drop-shadow(0.5px_0_0_#FF6E00)_drop-shadow(-0.5px_0_0_#FF6E00)_drop-shadow(0_0.5px_0_#FF6E00)_drop-shadow(0_-0.5px_0_#FF6E00)]"
                       sizes="(max-width: 1024px) 80px, 95px"
                     />
                   </div>

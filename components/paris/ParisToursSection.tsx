@@ -333,7 +333,7 @@ const ParisTourCard = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20">
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 lg:translate-x-12 lg:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out">
             <button
               onClick={handleAddToWishlist}
               className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
@@ -440,11 +440,11 @@ const ParisTourCard = ({
         </div>
       </div>
 
-      {/* Book Now Button - Shows on Hover */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-50 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out">
+      {/* Book Now Button - Permanent on Mobile/Tablet, Hover on Desktop */}
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-50 lg:opacity-0 lg:translate-y-12 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
         <button
           onClick={handleBookNow}
-          className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 shadow-lg cursor-pointer"
+          className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 shadow-lg lg:shadow-none cursor-pointer"
         >
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
           <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">
@@ -469,7 +469,7 @@ export const ParisToursSection = () => {
         </h2>
 
         {/* Tour Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-16 lg:gap-y-[62px] justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 lg:gap-y-[62px] justify-items-center">
           {PARIS_TOURS.map((tour) => (
             <ParisTourCard
               key={tour.id}
