@@ -331,7 +331,7 @@ const ParisTourCard = ({
     <div className="relative w-full max-w-[418px] group hover:z-50">
       {/* Card Container */}
       <div
-        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg h-full z-10"
+        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg h-full z-20"
         style={{ backgroundColor: "#FFFCF5" }}
       >
         {/* Image Container */}
@@ -480,7 +480,7 @@ const ParisTourCard = ({
       </div>
 
       {/* Book Now Button - Shows on Hover */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out">
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-50 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out">
         <button
           onClick={handleBookNow}
           className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 shadow-lg cursor-pointer"

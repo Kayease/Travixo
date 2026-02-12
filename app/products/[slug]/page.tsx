@@ -206,14 +206,14 @@ const TourDetailPage: React.FC = () => {
         className="w-full py-8 md:py-12"
         style={{ backgroundColor: "#FFFCF5" }}
       >
-        <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+        <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
           {/* Gallery Section - Full Width */}
           <div className="mb-12">
             <TourGallerySection images={tour.images} />
           </div>
 
-          {/* Two Column Layout */}
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          {/* Two Column Layout: Stacks on iPhone/iPad, Side-by-side on Desktop (1280px+) */}
+          <div className="flex flex-col xl:flex-row gap-8 lg:gap-12">
             {/* Left Column - Main Content */}
             <div className="flex-1 min-w-0 space-y-10">
               {/* Overview Section */}
@@ -224,6 +224,19 @@ const TourDetailPage: React.FC = () => {
                 languages={tour.languages}
                 description={tour.description}
               />
+
+              {/* Mobile/Tablet Booking Card: Shown below description on iPhone and iPad */}
+              <div className="xl:hidden my-10">
+                <TourBookingCard
+                  price={tour.price}
+                  currency="$"
+                  defaultDate="2026-01-17"
+                  title={tour.title}
+                  image={tour.images[0]?.url || ""}
+                  location={`${tour.city}, ${tour.country}`}
+                  rating={tour.rating}
+                />
+              </div>
 
               {/* Highlights Section */}
               <TourHighlightsSection highlights={tour.highlights} />
@@ -247,9 +260,9 @@ const TourDetailPage: React.FC = () => {
               />
             </div>
 
-            {/* Right Column - Booking Card (Sticky) */}
-            <div className="lg:w-[467px] shrink-0 h-full relative">
-              <div className="lg:sticky lg:top-28 z-10 self-start">
+            {/* Right Column - Booking Card (Sticky) - Only for Desktop */}
+            <div className="hidden xl:block xl:w-[467px] shrink-0 h-full relative">
+              <div className="xl:sticky xl:top-28 z-10 self-start">
                 <TourBookingCard
                   price={tour.price}
                   currency="$"

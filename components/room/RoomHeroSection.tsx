@@ -20,8 +20,58 @@ const RoomHeroSection: React.FC = () => {
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-0">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-0">
-        {/* Desktop Layout - Absolute Positioning per Figma */}
-        <div className="hidden lg:block relative h-[646px]">
+        {/* iPad Mini Landscape Layout (1024px - 1279px) */}
+        <div className="hidden lg:max-xl:block relative h-[480px]">
+          {/* Section Title */}
+          <h1 className="absolute font-display italic font-semibold text-[28px] leading-[38px] text-[#4B3621] left-[40px] top-[100px] w-[280px]">
+            Where style meets rest
+          </h1>
+
+          {/* Description */}
+          <p className="absolute font-sans font-normal text-base leading-[26px] text-[#4B3621] left-[40px] top-[150px] w-[300px]">
+            Whether you choose a cozy Classic or a spacious Suite, our rooms are
+            made to help you relax and feel at home.
+          </p>
+
+          {/* Frame 490 - Left Tall Image */}
+          <div className="absolute rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] left-[360px] top-[40px] w-[250px] h-[380px]">
+            <Image
+              src="/images/room/cards/hero-1.png"
+              alt="Stylish room"
+              fill
+              className="object-cover"
+              sizes="250px"
+              priority
+            />
+          </div>
+
+          {/* Right Images Column */}
+          <div className="absolute flex flex-col gap-[18px] left-[628px] top-[40px]">
+            <div className="relative rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] w-[360px] h-[181px]">
+              <Image
+                src="/images/room/cards/hero-2.png"
+                alt="Bright room"
+                fill
+                className="object-cover"
+                sizes="360px"
+                priority
+              />
+            </div>
+            <div className="relative rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] w-[360px] h-[181px]">
+              <Image
+                src="/images/room/cards/hero-3.png"
+                alt="Elegant bedroom"
+                fill
+                className="object-cover"
+                sizes="360px"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Main Display (1280px+) */}
+        <div className="hidden xl:block relative h-[646px]">
           {/* Section Title */}
           <h1
             className="absolute font-display italic font-semibold text-[32px] leading-[43px] text-[#4B3621]"

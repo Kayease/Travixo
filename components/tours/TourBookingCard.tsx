@@ -38,7 +38,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
   const [activeTab, setActiveTab] = useState<"book" | "enquiry">("book");
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(defaultDate);
+  const [selectedDate, setSelectedDate] = useState(defaultDate || "2026-01-17");
   const [isChecking, setIsChecking] = useState(false);
 
   // Enquiry Form State
@@ -61,8 +61,12 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
     const measure = () => {
       const activeRef = activeTab === "book" ? bookRef : enquiryRef;
       if (activeRef.current && containerRef.current) {
-        // Measure container height
-        setContentHeight(activeRef.current.scrollHeight);
+        // Measure container height - Only use fixed height on desktop (xl+)
+        if (window.innerWidth >= 1280) {
+          setContentHeight(activeRef.current.scrollHeight);
+        } else {
+          setContentHeight("auto");
+        }
 
         // Measure divider positions
         const items = activeRef.current.querySelectorAll('.booking-row');
@@ -140,8 +144,8 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
   return (
     <aside
-      className="bg-[#FFF7E5] rounded-[12px] w-full lg:w-[467px] relative p-6"
-      style={{ minHeight: "480px" }}
+      className="bg-[#FFF7E5] rounded-[12px] w-full xl:w-[467px] relative p-6"
+      style={{ minHeight: "auto" }}
     >
       {/* Price Section */}
       <div className="flex flex-col mb-8">
@@ -154,7 +158,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
       </div>
 
       {/* Tabs Section */}
-      <div className="flex gap-8 md:gap-20 mb-10 justify-center">
+      <div className="flex gap-12 md:gap-20 mb-10 justify-center">
         <div
           className="relative cursor-pointer"
           onClick={() => setActiveTab("book")}

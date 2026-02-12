@@ -80,14 +80,14 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
   return (
     <div
-      className={`w-[90vw] md:w-[870px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top h-auto md:h-[314px] overflow-hidden ${isOpen
+      className={`w-[90vw] md:w-[870px] lg:max-xl:w-[780px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top h-auto md:h-[314px] overflow-hidden ${isOpen
         ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
         : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
         }`}
     >
       <div className="flex flex-col md:flex-row h-full p-4 overflow-y-auto md:overflow-visible">
         {/* Left Column - Menu Items */}
-        <div className="flex flex-col w-full md:w-[190px] pt-2 mb-4 md:mb-0">
+        <div className="flex flex-col w-full md:w-[190px] lg:max-xl:w-[200px] pt-2 mb-4 md:mb-0">
           {/* Top Destination Header */}
           <div className="bg-[#FF6E00] px-4 py-1.5 rounded-sm mb-1">
             <span className="font-display text-lg italic text-white whitespace-nowrap">
@@ -106,7 +106,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
                 <Link
                   key={index}
                   href={destination === "View all" ? "/destinations" : "/paris"}
-                  className="group relative block text-left px-4 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
+                  className="group relative block text-left px-4 lg:max-xl:px-3 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
                   onClick={onClose}
                   onMouseEnter={() => setHoveredCountry(destination)}
                 >
@@ -121,10 +121,10 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         </div>
 
         {/* Vertical Divider - Hidden on mobile */}
-        <div className="hidden md:block w-px h-[278px] bg-[rgba(0,0,0,0.2)] mx-6 self-center" />
+        <div className="hidden md:block w-px h-[278px] bg-[rgba(0,0,0,0.2)] mx-6 lg:max-xl:mx-4 self-center" />
 
         {/* Middle Column - Featured Destinations with Images */}
-        <div className="flex flex-col gap-3 md:gap-5 pt-2 w-full md:w-[240px] mb-4 md:mb-0">
+        <div className="flex flex-col gap-3 md:gap-5 pt-2 w-full md:w-[240px] lg:max-xl:w-[210px] mb-4 md:mb-0">
           {currentCities.map((destination, index) => {
             return (
               <Link
@@ -153,7 +153,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         </div>
 
         {/* Right Column - Promotional Banner - Hidden on very small screens if needed, or scaled */}
-        <div className="ml-auto relative w-full md:w-[298px] h-[150px] md:h-full rounded-lg overflow-hidden shrink-0">
+        <div className="ml-auto relative w-full md:w-[298px] lg:max-xl:w-[260px] h-[150px] md:h-full rounded-lg overflow-hidden shrink-0">
           <Image
             src="/images/destinations/cards/Travel.png"
             alt="Travel Holiday Promotion"
@@ -301,7 +301,7 @@ const NavItem: React.FC<NavItemProps> = ({
     </>
   );
 
-  const containerClasses = `group relative flex items-center gap-2 px-1 md:px-5 py-1.5 font-display italic text-[15px] md:text-[18px] transition-all overflow-hidden cursor-pointer ${isActive
+  const containerClasses = `group relative flex items-center gap-2 px-1 md:px-5 lg:max-xl:px-3 py-1.5 font-display italic text-[15px] md:text-[18px] transition-all overflow-hidden cursor-pointer shrink-0 ${isActive
     ? "text-white rounded-sm"
     : "text-[#4B3621] hover:text-white rounded-sm"
     } ${className || ""}`;
@@ -447,10 +447,32 @@ export const Navbar = () => {
   // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
+      document.documentElement.style.scrollBehavior = "auto";
     } else {
-      document.body.style.overflow = "unset";
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      }
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = "";
+      }, 0);
     }
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+    };
   }, [isMobileMenuOpen]);
 
   // Close dropdowns and search when clicking outside
@@ -546,7 +568,7 @@ export const Navbar = () => {
 
           {/* Center Navigation Links - Hidden on Mobile */}
           <div
-            className="hidden lg:flex items-center gap-[35px]"
+            className="hidden lg:flex items-center gap-[35px] shrink-0"
             ref={dropdownRef}
           >
             {/* Destination with Dropdown */}
@@ -565,7 +587,7 @@ export const Navbar = () => {
                 className="cursor-pointer"
               />
               <div
-                className={`absolute top-full left-0 pt-2 z-50 ${isDestinationOpen ? "" : "pointer-events-none"
+                className={`absolute top-full left-0 lg:max-xl:-left-32 pt-2 z-50 ${isDestinationOpen ? "" : "pointer-events-none"
                   }`}
               >
                 <DestinationDropdown
@@ -607,7 +629,7 @@ export const Navbar = () => {
           {/* Right Icons Section */}
           <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
             <div
-              className="cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
+              className="hidden lg:flex cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
               onClick={handleSearchToggle}
             >
               <SearchIcon />
@@ -622,7 +644,7 @@ export const Navbar = () => {
             </Link>
 
             {/* Icons shown only on Large Screens */}
-            <div className="hidden lg:flex items-center gap-4 lg:gap-6">
+            <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
               <Link href="/wishlist" className="relative cursor-pointer scale-90 md:scale-100">
                 <WishlistIcon />
                 {wishlistItems.length > 0 && (
@@ -667,7 +689,7 @@ export const Navbar = () => {
         {/* Mobile Menu Overlay */}
         <div
           className={`fixed inset-0 bg-black/40 z-[90] backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
+            } touch-none`}
           onClick={() => setIsMobileMenuOpen(false)}
         />
 
@@ -822,21 +844,7 @@ export const Navbar = () => {
                 </div>
               </div>
 
-              <div className="border-b border-black/5 my-2" />
-              <div className="flex flex-col gap-2 pt-2">
-                <Link
-                  href="/wishlist"
-                  className="flex items-center gap-3 p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00] hover:text-white rounded-lg transition-all"
-                >
-                  <WishlistIcon /> Wishlist ({wishlistItems.length})
-                </Link>
-                <Link
-                  href="/profile"
-                  className="flex items-center gap-3 p-3 font-display italic text-lg text-[#4B3621] hover:bg-[#FF6E00] hover:text-white rounded-lg transition-all"
-                >
-                  <ProfileIcon /> Profile
-                </Link>
-              </div>
+
             </div>
           </div>
         </div>

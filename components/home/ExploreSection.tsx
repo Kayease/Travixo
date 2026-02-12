@@ -187,7 +187,7 @@ export const ExploreSection = () => {
       className="relative w-full py-12"
       style={{ backgroundColor: "#FFFCF5" }}
     >
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-6 xl:px-8">
         {/* Section Title */}
         <h2 className="font-display italic font-semibold text-[22px] md:text-[28px] leading-[37px] text-center text-brand-brown mb-8">
           Explore The World
@@ -239,7 +239,7 @@ export const ExploreSection = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 items-start">
           {/* Left Content - Form */}
           <div className="flex flex-col gap-6">
             {/* Title - smooth change animation */}

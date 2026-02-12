@@ -47,7 +47,7 @@ const VoiceOfDiscoverySection: React.FC<VoiceOfDiscoverySectionProps> = ({
 }) => {
   return (
     <section className="relative w-full bg-[#FFF7E5] py-12 md:py-16 lg:py-20">
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
         {/* Section Header - Centered */}
         <div className="text-center mb-8 md:mb-10 lg:mb-12">
           {/* Title */}

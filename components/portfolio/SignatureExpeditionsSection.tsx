@@ -44,7 +44,7 @@ const SignatureExpeditionsSection: React.FC<SignatureExpeditionsSectionProps> = 
 }) => {
   return (
     <section className="relative w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-[52px]">
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
         {/* Section Title */}
         <h2 className="font-display italic font-semibold text-[24px] md:text-[26px] lg:text-[28px] leading-[30px] md:leading-[35px] lg:leading-[37px] text-brand-brown mb-8 md:mb-10 lg:mb-[69px]">
           Signature Expeditions

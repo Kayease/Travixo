@@ -17,11 +17,11 @@ import Image from "next/image";
 const ImpactStoriesSection: React.FC = () => {
   return (
     <section className="relative w-full bg-[#FFF7E5] py-12 md:py-16 lg:py-[52px]">
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
         {/* Main Content Grid */}
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-16 xl:gap-24">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-10 xl:gap-24">
           {/* Left: Image with Stats Card */}
-          <div className="relative w-full lg:w-[630px] shrink-0">
+          <div className="relative w-full lg:w-[500px] xl:w-[630px] shrink-0">
             {/* Main Image */}
             <div className="relative w-full aspect-630/653 rounded-xl overflow-hidden shadow-[0px_0px_4px_rgba(0,0,0,0.25)]">
               <Image
@@ -34,7 +34,7 @@ const ImpactStoriesSection: React.FC = () => {
             </div>
 
             {/* Stats Card - Overlapping */}
-            <div className="absolute bottom-[-40px] md:bottom-[-50px] right-4 md:right-0 lg:right-[-40px] bg-[#FFFCF5] border border-brand-brown/20 rounded-xl p-4 md:p-5 w-[200px] md:w-[261px] shadow-sm">
+            <div className="absolute bottom-[-40px] md:bottom-[-50px] right-4 md:right-0 lg:right-[-20px] xl:right-[-40px] bg-[#FFFCF5] border border-brand-brown/20 rounded-xl p-4 md:p-5 w-[200px] md:w-[261px] shadow-sm z-10">
               <h3 className="font-display italic font-semibold text-[24px] md:text-[28px] leading-[37px] text-brand-brown mb-2">
                 10,000+
               </h3>

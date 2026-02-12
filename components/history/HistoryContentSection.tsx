@@ -86,11 +86,11 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
 }) => {
   return (
     <section className="relative w-full bg-[#FFFCF5] py-10 md:py-14 lg:py-16">
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
         {/* Top Section: Stats + Milestones */}
-        <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-10 mb-12 md:mb-16">
+        <div className="flex flex-col xl:flex-row xl:items-end gap-8 xl:gap-10 mb-12 md:mb-16">
           {/* Left: Travel Stats Card */}
-          <div className="w-full lg:w-auto shrink-0 flex justify-center">
+          <div className="w-full xl:w-auto shrink-0 flex justify-center">
             <TravelStatsCard
               avgDuration={travelStats.avgDuration}
               favtRegion={travelStats.favtRegion}
@@ -102,7 +102,7 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
           {/* Right: Curated Milestones */}
           <div className="flex-1">
             {/* Section Title */}
-            <h2 className="font-display italic font-semibold text-[24px] md:text-[28px] leading-[30px] text-brand-brown mb-6 md:mb-8 text-center lg:text-left">
+            <h2 className="font-display italic font-semibold text-[24px] md:text-[28px] leading-[30px] text-brand-brown mb-6 md:mb-8 text-center xl:text-left">
               Curated Milestones
             </h2>
 
@@ -125,9 +125,16 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
           </h2>
 
           {/* Scrapbook Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {scrapbook.map((item) => (
-              <ScrapbookCard key={item.id} item={item} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+            {scrapbook.map((item, index) => (
+              <div
+                key={item.id}
+                className={`w-full max-w-[400px] ${index === 2 ? 'md:col-span-2 lg:col-span-1 flex justify-center lg:block' : ''}`}
+              >
+                <div className="w-full">
+                  <ScrapbookCard item={item} />
+                </div>
+              </div>
             ))}
           </div>
         </div>

@@ -72,18 +72,25 @@ const PlaneIcon = () => (
 const DestinationCard = ({
   name,
   image,
+  onMouseEnter,
+  onMouseLeave,
 }: {
   name: string;
   listings: number;
   image: string;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }) => (
   <Link
     href="/paris"
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
     className="shrink-0 relative cursor-pointer group block overflow-hidden transition-all duration-500 ease-in-out hover:shadow-[0px_0px_4px_rgba(255,255,255,0.1)]"
     style={{
       width: "418px",
       height: "657px",
       borderRadius: "400px 400px 0px 300px",
+      clipPath: "inset(0 round 400px 400px 0px 300px)", // Ensures hit area matches visual shape
       border: "1px solid #FF8930",
       backgroundImage: "url('/images/home/destination/initial-bg.png')",
       backgroundSize: "cover",
@@ -181,10 +188,10 @@ export const DestinationsSection = () => {
       lastTime = time;
 
       if (!isHovering && !isManualScrolling.current && scrollRef.current) {
-        scrollRef.current.scrollLeft += 1;
+        // Move at consistent speed regardless of frame rate
+        scrollRef.current.scrollLeft += speed * deltaTime;
 
-        // Midpoint of the duplicated items - assuming content is duplicated once
-        // We need to check if we've scrolled past the first set of items
+        // Reset to start for infinite loop
         if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 2) {
           scrollRef.current.scrollLeft = 0;
         }
@@ -315,8 +322,6 @@ export const DestinationsSection = () => {
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
               }}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
             >
               {displayDestinations.map((destination, idx) => (
                 <DestinationCard
@@ -324,6 +329,8 @@ export const DestinationsSection = () => {
                   name={destination.name}
                   listings={destination.listings}
                   image={destination.image}
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
                 />
               ))}
             </div>

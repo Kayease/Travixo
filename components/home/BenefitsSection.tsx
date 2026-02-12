@@ -165,8 +165,8 @@ export const BenefitsSection = () => {
         backgroundRepeat: "no-repeat"
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-6 xl:px-8">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-20">
           {/* Left Side - Title and Image */}
           <div className="flex-1">
             {/* Label */}
@@ -180,14 +180,14 @@ export const BenefitsSection = () => {
             </h2>
 
             {/* Description */}
-            <p className="font-body font-normal text-base md:text-lg leading-[27px] text-brand-brown mb-8 max-w-[626px]">
+            <p className="font-body font-normal text-base md:text-lg leading-[27px] text-brand-brown mb-8 max-w-[626px] lg:max-w-[480px] xl:max-w-[626px]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam,
             </p>
 
             {/* Image */}
-            <div className="relative w-full max-w-[573px] h-[300px] md:h-[400px] lg:h-[470px] rounded-xl overflow-hidden">
+            <div className="relative w-full max-w-[573px] lg:max-w-[460px] xl:max-w-[573px] h-[300px] md:h-[400px] lg:h-[380px] xl:h-[470px] rounded-xl overflow-hidden">
               <Image
                 src="/images/home/benefits/frame-483.png"
                 alt="Travel planning with map and camera"
@@ -199,7 +199,7 @@ export const BenefitsSection = () => {
           </div>
 
           {/* Right Side - Steps */}
-          <div className="lg:w-[450px] shrink-0">
+          <div className="lg:w-[380px] xl:w-[450px] shrink-0">
             <div className="flex flex-col">
               {STEPS.map((step, index) => (
                 <StepItem

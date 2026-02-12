@@ -19,7 +19,7 @@ const HistoryHeroSection: React.FC = () => {
       aria-labelledby="history-title"
     >
       {/* Content Container */}
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
         {/* Hero Content - Centered */}
         <div className="flex flex-col items-center justify-center py-12 md:py-16 lg:py-[68px] min-h-[200px] md:min-h-[250px] lg:min-h-[285px]">
           {/* Page Title */}

@@ -58,39 +58,39 @@ const blogPosts: BlogPost[] = [
 const Blog2ContentSection: React.FC = () => {
   return (
     <section className="w-full bg-[#FFFCF5] py-[52px]">
-      <div className="max-w-[1440px] mx-auto px-5 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
         {/* Blog Posts Grid */}
         <div className="flex flex-col gap-[12px] mb-[52px]">
           {blogPosts.map((post) => (
             <article
               key={post.id}
-              className="bg-white border border-black/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] rounded-xl w-full max-w-[1280px] min-h-auto lg:min-h-[417px] mx-auto flex flex-col lg:flex-row items-center p-4 lg:px-[18px] gap-6 lg:gap-[18px]"
+              className="bg-white border border-black/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] rounded-xl w-full max-w-[1280px] min-h-auto lg:min-h-[417px] mx-auto flex flex-col lg:flex-row items-center p-4 lg:p-[12px] xl:px-[18px] gap-6 lg:gap-[24px] xl:gap-[18px]"
             >
               {/* Image */}
-              <div className="relative w-full lg:w-[511px] h-[250px] lg:h-[381px] rounded-xl overflow-hidden shrink-0">
+              <div className="relative w-full lg:w-[440px] xl:w-[511px] h-[250px] lg:h-[350px] xl:h-[381px] rounded-xl overflow-hidden shrink-0">
                 <Image
                   src={post.image}
                   alt={post.title}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 511px"
+                  sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 440px, 511px"
                 />
               </div>
 
               {/* Content */}
               <div className="w-full flex-1 flex flex-col justify-center relative min-h-auto lg:min-h-[381px] py-4">
                 {/* Title */}
-                <h2 className="font-display italic font-semibold text-[20px] md:text-[24px] leading-[28px] md:leading-[32px] text-[#4B3621] mb-3 md:mb-[19px]">
+                <h2 className="font-display italic font-semibold text-[20px] md:text-[22px] lg:text-[24px] xl:text-[26px] leading-tight md:leading-[32px] text-[#4B3621] mb-3 md:mb-[15px] xl:mb-[19px]">
                   {post.title}
                 </h2>
 
                 {/* Description */}
-                <p className="font-body font-normal text-sm md:text-[20px] leading-normal lg:leading-[30px] text-[#4B3621] mb-[18px]">
+                <p className="font-body font-normal text-sm md:text-base lg:text-lg xl:text-[20px] leading-relaxed lg:leading-[28px] xl:leading-[30px] text-[#4B3621] mb-[15px] xl:mb-[18px]">
                   {post.description}
                 </p>
 
                 {/* Date */}
-                <p className="font-body font-normal text-base md:text-[18px] leading-[27px] text-[#4B3621] mb-[18px]">
+                <p className="font-body font-normal text-base md:text-[16px] xl:text-[18px] leading-[27px] text-[#4B3621] mb-[15px] xl:mb-[18px]">
                   {post.date}
                 </p>
 

@@ -111,7 +111,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
       </h2>
 
       {/* Tours Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-6">
         {tours.map((tour) => {
           const { isInWishlist, removeFromWishlist } = useWishlist();
           const { cartItems } = useCart();
@@ -145,11 +145,11 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
           return (
             <div key={tour.id} className="group block relative hover:z-50">
               <article
-                className="relative shrink-0 z-10"
+                className="relative flex flex-col z-10 p-4 lg:p-3 xl:p-[18px]"
                 style={{
                   width: "100%",
                   maxWidth: "418px",
-                  height: "530px",
+                  minHeight: "530px",
                   backgroundColor: "#FFFCF5",
                   border: "1px solid rgba(255, 110, 0, 0.2)",
                   borderRadius: "12px",
@@ -157,7 +157,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                 }}
               >
                 {/* Image Container (Frame 51) */}
-                <div className="absolute left-[18px] top-[18px] w-[calc(100%-36px)] h-[283px] overflow-hidden rounded-[12px] group">
+                <div className="relative w-full h-[220px] md:h-[283px] overflow-hidden rounded-[12px] group mb-4">
                   <Link
                     href={`/products/grand-palace-tour`}
                     className="block w-full h-full relative cursor-pointer"
@@ -259,81 +259,67 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                   </div>
                 </div>
 
-                <div className="absolute left-[18px] top-[315px] flex items-center h-[19px]">
+                <div className="flex items-center h-[19px] mb-4">
                   <div className="flex gap-px">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <div key={star} className="relative w-[17px] h-[16px]">
-                        {star <= 4 ? (
-                          <svg
-                            width="17"
-                            height="16"
-                            viewBox="0 0 17 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M8.5 0L10.9706 5.34094L16.8116 6.009L12.4828 9.99844L13.6599 15.75L8.5 12.8638L3.34008 15.75L4.51722 9.99844L0.188358 6.009L6.02931 5.34094L8.5 0Z"
-                              fill="#FF6E00"
-                            />
-                          </svg>
-                        ) : (
-                          <svg
-                            width="17"
-                            height="16"
-                            viewBox="0 0 17 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M8.5 0L10.9706 5.34094L16.8116 6.009L12.4828 9.99844L13.6599 15.75L8.5 12.8638L3.34008 15.75L4.51722 9.99844L0.188358 6.009L6.02931 5.34094L8.5 0Z"
-                              fill="#FF6E00"
-                            />
-                          </svg>
-                        )}
+                        <svg
+                          width="17"
+                          height="16"
+                          viewBox="0 0 17 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8.5 0L10.9706 5.34094L16.8116 6.009L12.4828 9.99844L13.6599 15.75L8.5 12.8638L3.34008 15.75L4.51722 9.99844L0.188358 6.009L6.02931 5.34094L8.5 0Z"
+                            fill={star <= 4 ? "#FF6E00" : "#D1D5DB"}
+                          />
+                        </svg>
                       </div>
                     ))}
                   </div>
 
-                  <span className="ml-[10px] font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
+                  <span className="ml-[10px] font-poppins font-normal text-base lg:text-sm xl:text-[16px] leading-[24px] text-brand-brown">
                     {tour.rating}
                   </span>
 
                   <div className="mx-[8px] w-px h-[16px] bg-[#4B3621]" />
 
-                  <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown">
+                  <span className="font-poppins font-normal text-[16px] leading-[24px] text-brand-brown whitespace-nowrap">
                     ({tour.reviewCount} Reviews)
                   </span>
                 </div>
 
                 {/* Title */}
-                <div className="absolute left-[18px] top-[346px]">
+                <div className="mb-3">
                   <Link href={`/products/grand-palace-tour`} className="cursor-pointer">
-                    <h3 className="font-display italic font-semibold text-[22px] leading-[29px] text-brand-brown line-clamp-1 hover:text-brand-orange transition-colors">
+                    <h3 className="font-display italic font-semibold text-[20px] md:text-[22px] leading-[29px] text-brand-brown line-clamp-1 hover:text-brand-orange transition-colors">
                       {tour.title}
                     </h3>
                   </Link>
                 </div>
 
                 {/* Description */}
-                <div className="absolute left-[18px] top-[387px]">
-                  <p className="font-poppins font-normal text-[14px] leading-[24px] text-[rgba(75,54,33,0.6)] line-clamp-2 w-[382px]">
+                <div className="mb-6">
+                  <p className="font-poppins font-normal text-[14px] leading-[24px] text-[rgba(75,54,33,0.6)] line-clamp-2">
                     {tour.description}
                   </p>
                 </div>
 
                 {/* Separator Line */}
-                <div className="absolute left-[50%] -translate-x-1/2 top-[453px] w-[382px] h-px bg-[rgba(0,0,0,0.2)]" />
+                <div className="w-full h-px bg-[rgba(0,0,0,0.2)] mb-4" />
 
                 {/* Bottom Info Row */}
-                <div className="absolute left-[50%] -translate-x-1/2 top-[471px] flex items-center gap-[38px] w-[333px] h-[24px]">
+                <div className="flex items-center justify-between gap-1 lg:gap-1.5 xl:gap-2 h-auto mb-4">
                   {/* Duration */}
-                  <div className="flex items-center gap-[8px]">
+                  <div className="flex items-center gap-2 lg:gap-1 xl:gap-[8px]">
                     <svg
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 lg:w-4 lg:h-4 xl:w-6 xl:h-6"
                     >
                       <circle
                         cx="12"
@@ -349,19 +335,20 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                         strokeLinecap="round"
                       />
                     </svg>
-                    <span className="font-poppins font-normal text-[14px] leading-[24px] text-brand-brown">
+                    <span className="font-poppins font-normal text-sm lg:text-[12px] xl:text-[14px] leading-[24px] text-brand-brown">
                       {tour.duration}
                     </span>
                   </div>
 
                   {/* Group Size */}
-                  <div className="flex items-center gap-[8px]">
+                  <div className="flex items-center gap-2 lg:gap-1 xl:gap-[8px]">
                     <svg
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 lg:w-4 lg:h-4 xl:w-6 xl:h-6"
                     >
                       <path
                         d="M17 21V19C17 17.9 16.1 17 15 17H9C7.9 17 7 17.9 7 19V21"
@@ -380,16 +367,16 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <span className="font-poppins font-normal text-[14px] leading-[24px] text-brand-brown">
+                    <span className="font-poppins font-normal text-sm lg:text-[12px] xl:text-[14px] leading-[24px] text-brand-brown">
                       {tour.groupSize}
                     </span>
                   </div>
 
                   {/* Location */}
-                  <div className="flex items-center gap-[8px]">
+                  <div className="flex items-center gap-[6px]">
                     <svg
-                      width="24"
-                      height="24"
+                      width="20"
+                      height="20"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -411,7 +398,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <span className="font-poppins font-normal text-[14px] leading-[24px] text-brand-brown line-clamp-1">
+                    <span className="font-poppins font-normal text-sm lg:text-[12px] xl:text-[14px] leading-[24px] text-brand-brown line-clamp-1">
                       {tour.location}
                     </span>
                   </div>
