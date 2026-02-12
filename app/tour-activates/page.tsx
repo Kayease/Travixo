@@ -83,8 +83,8 @@ export default function TourActivitiesPage() {
                 Tour Activities
               </h1>
               <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown max-w-[780px] mx-auto">
-                From underwater adventures to mountain summits, discover exciting
-                activities that make every journey unforgettable.
+                From underwater adventures to mountain summits, discover
+                exciting activities that make every journey unforgettable.
               </p>
             </div>
           </div>

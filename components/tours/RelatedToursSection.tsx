@@ -121,7 +121,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
           };
 
           return (
-            <div key={tour.id} className="group block relative hover:z-50 md:odd:last:col-span-2 md:odd:last:justify-self-center md:odd:last:mt-12 lg:odd:last:col-auto lg:odd:last:justify-self-auto lg:odd:last:mt-0">
+            <div key={tour.id} className="group block relative hover:z-50 pb-[58px] md:odd:last:col-span-2 md:odd:last:justify-self-center md:odd:last:mt-12 lg:odd:last:col-auto lg:odd:last:justify-self-auto lg:odd:last:mt-0">
               <article
                 className="relative flex flex-col z-10 p-4 lg:p-3 xl:p-[18px]"
                 style={{
@@ -393,7 +393,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                 </div>
 
                 {/* Book Now Button - Permanent on Mobile/Tablet, Hover on Desktop */}
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 lg:opacity-0 lg:translate-y-12 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 lg:opacity-0 lg:translate-y-4 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
                   <button
                     onClick={(e) => {
                       e.preventDefault();

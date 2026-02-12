@@ -219,7 +219,8 @@ const ParisTourCard = ({
     }
 
     const priceValue = parseInt(currentPrice.replace(/[^0-9]/g, "")) || 0;
-    const originalPriceValue = parseInt(originalPrice.replace(/[^0-9]/g, "")) || 0;
+    const originalPriceValue =
+      parseInt(originalPrice.replace(/[^0-9]/g, "")) || 0;
     const discountValue = parseInt(discount.replace(/[^0-9]/g, "")) || 0;
 
     const wishlistItem: WishlistItem = {
@@ -287,7 +288,7 @@ const ParisTourCard = ({
   };
 
   return (
-    <div className="relative w-full max-w-[418px] group hover:z-50">
+    <div className="relative w-full max-w-[418px] group hover:z-50 pb-[58px]">
       {/* Card Container */}
       <div
         className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg h-full z-20"
@@ -319,9 +320,9 @@ const ParisTourCard = ({
           <div
             className="absolute bottom-0 right-0 bg-white shadow-sm z-10 flex items-center justify-center gap-2"
             style={{
-              width: '102px',
-              height: '47px',
-              borderRadius: '100px 100px 0px 100px'
+              width: "102px",
+              height: "47px",
+              borderRadius: "100px 100px 0px 100px",
             }}
           >
             <span className="font-body font-medium text-[18px] leading-[27px] text-[#FF6E00]">
@@ -336,22 +337,23 @@ const ParisTourCard = ({
           <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 lg:translate-x-12 lg:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out">
             <button
               onClick={handleAddToWishlist}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
-                }`}
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${
+                isWishlisted ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
+              }`}
               aria-label="Add to wishlist"
             >
               <div
-                className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
-                  ? "bg-white"
-                  : "bg-[#4B3621] group-hover/icon:bg-white"
-                  }`}
+                className={`w-[24px] h-[24px] transition-colors duration-300 ${
+                  isWishlisted
+                    ? "bg-white"
+                    : "bg-[#4B3621] group-hover/icon:bg-white"
+                }`}
                 style={{
                   maskImage: 'url("/images/icons/line-md_heart.png")',
                   maskSize: "contain",
                   maskRepeat: "no-repeat",
                   maskPosition: "center",
-                  WebkitMaskImage:
-                    'url("/images/icons/line-md_heart.png")',
+                  WebkitMaskImage: 'url("/images/icons/line-md_heart.png")',
                   WebkitMaskSize: "contain",
                   WebkitMaskRepeat: "no-repeat",
                   WebkitMaskPosition: "center",
@@ -360,8 +362,9 @@ const ParisTourCard = ({
             </button>
             <button
               onClick={handleAddToCart}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCart ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
-                }`}
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${
+                isInCart ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
+              }`}
               aria-label="Add to cart"
             >
               <div className="relative w-[18px] h-[14px]">
@@ -374,10 +377,11 @@ const ParisTourCard = ({
                 >
                   <path
                     d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
-                    className={`transition-colors duration-300 ${isInCart
-                      ? "fill-white"
-                      : "fill-[#4B3621] group-hover/icon:fill-white"
-                      }`}
+                    className={`transition-colors duration-300 ${
+                      isInCart
+                        ? "fill-white"
+                        : "fill-[#4B3621] group-hover/icon:fill-white"
+                    }`}
                   />
                 </svg>
               </div>
@@ -441,7 +445,7 @@ const ParisTourCard = ({
       </div>
 
       {/* Book Now Button - Permanent on Mobile/Tablet, Hover on Desktop */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-50 lg:opacity-0 lg:translate-y-12 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-50 lg:opacity-0 lg:translate-y-4 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
         <button
           onClick={handleBookNow}
           className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 shadow-lg lg:shadow-none cursor-pointer"
@@ -469,7 +473,7 @@ export const ParisToursSection = () => {
         </h2>
 
         {/* Tour Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 lg:gap-y-[62px] justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 lg:gap-y-8 justify-items-center">
           {PARIS_TOURS.map((tour) => (
             <ParisTourCard
               key={tour.id}

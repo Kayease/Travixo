@@ -102,7 +102,7 @@ const WishlistCard: React.FC<WishlistCardProps> = React.memo(({
   };
 
   return (
-    <div className="relative w-full group hover:z-50">
+    <div className="relative w-full group hover:z-50 pb-[58px]">
       <article className="relative bg-[#FFFCF5] border border-[rgba(255,110,0,0.2)] rounded-xl transition-all duration-300 hover:shadow-lg z-10 h-full">
         {/* Card Inner Container */}
         <div className="p-4 md:p-[18px]">
@@ -274,7 +274,7 @@ const WishlistCard: React.FC<WishlistCardProps> = React.memo(({
         </div>
 
         {/* Hover State - Book Now Button - Slides up from bottom on card hover */}
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-12 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out w-[253px]">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 opacity-0 translate-y-4 transform group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto pointer-events-none transition-all duration-500 ease-out w-[253px]">
           <Link
             href={`/checkout?name=${encodeURIComponent(item.title)}&price=${item.price}&image=${encodeURIComponent(item.image)}`}
             className="flex items-center justify-center w-full h-[50px] bg-white border border-[#FF6E00] rounded-xl shadow-lg relative overflow-hidden group/btn transition-all duration-300 cursor-pointer"

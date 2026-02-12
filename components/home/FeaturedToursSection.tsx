@@ -253,7 +253,7 @@ const TourCard = ({
   };
 
   return (
-    <div className="relative w-full max-w-[418px] group hover:z-50">
+    <div className="relative w-full max-w-[418px] group hover:z-50 pb-[58px]">
       {/* Card Container */}
       <div
         className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg z-10"
@@ -408,7 +408,7 @@ const TourCard = ({
       </div>
 
       {/* Book Now Button - Permanent on Mobile/Tablet, Hover on Desktop */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 lg:opacity-0 lg:translate-y-12 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 lg:opacity-0 lg:translate-y-4 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
         <button
           onClick={handleBookNow}
           className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer shadow-md lg:shadow-none"
@@ -452,7 +452,7 @@ export const FeaturedToursSection = () => {
         </div>
 
         {/* Tour Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8 lg:gap-6 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-8 lg:gap-x-6 lg:gap-y-8 pb-12">
           {TOURS.map((tour) => (
             <div
               key={tour.id}
