@@ -9,5 +9,5 @@ export { default as StayHeroSection } from './StayHeroSection';
 export { default as StayBannerSection } from './StayBannerSection';
 export { default as SuiteSection } from './SuiteSection';
 export { default as StayStatsSection } from './StayStatsSection';
-export { default as TestimonialSection } from './StayTestimonialSection';
+export { TestimonialSection } from "@/components/home/TestimonialSection";
 export { default as StayCommunitySection } from './StayCommunitySection';

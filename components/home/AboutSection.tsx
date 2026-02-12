@@ -138,7 +138,7 @@ export const AboutSection = () => {
 
             {/* Overlapping Secondary Image - Frame 27 */}
             <div
-              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[150px] xl:left-[250px] lg:translate-x-0 w-[240px] md:w-[350px] lg:w-[320px] xl:w-[401px] h-[160px] md:h-[220px] lg:h-[200px] xl:h-[242px] z-20 overflow-hidden"
+              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[150px] xl:left-[250px] lg:translate-x-0 w-[240px] md:w-[350px] lg:w-[320px] xl:w-[401px] h-[160px] md:h-[220px] lg:h-[200px] xl:h-[242px] z-20 overflow-hidden border-[1px] border-[#FF6E00]"
               style={{
                 boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
                 borderRadius: "32px",
@@ -148,7 +148,7 @@ export const AboutSection = () => {
                 src={gettoknow2Img}
                 alt="Beach View"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-center scale-105"
                 sizes="(max-width: 768px) 240px, (max-width: 1024px) 350px, (max-width: 1280px) 320px, 401px"
               />
             </div>

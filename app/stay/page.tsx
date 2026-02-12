@@ -26,7 +26,10 @@ const StayStatsSection = dynamic(
   { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
 );
 const TestimonialSection = dynamic(
-  () => import("@/components/stay/StayTestimonialSection"),
+  () =>
+    import("@/components/home/TestimonialSection").then(
+      (mod) => mod.TestimonialSection
+    ),
   { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
 );
 const StayCommunitySection = dynamic(

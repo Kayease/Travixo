@@ -77,7 +77,9 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   // Early return removed for transition
 
   const currentCities =
-    destinationCities[hoveredCountry] || featuredDestinations;
+    hoveredCountry === "View all"
+      ? []
+      : destinationCities[hoveredCountry] || featuredDestinations;
 
   return (
     <div
@@ -464,12 +466,15 @@ export const Navbar = () => {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("overflow");
     }
 
     return () => {
       document.body.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("overflow");
     };
   }, [isMobileMenuOpen]);
 
@@ -698,6 +703,7 @@ export const Navbar = () => {
           className={`fixed inset-0 bg-black/40 z-[990] backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           onClick={() => setIsMobileMenuOpen(false)}
+          onTouchMove={(e) => isMobileMenuOpen && e.preventDefault()}
         />
 
         {/* Mobile Menu Content Drawer */}

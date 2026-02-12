@@ -14,20 +14,21 @@ const FavoriteRoomSection: React.FC = () => {
   return (
     <section className="relative w-full min-h-[600px] md:min-h-[650px] lg:min-h-[705px]">
       {/* Background Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <Image
           src="/images/room/cards/hero-3.png"
           alt="Luxurious bedroom background"
           fill
-          className="object-cover"
+          className="object-cover scale-105"
           sizes="100vw"
+          priority
         />
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content Container */}
-      <div className="relative w-full max-w-7xl mx-auto px-5 md:px-6 lg:px-20 py-8 md:py-16 lg:py-20">
+      <div className="relative w-full max-w-7xl mx-auto py-8 md:py-16 lg:py-20 my-8 md:my-16 lg:my-20">
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 lg:gap-16">
           {/* ============================================
               Left - Room Card
@@ -39,7 +40,7 @@ const FavoriteRoomSection: React.FC = () => {
                 src="/images/room/cards/room-card-3.png"
                 alt="Special room with golden interior"
                 fill
-                className="object-cover"
+                className="object-cover scale-105"
                 sizes="(max-width: 768px) 100vw, 418px"
               />
             </div>
@@ -94,7 +95,7 @@ const FavoriteRoomSection: React.FC = () => {
           ============================================ */}
           <div className="flex flex-col justify-center text-center lg:text-left">
             {/* Label */}
-            <span className="font-display text-base md:text-lg italic font-semibold text-white mb-3">
+            <span className="font-display text-xl md:text-2xl italic font-semibold text-white mb-2">
               Favorite Room
             </span>
 

@@ -232,11 +232,10 @@ const TourCard: React.FC<TourCardProps> = ({
             {/* Heart / Wishlist Button */}
             <button
               onClick={handleWishlistAction}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${
-                isWishlisted
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted
                   ? "bg-[#FF6E00]"
                   : "bg-white hover:bg-[#FF6E00]"
-              }`}
+                }`}
               aria-label={
                 variant === "wishlist"
                   ? "Remove from wishlist"
@@ -244,11 +243,10 @@ const TourCard: React.FC<TourCardProps> = ({
               }
             >
               <div
-                className={`w-[24px] h-[24px] transition-colors duration-300 ${
-                  isWishlisted
+                className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
                     ? "bg-white"
                     : "bg-[#4B3621] group-hover/icon:bg-white"
-                }`}
+                  }`}
                 style={{
                   maskImage: 'url("/images/icons/line-md_heart.png")',
                   maskSize: "contain",
@@ -265,11 +263,10 @@ const TourCard: React.FC<TourCardProps> = ({
             {/* Cart Button */}
             <button
               onClick={handleCartAction}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${
-                isInCartState
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCartState
                   ? "bg-[#FF6E00]"
                   : "bg-white hover:bg-[#FF6E00]"
-              }`}
+                }`}
               aria-label="Add to cart"
             >
               <div className="relative w-[18px] h-[14px]">
@@ -282,11 +279,10 @@ const TourCard: React.FC<TourCardProps> = ({
                 >
                   <path
                     d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
-                    className={`transition-colors duration-300 ${
-                      isInCartState
+                    className={`transition-colors duration-300 ${isInCartState
                         ? "fill-white"
                         : "fill-[#4B3621] group-hover/icon:fill-white"
-                    }`}
+                      }`}
                   />
                 </svg>
               </div>
