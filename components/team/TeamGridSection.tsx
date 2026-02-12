@@ -124,7 +124,7 @@ export const TeamGridSection: React.FC<TeamGridSectionProps> = ({
                   src={member.imageUrl}
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 387px"
                 />
               </div>

@@ -6,48 +6,101 @@ import { FeaturesBarSection } from "@/components/home/FeaturesBarSection";
 import { Footer } from "@/components/layout/Footer";
 
 const ExploreSection = dynamic(
-  () => import("@/components/home/ExploreSection").then((mod) => mod.ExploreSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/ExploreSection").then(
+      (mod) => mod.ExploreSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const ServicesSection = dynamic(
-  () => import("@/components/home/ServicesSection").then((mod) => mod.ServicesSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/ServicesSection").then(
+      (mod) => mod.ServicesSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const DestinationsSection = dynamic(
-  () => import("@/components/home/DestinationsSection").then((mod) => mod.DestinationsSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/DestinationsSection").then(
+      (mod) => mod.DestinationsSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const ExperienceSection = dynamic(
-  () => import("@/components/home/ExperienceSection").then((mod) => mod.ExperienceSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/ExperienceSection").then(
+      (mod) => mod.ExperienceSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const AboutSection = dynamic(
-  () => import("@/components/home/AboutSection").then((mod) => mod.AboutSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/AboutSection").then((mod) => mod.AboutSection),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const CTABannerSection = dynamic(
-  () => import("@/components/home/CTABannerSection").then((mod) => mod.CTABannerSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/CTABannerSection").then(
+      (mod) => mod.CTABannerSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const TourTypesSection = dynamic(
-  () => import("@/components/home/TourTypesSection").then((mod) => mod.TourTypesSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/TourTypesSection").then(
+      (mod) => mod.TourTypesSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const BenefitsSection = dynamic(
-  () => import("@/components/home/BenefitsSection").then((mod) => mod.BenefitsSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/BenefitsSection").then(
+      (mod) => mod.BenefitsSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const FeaturedToursSection = dynamic(
-  () => import("@/components/home/FeaturedToursSection").then((mod) => mod.FeaturedToursSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/FeaturedToursSection").then(
+      (mod) => mod.FeaturedToursSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const TestimonialSection = dynamic(
-  () => import("@/components/home/TestimonialSection").then((mod) => mod.TestimonialSection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/TestimonialSection").then(
+      (mod) => mod.TestimonialSection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 const CommunitySection = dynamic(
-  () => import("@/components/home/CommunitySection").then((mod) => mod.CommunitySection),
-  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+  () =>
+    import("@/components/home/CommunitySection").then(
+      (mod) => mod.CommunitySection,
+    ),
+  {
+    loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  },
 );
 
 export const metadata: Metadata = {
@@ -76,8 +129,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Travixo — Premium Travel & Tour Booking",
-    description:
-      "Discover breathtaking destinations worldwide with Travixo.",
+    description: "Discover breathtaking destinations worldwide with Travixo.",
     images: ["/og-image.png"],
   },
 };

@@ -43,7 +43,7 @@ export const CTABannerSection = ({
   onButtonClick: _onButtonClick,
 }: CTABannerProps) => {
   return (
-    <section className="relative w-full py-12 lg:py-16 bg-white">
+    <section className="relative w-full py-12 lg:py-36 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         {/* Container with relative positioning for the image */}
         <div className="relative ml-0">
@@ -57,7 +57,6 @@ export const CTABannerSection = ({
               sizes="232px"
             />
           </div>
-
 
           {/* CTA Card */}
           <div

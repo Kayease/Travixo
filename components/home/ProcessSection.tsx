@@ -81,7 +81,7 @@ export const ProcessSection = () => {
                     src={step.image}
                     alt={step.imageAlt}
                     fill
-                    className="object-cover"
+                    className="object-cover object-top"
                     sizes="(max-width: 1024px) 100vw, 640px"
                   />
                 </div>

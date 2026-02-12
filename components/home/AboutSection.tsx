@@ -14,36 +14,21 @@ import gettoknow2Img from "@/public/images/gettoknow/gettoknow-2.png";
  * Plane Icon for the badge
  */
 const PlaneIcon = () => (
-  <Image
-    src={planeIconImg}
-    alt="Plane Icon"
-    width={20}
-    height={20}
-  />
+  <Image src={planeIconImg} alt="Plane Icon" width={20} height={20} />
 );
 
 /**
  * Travel Guide Icon
  */
 const TravelIcon = () => (
-  <Image
-    src={travelIconImg}
-    alt="Travel Guide Icon"
-    width={32}
-    height={32}
-  />
+  <Image src={travelIconImg} alt="Travel Guide Icon" width={32} height={32} />
 );
 
 /**
  * Luggage/Safety Icon
  */
 const LuggageIcon = () => (
-  <Image
-    src={luggageIconImg}
-    alt="Luggage Icon"
-    width={32}
-    height={32}
-  />
+  <Image src={luggageIconImg} alt="Luggage Icon" width={32} height={32} />
 );
 
 /**
@@ -66,13 +51,15 @@ const FEATURES = [
   {
     id: "friendly-guide",
     title: "Friendly Guide",
-    description: "Our certified guides ensure personalized attention and deep local knowledge on every journey.",
+    description:
+      "Our certified guides ensure personalized attention and deep local knowledge on every journey.",
     icon: "travel",
   },
   {
     id: "safety-travel",
     title: "Safety Travel",
-    description: "Travel with confidence knowing every detail is managed with your safety as our top priority.",
+    description:
+      "Travel with confidence knowing every detail is managed with your safety as our top priority.",
     icon: "luggage",
   },
 ];
@@ -127,22 +114,22 @@ export const AboutSection = () => {
                 src={gettoknow1Img}
                 alt="Experience Travel"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 1024px) 100vw, 611px"
               />
               {/* 50% Off Text */}
               <div
                 className="absolute lg:left-[320px] xl:left-[418px] top-[93px] hidden lg:block z-10"
                 style={{
-                  width: '103px',
-                  height: '37px',
+                  width: "103px",
+                  height: "37px",
                   fontFamily: "'Playfair Display', serif",
-                  fontStyle: 'italic',
+                  fontStyle: "italic",
                   fontWeight: 800,
-                  fontSize: '28px',
-                  lineHeight: '37px',
-                  color: '#FFFFFF',
-                  textAlign: 'center'
+                  fontSize: "28px",
+                  lineHeight: "37px",
+                  color: "#FFFFFF",
+                  textAlign: "center",
                 }}
               >
                 50% Off
@@ -153,15 +140,15 @@ export const AboutSection = () => {
             <div
               className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[150px] xl:left-[250px] lg:translate-x-0 w-[240px] md:w-[350px] lg:w-[320px] xl:w-[401px] h-[160px] md:h-[220px] lg:h-[200px] xl:h-[242px] z-20 overflow-hidden"
               style={{
-                boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.1)',
-                borderRadius: '32px',
+                boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
+                borderRadius: "32px",
               }}
             >
               <Image
                 src={gettoknow2Img}
                 alt="Beach View"
                 fill
-                className="object-cover scale-110"
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 240px, (max-width: 1024px) 350px, (max-width: 1280px) 320px, 401px"
               />
             </div>
@@ -189,7 +176,10 @@ export const AboutSection = () => {
 
             {/* Description */}
             <p className="font-body font-medium text-lg leading-[27px] text-brand-brown mb-10 max-w-[607px]">
-              With over a decade of experience, we craft unforgettable journeys that blend adventure with comfort. Our team of passionate travel experts hand-picks every destination, ensuring authentic experiences that create lasting memories.
+              With over a decade of experience, we craft unforgettable journeys
+              that blend adventure with comfort. Our team of passionate travel
+              experts hand-picks every destination, ensuring authentic
+              experiences that create lasting memories.
             </p>
 
             {/* Feature Cards - Frame 28 & 29 */}
@@ -197,13 +187,17 @@ export const AboutSection = () => {
               {FEATURES.map((feature, index) => (
                 <div
                   key={feature.id}
-                  className={`py-8 md:py-10 px-4 group transition-all duration-500 hover:bg-[#FFF9F0] ${index === 0 ? 'border-r border-b border-black/10' : 'border-b border-black/10'}`}
+                  className={`py-8 md:py-10 px-4 group transition-all duration-500 hover:bg-[#FFF9F0] ${index === 0 ? "border-r border-b border-black/10" : "border-b border-black/10"}`}
                 >
                   <div className="flex items-start gap-4">
                     {/* Icon Container - Component 29/30 */}
                     <div className="w-[50px] h-[50px] bg-white border-[0.5px] border-[#FF6E00] rounded-full flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#FF6E00]">
                       <div className="transition-all duration-300 group-hover:brightness-0 group-hover:invert">
-                        {feature.icon === "travel" ? <TravelIcon /> : <LuggageIcon />}
+                        {feature.icon === "travel" ? (
+                          <TravelIcon />
+                        ) : (
+                          <LuggageIcon />
+                        )}
                       </div>
                     </div>
 

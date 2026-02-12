@@ -254,7 +254,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
       {/* Enquiry Header Transition */}
       <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === "enquiry" ? "max-h-20 opacity-100 mb-4" : "max-h-0 opacity-0 mb-0"
+        className={`overflow-hidden transition-all duration-300 ease-out ${activeTab === "enquiry" ? "max-h-20 opacity-100 mb-4" : "max-h-0 opacity-0 mb-0"
           }`}
       >
         <p className="font-display italic font-normal text-[16px] leading-[21px] text-[#4B3621]/80 px-1">
@@ -265,14 +265,14 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
       {/* Rows Container */}
       <div
         ref={containerRef}
-        className="relative transition-all duration-500 ease-in-out"
+        className="relative transition-all duration-300 ease-out"
         style={{ height: contentHeight === "auto" ? "auto" : `${contentHeight}px` }}
       >
         {/* Animated Shared Dividers */}
         {[0, 1, 2, 3].map((idx) => (
           <div
             key={idx}
-            className="absolute left-0 right-0 h-px bg-black/10 transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1)"
+            className="absolute left-0 right-0 h-px bg-black/10 transition-all duration-300 ease-out"
             style={{
               top: `${linePositions[idx] || 0}px`,
               opacity: lineOpacities[idx] ?? 0,
@@ -283,9 +283,9 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
         <div
           ref={bookRef}
-          className={`w-full transition-all duration-500 ease-in-out ${activeTab === "book"
-            ? "opacity-100 translate-x-0 relative z-50"
-            : "opacity-0 -translate-y-4 absolute top-0 left-0 pointer-events-none z-0"
+          className={`w-full transition-all duration-300 ease-out ${activeTab === "book"
+            ? "opacity-100 translate-y-0 relative z-50"
+            : "opacity-0 translate-y-6 absolute top-0 left-0 pointer-events-none z-0"
             }`}
         >
           {/* Date Row */}
@@ -368,9 +368,9 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
         <div
           ref={enquiryRef}
-          className={`w-full transition-all duration-500 ease-in-out ${activeTab === "enquiry"
-            ? "opacity-100 translate-x-0 relative z-50"
-            : "opacity-0 translate-x-10 absolute top-0 left-0 pointer-events-none z-0"
+          className={`w-full transition-all duration-300 ease-out ${activeTab === "enquiry"
+            ? "opacity-100 translate-y-0 relative z-50"
+            : "opacity-0 translate-y-6 absolute top-0 left-0 pointer-events-none z-0"
             }`}
         >
           <div className="pt-2 pb-2 booking-row">
@@ -451,13 +451,13 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
               </>
             ) : (
               <div className="relative h-6 w-full flex items-center justify-center">
-                <span className={`absolute transition-all duration-500 ease-in-out ${activeTab === "book"
+                <span className={`absolute transition-all duration-300 ease-out ${activeTab === "book"
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-4"
                   }`}>
                   {isAvailable ? "Book Now" : "Check Availability"}
                 </span>
-                <span className={`absolute transition-all duration-500 ease-in-out ${activeTab === "enquiry"
+                <span className={`absolute transition-all duration-300 ease-out ${activeTab === "enquiry"
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
                   }`}>
