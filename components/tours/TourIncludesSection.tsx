@@ -42,14 +42,13 @@ export const TourIncludesSection: React.FC<TourIncludesSectionProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Included Items */}
         <ul className="space-y-3">
-          {includes.map((item, index) => (
-            <li key={index} className="flex items-start gap-3">
+          {includes.map((item) => (
+            <li key={item} className="flex items-start gap-3">
               {/* Checkmark Icon */}
               <svg
-                className="w-5 h-5 mt-0.5 shrink-0"
+                className="w-5 h-5 mt-0.5 shrink-0 text-green-500"
                 viewBox="0 0 20 20"
                 fill="none"
-                style={{ color: "#22C55E" }}
               >
                 <path
                   d="M16.6667 5L7.50001 14.1667L3.33334 10"
@@ -68,14 +67,13 @@ export const TourIncludesSection: React.FC<TourIncludesSectionProps> = ({
 
         {/* Excluded Items */}
         <ul className="space-y-3">
-          {excludes.map((item, index) => (
-            <li key={index} className="flex items-start gap-3">
+          {excludes.map((item) => (
+            <li key={item} className="flex items-start gap-3">
               {/* X Icon */}
               <svg
-                className="w-5 h-5 mt-0.5 shrink-0"
+                className="w-5 h-5 mt-0.5 shrink-0 text-red-500"
                 viewBox="0 0 20 20"
                 fill="none"
-                style={{ color: "#EF4444" }}
               >
                 <path
                   d="M15 5L5 15M5 5L15 15"

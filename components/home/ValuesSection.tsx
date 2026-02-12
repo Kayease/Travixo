@@ -40,7 +40,7 @@ const ValueCard = ({
   description: string;
   icon: string;
 }) => (
-  <div className="rounded-xl p-5 h-full" style={{ backgroundColor: "#FFFCF5" }}>
+  <div className="rounded-xl p-5 h-full bg-[#FFFCF5]">
     {/* Icon */}
     <div className="mb-4 relative w-[42px] h-[42px]">
       <Image
@@ -71,8 +71,7 @@ const ValueCard = ({
 export const ValuesSection = () => {
   return (
     <section
-      className="relative w-full py-12 lg:py-[52px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-12 lg:py-[52px] bg-[#FFF7E5]"
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Section Header */}

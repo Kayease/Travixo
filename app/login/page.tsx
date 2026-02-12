@@ -11,8 +11,7 @@ import { Footer } from "@/components/layout/Footer";
 const LoginHeroSection = () => {
   return (
     <section
-      className="relative w-full py-16 lg:py-[98px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-16 lg:py-[98px] bg-[#FFF7E5]"
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
         <div className="text-center">
@@ -65,8 +64,7 @@ const LoginFormSection = () => {
 
   return (
     <section
-      className="relative w-full py-12 lg:py-[80px]"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-12 lg:py-[80px] bg-[#FFFCF5]"
     >
       <div className="max-w-[540px] mx-auto px-5 md:px-10">
         <div className="bg-white rounded-xl shadow-sm p-8 md:p-12">

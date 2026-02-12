@@ -178,7 +178,8 @@ travixo/
 ├── next.config.ts                # Next.js configuration
 ├── eslint.config.mjs             # ESLint rules
 ├── postcss.config.mjs            # PostCSS (Tailwind plugin)
-└── tailwind.config.ts            # Tailwind CSS v4 config
+├── .env.example                  # Environment variables template
+└── app/globals.css               # Tailwind CSS v4 config (via @theme)
 ```
 
 ---

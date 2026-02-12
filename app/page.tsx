@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { siteUrl } from "@/app/lib/siteConfig";
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/home/HeroSection";
 import { FeaturesBarSection } from "@/components/home/FeaturesBarSection";
@@ -108,13 +109,13 @@ export const metadata: Metadata = {
   description:
     "Discover breathtaking destinations worldwide. Book tours, stays, and experiences with Travixo — your trusted travel companion for unforgettable adventures.",
   alternates: {
-    canonical: "https://travixo.kayease.com",
+    canonical: siteUrl,
   },
   openGraph: {
     title: "Travixo — Premium Travel & Tour Booking",
     description:
       "Discover breathtaking destinations worldwide. Book tours, stays, and experiences with Travixo.",
-    url: "https://travixo.kayease.com",
+    url: siteUrl,
     siteName: "Travixo",
     type: "website",
     images: [
@@ -122,7 +123,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Travixo Travel",
+        alt: "Travixo — Premium Travel & Tour Booking",
       },
     ],
   },

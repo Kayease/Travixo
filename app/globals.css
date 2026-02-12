@@ -185,3 +185,31 @@ textarea:focus-visible {
 .animate-explore-image-in {
   animation: explore-image-in 0.5s ease-out forwards;
 }
+
+/* ========== Reduced Motion Accessibility ========== */
+/* Respect user's OS-level motion preferences (WCAG 2.1 AA) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-float,
+  .animate-float-delay-1,
+  .animate-float-delay-2,
+  .animate-float-delay-3,
+  .animate-float-delay-4,
+  .animate-float-delay-5,
+  .animate-explore-fade-in,
+  .animate-explore-image-in {
+    animation: none !important;
+  }
+}

@@ -90,8 +90,7 @@ export const TeamGridSection: React.FC<TeamGridSectionProps> = ({
 }) => {
   return (
     <section
-      className="relative w-full py-12 md:py-16 lg:py-[52px]"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-12 md:py-16 lg:py-[52px] bg-[#FFFCF5]"
       aria-labelledby="team-grid-title"
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">

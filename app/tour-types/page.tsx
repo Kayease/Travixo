@@ -67,15 +67,13 @@ const TOUR_TYPES = [
 export default function TourTypesPage() {
   return (
     <main
-      className="min-h-screen relative flex flex-col"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="min-h-screen relative flex flex-col bg-[#FFFCF5]"
     >
       <Navbar />
       <div className="flex-1 w-full relative z-0">
         {/* Hero Section */}
         <section
-          className="relative w-full py-16 lg:py-[98px]"
-          style={{ backgroundColor: "#FFF7E5" }}
+          className="relative w-full py-16 lg:py-[98px] bg-[#FFF7E5]"
         >
           <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
             <div className="text-center">

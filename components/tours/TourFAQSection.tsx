@@ -49,14 +49,14 @@ export const TourFAQSection: React.FC<TourFAQSectionProps> = ({ faqs }) => {
 
       {/* FAQ Accordion */}
       <div className="space-y-3">
-        {faqs.map((faq, index) => (
+        {faqs.map((faq, faqIndex) => (
           <div
-            key={index}
+            key={faq.question}
             className="border border-gray-200 rounded-lg overflow-hidden"
           >
             {/* Question Button */}
             <button
-              onClick={() => toggleFAQ(index)}
+              onClick={() => toggleFAQ(faqIndex)}
               className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50 transition-colors cursor-pointer"
             >
               <span className="font-body text-sm md:text-base text-brand-brown pr-4">
@@ -64,7 +64,7 @@ export const TourFAQSection: React.FC<TourFAQSectionProps> = ({ faqs }) => {
               </span>
               <svg
                 className={`w-5 h-5 text-brand-brown/60 shrink-0 transition-transform duration-300 ${
-                  openIndex === index ? "rotate-180" : ""
+                  openIndex === faqIndex ? "rotate-180" : ""
                 }`}
                 fill="none"
                 viewBox="0 0 24 24"
@@ -76,7 +76,7 @@ export const TourFAQSection: React.FC<TourFAQSectionProps> = ({ faqs }) => {
             </button>
 
             {/* Answer Content */}
-            {openIndex === index && (
+            {openIndex === faqIndex && (
               <div className="px-4 pb-4 bg-white">
                 <p className="font-body text-sm md:text-base text-brand-brown/70 leading-relaxed">
                   {faq.answer}

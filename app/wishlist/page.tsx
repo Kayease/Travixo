@@ -9,6 +9,7 @@
  */
 
 import React from "react";
+import { siteUrl } from "@/app/lib/siteConfig";
 import {
   WishlistHeroSection,
   WishlistBannerSection,
@@ -23,7 +24,7 @@ export const metadata = {
   description:
     "Your curated sanctuary of dream escapes and luxury journeys across the globe. View and manage your saved travel destinations.",
   alternates: {
-    canonical: "https://travixo.kayease.com/wishlist",
+    canonical: `${siteUrl}/wishlist`,
   },
 };
 

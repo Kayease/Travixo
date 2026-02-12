@@ -12,8 +12,7 @@ import { useToast } from "@/app/context/ToastContext";
 const ContactHeroSection = () => {
   return (
     <section
-      className="relative w-full py-16 lg:py-[98px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-16 lg:py-[98px] bg-[#FFF7E5]"
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Header Content */}
@@ -70,8 +69,7 @@ const ContactFormSection = () => {
 
   return (
     <section
-      className="relative w-full py-12 lg:py-[52px]"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-12 lg:py-[52px] bg-[#FFFCF5]"
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Main Content Grid */}
@@ -225,10 +223,10 @@ const ContactFormSection = () => {
               Mail us:
             </h4>
             <p className="font-body font-normal text-[16px] md:text-[18px] leading-[30px] text-brand-brown">
-              company@travixo.com
+              contact@travixo.com
             </p>
             <p className="font-body font-normal text-[16px] md:text-[18px] leading-[30px] text-brand-brown">
-              guide@travixo.com
+              support@travixo.com
             </p>
           </div>
 
@@ -238,10 +236,10 @@ const ContactFormSection = () => {
               Head Office:
             </h4>
             <p className="font-body font-normal text-[16px] md:text-[18px] leading-[30px] text-brand-brown">
-              2345 Brooklyn Heights,
+              6391 Elgin St. Celina,
             </p>
             <p className="font-body font-normal text-[16px] md:text-[18px] leading-[30px] text-brand-brown">
-              Vinland, Valhalla 5346
+              Delaware 10001, USA
             </p>
           </div>
 

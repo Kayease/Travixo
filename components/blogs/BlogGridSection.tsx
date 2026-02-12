@@ -132,8 +132,7 @@ export const BlogGridSection: React.FC<BlogGridSectionProps> = ({
 
   return (
     <section
-      className="relative w-full py-12 md:py-16 lg:py-[52px]"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-12 md:py-16 lg:py-[52px] bg-[#FFFCF5]"
       aria-labelledby="blog-grid-title"
     >
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">

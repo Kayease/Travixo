@@ -9,6 +9,7 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
+import { siteUrl } from "@/app/lib/siteConfig";
 import { StayHeroSection } from "@/components/stay";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -43,7 +44,7 @@ export const metadata = {
   description:
     "Find your perfect stay. Browse handpicked accommodations for every journey, from safari lodges to city retreats.",
   alternates: {
-    canonical: "https://travixo.kayease.com/stay",
+    canonical: `${siteUrl}/stay`,
   },
 };
 

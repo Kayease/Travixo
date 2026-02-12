@@ -22,8 +22,7 @@ const HERO_IMAGES = {
 export const AboutHeroSection = () => {
   return (
     <section
-      className="relative w-full overflow-hidden"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full overflow-hidden bg-[#FFF7E5]"
     >
       {/* Mobile/Tablet Layout (< 1440px) */}
       <div className="block xl:hidden px-6 py-12 md:px-12">

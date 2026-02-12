@@ -32,8 +32,7 @@ export const BlogHeroSection: React.FC<BlogHeroSectionProps> = ({
 }) => {
   return (
     <section
-      className="relative w-full py-16 md:py-20 lg:py-[98px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-16 md:py-20 lg:py-[98px] bg-[#FFF7E5]"
       aria-labelledby="blog-hero-title"
     >
       {/* Container with max-width for content alignment */}

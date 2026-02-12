@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/app/lib/siteConfig";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://travixo.kayease.com";
-
   const staticRoutes = [
     "",
     "/about",
@@ -31,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return staticRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${siteUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route === "" ? "daily" : "weekly",
     priority: route === "" ? 1 : route === "/about" ? 0.9 : 0.7,

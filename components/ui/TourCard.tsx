@@ -179,8 +179,7 @@ const TourCard: React.FC<TourCardProps> = ({
     <div className="relative w-full max-w-[418px] group hover:z-50 pb-[58px]">
       {/* Card Container */}
       <div
-        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg z-10 h-full"
-        style={{ backgroundColor: "#FFFCF5" }}
+        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg z-10 h-full bg-[#FFFCF5]"
       >
         {/* Image Container */}
         <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">

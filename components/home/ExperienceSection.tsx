@@ -110,8 +110,7 @@ export const ExperienceSection = () => {
         <div className="absolute inset-0 flex flex-col items-center pt-12">
           {/* Badge */}
           <div
-            className="inline-flex items-center justify-center px-6 py-1.5 rounded-xl"
-            style={{ backgroundColor: "#FF6E00" }}
+            className="inline-flex items-center justify-center px-6 py-1.5 rounded-xl bg-[#FF6E00]"
           >
             <span className="font-display italic font-medium text-sm text-white tracking-wide">
               UNFORGETTABLE EXPERIENCE

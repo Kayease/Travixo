@@ -50,8 +50,7 @@ const PROCESS_STEPS = [
 export const ProcessSection = () => {
   return (
     <section
-      className="relative w-full py-12 lg:py-[52px]"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-12 lg:py-[52px] bg-[#FFFCF5]"
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Section Header */}
@@ -100,7 +99,7 @@ export const ProcessSection = () => {
                   <div className="absolute inset-0 w-full h-full transition-all duration-300">
                     <Image
                       src={step.outerIcon}
-                      alt=""
+                      alt={`${step.title} decorative icon`}
                       fill
                       role="presentation"
                       className="object-contain transition-all duration-300 group-hover:scale-[0.96] group-hover:filter-[brightness(0)_invert(1)_drop-shadow(0.5px_0_0_#FF6E00)_drop-shadow(-0.5px_0_0_#FF6E00)_drop-shadow(0_0.5px_0_#FF6E00)_drop-shadow(0_-0.5px_0_#FF6E00)]"

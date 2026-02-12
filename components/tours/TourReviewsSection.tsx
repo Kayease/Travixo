@@ -160,8 +160,8 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
           </h3>
 
           <div className="grid grid-cols-2 gap-x-[42px] gap-y-[17px]">
-            {summary.categories.map((category, index) => (
-              <div key={index} className="w-full max-w-[248px]">
+            {summary.categories.map((category) => (
+              <div key={category.name} className="w-full max-w-[248px]">
                 <div className="flex justify-between items-end mb-[5px]">
                   <span className="font-poppins font-normal text-[14px] leading-[21px] text-brand-brown">
                     {category.name}
@@ -194,8 +194,8 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
           </span>
         </div>
         <div className="space-y-4">
-          {summary.categories.map((cat, i) => (
-            <div key={i} className="space-y-1">
+          {summary.categories.map((cat) => (
+            <div key={cat.name} className="space-y-1">
               <div className="flex justify-between text-sm text-brand-brown">
                 <span>{cat.name}</span>
                 <span>{cat.rating}/5</span>

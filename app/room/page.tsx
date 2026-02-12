@@ -10,6 +10,7 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
+import { siteUrl } from "@/app/lib/siteConfig";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { RoomHeroSection } from "@/components/room";
@@ -36,7 +37,7 @@ export const metadata = {
   description:
     "Whether you choose a cozy Classic or a spacious Suite, our rooms are made to help you relax and feel at home.",
   alternates: {
-    canonical: "https://travixo.kayease.com/room",
+    canonical: `${siteUrl}/room`,
   },
 };
 

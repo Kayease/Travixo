@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { siteUrl } from "@/app/lib/siteConfig";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { TourDetailHeroSection } from "@/components/tours/TourDetailHeroSection";
@@ -199,7 +200,7 @@ const TourDetailPage: React.FC = () => {
             name: tour.title,
             description: tour.description,
             image: tour.images[0]?.url
-              ? `https://travixo.kayease.com${tour.images[0].url}`
+              ? `${siteUrl}${tour.images[0].url}`
               : undefined,
             address: {
               "@type": "PostalAddress",
@@ -237,8 +238,7 @@ const TourDetailPage: React.FC = () => {
 
       {/* Main Content Section */}
       <section
-        className="w-full py-8 md:py-12"
-        style={{ backgroundColor: "#FFFCF5" }}
+        className="w-full py-8 md:py-12 bg-[#FFFCF5]"
       >
         <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
           {/* Gallery Section - Full Width */}

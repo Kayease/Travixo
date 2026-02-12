@@ -57,9 +57,9 @@ const RoomDetailContentSection: React.FC = () => {
 
             {/* House Rules List */}
             <ul className="list-disc list-inside space-y-2 mb-2">
-              {houseRules.map((rule, index) => (
+              {houseRules.map((rule) => (
                 <li
-                  key={index}
+                  key={rule}
                   className="text-base md:text-lg font-normal leading-7 text-[#4B3621]"
                 >
                   {rule}

@@ -16,6 +16,12 @@
     "react-dom": "19.2.3",
     "sharp": "^0.34.5"
   },
+  "browserslist": [
+    ">0.3%",
+    "not dead",
+    "not op_mini all",
+    "last 2 versions"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^20",

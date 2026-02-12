@@ -243,8 +243,7 @@ export const DestinationsSection = () => {
           {/* Left Content */}
           <div className="w-full lg:w-[422px] shrink-0 px-4 pt-10 lg:pl-[80px] lg:pt-[138px]">
             <div
-              className="inline-flex items-center justify-center gap-2 w-[204px] h-[30px] rounded-xl mb-[32px] cursor-default"
-              style={{ backgroundColor: "#FF6E00" }}
+              className="inline-flex items-center justify-center gap-2 w-[204px] h-[30px] rounded-xl mb-[32px] cursor-default bg-[#FF6E00]"
             >
               <PlaneIcon />
               <span className="font-display italic font-medium text-[14px] leading-[19px] text-white">

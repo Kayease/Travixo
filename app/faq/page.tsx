@@ -9,8 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 const FAQHeroSection = () => {
   return (
     <section
-      className="relative w-full py-12 md:py-16 lg:py-[98px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-12 md:py-16 lg:py-[98px] bg-[#FFF7E5]"
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
         <div className="text-center">
@@ -193,8 +192,7 @@ const FAQContentSection = () => {
 
   return (
     <section
-      className="relative w-full py-12 lg:py-[80px]"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-12 lg:py-[80px] bg-[#FFFCF5]"
     >
       <div className="max-w-[1080px] mx-auto px-5 md:px-10">
         {categories.map((category, categoryIndex) => (
@@ -237,8 +235,7 @@ const FAQContentSection = () => {
 const StillHaveQuestionsSection = () => {
   return (
     <section
-      className="relative w-full py-8 md:py-12 lg:py-[60px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-8 md:py-12 lg:py-[60px] bg-[#FFF7E5]"
     >
       <div className="max-w-[1080px] mx-auto px-5 md:px-10 text-center">
         <h2 className="font-display italic font-semibold text-[24px] md:text-[28px] lg:text-[36px] leading-[32px] md:leading-[44px] text-brand-brown mb-3 md:mb-4">

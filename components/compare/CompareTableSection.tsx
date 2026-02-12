@@ -25,9 +25,9 @@ interface TourData {
 const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
   return (
     <div className="flex items-center gap-1 md:gap-2">
-      {[...Array(rating)].map((_, index) => (
+      {[...Array(rating)].map((_, starIdx) => (
         <svg
-          key={index}
+          key={`star-${starIdx}`}
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -306,8 +306,8 @@ const CompareTableSection: React.FC = () => {
                 className="p-2 md:p-6 lg:px-6 lg:py-8 flex flex-col items-center gap-3 border-t lg:border-t-0"
               >
                 <div className="flex flex-col gap-2 md:gap-3 items-start scale-90 lg:scale-100 origin-center">
-                  {tour.activities.map((activity, index) => (
-                    <ActivityItem key={index} activity={activity} />
+                  {tour.activities.map((activity) => (
+                    <ActivityItem key={activity} activity={activity} />
                   ))}
                 </div>
               </div>

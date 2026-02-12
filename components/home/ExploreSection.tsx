@@ -184,8 +184,7 @@ export const ExploreSection = () => {
 
   return (
     <section
-      className="relative w-full py-12"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-12 bg-[#FFFCF5]"
     >
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-6 xl:px-8">
         {/* Section Title */}

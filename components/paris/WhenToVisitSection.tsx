@@ -37,9 +37,9 @@ export const WhenToVisitSection = () => {
 
         {/* Months Grid */}
         <div className="flex flex-wrap justify-center gap-[18px]">
-          {MONTHS.map((month, index) => (
+          {MONTHS.map((month) => (
             <div
-              key={index}
+              key={month.name}
               className="w-[80px] h-[80px] rounded-full flex items-center justify-center border border-dashed"
               style={{
                 borderColor: month.color,

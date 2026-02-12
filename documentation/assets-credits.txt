@@ -1,0 +1,49 @@
+============================================
+ TRAVIXO — Asset Credits & Licenses
+============================================
+
+FONTS
+-----
+- Poppins (Google Fonts) — SIL Open Font License 1.1
+  https://fonts.google.com/specimen/Poppins
+
+- Playfair Display (Google Fonts) — SIL Open Font License 1.1
+  https://fonts.google.com/specimen/Playfair+Display
+
+LIBRARIES
+---------
+- Next.js 16 — MIT License
+  https://github.com/vercel/next.js/blob/canary/license.md
+
+- React 19 — MIT License
+  https://github.com/facebook/react/blob/main/LICENSE
+
+- Tailwind CSS 4 — MIT License
+  https://github.com/tailwindlabs/tailwindcss/blob/main/LICENSE
+
+- Sharp — Apache-2.0 License
+  https://github.com/lovell/sharp/blob/main/LICENSE
+
+- PostCSS — MIT License
+  https://github.com/postcss/postcss/blob/main/LICENSE
+
+- TypeScript — Apache-2.0 License
+  https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt
+
+- ESLint — MIT License
+  https://github.com/eslint/eslint/blob/main/LICENSE
+
+IMAGES
+------
+All images included in this template are for demonstration/preview 
+purposes only. They must be replaced with properly licensed images 
+before deploying to production.
+
+If you use stock photography, ensure you have a commercial license 
+that allows redistribution in a web template.
+
+ICONS
+-----
+All SVG icons used in this template are custom-made and included 
+with the template license. No attribution required.
+

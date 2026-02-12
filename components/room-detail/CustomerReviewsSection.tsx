@@ -65,9 +65,9 @@ const StarRating: React.FC<{ rating: number; size?: number }> = ({
 }) => {
   return (
     <div className="flex items-center gap-2">
-      {[...Array(rating)].map((_, index) => (
+      {[...Array(rating)].map((_, starIdx) => (
         <svg
-          key={index}
+          key={`star-${starIdx}`}
           width={size}
           height={size}
           viewBox="0 0 24 24"
@@ -123,14 +123,14 @@ const ReviewCard: React.FC<{ review: ReviewData }> = ({ review }) => {
       {/* Review Images */}
       {review.images.length > 0 && (
         <div className="flex gap-4 flex-wrap">
-          {review.images.map((image, index) => (
+          {review.images.map((image, imgIdx) => (
             <div
-              key={index}
+              key={image}
               className="relative w-[180px] aspect-4/3 rounded-xl overflow-hidden"
             >
               <Image
                 src={image}
-                alt={`Review image ${index + 1}`}
+                alt={`Review image ${imgIdx + 1}`}
                 fill
                 className="object-contain"
                 sizes="180px"

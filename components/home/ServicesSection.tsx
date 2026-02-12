@@ -142,8 +142,7 @@ const ReadMoreLink = () => (
 export const ServicesSection = () => {
   return (
     <section
-      className="relative w-full"
-      style={{ backgroundColor: "#FFFCF5", minHeight: "551px" }}
+      className="relative w-full bg-[#FFFCF5] min-h-[551px]"
     >
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-[170px] py-[52px]">
         {/* Section Header */}

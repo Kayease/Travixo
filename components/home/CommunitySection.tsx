@@ -80,8 +80,7 @@ const GalleryCard = ({ url, alt }: { url: string; alt: string }) => (
 export const CommunitySection = () => {
   return (
     <section
-      className="relative w-full py-12 lg:py-16"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-12 lg:py-16 bg-[#FFF7E5]"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}

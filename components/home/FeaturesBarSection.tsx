@@ -126,8 +126,7 @@ const FeatureItem = ({
 export const FeaturesBarSection = () => {
   return (
     <section
-      className="relative w-full py-10 lg:py-14 border-t border-[#FFFCF5]"
-      style={{ backgroundColor: "#FFFFFF" }}
+      className="relative w-full py-10 lg:py-14 border-t border-[#FFFCF5] bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Features Grid */}

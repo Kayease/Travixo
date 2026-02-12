@@ -11,6 +11,7 @@
  */
 
 import React from "react";
+import { siteUrl } from "@/app/lib/siteConfig";
 import { CheckoutSection } from "@/components/checkout";
 import Navbar from "@/components/layout/Navbar";
 
@@ -20,7 +21,7 @@ export const metadata = {
   description:
     "Complete your booking securely. Enter your travel information and payment details to confirm your tour reservation.",
   alternates: {
-    canonical: "https://travixo.kayease.com/checkout",
+    canonical: `${siteUrl}/checkout`,
   },
 };
 

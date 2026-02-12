@@ -178,16 +178,14 @@ const TourTypeCard = ({
 export const TourTypesSection = () => {
   return (
     <section
-      className="relative w-full py-16 lg:py-24"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-16 lg:py-24 bg-[#FFFCF5]"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="flex flex-col items-center mb-16 lg:mb-20">
           {/* Badge */}
           <div
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl mb-6 shadow-sm"
-            style={{ backgroundColor: "#FF6E00" }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl mb-6 shadow-sm bg-[#FF6E00]"
           >
             <PlaneIcon />
             <span className="font-display italic font-medium text-sm text-white uppercase tracking-wider">

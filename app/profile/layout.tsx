@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/app/lib/siteConfig";
 
 export const metadata: Metadata = {
   title: "My Profile | Travixo - Travel & Tour",
   description:
     "Manage your Travixo profile, bookings, and account settings.",
   alternates: {
-    canonical: "https://travixo.kayease.com/profile",
+    canonical: `${siteUrl}/profile`,
   },
 };
 

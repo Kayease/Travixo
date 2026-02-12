@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import { siteUrl } from '@/app/lib/siteConfig';
 import { CartHeroSection, CartItemsSection } from '@/components/cart';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -17,7 +18,7 @@ export const metadata = {
   title: 'Your Travel Selection | Travixo - Travel & Tour',
   description: 'Review your travel selection. Manage items in your cart and proceed to checkout for tours, stays, and experiences.',
   alternates: {
-    canonical: 'https://travixo.kayease.com/cart',
+    canonical: `${siteUrl}/cart`,
   },
 };
 

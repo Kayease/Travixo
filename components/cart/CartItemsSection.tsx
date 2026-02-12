@@ -315,9 +315,9 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
         {/* Amenities */}
         <div className="flex flex-wrap gap-2 mb-6">
           {item.amenities &&
-            item.amenities.map((amenity, index) => (
+            item.amenities.map((amenity) => (
               <span
-                key={index}
+                key={amenity}
                 className="px-3 py-1 bg-[#FFF7E5] rounded-xl text-sm md:text-lg text-[#4B3621]"
               >
                 {amenity}

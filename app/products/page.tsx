@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { siteUrl } from "@/app/lib/siteConfig";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
@@ -94,7 +95,7 @@ export const metadata = {
   description:
     "Explore our curated collection of tours, activities, and experiences around the world.",
   alternates: {
-    canonical: "https://travixo.kayease.com/products",
+    canonical: `${siteUrl}/products`,
   },
 };
 
@@ -102,11 +103,10 @@ export default function ProductsPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen" style={{ backgroundColor: "#FFFCF5" }}>
+      <main className="min-h-screen bg-[#FFFCF5]">
         {/* Hero Section */}
         <section
-          className="relative w-full py-16 lg:py-[98px]"
-          style={{ backgroundColor: "#FFF7E5" }}
+          className="relative w-full py-16 lg:py-[98px] bg-[#FFF7E5]"
         >
           <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
             <div className="text-center">

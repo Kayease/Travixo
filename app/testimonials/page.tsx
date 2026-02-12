@@ -17,6 +17,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { siteUrl } from "@/app/lib/siteConfig";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -26,7 +27,7 @@ export const metadata = {
   description:
     "Read what our clients say about their unforgettable experiences with Travixo. Real stories from real travelers.",
   alternates: {
-    canonical: "https://travixo.kayease.com/testimonials",
+    canonical: `${siteUrl}/testimonials`,
   },
 };
 
@@ -211,7 +212,7 @@ export default function TestimonialsPage() {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Travixo",
-              url: "https://travixo.kayease.com",
+              url: siteUrl,
               aggregateRating: {
                 "@type": "AggregateRating",
                 ratingValue: averageRating,

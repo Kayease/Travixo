@@ -5,8 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 export default function HowItWorksPage() {
   return (
     <main
-      className="min-h-screen relative flex flex-col pt-16"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="min-h-screen relative flex flex-col pt-16 bg-[#FFFCF5]"
     >
       <Navbar />
       <div className="flex-1 w-full relative z-0">

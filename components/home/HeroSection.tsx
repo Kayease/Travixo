@@ -170,8 +170,7 @@ export const HeroSection = () => {
           >
             {/* Hanging String Line */}
             <div
-              className="w-[2px] h-[90px] md:h-[100px] lg:h-[116px]"
-              style={{ backgroundColor: "#D55C00" }}
+              className="w-[2px] h-[90px] md:h-[100px] lg:h-[116px] bg-[#D55C00]"
               aria-hidden="true"
             />
             {/* Badge Circle - 150px diameter */}
@@ -199,8 +198,7 @@ export const HeroSection = () => {
         <div className="hero-content relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px]">
           {/* Main Heading */}
           <h1
-            className="hero-heading font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px]"
-            style={{ color: "#4B3621" }}
+            className="hero-heading font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px] text-brand-brown"
           >
             Let Travixo Guide You to
             <br className="hidden sm:block" /> Your Next Adventure
@@ -208,8 +206,7 @@ export const HeroSection = () => {
 
           {/* Description — hidden in landscape to prevent overlap */}
           <p
-            className="hero-description font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8"
-            style={{ color: "#4B3621" }}
+            className="hero-description font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8 text-brand-brown"
           >
             Discover the soul of Africa through iconic wildlife, breathtaking
             landscapes, the Great Migration, and a serene hot air balloon
@@ -316,8 +313,7 @@ export const HeroSection = () => {
             </svg>
             <div className="flex flex-col">
               <label
-                className="hero-search-label font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
-                style={{ color: "#4B3621" }}
+                className="hero-search-label font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px] text-brand-brown"
               >
                 Destination
               </label>
@@ -327,16 +323,14 @@ export const HeroSection = () => {
                 onChange={(e) => setDestination(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="Enter Location"
-                className="hero-search-input font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60"
-                style={{ color: "#4B3621" }}
+                className="hero-search-input font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60 text-brand-brown"
               />
             </div>
           </div>
 
           {/* Divider */}
           <div
-            className="hero-search-divider hidden md:block w-px h-[70px]"
-            style={{ backgroundColor: "rgba(75, 54, 33, 0.2)" }}
+            className="hero-search-divider hidden md:block w-px h-[70px] bg-brand-brown/20"
           />
 
           {/* Date Field - overflow-visible so calendar dropdown is not clipped */}
@@ -364,8 +358,7 @@ export const HeroSection = () => {
             </div>
             <div className="flex flex-col w-full overflow-visible">
               <label
-                className="hero-search-label font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
-                style={{ color: "#4B3621" }}
+                className="hero-search-label font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px] text-brand-brown"
               >
                 Date
               </label>

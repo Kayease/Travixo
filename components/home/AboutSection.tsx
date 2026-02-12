@@ -81,15 +81,13 @@ const CHECKLIST = [
 export const AboutSection = () => {
   return (
     <section
-      className="relative w-full py-16 lg:py-24"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="relative w-full py-16 lg:py-24 bg-[#FFFCF5]"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Mobile-only Header - Always at the very top for iPad/iPhone */}
         <div className="lg:hidden mb-10">
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl mb-6"
-            style={{ backgroundColor: "#FF6E00" }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl mb-6 bg-[#FF6E00]"
           >
             <div className="w-5 h-5 flex items-center justify-center">
               <PlaneIcon />
@@ -158,8 +156,7 @@ export const AboutSection = () => {
           <div className="flex-1 lg:pt-16">
             {/* Desktop-only Badge - Frame 19 */}
             <div
-              className="hidden lg:inline-flex items-center gap-2 px-4 py-1.5 rounded-xl mb-8"
-              style={{ backgroundColor: "#FF6E00" }}
+              className="hidden lg:inline-flex items-center gap-2 px-4 py-1.5 rounded-xl mb-8 bg-[#FF6E00]"
             >
               <div className="w-5 h-5 flex items-center justify-center">
                 <PlaneIcon />
@@ -217,8 +214,8 @@ export const AboutSection = () => {
 
             {/* Checklist items - Frame 33 */}
             <div className="flex flex-col gap-4 mb-12">
-              {CHECKLIST.map((item, index) => (
-                <div key={index} className="flex items-center gap-3 group">
+              {CHECKLIST.map((item) => (
+                <div key={item} className="flex items-center gap-3 group">
                   <div className="shrink-0 transition-transform duration-300 group-hover:scale-110">
                     <CheckIcon />
                   </div>

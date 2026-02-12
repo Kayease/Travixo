@@ -213,8 +213,7 @@ export const Footer = () => {
 
   return (
     <footer
-      className="relative w-full overflow-hidden"
-      style={{ backgroundColor: "#FF8930" }}
+      className="relative w-full overflow-hidden bg-[#FF8930]"
     >
       {/* Toast Notification */}
       {showToast && (
@@ -244,30 +243,42 @@ export const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex items-center gap-[18px]">
-            <button
-              type="button"
+            <a
+              href="https://facebook.com/travixo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Facebook"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <FacebookIcon />
-            </button>
-            <button
-              type="button"
+            </a>
+            <a
+              href="https://instagram.com/travixo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Instagram"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <InstagramIcon />
-            </button>
-            <button
-              type="button"
+            </a>
+            <a
+              href="https://linkedin.com/company/travixo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Connect with us on LinkedIn"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <LinkedInIcon />
-            </button>
-            <button
-              type="button"
+            </a>
+            <a
+              href="https://x.com/travixo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on X (Twitter)"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <TwitterIcon />
-            </button>
+            </a>
           </div>
         </div>
 
@@ -322,6 +333,7 @@ export const Footer = () => {
                 Contact
               </h3>
               <div className="flex flex-col gap-4">
+                {/* Demo placeholder contact info — update with real data */}
                 <p className="font-body font-medium text-[18px] leading-[28px] text-white max-w-[255px]">
                   6391 Elgin St. Celina,
                   <br />
@@ -329,15 +341,15 @@ export const Footer = () => {
                 </p>
                 <div className="flex items-center gap-2">
                   <PhoneIcon />
-                  <span className="font-body font-medium text-[18px] leading-[28px] text-white">
+                  <a href="tel:+911234567890" className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors">
                     +91 1234567890
-                  </span>
+                  </a>
                 </div>
                 <div className="flex items-center gap-2">
                   <MailIcon />
-                  <span className="font-body font-medium text-[18px] leading-[28px] text-white">
-                    example@example.com
-                  </span>
+                  <a href="mailto:contact@travixo.com" className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors">
+                    contact@travixo.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -352,12 +364,14 @@ export const Footer = () => {
               <input
                 type="email"
                 placeholder="Email address"
+                aria-label="Email address for newsletter"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full h-full bg-white border border-[#FF6E00] rounded-[12px] pl-[18px] pr-[55px] font-body text-[18px] text-[#4B3621] placeholder:text-[#4B3621]/60 focus:outline-none"
               />
               <button
                 onClick={handleSubscribe}
+                aria-label="Subscribe to newsletter"
                 className="group absolute right-0 top-0 w-[50px] h-[45px] bg-[#FFFCF5] border border-[#FF6E00] rounded-[12px] flex items-center justify-center cursor-pointer overflow-hidden"
               >
                 <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />

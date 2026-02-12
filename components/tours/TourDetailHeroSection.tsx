@@ -41,8 +41,7 @@ export const TourDetailHeroSection: React.FC<TourDetailHeroSectionProps> = ({
 }) => {
   return (
     <section
-      className="relative w-full py-12 md:py-16 lg:py-[68px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-12 md:py-16 lg:py-[68px] bg-[#FFF7E5]"
       aria-labelledby="tour-detail-title"
     >
       {/* Container with max-width for content alignment */}

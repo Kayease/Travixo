@@ -100,14 +100,14 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
           {/* Destination Links */}
           <div className="flex flex-col">
-            {topDestinations.map((destination, index) => {
+            {topDestinations.map((destination) => {
               const _slug =
                 destination === "View all"
                   ? "all"
                   : destination.toLowerCase().replace(/\s+/g, "-");
               return (
                 <Link
-                  key={index}
+                  key={destination}
                   href={destination === "View all" ? "/destinations" : "/paris"}
                   className="group relative block text-left px-4 lg:max-xl:px-3 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
                   onMouseEnter={() => setHoveredCountry(destination)}
@@ -127,10 +127,10 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
         {/* Middle Column - Featured Destinations with Images */}
         <div className="flex flex-col gap-3 md:gap-5 pt-2 w-full md:w-[240px] lg:max-xl:w-[210px] mb-4 md:mb-0">
-          {currentCities.map((destination, index) => {
+          {currentCities.map((destination) => {
             return (
               <Link
-                key={index}
+                key={destination.name}
                 href="/paris"
                 className="flex items-center gap-3 hover:opacity-80 transition-opacity"
               >
@@ -219,9 +219,9 @@ interface PagesDropdownProps {
 const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose: _onClose }) => {
   const renderColumn = (pages: PageLink[]) => (
     <div className="flex flex-col gap-0.5">
-      {pages.map((page, index) => (
+      {pages.map((page) => (
         <Link
-          key={index}
+          key={page.href}
           href={page.href}
           className="group relative flex items-center w-[148px] h-[39px] text-left px-3 font-display text-[15px] md:text-base italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
         >
@@ -551,7 +551,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-[1000] bg-[#FFFCF5] transition-all duration-300 shadow-sm">
+      <header className="fixed top-0 left-0 w-full z-1000 bg-[#FFFCF5] transition-all duration-300 shadow-sm">
         {/* Main Navbar Container */}
         <nav className="w-full flex items-center justify-between px-4 md:px-10 lg:px-20 h-[60px] transition-all duration-300">
           {/* Logo Section */}
@@ -646,7 +646,7 @@ export const Navbar = () => {
             >
               <SearchIcon />
             </div>
-            <Link href="/cart" className="relative cursor-pointer scale-90 md:scale-100">
+            <Link href="/cart" aria-label="View cart" className="relative cursor-pointer scale-90 md:scale-100">
               <CartIcon />
               {mounted && cartItems.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
@@ -657,7 +657,7 @@ export const Navbar = () => {
 
             {/* Icons shown only on Large Screens */}
             <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
-              <Link href="/wishlist" className="relative cursor-pointer scale-90 md:scale-100">
+              <Link href="/wishlist" aria-label="View wishlist" className="relative cursor-pointer scale-90 md:scale-100">
                 <WishlistIcon />
                 {mounted && wishlistItems.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
@@ -667,6 +667,7 @@ export const Navbar = () => {
               </Link>
               <Link
                 href="/profile"
+                aria-label="View profile"
                 className="cursor-pointer scale-90 md:scale-100"
               >
                 <ProfileIcon />
@@ -700,7 +701,7 @@ export const Navbar = () => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 bg-black/40 z-[990] backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          className={`fixed inset-0 bg-black/40 z-990 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           onClick={() => setIsMobileMenuOpen(false)}
           onTouchMove={(e) => isMobileMenuOpen && e.preventDefault()}
@@ -708,7 +709,7 @@ export const Navbar = () => {
 
         {/* Mobile Menu Content Drawer */}
         <div
-          className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[#FFFCF5] z-[1000] lg:hidden transition-transform duration-300 shadow-2xl overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[#FFFCF5] z-1000 lg:hidden transition-transform duration-300 shadow-2xl overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
         >
           <div className="flex flex-col p-6 h-full">
@@ -878,6 +879,7 @@ export const Navbar = () => {
               <input
                 ref={searchInputRef}
                 type="text"
+                aria-label="Search destinations, tours, and activities"
                 placeholder="What are you looking for? (e.g. Paris, Bangkok, Safari...)"
                 className="w-full h-[50px] bg-white border border-[#4B3621]/20 rounded-xl pl-12 pr-4 font-display italic text-lg outline-none focus:border-[#4B3621]/40 shadow-sm transition-all"
                 value={searchQuery}

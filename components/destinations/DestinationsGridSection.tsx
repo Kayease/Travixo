@@ -83,8 +83,7 @@ export const DestinationsGridSection: React.FC<
 
     return (
       <section
-        className="relative w-full py-8 md:py-12 lg:py-[52px]"
-        style={{ backgroundColor: "#FFFCF5" }}
+        className="relative w-full py-8 md:py-12 lg:py-[52px] bg-[#FFFCF5]"
         aria-labelledby="destinations-grid-title"
       >
         <div className="max-w-[1440px] mx-auto px-4 md:px-10 lg:px-20">

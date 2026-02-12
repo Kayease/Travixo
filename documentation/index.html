@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travixo — Documentation</title>
+  <style>
+    :root {
+      --brand-brown: #4B3621;
+      --brand-orange: #FF6E00;
+      --brand-cream: #FFFCF5;
+      --text-secondary: #6B5B4F;
+      --border: #E8DDD3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--brand-brown);
+      background: #f5f0eb;
+      line-height: 1.7;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--brand-cream);
+      border-right: 1px solid var(--border);
+      padding: 30px 20px;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      color: var(--brand-orange);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .sidebar .version {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      display: block;
+    }
+
+    .sidebar nav a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--brand-brown);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 2px;
+      transition: all 0.2s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background: var(--brand-orange);
+      color: white;
+    }
+
+    .sidebar nav .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin: 20px 0 8px 12px;
+      font-weight: 600;
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 280px;
+      padding: 40px 60px;
+      max-width: 900px;
+    }
+
+    .main h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: var(--brand-brown);
+    }
+
+    .main h2 {
+      font-size: 24px;
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--brand-orange);
+      color: var(--brand-brown);
+    }
+
+    .main h3 {
+      font-size: 18px;
+      margin: 28px 0 12px;
+      color: var(--brand-brown);
+    }
+
+    .main p {
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    .main ul,
+    .main ol {
+      margin: 12px 0 20px 24px;
+      color: var(--text-secondary);
+    }
+
+    .main li {
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: #f0e8df;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      color: var(--brand-brown);
+    }
+
+    pre {
+      background: var(--brand-brown);
+      color: #f0e8df;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .badge-required {
+      background: #FFE0CC;
+      color: var(--brand-orange);
+    }
+
+    .badge-optional {
+      background: #E0F0E0;
+      color: #2D7A2D;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+    }
+
+    th,
+    td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--brand-cream);
+      font-weight: 600;
+      color: var(--brand-brown);
+    }
+
+    td {
+      color: var(--text-secondary);
+    }
+
+    .callout {
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+
+    .callout-info {
+      background: #E8F4FD;
+      border-left: 4px solid #2196F3;
+    }
+
+    .callout-warning {
+      background: #FFF8E1;
+      border-left: 4px solid #FF9800;
+    }
+
+    .callout-success {
+      background: #E8F5E9;
+      border-left: 4px solid #4CAF50;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, var(--brand-orange), #D55C00);
+      color: white;
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    .hero-banner h1 {
+      color: white;
+      font-size: 36px;
+    }
+
+    .hero-banner p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .feature-card {
+      background: var(--brand-cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .feature-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--brand-brown);
+    }
+
+    .feature-card span {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <h2>Travixo</h2>
+    <span class="version">v1.0.0 — Documentation</span>
+    <nav>
+      <div class="section-title">Getting Started</div>
+      <a href="#overview">Overview</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#installation">Installation</a>
+      <a href="#env-setup">Environment Setup</a>
+
+      <div class="section-title">Structure</div>
+      <a href="#project-structure">Project Structure</a>
+      <a href="#pages">Pages & Routes</a>
+      <a href="#components">Components</a>
+
+      <div class="section-title">Customization</div>
+      <a href="#colors">Colors & Branding</a>
+      <a href="#typography">Typography</a>
+      <a href="#images">Images & Assets</a>
+      <a href="#seo">SEO & Metadata</a>
+
+      <div class="section-title">Features</div>
+      <a href="#cart-wishlist">Cart & Wishlist</a>
+      <a href="#responsive">Responsive Design</a>
+      <a href="#accessibility">Accessibility</a>
+      <a href="#animations">Animations</a>
+
+      <div class="section-title">Deployment</div>
+      <a href="#build">Build & Deploy</a>
+      <a href="#vercel">Deploy to Vercel</a>
+
+      <div class="section-title">Reference</div>
+      <a href="#tech-stack">Tech Stack</a>
+      <a href="#browser-support">Browser Support</a>
+      <a href="#credits">Credits & Licenses</a>
+      <a href="#support">Support</a>
+      <a href="#changelog">Changelog</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner" id="overview">
+      <h1>Travixo Documentation</h1>
+      <p>Premium Travel & Tour Booking Template built with Next.js 16, React 19, TypeScript 5, and Tailwind CSS 4.</p>
+    </div>
+
+    <p>Thank you for purchasing Travixo! This documentation will guide you through installation, customization, and
+      deployment of your new travel template.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <strong>32 Pages</strong>
+        <span>Pre-built pages</span>
+      </div>
+      <div class="feature-card">
+        <strong>90+ Components</strong>
+        <span>Reusable UI blocks</span>
+      </div>
+      <div class="feature-card">
+        <strong>100% Responsive</strong>
+        <span>Mobile-first design</span>
+      </div>
+      <div class="feature-card">
+        <strong>WCAG 2.1 AA</strong>
+        <span>Accessible</span>
+      </div>
+    </div>
+
+    <!-- Requirements -->
+    <h2 id="requirements">Requirements</h2>
+    <ul>
+      <li><strong>Node.js</strong> — v18.17 or later (LTS recommended)</li>
+      <li><strong>npm</strong> — v9+ (comes with Node.js)</li>
+      <li><strong>Code Editor</strong> — VS Code recommended</li>
+      <li><strong>Git</strong> — For version control (optional)</li>
+    </ul>
+
+    <!-- Installation -->
+    <h2 id="installation">Installation</h2>
+    <h3>Step 1: Extract the files</h3>
+    <p>Unzip the downloaded package to your desired directory.</p>
+
+    <h3>Step 2: Install dependencies</h3>
+    <pre><code>cd travixo
+npm install</code></pre>
+
+    <h3>Step 3: Start the development server</h3>
+    <pre><code>npm run dev</code></pre>
+    <p>Open <code>http://localhost:3000</code> in your browser to see the template.</p>
+
+    <h3>Step 4: Build for production</h3>
+    <pre><code>npm run build
+npm start</code></pre>
+
+    <!-- Environment Setup -->
+    <h2 id="env-setup">Environment Setup</h2>
+    <p>Copy the example environment file and update with your values:</p>
+    <pre><code>cp .env.example .env.local</code></pre>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>NEXT_PUBLIC_SITE_URL</code></td>
+          <td>Your production domain URL. Used for SEO metadata, sitemap, robots.txt, and canonical URLs.</td>
+          <td><code>https://travixo.kayease.com</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <strong>Note:</strong> The <code>NEXT_PUBLIC_SITE_URL</code> variable is used across all pages for canonical URLs,
+      Open Graph metadata, and structured data (JSON-LD). Make sure to set it to your actual domain before deploying.
+    </div>
+
+    <!-- Project Structure -->
+    <h2 id="project-structure">Project Structure</h2>
+    <pre><code>travixo/
+├── app/                          # Next.js App Router pages
+│   ├── layout.tsx                # Root layout (fonts, providers, JSON-LD)
+│   ├── page.tsx                  # Homepage
+│   ├── globals.css               # Global styles + Tailwind v4 config
+│   ├── lib/siteConfig.ts         # Centralized site URL configuration
+│   ├── context/                  # React Context providers
+│   │   ├── CartContext.tsx        # Cart state management
+│   │   ├── WishlistContext.tsx    # Wishlist state management
+│   │   └── ToastContext.tsx       # Toast notifications
+│   ├── about/                    # About page
+│   ├── contact/                  # Contact page
+│   ├── products/                 # Products listing + detail
+│   ├── destinations/             # Destinations page
+│   ├── checkout/                 # Checkout flow
+│   ├── cart/                     # Cart page
+│   ├── wishlist/                 # Wishlist page
+│   └── ...                       # Other pages
+│
+├── components/                   # Reusable React components
+│   ├── layout/                   # Navbar, Footer
+│   ├── home/                     # Homepage sections
+│   ├── ui/                       # Buttons, Cards, Toast, etc.
+│   ├── tours/                    # Tour detail components
+│   └── ...                       # Feature-specific components
+│
+├── public/                       # Static assets
+│   ├── images/                   # All images (organized by feature)
+│   └── og-image.png              # Open Graph preview image
+│
+├── package.json                  # Dependencies & scripts
+├── tsconfig.json                 # TypeScript configuration
+├── next.config.ts                # Next.js configuration
+├── eslint.config.mjs             # ESLint rules
+├── postcss.config.mjs            # PostCSS (Tailwind plugin)
+├── .env.example                  # Environment variables template
+└── documentation/                # This documentation</code></pre>
+
+    <!-- Pages & Routes -->
+    <h2 id="pages">Pages & Routes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Route</th>
+          <th>Page</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>/</code></td>
+          <td>Home</td>
+          <td>Landing page with hero, services, destinations, tours, testimonials</td>
+        </tr>
+        <tr>
+          <td><code>/about</code></td>
+          <td>About</td>
+          <td>Company story, process, and values</td>
+        </tr>
+        <tr>
+          <td><code>/contact</code></td>
+          <td>Contact</td>
+          <td>Contact form and office information</td>
+        </tr>
+        <tr>
+          <td><code>/products</code></td>
+          <td>Products</td>
+          <td>Tour listings grid with filtering</td>
+        </tr>
+        <tr>
+          <td><code>/products/[slug]</code></td>
+          <td>Tour Detail</td>
+          <td>Individual tour page with gallery, booking, reviews</td>
+        </tr>
+        <tr>
+          <td><code>/destinations</code></td>
+          <td>Destinations</td>
+          <td>Destination grid with search</td>
+        </tr>
+        <tr>
+          <td><code>/paris</code></td>
+          <td>Paris</td>
+          <td>City-specific destination page</td>
+        </tr>
+        <tr>
+          <td><code>/cart</code></td>
+          <td>Cart</td>
+          <td>Shopping cart with item management</td>
+        </tr>
+        <tr>
+          <td><code>/checkout</code></td>
+          <td>Checkout</td>
+          <td>Multi-step checkout flow</td>
+        </tr>
+        <tr>
+          <td><code>/wishlist</code></td>
+          <td>Wishlist</td>
+          <td>Saved items with collections</td>
+        </tr>
+        <tr>
+          <td><code>/login</code></td>
+          <td>Login</td>
+          <td>Authentication page</td>
+        </tr>
+        <tr>
+          <td><code>/signup</code></td>
+          <td>Sign Up</td>
+          <td>Registration page</td>
+        </tr>
+        <tr>
+          <td><code>/profile</code></td>
+          <td>Profile</td>
+          <td>User profile management</td>
+        </tr>
+        <tr>
+          <td><code>/settings</code></td>
+          <td>Settings</td>
+          <td>Account settings</td>
+        </tr>
+        <tr>
+          <td><code>/blog</code></td>
+          <td>Blog</td>
+          <td>Blog listing page</td>
+        </tr>
+        <tr>
+          <td><code>/blog/[slug]</code></td>
+          <td>Blog Detail</td>
+          <td>Individual blog article</td>
+        </tr>
+        <tr>
+          <td><code>/blog2</code></td>
+          <td>Blog Alt</td>
+          <td>Alternative blog layout</td>
+        </tr>
+        <tr>
+          <td><code>/news</code></td>
+          <td>News</td>
+          <td>Latest travel news</td>
+        </tr>
+        <tr>
+          <td><code>/faq</code></td>
+          <td>FAQ</td>
+          <td>Frequently asked questions</td>
+        </tr>
+        <tr>
+          <td><code>/testimonials</code></td>
+          <td>Testimonials</td>
+          <td>Customer reviews</td>
+        </tr>
+        <tr>
+          <td><code>/compare</code></td>
+          <td>Compare</td>
+          <td>Tour comparison table</td>
+        </tr>
+        <tr>
+          <td><code>/portfolio</code></td>
+          <td>Portfolio</td>
+          <td>Company portfolio</td>
+        </tr>
+        <tr>
+          <td><code>/history</code></td>
+          <td>History</td>
+          <td>Travel history</td>
+        </tr>
+        <tr>
+          <td><code>/room</code></td>
+          <td>Rooms</td>
+          <td>Room listings</td>
+        </tr>
+        <tr>
+          <td><code>/room-detail</code></td>
+          <td>Room Detail</td>
+          <td>Individual room page</td>
+        </tr>
+        <tr>
+          <td><code>/stay</code></td>
+          <td>Stay</td>
+          <td>Accommodation options</td>
+        </tr>
+        <tr>
+          <td><code>/team</code></td>
+          <td>Team</td>
+          <td>Team members</td>
+        </tr>
+        <tr>
+          <td><code>/tour-types</code></td>
+          <td>Tour Types</td>
+          <td>Tour category listing</td>
+        </tr>
+        <tr>
+          <td><code>/tour-activates</code></td>
+          <td>Activities</td>
+          <td>Tour activities</td>
+        </tr>
+        <tr>
+          <td><code>/how-it-works</code></td>
+          <td>How It Works</td>
+          <td>Booking process steps</td>
+        </tr>
+        <tr>
+          <td><code>/terms</code></td>
+          <td>Terms</td>
+          <td>Terms &amp; Conditions</td>
+        </tr>
+        <tr>
+          <td><code>/privacy</code></td>
+          <td>Privacy</td>
+          <td>Privacy Policy</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Components -->
+    <h2 id="components">Components</h2>
+    <p>All components are organized by feature in the <code>components/</code> directory:</p>
+    <ul>
+      <li><strong>layout/</strong> — Navbar, Footer (used across all pages)</li>
+      <li><strong>home/</strong> — HeroSection, ExploreSection, ServicesSection, DestinationsSection,
+        TestimonialSection, etc.</li>
+      <li><strong>ui/</strong> — Button, TourCard, Toast, DatePicker, ReviewModal</li>
+      <li><strong>tours/</strong> — TourDetailHeroSection, TourGallerySection, TourBookingCard, TourFAQSection, etc.
+      </li>
+      <li><strong>cart/</strong> — CartHeroSection, CartItemsSection</li>
+      <li><strong>checkout/</strong> — CheckoutSection, TravelInformationForm, OrderSummaryCard</li>
+      <li><strong>wishlist/</strong> — WishlistContentSection, WishlistSidebar, WishlistHeroSection</li>
+      <li><strong>about/</strong> — AboutHeroSection, ProcessSection, ValuesSection</li>
+      <li><strong>blogs/</strong> — BlogHeroSection, BlogCard, BlogGridSection, BlogDetailContent</li>
+      <li><strong>destinations/</strong> — DestinationsHeroSection, DestinationsGridSection, DestinationCard</li>
+      <li><strong>paris/</strong> — ParisToursSection, WhenToVisitSection, TestimonialSection</li>
+      <li><strong>room/</strong> — RoomHeroSection, RoomGridSection, FavoriteRoomSection</li>
+      <li><strong>room-detail/</strong> — RoomDetailHeroSection, RoomDetailContentSection, CustomerReviewsSection</li>
+      <li><strong>stay/</strong> — StayHeroSection, SuiteSection, StayCommunitySection</li>
+      <li><strong>team/</strong> — TeamHeroSection, TeamGridSection, TeamMemberCard</li>
+      <li><strong>compare/</strong> — CompareHeroSection, CompareTableSection</li>
+      <li><strong>portfolio/</strong> — PortfolioHeroSection, ExpeditionCard, DiscoveryCard</li>
+      <li><strong>history/</strong> — HistoryHeroSection, ScrapbookCard, TravelStatsCard</li>
+    </ul>
+
+    <!-- Colors & Branding -->
+    <h2 id="colors">Colors & Branding</h2>
+    <p>Brand colors are defined as CSS custom properties in <code>app/globals.css</code> and registered with Tailwind
+      via the <code>@theme</code> directive:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Hex</th>
+          <th>CSS Variable</th>
+          <th>Tailwind Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Brand Brown</td>
+          <td><code>#4B3621</code></td>
+          <td><code>--color-brand-brown</code></td>
+          <td><code>text-brand-brown</code> / <code>bg-brand-brown</code></td>
+        </tr>
+        <tr>
+          <td>Brand Orange</td>
+          <td><code>#F97316</code></td>
+          <td><code>--color-brand-orange</code></td>
+          <td><code>text-brand-orange</code> / <code>bg-brand-orange</code></td>
+        </tr>
+        <tr>
+          <td>Brand Cream</td>
+          <td><code>#FDFBF7</code></td>
+          <td><code>--color-brand-cream</code></td>
+          <td><code>text-brand-cream</code> / <code>bg-brand-cream</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Changing Brand Colors</h3>
+    <p>To customize the color scheme, edit the <code>:root</code> variables in <code>app/globals.css</code>:</p>
+    <pre><code>:root {
+  --color-brand-brown: #4b3621;   /* Primary text color */
+  --color-brand-orange: #f97316;  /* Accent / CTA color */
+  --color-brand-cream: #fdfbf7;   /* Background color */
+}</code></pre>
+
+    <!-- Typography -->
+    <h2 id="typography">Typography</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Font</th>
+          <th>Usage</th>
+          <th>Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Poppins</td>
+          <td>Default body text, headings, paragraphs</td>
+          <td><code>font-body</code> (applied globally)</td>
+        </tr>
+        <tr>
+          <td>Playfair Display</td>
+          <td>Display headings, decorative text</td>
+          <td><code>font-display</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Fonts are loaded via <code>next/font/google</code> in <code>app/layout.tsx</code> for optimal performance (no
+      external requests).</p>
+
+    <!-- Images & Assets -->
+    <h2 id="images">Images & Assets</h2>
+    <p>All images are stored in <code>public/images/</code> organized by feature:</p>
+    <ul>
+      <li><code>public/images/hero/</code> — Hero section images</li>
+      <li><code>public/images/products/</code> — Tour product images</li>
+      <li><code>public/images/destinations/</code> — Destination photos</li>
+      <li><code>public/images/room/</code> — Room and accommodation images</li>
+      <li><code>public/images/favicon/</code> — Favicon files</li>
+      <li><code>public/og-image.png</code> — Open Graph social sharing image (1200×630)</li>
+    </ul>
+
+    <div class="callout callout-warning">
+      <strong>Important:</strong> All images included in this template are for demonstration purposes only. Replace them
+      with your own licensed images before deploying to production. See the <a href="#credits">Credits & Licenses</a>
+      section for details.
+    </div>
+
+    <!-- SEO & Metadata -->
+    <h2 id="seo">SEO & Metadata</h2>
+    <p>Every page includes comprehensive SEO metadata:</p>
+    <ul>
+      <li><strong>Title & Description</strong> — Unique per page via Next.js <code>Metadata</code></li>
+      <li><strong>Canonical URLs</strong> — Prevent duplicate content (uses <code>NEXT_PUBLIC_SITE_URL</code>)</li>
+      <li><strong>Open Graph</strong> — Rich social media previews</li>
+      <li><strong>Twitter Cards</strong> — Twitter-specific previews</li>
+      <li><strong>JSON-LD</strong> — Structured data for Organization, WebSite, HotelRoom, TouristAttraction</li>
+      <li><strong>Sitemap</strong> — Auto-generated at <code>/sitemap.xml</code></li>
+      <li><strong>Robots.txt</strong> — Auto-generated at <code>/robots.txt</code></li>
+    </ul>
+
+    <h3>Customizing Metadata</h3>
+    <p>Each page's metadata is defined in its <code>layout.tsx</code> or <code>page.tsx</code> file. The site URL is
+      centralized in <code>app/lib/siteConfig.ts</code>:</p>
+    <pre><code>import { siteUrl } from "@/app/lib/siteConfig";
+
+export const metadata: Metadata = {
+  title: "Your Page Title | Travixo",
+  alternates: {
+    canonical: `${siteUrl}/your-page`,
+  },
+};</code></pre>
+
+    <!-- Cart & Wishlist -->
+    <h2 id="cart-wishlist">Cart & Wishlist</h2>
+    <p>State management uses React Context with <code>localStorage</code> persistence:</p>
+    <ul>
+      <li><strong>CartContext</strong> (<code>app/context/CartContext.tsx</code>) — Add/remove items, update quantities,
+        calculate totals</li>
+      <li><strong>WishlistContext</strong> (<code>app/context/WishlistContext.tsx</code>) — Save/remove favorites</li>
+      <li><strong>ToastContext</strong> (<code>app/context/ToastContext.tsx</code>) — Show success/error/info
+        notifications</li>
+    </ul>
+
+    <div class="callout callout-info">
+      <strong>Note:</strong> Cart and wishlist data persists in the browser's localStorage. In a production app, you
+      would connect these to a backend API.
+    </div>
+
+    <!-- Responsive Design -->
+    <h2 id="responsive">Responsive Design</h2>
+    <p>The template is fully responsive using Tailwind CSS breakpoints:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Breakpoint</th>
+          <th>Min Width</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>sm</code></td>
+          <td>640px</td>
+          <td>Small tablets</td>
+        </tr>
+        <tr>
+          <td><code>md</code></td>
+          <td>768px</td>
+          <td>Tablets</td>
+        </tr>
+        <tr>
+          <td><code>lg</code></td>
+          <td>1024px</td>
+          <td>Laptops</td>
+        </tr>
+        <tr>
+          <td><code>xl</code></td>
+          <td>1280px</td>
+          <td>Desktops</td>
+        </tr>
+        <tr>
+          <td><code>2xl</code></td>
+          <td>1536px</td>
+          <td>Large screens</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Accessibility -->
+    <h2 id="accessibility">Accessibility</h2>
+    <p>Travixo follows WCAG 2.1 AA guidelines:</p>
+    <ul>
+      <li><strong>Skip to content</strong> — Hidden link at page top for keyboard navigation</li>
+      <li><strong>Focus-visible styles</strong> — Orange outline ring on keyboard focus</li>
+      <li><strong>ARIA labels</strong> — All interactive elements have descriptive labels</li>
+      <li><strong>Semantic HTML</strong> — Proper heading hierarchy, landmarks, and roles</li>
+      <li><strong>Alt text</strong> — All images have descriptive alternative text</li>
+      <li><strong>Reduced motion</strong> — Respects <code>prefers-reduced-motion</code> OS setting</li>
+      <li><strong>Color contrast</strong> — Text meets WCAG AA contrast ratios</li>
+    </ul>
+
+    <!-- Animations -->
+    <h2 id="animations">Animations</h2>
+    <p>Custom animations are defined in <code>app/globals.css</code>:</p>
+    <ul>
+      <li><strong>Float animation</strong> — Gentle floating effect for hero images</li>
+      <li><strong>Explore fade-in</strong> — Tab content transitions</li>
+      <li><strong>Explore image-in</strong> — Image reveal animations</li>
+      <li><strong>Hover effects</strong> — Bottom-to-top fill on buttons and cards</li>
+    </ul>
+    <p>All animations are automatically disabled when the user has <code>prefers-reduced-motion: reduce</code> enabled
+      in their OS settings.</p>
+
+    <!-- Build & Deploy -->
+    <h2 id="build">Build & Deploy</h2>
+    <h3>Production Build</h3>
+    <pre><code>npm run build</code></pre>
+    <p>This creates an optimized production build in the <code>.next/</code> directory.</p>
+
+    <h3>Start Production Server</h3>
+    <pre><code>npm start</code></pre>
+
+    <h3>Static Export (Optional)</h3>
+    <p>To generate a static HTML export, add to <code>next.config.ts</code>:</p>
+    <pre><code>const nextConfig: NextConfig = {
+  output: 'export',
+};</code></pre>
+
+    <!-- Deploy to Vercel -->
+    <h2 id="vercel">Deploy to Vercel</h2>
+    <ol>
+      <li>Push your code to a Git repository (GitHub, GitLab, or Bitbucket)</li>
+      <li>Go to <a href="https://vercel.com" target="_blank">vercel.com</a> and import your repository</li>
+      <li>Set environment variables (<code>NEXT_PUBLIC_SITE_URL</code>)</li>
+      <li>Click Deploy — Vercel auto-detects Next.js and configures everything</li>
+    </ol>
+
+    <!-- Tech Stack -->
+    <h2 id="tech-stack">Tech Stack</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Technology</th>
+          <th>Version</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Next.js</td>
+          <td>16.1.6</td>
+          <td>React framework (App Router)</td>
+        </tr>
+        <tr>
+          <td>React</td>
+          <td>19.2.3</td>
+          <td>UI library</td>
+        </tr>
+        <tr>
+          <td>TypeScript</td>
+          <td>5.x</td>
+          <td>Type safety</td>
+        </tr>
+        <tr>
+          <td>Tailwind CSS</td>
+          <td>4.1.18</td>
+          <td>Utility-first CSS</td>
+        </tr>
+        <tr>
+          <td>Sharp</td>
+          <td>0.34.x</td>
+          <td>Image optimization</td>
+        </tr>
+        <tr>
+          <td>ESLint</td>
+          <td>9.x</td>
+          <td>Code linting</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Browser Support -->
+    <h2 id="browser-support">Browser Support</h2>
+    <ul>
+      <li>Chrome (last 2 versions)</li>
+      <li>Firefox (last 2 versions)</li>
+      <li>Safari (last 2 versions)</li>
+      <li>Edge (last 2 versions)</li>
+      <li>iOS Safari (last 2 versions)</li>
+      <li>Chrome for Android (last 2 versions)</li>
+    </ul>
+
+    <!-- Credits & Licenses -->
+    <h2 id="credits">Credits & Licenses</h2>
+    <h3>Fonts</h3>
+    <ul>
+      <li><strong>Poppins</strong> — Google Fonts, <a href="https://fonts.google.com/specimen/Poppins"
+          target="_blank">SIL Open Font License</a></li>
+      <li><strong>Playfair Display</strong> — Google Fonts, <a href="https://fonts.google.com/specimen/Playfair+Display"
+          target="_blank">SIL Open Font License</a></li>
+    </ul>
+
+    <h3>Libraries</h3>
+    <ul>
+      <li><strong>Next.js</strong> — MIT License</li>
+      <li><strong>React</strong> — MIT License</li>
+      <li><strong>Tailwind CSS</strong> — MIT License</li>
+      <li><strong>Sharp</strong> — Apache-2.0 License</li>
+    </ul>
+
+    <h3>Images</h3>
+    <div class="callout callout-warning">
+      <strong>Important:</strong> Demo images included in this template are for preview/demonstration purposes only. You
+      must replace all images with your own properly licensed images before deploying to production. Ensure you have
+      appropriate commercial licenses for any stock photography used.
+    </div>
+
+    <!-- Support -->
+    <h2 id="support">Support</h2>
+    <p>If you need help or have questions:</p>
+    <ul>
+      <li><strong>Item Support</strong> — Use the "Support" tab on the ThemeForest item page</li>
+      <li><strong>Documentation</strong> — You're reading it!</li>
+      <li><strong>Email</strong> — contact@travixo.com</li>
+    </ul>
+
+    <div class="callout callout-success">
+      <strong>Support includes:</strong> Bug fixes, installation help, and general usage questions. Support does not
+      include customization, third-party integrations, or feature requests.
+    </div>
+
+    <!-- Changelog -->
+    <h2 id="changelog">Changelog</h2>
+    <h3>v1.0.0 — Initial Release</h3>
+    <ul>
+      <li>32 fully designed pages</li>
+      <li>90+ reusable React components</li>
+      <li>Full cart and wishlist functionality with localStorage persistence</li>
+      <li>Comprehensive SEO setup (metadata, sitemap, robots.txt, JSON-LD)</li>
+      <li>WCAG 2.1 AA accessibility compliance</li>
+      <li>Responsive design for all screen sizes</li>
+      <li>Custom animations with reduced-motion support</li>
+      <li>Next.js 16 App Router architecture</li>
+      <li>TypeScript 5 with strict mode</li>
+      <li>Tailwind CSS 4 with CSS-based configuration</li>
+    </ul>
+
+    <br>
+    <hr>
+    <p style="text-align: center; margin-top: 30px; color: var(--text-secondary);">
+      &copy; 2026 Travixo. All rights reserved. Built with ❤️ using Next.js.
+    </p>
+
+  </main>
+
+</body>
+
+</html>

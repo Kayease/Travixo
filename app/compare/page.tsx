@@ -9,6 +9,7 @@
  */
 
 import React from 'react';
+import { siteUrl } from '@/app/lib/siteConfig';
 import { CompareHeroSection, CompareTableSection } from '@/components/compare';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -18,7 +19,7 @@ export const metadata = {
   title: 'Compare Our Experiences | Travixo - Travel & Tour',
   description: 'Compare tours and experiences. Side-by-side details on duration, price, and inclusions to choose your ideal adventure.',
   alternates: {
-    canonical: 'https://travixo.kayease.com/compare',
+    canonical: `${siteUrl}/compare`,
   },
 };
 

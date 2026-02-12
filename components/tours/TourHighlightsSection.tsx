@@ -36,14 +36,13 @@ export const TourHighlightsSection: React.FC<TourHighlightsSectionProps> = ({
 
       {/* Highlights List */}
       <ul className="space-y-3">
-        {highlights.map((highlight, index) => (
-          <li key={index} className="flex items-start gap-3">
+        {highlights.map((highlight) => (
+          <li key={highlight} className="flex items-start gap-3">
             {/* Checkmark Icon */}
             <svg
-              className="w-5 h-5 mt-0.5 shrink-0"
+              className="w-5 h-5 mt-0.5 shrink-0 text-brand-orange"
               viewBox="0 0 20 20"
               fill="none"
-              style={{ color: "#FF6E00" }}
             >
               <path
                 d="M16.6667 5L7.50001 14.1667L3.33334 10"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
+import { siteUrl } from "@/app/lib/siteConfig";
 
 /**
  * Playfair Display Font Configuration
@@ -22,9 +23,6 @@ const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
 });
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://travixo.kayease.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -60,8 +58,15 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${playfair.variable} ${poppins.variable} antialiased`}
-        suppressHydrationWarning
       >
+        {/* Skip to main content — WCAG 2.1 AA accessibility requirement */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-9999 focus:px-4 focus:py-2 focus:bg-brand-orange focus:text-white focus:rounded-lg focus:text-sm focus:font-medium focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          Skip to main content
+        </a>
+
         <div id="main-content" className="w-full">
           <ToastProvider>
             <WishlistProvider>
@@ -88,7 +93,7 @@ export default function RootLayout({
               ],
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+1-555-123-4567",
+                telephone: "+91 1234567890",
                 contactType: "customer service",
                 availableLanguage: "English",
               },

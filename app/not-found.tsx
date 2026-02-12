@@ -7,8 +7,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <main
-      className="min-h-screen flex items-center justify-center px-4"
-      style={{ backgroundColor: "#FFFCF5" }}
+      className="min-h-screen flex items-center justify-center px-4 bg-[#FFFCF5]"
     >
       <div className="text-center max-w-[600px]">
         {/* 404 Number */}

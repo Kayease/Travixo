@@ -89,8 +89,7 @@ export const FeaturedToursSection = () => {
         <div className="flex flex-col items-center mb-12 lg:mb-16">
           {/* Badge */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl mb-6"
-            style={{ backgroundColor: "#FF6E00" }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl mb-6 bg-[#FF6E00]"
           >
             <PlaneIcon />
             <span className="font-display italic font-medium text-sm text-white">

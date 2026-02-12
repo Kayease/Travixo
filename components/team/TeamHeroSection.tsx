@@ -32,8 +32,7 @@ export const TeamHeroSection: React.FC<TeamHeroSectionProps> = ({
 }) => {
   return (
     <section
-      className="relative w-full py-12 md:py-16 lg:py-[68px]"
-      style={{ backgroundColor: "#FFF7E5" }}
+      className="relative w-full py-12 md:py-16 lg:py-[68px] bg-[#FFF7E5]"
       aria-labelledby="team-hero-title"
     >
       {/* Container with max-width for content alignment */}

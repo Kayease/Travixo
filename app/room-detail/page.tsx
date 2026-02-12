@@ -8,6 +8,7 @@
  */
 
 import React from "react";
+import { siteUrl } from "@/app/lib/siteConfig";
 import {
   RoomDetailHeroSection,
   RoomDetailContentSection,
@@ -23,7 +24,7 @@ export const metadata = {
   description:
     "Experience luxury and comfort in our Serenity Suite with breathtaking mountain views.",
   alternates: {
-    canonical: "https://travixo.kayease.com/room-detail",
+    canonical: `${siteUrl}/room-detail`,
   },
 };
 
@@ -40,8 +41,8 @@ export default function RoomDetailPage() {
             name: "Serenity Suite",
             description:
               "Experience luxury and comfort in our Serenity Suite with breathtaking mountain views.",
-            url: "https://travixo.kayease.com/room-detail",
-            image: "https://travixo.kayease.com/images/room/room-hero.png",
+            url: `${siteUrl}/room-detail`,
+            image: `${siteUrl}/images/room/room-hero.png`,
             occupancy: {
               "@type": "QuantitativeValue",
               value: 2,
@@ -49,8 +50,8 @@ export default function RoomDetailPage() {
             containedInPlace: {
               "@type": "LodgingBusiness",
               name: "Travixo",
-              url: "https://travixo.kayease.com",
-              image: "https://travixo.kayease.com/logo.png",
+              url: siteUrl,
+              image: `${siteUrl}/logo.png`,
             },
           }),
         }}

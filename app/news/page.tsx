@@ -15,6 +15,7 @@
  */
 
 import React from "react";
+import { siteUrl } from "@/app/lib/siteConfig";
 import NewsContent from "./NewsContent";
 
 // Metadata for SEO
@@ -23,7 +24,7 @@ export const metadata = {
   description:
     "Stay updated with the latest travel news, tips, destination guides, and industry insights from Travixo.",
   alternates: {
-    canonical: "https://travixo.kayease.com/news",
+    canonical: `${siteUrl}/news`,
   },
 };
 

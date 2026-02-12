@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { siteUrl } from '@/app/lib/siteConfig';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Blog2HeroSection, Blog2ContentSection } from '@/components/blog2';
@@ -16,7 +17,7 @@ export const metadata = {
   title: 'Blog Post | Travixo - Travel & Tour',
   description: 'Read our latest travel insights and destination guides.',
   alternates: {
-    canonical: 'https://travixo.kayease.com/blog2',
+    canonical: `${siteUrl}/blog2`,
   },
 };
 
