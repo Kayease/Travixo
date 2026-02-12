@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 
@@ -107,7 +107,6 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
                   key={index}
                   href={destination === "View all" ? "/destinations" : "/paris"}
                   className="group relative block text-left px-4 lg:max-xl:px-3 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
-                  onClick={onClose}
                   onMouseEnter={() => setHoveredCountry(destination)}
                 >
                   <span
@@ -131,7 +130,6 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
                 key={index}
                 href="/paris"
                 className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-                onClick={onClose}
               >
                 {/* Circular Image */}
                 <div className="relative w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full overflow-hidden shrink-0">
@@ -224,7 +222,6 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
           key={index}
           href={page.href}
           className="group relative flex items-center w-[148px] h-[39px] text-left px-3 font-display text-[15px] md:text-base italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
-          onClick={onClose}
         >
           <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover:w-full group-hover:opacity-100 transition-all duration-500 ease-out z-0" />
           <span className="relative z-10">{page.label}</span>
@@ -431,6 +428,7 @@ export const Navbar = () => {
   const searchBarRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
   const { cartItems } = useCart();
   const { wishlistItems } = useWishlist();
 
@@ -442,7 +440,7 @@ export const Navbar = () => {
     setIsSearchOpen(false);
     setIsMobilePagesExpanded(false);
     setExpandedCountry(null);
-  }, [router]);
+  }, [pathname]);
 
   // Prevent scroll when mobile menu is open
   useEffect(() => {
@@ -575,8 +573,10 @@ export const Navbar = () => {
             <div
               className="relative"
               onMouseEnter={() => {
-                setIsDestinationOpen(true);
-                setIsPagesOpen(false);
+                if (window.matchMedia("(hover: hover)").matches) {
+                  setIsDestinationOpen(true);
+                  setIsPagesOpen(false);
+                }
               }}
               onMouseLeave={() => setIsDestinationOpen(false)}
             >
@@ -584,6 +584,7 @@ export const Navbar = () => {
                 label="Destination"
                 hasDropdown
                 isActive={isDestinationOpen}
+                onClick={handleDestinationClick}
                 className="cursor-pointer"
               />
               <div
@@ -601,8 +602,10 @@ export const Navbar = () => {
             <div
               className="relative"
               onMouseEnter={() => {
-                setIsPagesOpen(true);
-                setIsDestinationOpen(false);
+                if (window.matchMedia("(hover: hover)").matches) {
+                  setIsPagesOpen(true);
+                  setIsDestinationOpen(false);
+                }
               }}
               onMouseLeave={() => setIsPagesOpen(false)}
             >
@@ -610,6 +613,7 @@ export const Navbar = () => {
                 label="Pages"
                 hasDropdown
                 isActive={isPagesOpen}
+                onClick={handlePagesClick}
                 className="cursor-pointer"
               />
               <div

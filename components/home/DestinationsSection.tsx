@@ -71,6 +71,7 @@ const PlaneIcon = () => (
  */
 const DestinationCard = ({
   name,
+  listings,
   image,
   onMouseEnter,
   onMouseLeave,
@@ -87,10 +88,10 @@ const DestinationCard = ({
     onMouseLeave={onMouseLeave}
     className="shrink-0 relative cursor-pointer group block overflow-hidden transition-all duration-500 ease-in-out hover:shadow-[0px_0px_4px_rgba(255,255,255,0.1)]"
     style={{
-      width: "418px",
-      height: "657px",
-      borderRadius: "400px 400px 0px 300px",
-      clipPath: "inset(0 round 400px 400px 0px 300px)", // Ensures hit area matches visual shape
+      width: "var(--card-width, 418px)",
+      height: "var(--card-height, 657px)",
+      borderRadius: "var(--card-radius, 400px 400px 0px 300px)",
+      clipPath: "inset(0 round var(--card-radius, 400px 400px 0px 300px))", // Ensures hit area matches visual shape
       border: "1px solid #FF8930",
       backgroundImage: "url('/images/home/destination/initial-bg.png')",
       backgroundSize: "cover",
@@ -102,9 +103,9 @@ const DestinationCard = ({
     <div
       className="absolute overflow-hidden"
       style={{
-        width: "418px",
-        height: "519px",
-        left: "calc(50% - 418px/2)",
+        width: "var(--img-width, 418px)",
+        height: "var(--img-height, 519px)",
+        left: "calc(50% - var(--img-width, 418px)/2)",
         top: 0,
         borderRadius: "1000px",
         zIndex: 1,
@@ -116,15 +117,15 @@ const DestinationCard = ({
         fill
         className="object-cover transition-transform duration-700 ease-in-out"
         style={{ transformOrigin: "top center" }}
-        sizes="418px"
+        sizes="(max-width: 768px) 280px, 418px"
       />
     </div>
 
     {/* Orange hover: hover-bg.png in place of white, in front of image in lower band */}
     <div
-      className="absolute left-0 w-full h-[24px] group-hover:h-[341px] transition-all duration-500 ease-in-out"
+      className="absolute left-0 w-full h-[24px] group-hover:h-[50%] transition-all duration-500 ease-in-out"
       style={{
-        top: "316px",
+        top: "var(--overlay-top, 316px)",
         zIndex: 0,
         backgroundImage: "url('/images/home/destination/hover-bg.png')",
         backgroundSize: "cover",
@@ -138,10 +139,10 @@ const DestinationCard = ({
       className="absolute left-1/2 -translate-x-1/2 text-center transition-colors duration-500 ease-in-out group-hover:text-white"
       style={{
         width: "98px",
-        top: "537px",
+        top: "var(--label-top, 537px)",
         fontFamily: "'Inter', sans-serif",
         fontWeight: 500,
-        fontSize: "18px",
+        fontSize: "var(--label-size, 18px)",
         lineHeight: "22px",
         color: "#4B3621",
         zIndex: 3,
@@ -154,10 +155,10 @@ const DestinationCard = ({
     <h3
       className="absolute left-1/2 -translate-x-1/2 text-center font-display italic transition-colors duration-500 ease-in-out group-hover:text-white"
       style={{
-        top: "577px",
+        top: "var(--name-top, 577px)",
         fontWeight: 500,
-        fontSize: "28px",
-        lineHeight: "37px",
+        fontSize: "var(--name-size, 28px)",
+        lineHeight: "var(--name-lh, 37px)",
         color: "#4B3621",
         zIndex: 3,
       }}
@@ -224,7 +225,7 @@ export const DestinationsSection = () => {
     <section
       className="relative w-full overflow-hidden"
       style={{
-        minHeight: "761px",
+        minHeight: "var(--section-min-height, 761px)",
         backgroundImage: "url('/images/home/destination/destination-bg.png')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -341,6 +342,36 @@ export const DestinationsSection = () => {
       <style jsx>{`
         div::-webkit-scrollbar {
           display: none;
+        }
+        :global(:root) {
+          --card-width: 280px;
+          --card-height: 480px;
+          --card-radius: 280px 280px 0px 200px;
+          --img-width: 280px;
+          --img-height: 360px;
+          --overlay-top: 220px;
+          --label-top: 380px;
+          --label-size: 14px;
+          --name-top: 410px;
+          --name-size: 20px;
+          --name-lh: 28px;
+          --section-min-height: 800px;
+        }
+        @media (min-width: 768px) {
+          :global(:root) {
+            --card-width: 418px;
+            --card-height: 657px;
+            --card-radius: 400px 400px 0px 300px;
+            --img-width: 418px;
+            --img-height: 519px;
+            --overlay-top: 316px;
+            --label-top: 537px;
+            --label-size: 18px;
+            --name-top: 577px;
+            --name-size: 28px;
+            --name-lh: 37px;
+            --section-min-height: 761px;
+          }
         }
       `}</style>
     </section>
