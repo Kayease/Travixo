@@ -165,9 +165,9 @@ const ArrowIcon = ({ className }: { className?: string }) => (
 const COMPANY_LINKS = [
   { label: "Tour Listings", href: "/products" },
   { label: "Destinations", href: "/destinations" },
-  { label: "Tour Activates", href: "/tour-activates" },
+  { label: "Tour Activities", href: "/tour-activates" },
   { label: "Tour Types", href: "/tour-types" },
-  { label: "How It Work", href: "/how-it-works" },
+  { label: "How It Works", href: "/how-it-works" },
 ];
 
 const EXPLORE_LINKS = [
@@ -204,7 +204,7 @@ export const Footer = () => {
     }
 
     // Success simulation
-    console.log(`Subscribed with: ${email}`);
+    // In production, send subscription to email marketing API
     setToastMessage({ message: "Thank you for subscribing to our newsletter!", type: "success" });
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
@@ -323,9 +323,9 @@ export const Footer = () => {
               </h3>
               <div className="flex flex-col gap-4">
                 <p className="font-body font-medium text-[18px] leading-[28px] text-white max-w-[255px]">
-                  6391 Elgin St.Celina,Delware
+                  6391 Elgin St. Celina,
                   <br />
-                  New York,USA
+                  Delaware 10001, USA
                 </p>
                 <div className="flex items-center gap-2">
                   <PhoneIcon />
@@ -375,14 +375,14 @@ export const Footer = () => {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-body font-normal text-[14px] leading-[21px] text-white/60">
-            © Copyright 2026 Travixo. All rights reserved.
+            © Copyright {new Date().getFullYear()} Travixo. All rights reserved.
           </p>
           <div className="flex items-center gap-8">
             <Link
               href="/terms"
               className="font-body font-normal text-[14px] leading-[21px] text-white/60 hover:text-white transition-colors"
             >
-              Terms & Condition
+              Terms & Conditions
             </Link>
             <Link
               href="/privacy"

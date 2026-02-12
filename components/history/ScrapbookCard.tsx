@@ -26,14 +26,14 @@ interface ScrapbookCardProps {
   item: ScrapbookItem;
 }
 
-const ScrapbookCard: React.FC<ScrapbookCardProps> = ({ item }) => {
+const ScrapbookCard: React.FC<ScrapbookCardProps> = React.memo(({ item }) => {
   return (
     <Link
       href={`/products/${item.slug}`}
       className="group block bg-white border border-brand-brown/40 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer"
     >
       {/* Image Container */}
-      <div className="relative w-full aspect-[418/375] overflow-hidden">
+      <div className="relative w-full aspect-418/375 overflow-hidden">
         <Image
           src={item.image}
           alt={item.destination}
@@ -59,6 +59,7 @@ const ScrapbookCard: React.FC<ScrapbookCardProps> = ({ item }) => {
       </div>
     </Link>
   );
-};
+});
+ScrapbookCard.displayName = "ScrapbookCard";
 
 export default ScrapbookCard;

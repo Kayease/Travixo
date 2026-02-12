@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -67,13 +66,13 @@ const FEATURES = [
   {
     id: "friendly-guide",
     title: "Friendly Guide",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
+    description: "Our certified guides ensure personalized attention and deep local knowledge on every journey.",
     icon: "travel",
   },
   {
     id: "safety-travel",
     title: "Safety Travel",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
+    description: "Travel with confidence knowing every detail is managed with your safety as our top priority.",
     icon: "luggage",
   },
 ];
@@ -82,46 +81,10 @@ const FEATURES = [
  * Checklist items
  */
 const CHECKLIST = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
+  "Expert-led tours with certified local guides in every destination",
+  "24/7 customer support throughout your entire travel experience",
+  "Flexible cancellation policies for worry-free booking",
 ];
-
-/**
- * FeatureCard Component
- */
-const FeatureCard = ({
-  title,
-  description,
-  icon,
-  hasBorder,
-}: {
-  title: string;
-  description: string;
-  icon: string;
-  hasBorder: boolean;
-}) => (
-  <div
-    className={`flex-1 p-4 ${hasBorder ? "border-r border-b border-black/20" : "border-b border-black/20"}`}
-  >
-    <div className="flex items-start gap-4">
-      {/* Icon */}
-      <div className="w-[50px] h-[50px] flex items-center justify-center shrink-0">
-        {icon === "travel" ? <TravelIcon /> : <LuggageIcon />}
-      </div>
-
-      {/* Content */}
-      <div>
-        <h4 className="font-display italic font-normal text-xl leading-[27px] text-brand-brown">
-          {title}
-        </h4>
-        <p className="font-body font-normal text-base leading-6 text-brand-brown mt-2 max-w-[272px]">
-          {description}
-        </p>
-      </div>
-    </div>
-  </div>
-);
 
 /**
  * AboutSection Component
@@ -172,7 +135,7 @@ export const AboutSection = () => {
 
             {/* Overlapping Secondary Image - Frame 27 */}
             <div
-              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[150px] xl:left-[250px] lg:-translate-x-0 w-[280px] md:w-[350px] lg:w-[320px] xl:w-[401px] h-[180px] md:h-[220px] lg:h-[200px] xl:h-[242px] z-20 overflow-hidden"
+              className="absolute -bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 lg:left-[150px] xl:left-[250px] lg:translate-x-0 w-[280px] md:w-[350px] lg:w-[320px] xl:w-[401px] h-[180px] md:h-[220px] lg:h-[200px] xl:h-[242px] z-20 overflow-hidden"
               style={{
                 boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.1)',
                 borderRadius: '32px',
@@ -210,10 +173,7 @@ export const AboutSection = () => {
 
             {/* Description */}
             <p className="font-body font-medium text-lg leading-[27px] text-brand-brown mb-10 max-w-[607px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              With over a decade of experience, we craft unforgettable journeys that blend adventure with comfort. Our team of passionate travel experts hand-picks every destination, ensuring authentic experiences that create lasting memories.
             </p>
 
             {/* Feature Cards - Frame 28 & 29 */}

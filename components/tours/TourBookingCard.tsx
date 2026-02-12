@@ -108,7 +108,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
       setIsChecking(false);
 
-      // Randomly simulate availability (70% chance available)
+      // Demo: simulated availability (70% chance available)
       const isAvailable = Math.random() > 0.3;
 
       if (isAvailable) {

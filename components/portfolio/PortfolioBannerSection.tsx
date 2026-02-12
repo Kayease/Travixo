@@ -9,7 +9,6 @@
  */
 
 import React from 'react';
-import Image from 'next/image';
 
 const PortfolioBannerSection: React.FC = () => {
   return (
@@ -32,7 +31,7 @@ const PortfolioBannerSection: React.FC = () => {
         </video>
 
         {/* Optional subtle gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/5" />
       </div>
     </section>
   );

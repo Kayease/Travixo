@@ -34,7 +34,7 @@ interface OrderSummaryCardProps {
   onPay?: () => void;
 }
 
-const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({
+const OrderSummaryCard: React.FC<OrderSummaryCardProps> = React.memo(({
   tourImage,
   tourName = "Bangkok Temple Tour",
   pricePerPerson,
@@ -223,6 +223,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({
       )}
     </div>
   );
-};
+});
+OrderSummaryCard.displayName = "OrderSummaryCard";
 
 export default OrderSummaryCard;

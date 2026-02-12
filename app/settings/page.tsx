@@ -83,8 +83,7 @@ const SettingsContentSection = () => {
   };
 
   const handleSave = () => {
-    console.log("Settings saved:", settings);
-    // Handle save logic
+    // In production, this would persist settings to a backend API
   };
 
   return (

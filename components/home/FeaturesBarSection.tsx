@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 
 import Image from "next/image";
@@ -11,25 +10,25 @@ const FEATURES = [
     id: 1,
     icon: "chat",
     title: "24-hour support",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    description: "Our dedicated team is available around the clock to assist you with any travel needs",
   },
   {
     id: 2,
     icon: "feed",
     title: "No hidden fee",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    description: "Transparent pricing with no surprises — what you see is exactly what you pay",
   },
   {
     id: 3,
     icon: "flex",
     title: "Booking Flexibility",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    description: "Change your plans worry-free with our flexible rebooking and cancellation options",
   },
   {
     id: 4,
     icon: "bus",
     title: "Included transfer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    description: "Complimentary airport transfers included with every tour package booking",
   },
 ];
 

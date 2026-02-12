@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Hide scrollbar for all browsers */
 html,
 body {
@@ -6,8 +8,7 @@ body {
 }
 
 html,
-body,
-* {
+body {
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
@@ -15,13 +16,10 @@ body,
 }
 
 html::-webkit-scrollbar,
-body::-webkit-scrollbar,
-*::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, Opera */
 }
-
-@import "tailwindcss";
 
 :root {
   /* Brand Colors extracted from design */
@@ -85,38 +83,30 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* ========== Focus styles for accessibility ========== */
+/* ========== Focus styles for accessibility (WCAG 2.1 AA compliant) ========== */
+/* Remove default outline on regular focus (mouse clicks) */
 button:focus,
 a:focus,
 input:focus,
 select:focus,
-textarea:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Show visible focus ring only for keyboard navigation (focus-visible) */
 button:focus-visible,
 a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-brand-orange);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-  --tw-ring-offset-width: 0px !important;
-  --tw-ring-width: 0px !important;
-  --tw-ring-color: transparent !important;
-}
-
-/* Specific fix for browser default focus rings */
-input,
-select,
-textarea,
-button {
-  outline: none !important;
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none !important;
-  box-shadow: none !important;
+  outline: 2px solid var(--color-brand-orange);
+  outline-offset: 0px;
 }
 
 /* ========== Floating Animation for Hero Images ========== */
@@ -174,7 +164,7 @@ button:focus {
 @keyframes explore-image-in {
   from {
     opacity: 0;
-    transform: beach(0.98);
+    transform: scale(0.98);
   }
 
   to {

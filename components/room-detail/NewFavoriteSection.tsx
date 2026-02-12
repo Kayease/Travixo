@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -94,7 +92,7 @@ const NewFavoriteSection: React.FC = () => {
       price: "$45",
       image: "/images/room_detail/cards/room-1.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "A tranquil retreat featuring floor-to-ceiling windows, plush bedding, and a private balcony with garden views.",
     },
     {
       id: "sunlight-terrace",
@@ -102,7 +100,7 @@ const NewFavoriteSection: React.FC = () => {
       price: "$45",
       image: "/images/room_detail/cards/detail-2.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "Bask in natural light with an open-plan layout, terrace dining area, and premium furnishings throughout.",
     },
     {
       id: "tropical-zen",
@@ -110,7 +108,7 @@ const NewFavoriteSection: React.FC = () => {
       price: "$45",
       image: "/images/room_detail/cards/detail-1.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "Inspired by nature, this retreat blends tropical greenery with minimalist design for ultimate relaxation.",
     },
   ];
 

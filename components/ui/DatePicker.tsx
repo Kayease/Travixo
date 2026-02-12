@@ -1,6 +1,6 @@
 "use client";
 /** Calendar-style date picker for tour and stay search. */
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 export interface DateRange {
   from: string | null;
@@ -72,12 +72,12 @@ export const DatePicker = ({
   const isControlled = open !== undefined;
   const isOpen = isControlled ? open : internalIsOpen;
 
-  const setIsOpen = (value: boolean) => {
+  const setIsOpen = useCallback((value: boolean) => {
     if (!isControlled) {
       setInternalIsOpen(value);
     }
     onOpenChange?.(value);
-  };
+  }, [isControlled, onOpenChange]);
 
   // Generate years array for year picker (current year ± 10 years)
   const getYearsRange = () => {
@@ -115,7 +115,7 @@ export const DatePicker = ({
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [externalTriggerRef]);
+  }, [externalTriggerRef, setIsOpen]);
 
   // Get days in month
   const getDaysInMonth = (month: number, year: number) => {

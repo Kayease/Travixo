@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,8 +38,8 @@ export interface TeamMemberProps {
  * @param {TeamMemberProps} props - Team member data
  * @returns {JSX.Element} The rendered team member card
  */
-export const TeamMemberCard: React.FC<TeamMemberProps> = ({
-  id,
+export const TeamMemberCard: React.FC<TeamMemberProps> = React.memo(({
+  id: _id,
   name,
   role,
   imageUrl,
@@ -118,6 +117,7 @@ export const TeamMemberCard: React.FC<TeamMemberProps> = ({
       </p>
     </article>
   );
-};
+});
+TeamMemberCard.displayName = "TeamMemberCard";
 
 export default TeamMemberCard;

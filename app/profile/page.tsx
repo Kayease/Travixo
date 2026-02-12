@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useToast } from "../context/ToastContext";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -37,6 +38,7 @@ const ProfileContentSection = () => {
     "profile" | "bookings" | "security"
   >("profile");
   const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
   const { showToast } = useToast();
 
   // Main profile data source
@@ -53,6 +55,9 @@ const ProfileContentSection = () => {
     postalCode: "10001",
   });
 
+  // Temporary state for editing (must be declared before the useEffect that uses setFormData)
+  const [formData, setFormData] = useState(profileData);
+
   // Load data from localStorage on mount
   React.useEffect(() => {
     const savedData = localStorage.getItem("userProfile");
@@ -62,7 +67,7 @@ const ProfileContentSection = () => {
         setProfileData(parsed);
         setFormData(parsed);
       } catch (e) {
-        console.error("Failed to parse profile data", e);
+        void e; // Silently handle corrupted localStorage data
       }
     } else {
       // If no profile data, check if we have email from login
@@ -73,9 +78,6 @@ const ProfileContentSection = () => {
       }
     }
   }, []);
-
-  // Temporary state for editing
-  const [formData, setFormData] = useState(profileData);
 
   // Password state
   const [passwordData, setPasswordData] = useState({
@@ -97,19 +99,21 @@ const ProfileContentSection = () => {
     if (savedAvatar) setAvatarImage(savedAvatar);
   }, []);
 
-  const handleToggle2FA = () => {
-    const newState = !is2FAEnabled;
-    setIs2FAEnabled(newState);
-    localStorage.setItem("is2FAEnabled", newState.toString());
-    showToast(
-      newState
-        ? "Two-Factor Authentication Enabled!"
-        : "Two-Factor Authentication Disabled!",
-      newState ? "success" : "info",
-    );
-  };
+  const handleToggle2FA = useCallback(() => {
+    setIs2FAEnabled((prev) => {
+      const newState = !prev;
+      localStorage.setItem("is2FAEnabled", newState.toString());
+      showToast(
+        newState
+          ? "Two-Factor Authentication Enabled!"
+          : "Two-Factor Authentication Disabled!",
+        newState ? "success" : "info",
+      );
+      return newState;
+    });
+  }, [showToast]);
 
-  const handleAvatarUpload = () => {
+  const handleAvatarUpload = useCallback(() => {
     // Mock image selection
     showToast("Opening file picker...", "info");
     setTimeout(() => {
@@ -119,52 +123,53 @@ const ProfileContentSection = () => {
         "/images/room/cards/testimonial-3.png",
         "/images/room/cards/testimonial-4.png"
       ];
+      // Demo: random avatar for illustration
       const randomAvatar = mockAvatars[Math.floor(Math.random() * mockAvatars.length)];
       setAvatarImage(randomAvatar);
       localStorage.setItem("userAvatar", randomAvatar);
       showToast("Avatar Updated!", "success");
     }, 1000);
-  };
+  }, [showToast]);
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     showToast("Logged out successfully.", "success");
-    window.location.href = "/login";
-  };
+    setTimeout(() => router.push("/login"), 1000);
+  }, [showToast, router]);
 
-  const handleChange = (
+  const handleChange = useCallback((
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
-  };
+    }));
+  }, []);
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPasswordData({
-      ...passwordData,
+  const handlePasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
-  };
+    }));
+  }, []);
 
-  const handleEditClick = () => {
+  const handleEditClick = useCallback(() => {
     setFormData(profileData); // Reset form to current data
     setIsEditing(true);
-  };
+  }, [profileData]);
 
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     setFormData(profileData); // Revert changes
     setIsEditing(false);
-  };
+  }, [profileData]);
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     setProfileData(formData); // Commit changes
     localStorage.setItem("userProfile", JSON.stringify(formData));
     setIsEditing(false);
     showToast("Profile Updated Successfully!", "success");
-  };
+  }, [formData, showToast]);
 
-  const handleUpdatePassword = () => {
+  const handleUpdatePassword = useCallback(() => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
       showToast("New passwords do not match!", "error");
       return;
@@ -180,7 +185,7 @@ const ProfileContentSection = () => {
       confirmPassword: "",
     });
     showToast("Password Updated Successfully!", "success");
-  };
+  }, [passwordData, showToast]);
 
   // Mock booking data
   const bookings = [
@@ -213,10 +218,10 @@ const ProfileContentSection = () => {
     },
   ];
 
-  // Get initials for avatar
-  const getInitials = () => {
+  // Get initials for avatar — memoized since it depends on profileData
+  const getInitials = useMemo(() => {
     return `${profileData.firstName.charAt(0)}${profileData.lastName.charAt(0)}`.toUpperCase();
-  };
+  }, [profileData.firstName, profileData.lastName]);
 
   return (
     <section
@@ -241,7 +246,7 @@ const ProfileContentSection = () => {
                         sizes="(max-width: 768px) 96px, 112px"
                       />
                     ) : (
-                      getInitials()
+                      getInitials
                     )}
                   </div>
                   <button
@@ -282,7 +287,7 @@ const ProfileContentSection = () => {
               <nav className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
                 <button
                   onClick={() => setActiveTab("profile")}
-                  className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "profile"
+                  className={`shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "profile"
                     ? "bg-brand-orange text-white"
                     : "text-gray-700 hover:bg-gray-100"
                     }`}
@@ -305,7 +310,7 @@ const ProfileContentSection = () => {
 
                 <button
                   onClick={() => setActiveTab("bookings")}
-                  className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "bookings"
+                  className={`shrink-0-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "bookings"
                     ? "bg-brand-orange text-white"
                     : "text-gray-700 hover:bg-gray-100"
                     }`}
@@ -328,7 +333,7 @@ const ProfileContentSection = () => {
 
                 <button
                   onClick={() => setActiveTab("security")}
-                  className={`flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "security"
+                  className={`shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "security"
                     ? "bg-brand-orange text-white"
                     : "text-gray-700 hover:bg-gray-100"
                     }`}
@@ -351,7 +356,7 @@ const ProfileContentSection = () => {
 
                 <Link
                   href="/settings"
-                  className="flex-shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] text-gray-700 hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  className="shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] text-gray-700 hover:bg-gray-100 transition-colors whitespace-nowrap"
                 >
                   <svg
                     className="w-5 h-5 mr-2 md:mr-3"

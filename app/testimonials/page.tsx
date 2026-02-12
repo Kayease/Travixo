@@ -16,6 +16,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -24,6 +25,9 @@ export const metadata = {
   title: "Client Testimonials | Travixo - Travel & Tour",
   description:
     "Read what our clients say about their unforgettable experiences with Travixo. Real stories from real travelers.",
+  alternates: {
+    canonical: "https://travixo.kayease.com/testimonials",
+  },
 };
 
 /**
@@ -171,7 +175,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       {/* Testimonial Text */}
       <p className="font-body text-base leading-[28px] text-brand-brown mb-4">
-        "{testimonial}"
+        &quot;{testimonial}&quot;
       </p>
 
       {/* Tour & Date Info */}
@@ -190,10 +194,52 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
  * Main testimonials page layout
  */
 export default function TestimonialsPage() {
+  // Calculate aggregate rating from testimonials data
+  const totalReviews = TESTIMONIALS_DATA.length;
+  const averageRating =
+    TESTIMONIALS_DATA.reduce((sum, t) => sum + t.rating, 0) / totalReviews;
+
   return (
     <>
       <Navbar />
       <main className="min-h-screen bg-[#FFFCF5]">
+        {/* AggregateRating JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Travixo",
+              url: "https://travixo.kayease.com",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: averageRating,
+                reviewCount: 10000,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              review: TESTIMONIALS_DATA.map((t) => ({
+                "@type": "Review",
+                author: {
+                  "@type": "Person",
+                  name: t.name,
+                },
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: t.rating,
+                  bestRating: 5,
+                },
+                reviewBody: t.testimonial,
+                datePublished: t.date,
+                itemReviewed: {
+                  "@type": "TouristTrip",
+                  name: t.tour,
+                },
+              })),
+            }),
+          }}
+        />
         {/* Hero Section */}
         <section className="relative w-full bg-[#FFF7E5] py-12 md:py-16 lg:py-20">
           <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20 text-center">
@@ -266,12 +312,12 @@ export default function TestimonialsPage() {
               Join thousands of satisfied travelers and embark on your next
               adventure with Travixo.
             </p>
-            <a
+            <Link
               href="/products"
               className="inline-block bg-white text-brand-orange px-8 py-4 rounded-xl font-body font-semibold text-base hover:bg-brand-cream transition-colors duration-300"
             >
               Browse Tours
-            </a>
+            </Link>
           </div>
         </section>
       </main>

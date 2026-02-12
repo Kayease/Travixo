@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,7 +40,7 @@ export const CTABannerSection = ({
   title = "Speak to Our Destination Experts at Call",
   subtitle = "Our Customer service team is available 24/7 via chat, email and WhatsApp.",
   buttonText = "Request a quote",
-  onButtonClick,
+  onButtonClick: _onButtonClick,
 }: CTABannerProps) => {
   return (
     <section className="relative w-full py-12 lg:py-16 bg-white overflow">

@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 
 /**
@@ -29,7 +28,7 @@ interface TeamHeroSectionProps {
  */
 export const TeamHeroSection: React.FC<TeamHeroSectionProps> = ({
   title = "Meet our teams",
-  subtitle = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  subtitle = "The passionate travel experts behind every unforgettable Travixo journey.",
 }) => {
   return (
     <section

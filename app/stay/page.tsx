@@ -8,22 +8,40 @@
  */
 
 import React from "react";
-import {
-  StayHeroSection,
-  StayBannerSection,
-  SuiteSection,
-  StayStatsSection,
-  TestimonialSection,
-  StayCommunitySection,
-} from "@/components/stay";
+import dynamic from "next/dynamic";
+import { StayHeroSection } from "@/components/stay";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+
+const StayBannerSection = dynamic(
+  () => import("@/components/stay/StayBannerSection"),
+  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+);
+const SuiteSection = dynamic(
+  () => import("@/components/stay/SuiteSection"),
+  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+);
+const StayStatsSection = dynamic(
+  () => import("@/components/stay/StayStatsSection"),
+  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+);
+const TestimonialSection = dynamic(
+  () => import("@/components/stay/StayTestimonialSection"),
+  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+);
+const StayCommunitySection = dynamic(
+  () => import("@/components/stay/StayCommunitySection"),
+  { loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" /> }
+);
 
 // Metadata for SEO
 export const metadata = {
   title: "Stay | Travixo - Travel & Tour",
   description:
     "Find your perfect stay. Browse handpicked accommodations for every journey, from safari lodges to city retreats.",
+  alternates: {
+    canonical: "https://travixo.kayease.com/stay",
+  },
 };
 
 export default function StayPage() {

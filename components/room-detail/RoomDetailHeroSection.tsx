@@ -56,8 +56,8 @@ const RoomDetailHeroSection: React.FC = () => {
 
             {/* Room Description */}
             <p className="text-base md:text-lg lg:text-xl font-normal leading-7 lg:leading-8 text-white/90 max-w-[500px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              A serene escape designed for ultimate relaxation, featuring
+              panoramic mountain views and premium amenities.
             </p>
           </div>
         </div>

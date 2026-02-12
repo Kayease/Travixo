@@ -153,7 +153,8 @@ const PaymentDetailsForm: React.FC<PaymentDetailsFormProps> = ({
               </label>
               <input
                 id="checkout-cvv"
-                type="text"
+                type="password"
+                autoComplete="cc-csc"
                 value={cardData.cvv}
                 onChange={(e) => onCardChange('cvv', e.target.value.replace(/\D/g, '').substring(0, 4))}
                 placeholder="123"

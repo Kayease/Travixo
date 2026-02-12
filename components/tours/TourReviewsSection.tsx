@@ -80,10 +80,10 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
   const handleOpenReviewModal = () => setIsReviewModalOpen(true);
   const handleCloseReviewModal = () => setIsReviewModalOpen(false);
 
-  const handleSubmitReview = (data: any) => {
-    console.log("Review Submitted:", data);
-    // In a real app, you would send this to your backend
-    // and then refresh the reviews list or show a success message
+  const handleSubmitReview = (data: { rating: number; comment: string; name: string; email: string }) => {
+    // In production, send review data to backend API
+    // and refresh the reviews list or show a success message
+    void data;
   };
 
   return (
@@ -103,7 +103,7 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
           onClick={handleOpenReviewModal}
           variant="primary"
           size="sm"
-          className="md:text-base px-5 py-2 !rounded-[8px]"
+          className="md:text-base px-5 py-2 rounded-[8px]!"
         >
           Write Review
         </Button>
@@ -283,4 +283,3 @@ export const TourReviewsSection: React.FC<TourReviewsSectionProps> = ({
 };
 
 export default TourReviewsSection;
-

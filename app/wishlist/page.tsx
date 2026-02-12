@@ -22,6 +22,9 @@ export const metadata = {
   title: "My Wishlist | Travixo - Travel & Tour",
   description:
     "Your curated sanctuary of dream escapes and luxury journeys across the globe. View and manage your saved travel destinations.",
+  alternates: {
+    canonical: "https://travixo.kayease.com/wishlist",
+  },
 };
 
 export default function WishlistPage() {

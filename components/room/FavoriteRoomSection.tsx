@@ -105,8 +105,8 @@ const FavoriteRoomSection: React.FC = () => {
 
             {/* Description */}
             <p className="text-lg md:text-xl lg:text-2xl font-normal leading-7 text-white mb-6 md:mb-8 max-w-[512px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              Indulge in our most sought-after suite, where timeless elegance
+              meets modern comfort for an unforgettable stay.
             </p>
 
             {/* Book Now Button */}

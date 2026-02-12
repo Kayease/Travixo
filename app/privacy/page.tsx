@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -224,7 +223,7 @@ const PrivacyContentSection = () => {
           {/* Section 9 */}
           <div>
             <h2 className="font-display italic font-semibold text-[24px] md:text-[28px] leading-[36px] text-brand-brown mb-4">
-              9. Children's Privacy
+              9. Children&apos;s Privacy
             </h2>
             <p className="font-body font-normal text-[16px] leading-[28px] text-gray-700">
               Our services are not directed to children under 13. We do not
@@ -241,7 +240,7 @@ const PrivacyContentSection = () => {
             </h2>
             <p className="font-body font-normal text-[16px] leading-[28px] text-gray-700">
               We may update this Privacy Policy from time to time. The updated
-              version will be indicated by an updated "Last Updated" date. We
+              version will be indicated by an updated &quot;Last Updated&quot; date. We
               encourage you to review this policy periodically.
             </p>
           </div>

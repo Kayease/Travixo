@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -53,19 +52,19 @@ const TermsContentSection = () => {
             </h2>
             <ul className="list-disc list-inside ml-4 space-y-2 font-body font-normal text-[16px] leading-[28px] text-gray-700">
               <li>
-                <strong>"We," "Us," "Our"</strong> refers to Travixo Travel &
+                <strong>&quot;We,&quot; &quot;Us,&quot; &quot;Our&quot;</strong> refers to Travixo Travel &
                 Tours
               </li>
               <li>
-                <strong>"You," "Your"</strong> refers to the user or customer of
+                <strong>&quot;You,&quot; &quot;Your&quot;</strong> refers to the user or customer of
                 our services
               </li>
               <li>
-                <strong>"Services"</strong> refers to all travel booking,
+                <strong>&quot;Services&quot;</strong> refers to all travel booking,
                 planning, and related services provided by Travixo
               </li>
               <li>
-                <strong>"Website"</strong> refers to www.travixo.com and all
+                <strong>&quot;Website&quot;</strong> refers to www.travixo.com and all
                 associated platforms
               </li>
             </ul>

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
@@ -52,8 +51,6 @@ const LoginFormSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login submitted:", formData);
-
     // Simulate successful login and redirect to profile
     // In production, this would validate credentials with an API
     if (formData.email && formData.password) {
@@ -182,12 +179,15 @@ const LoginFormSection = () => {
                   Remember me
                 </span>
               </label>
-              <Link
-                href="/forgot-password"
-                className="font-body font-medium text-[14px] leading-[24px] text-brand-orange hover:underline"
+              <button
+                type="button"
+                onClick={() => {
+                  // In production, navigate to forgot password page
+                }}
+                className="font-body font-medium text-[14px] leading-[24px] text-brand-orange hover:underline cursor-pointer"
               >
                 Forgot password?
-              </Link>
+              </button>
             </div>
 
             {/* Submit Button */}
@@ -254,7 +254,7 @@ const LoginFormSection = () => {
           {/* Sign Up Link */}
           <div className="text-center">
             <p className="font-body font-normal text-[16px] leading-[28px] text-gray-600">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href="/signup"
                 className="font-medium text-brand-orange hover:underline"

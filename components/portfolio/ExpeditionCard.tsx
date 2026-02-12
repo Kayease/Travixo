@@ -23,14 +23,14 @@ interface ExpeditionCardProps {
   expedition: ExpeditionItem;
 }
 
-const ExpeditionCard: React.FC<ExpeditionCardProps> = ({ expedition }) => {
+const ExpeditionCard: React.FC<ExpeditionCardProps> = React.memo(({ expedition }) => {
   return (
     <Link
       href={`/tours/${expedition.slug}`}
       className="group block cursor-pointer"
     >
       {/* Image Card */}
-      <div className="relative w-full aspect-[418/487] rounded-xl overflow-hidden mb-4 md:mb-5">
+      <div className="relative w-full aspect-418/487 rounded-xl overflow-hidden mb-4 md:mb-5">
         <Image
           src={expedition.image}
           alt={expedition.title}
@@ -46,6 +46,7 @@ const ExpeditionCard: React.FC<ExpeditionCardProps> = ({ expedition }) => {
       </h3>
     </Link>
   );
-};
+});
+ExpeditionCard.displayName = "ExpeditionCard";
 
 export default ExpeditionCard;

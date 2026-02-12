@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,7 +19,7 @@ const SERVICES = [
     id: "personalized-guide",
     title: "Personalized guide",
     description:
-      "Set in lush jungle, our modern spa embodies the calm of nature",
+      "Get matched with expert local guides who tailor every experience to your interests and pace",
     iconPath: "/images/home/whatwedo/map_surfing.png",
     borderRadius: "63% 37% 30% 70% / 50% 45% 55% 50%",
   },
@@ -28,7 +27,7 @@ const SERVICES = [
     id: "accommodation",
     title: "Accommodation booking",
     description:
-      "Set in lush jungle, our modern spa embodies the calm of nature",
+      "From boutique hotels to luxury resorts, we secure the best stays at exclusive rates",
     iconPath: "/images/home/whatwedo/mingcute_tree-4-line.png",
     borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
   },
@@ -36,7 +35,7 @@ const SERVICES = [
     id: "transportation",
     title: "Transportation service",
     description:
-      "Set in lush jungle, our modern spa embodies the calm of nature",
+      "Seamless transfers and private vehicles ensure comfortable travel between every destination",
     iconPath: "/images/home/whatwedo/mdi_transportation.png",
     borderRadius: "70% 30% 30% 70% / 60% 40% 60% 40%",
   },
@@ -44,7 +43,7 @@ const SERVICES = [
     id: "culinary",
     title: "Culinary experiences",
     description:
-      "Set in lush jungle, our modern spa embodies the calm of nature",
+      "Savor authentic local flavors with curated food tours, cooking classes, and dining experiences",
     iconPath: "/images/home/whatwedo/Group.png",
     borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
   },

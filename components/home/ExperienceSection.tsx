@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -122,13 +121,13 @@ export const ExperienceSection = () => {
 
           {/* Main Title */}
           <h2 className="font-display italic font-semibold text-[28px] leading-[37px] text-white text-center mt-8 max-w-[437px]">
-            One of the World's Most Desirable Locations
+            One of the World&apos;s Most Desirable Locations
           </h2>
 
           {/* Subtitle */}
           <p className="font-body font-medium text-lg leading-[27px] text-white text-center mt-6 max-w-[580px] px-4">
             A superior, 5-star resort embodying the very best of Fiji Islands
-            luxuary, tranquility & sophistication.
+            luxury, tranquility & sophistication.
           </p>
         </div>
       </div>

@@ -24,7 +24,7 @@ interface MilestoneCardProps {
   milestone: MilestoneData;
 }
 
-const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone }) => {
+const MilestoneCard: React.FC<MilestoneCardProps> = React.memo(({ milestone }) => {
   // Get icon image path based on type
   const getIconPath = () => {
     switch (milestone.icon) {
@@ -63,6 +63,7 @@ const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone }) => {
       </p>
     </div>
   );
-};
+});
+MilestoneCard.displayName = "MilestoneCard";
 
 export default MilestoneCard;

@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -94,9 +93,7 @@ export const CommunitySection = () => {
 
           {/* Description */}
           <p className="font-body font-normal text-base md:text-lg leading-[28px] text-brand-brown text-center max-w-[505px]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam,
+            Connect with fellow travelers, share your adventures, and get inspired for your next journey. Follow us on Instagram for daily travel inspiration and exclusive behind-the-scenes content.
           </p>
         </div>
 

@@ -102,7 +102,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     };
 
     return (
-        <div className="fixed inset-0 z-[2001] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-2001 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
             <div
                 className="relative w-full max-w-md bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
                 onClick={(e) => e.stopPropagation()}
@@ -120,6 +120,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                     <button
                         onClick={onClose}
                         className="p-2 text-brand-brown/40 hover:text-brand-brown transition-colors rounded-full hover:bg-black/5"
+                        aria-label="Close review modal"
                     >
                         <svg
                             width="24"
@@ -155,10 +156,11 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
                     {/* Comment */}
                     <div className="space-y-2">
-                        <label className="font-body font-medium text-sm text-brand-brown">
+                        <label htmlFor="review-comment" className="font-body font-medium text-sm text-brand-brown">
                             Your Review
                         </label>
                         <textarea
+                            id="review-comment"
                             value={formData.comment}
                             onChange={(e) =>
                                 setFormData({ ...formData, comment: e.target.value })
@@ -177,10 +179,11 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                     {/* Name & Email */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div className="space-y-2">
-                            <label className="font-body font-medium text-sm text-brand-brown">
+                            <label htmlFor="review-name" className="font-body font-medium text-sm text-brand-brown">
                                 Name
                             </label>
                             <input
+                                id="review-name"
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) =>
@@ -197,16 +200,17 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                             )}
                         </div>
                         <div className="space-y-2">
-                            <label className="font-body font-medium text-sm text-brand-brown">
+                            <label htmlFor="review-email" className="font-body font-medium text-sm text-brand-brown">
                                 Email
                             </label>
                             <input
+                                id="review-email"
                                 type="email"
                                 value={formData.email}
                                 onChange={(e) =>
                                     setFormData({ ...formData, email: e.target.value })
                                 }
-                                placeholder="john@example.com"
+                                placeholder="your@email.com"
                                 className={`w-full p-2.5 rounded-lg border ${errors.email
                                     ? "border-red-300 focus:border-red-500 focus:ring-red-200"
                                     : "border-gray-200 focus:border-brand-brown/40 focus:ring-brand-brown/5"
@@ -225,7 +229,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                             onClick={onClose}
                             disabled={isSubmitting}
                             variant="ghost"
-                            className="px-6 py-2.5 !rounded-lg"
+                            className="px-6 py-2.5 rounded-lg!"
                         >
                             Cancel
                         </Button>
@@ -233,7 +237,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                             type="submit"
                             disabled={isSubmitting}
                             variant="primary"
-                            className="px-8 py-2.5 !rounded-lg flex items-center gap-2"
+                            className="px-8 py-2.5 rounded-lg! flex items-center gap-2"
                         >
                             {isSubmitting ? (
                                 <>

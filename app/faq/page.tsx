@@ -208,7 +208,7 @@ const FAQContentSection = () => {
             <div className="bg-white rounded-xl overflow-hidden shadow-sm">
               {faqData
                 .filter((item) => item.category === category)
-                .map((item, index) => {
+                .map((item, _index) => {
                   const globalIndex = faqData.indexOf(item);
                   return (
                     <FAQAccordionItem
@@ -245,7 +245,7 @@ const StillHaveQuestionsSection = () => {
           Still have questions?
         </h2>
         <p className="font-body font-medium text-[15px] sm:text-[16px] md:text-[18px] leading-[26px] md:leading-[30px] text-brand-brown mb-6 md:mb-8 max-w-[90%] md:max-w-[600px] mx-auto">
-          Can't find the answer you're looking for? Our friendly team is here to
+          Can&apos;t find the answer you&apos;re looking for? Our friendly team is here to
           help you plan your perfect adventure.
         </p>
         <a

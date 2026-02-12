@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -92,7 +91,7 @@ export const ProcessSection = () => {
               <div
                 className={`flex-1 flex flex-col justify-center ${step.layout === "image-left"
                   ? "xl:items-start xl:text-left"
-                  : "xl:items-start xl:text-left"
+                  : "xl:items-end xl:text-right"
                   }`}
               >
                 {/* Icon Circle */}
@@ -104,12 +103,12 @@ export const ProcessSection = () => {
                       alt=""
                       fill
                       role="presentation"
-                      className="object-contain transition-all duration-300 group-hover:scale-[0.96] group-hover:[filter:brightness(0)_invert(1)_drop-shadow(1px_1px_0_#FF6E00)_drop-shadow(-1px_-1px_0_#FF6E00)_drop-shadow(1px_-1px_0_#FF6E00)_drop-shadow(-1px_1px_0_#FF6E00)_drop-shadow(2px_0_0_#FF6E00)_drop-shadow(-2px_0_0_#FF6E00)_drop-shadow(0_2px_0_#FF6E00)_drop-shadow(0_-2px_0_#FF6E00)]"
+                      className="object-contain transition-all duration-300 group-hover:scale-[0.96] group-hover:filter-[brightness(0)_invert(1)_drop-shadow(1px_1px_0_#FF6E00)_drop-shadow(-1px_-1px_0_#FF6E00)_drop-shadow(1px_-1px_0_#FF6E00)_drop-shadow(-1px_1px_0_#FF6E00)_drop-shadow(2px_0_0_#FF6E00)_drop-shadow(-2px_0_0_#FF6E00)_drop-shadow(0_2px_0_#FF6E00)_drop-shadow(0_-2px_0_#FF6E00)]"
                       sizes="(max-width: 1024px) 80px, 95px"
                     />
                   </div>
                   {/* Inner Icon (White Icon) */}
-                  <div className="relative z-10 w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] transition-all duration-300 group-hover:brightness-0 group-hover:[filter:brightness(0)_invert(48%)_sepia(99%)_saturate(4155%)_hue-rotate(1deg)_brightness(102%)_contrast(106%)]">
+                  <div className="relative z-10 w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] transition-all duration-300 group-hover:brightness-0 group-hover:filter-[brightness(0)_invert(48%)_sepia(99%)_saturate(4155%)_hue-rotate(1deg)_brightness(102%)_contrast(106%)]">
                     <Image
                       src={step.innerIcon}
                       alt={`Step ${step.id} icon`}

@@ -27,7 +27,7 @@ interface DiscoveryCardProps {
   item: DiscoveryItem;
 }
 
-const DiscoveryCard: React.FC<DiscoveryCardProps> = ({ item }) => {
+const DiscoveryCard: React.FC<DiscoveryCardProps> = React.memo(({ item }) => {
   return (
     <article className="bg-[#FFFCF5] border border-black/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] rounded-xl overflow-hidden">
       {/* Image */}
@@ -74,6 +74,7 @@ const DiscoveryCard: React.FC<DiscoveryCardProps> = ({ item }) => {
       </div>
     </article>
   );
-};
+});
+DiscoveryCard.displayName = "DiscoveryCard";
 
 export default DiscoveryCard;

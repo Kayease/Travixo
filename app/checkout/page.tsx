@@ -19,6 +19,9 @@ export const metadata = {
   title: "Checkout | Travixo - Travel & Tour",
   description:
     "Complete your booking securely. Enter your travel information and payment details to confirm your tour reservation.",
+  alternates: {
+    canonical: "https://travixo.kayease.com/checkout",
+  },
 };
 
 export default async function CheckoutPage({

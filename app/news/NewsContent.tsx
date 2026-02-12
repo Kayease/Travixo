@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -108,7 +107,6 @@ const FeaturedArticleCard: React.FC<typeof FEATURED_ARTICLE> = ({
   author,
   date,
   readTime,
-  slug,
 }) => {
   return (
     <div className="group">
@@ -176,7 +174,6 @@ const NewsCard: React.FC<NewsCardProps> = ({
   author,
   date,
   readTime,
-  slug,
 }) => {
   return (
     <div className="group">

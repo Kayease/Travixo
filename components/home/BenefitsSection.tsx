@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -62,28 +61,28 @@ const STEPS = [
     id: 1,
     title: "Pick your destination",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+      "Browse through hundreds of handpicked destinations and choose the perfect getaway for your next adventure.",
     icon: "plane",
   },
   {
     id: 2,
     title: "Decide the trip duration",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+      "Select your ideal travel dates and duration, whether it's a quick weekend escape or an extended exploration.",
     icon: "tent",
   },
   {
     id: 3,
     title: "Booking tickets",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+      "Secure your flights, hotels, and activities in one seamless booking experience with instant confirmation.",
     icon: "sailboat",
   },
   {
     id: 4,
     title: "Plan the action",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+      "Map out your daily itinerary, from sunrise excursions to sunset dining, and make every moment count.",
     icon: "balloon",
   },
 ];
@@ -132,7 +131,7 @@ const StepItem = ({
 
       {/* Vertical Line */}
       {!isLast && (
-        <div className="w-px h-full bg-brand-orange/50 absolute left-[25px] top-[50px] bottom-0 -z-0" />
+        <div className="w-px h-full bg-brand-orange/50 absolute left-[25px] top-[50px] bottom-0 z-0" />
       )}
     </div>
 
@@ -181,9 +180,7 @@ export const BenefitsSection = () => {
 
             {/* Description */}
             <p className="font-body font-normal text-base md:text-lg leading-[27px] text-brand-brown mb-8 max-w-[626px] lg:max-w-[480px] xl:max-w-[626px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam,
+              Planning your dream vacation has never been easier. Follow our simple 4-step process to go from inspiration to adventure in no time.
             </p>
 
             {/* Image */}

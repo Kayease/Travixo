@@ -97,7 +97,7 @@ const RoomGridSection: React.FC = () => {
       price: "$45",
       image: "/images/room/cards/room-card-2.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "A tranquil retreat featuring floor-to-ceiling windows, plush bedding, and a private balcony with garden views.",
     },
     {
       id: "sunlight-terrace",
@@ -105,7 +105,7 @@ const RoomGridSection: React.FC = () => {
       price: "$45",
       image: "/images/room/cards/room-card-3.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "Bask in natural light with an open-plan layout, terrace dining area, and premium furnishings throughout.",
     },
     {
       id: "tropical-zen",
@@ -113,7 +113,7 @@ const RoomGridSection: React.FC = () => {
       price: "$45",
       image: "/images/room/cards/room-card-1.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "Inspired by nature, this retreat blends tropical greenery with minimalist design for ultimate relaxation.",
     },
     {
       id: "special",
@@ -121,7 +121,7 @@ const RoomGridSection: React.FC = () => {
       price: "$45",
       image: "/images/room/cards/hero-3.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "Our signature room with golden accents, a rainfall shower, and curated amenities for an elevated stay.",
     },
     {
       id: "terrace-room",
@@ -129,7 +129,7 @@ const RoomGridSection: React.FC = () => {
       price: "$45",
       image: "/images/room/cards/hero-2.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "Step onto your private terrace overlooking lush gardens, with a spacious interior and artisan décor.",
     },
     {
       id: "deluxe-room",
@@ -137,7 +137,7 @@ const RoomGridSection: React.FC = () => {
       price: "$45",
       image: "/images/room/cards/gallery.png",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        "Generously appointed with king-size bedding, a soaking tub, and elegant touches for discerning travelers.",
     },
   ];
 

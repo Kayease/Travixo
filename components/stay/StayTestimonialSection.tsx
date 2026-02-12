@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 
@@ -160,13 +160,14 @@ export const TestimonialSection = () => {
       {/* Frame 479 Container - Fixed 1440px width context for desktop */}
       <div
         className="relative hidden xl:block mx-auto"
-        style={{ width: "1440px", height: "575px", flex: "none" }}
+        style={{ maxWidth: "1440px", width: "100%", height: "575px", flex: "none" }}
       >
         {/* Component 86 Centered */}
         <div
           className="absolute"
           style={{
-            width: "1440px",
+            maxWidth: "1440px",
+            width: "100%",
             height: "500px",
             left: "calc(50% - 1440px/2)",
             top: "calc(50% - 500px/2 + 0.5px)",

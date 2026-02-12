@@ -20,7 +20,6 @@ interface RoomData {
  * RoomCard Component
  * Displays a room type with image and hover overlay showing details
  */
-import { useRouter } from "next/navigation";
 import { useCart, CartItem } from "@/app/context/CartContext";
 
 // ... existing RoomData interface ...
@@ -30,7 +29,6 @@ import { useCart, CartItem } from "@/app/context/CartContext";
  * Displays a room type with image and hover overlay showing details
  */
 const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
-  const router = useRouter();
   const { addToCart } = useCart();
 
   const handleBookNow = () => {

@@ -62,7 +62,7 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
             type="text"
             value={formData.firstName}
             onChange={(e) => onChange("firstName", e.target.value)}
-            placeholder="Jimmy"
+            placeholder="First name"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
                        placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40
@@ -104,7 +104,7 @@ const TravelInformationForm: React.FC<TravelInformationFormProps> = ({
             type="email"
             value={formData.email}
             onChange={(e) => onChange("email", e.target.value)}
-            placeholder="Jimmy@demo.com"
+            placeholder="your@email.com"
             className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4
                        font-body font-normal text-base leading-[30px] text-brand-brown
                        placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-brown/40

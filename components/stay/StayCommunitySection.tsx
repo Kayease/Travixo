@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 
@@ -101,9 +99,9 @@ const StayCommunitySection: React.FC = () => {
 
           {/* Description */}
           <p className="text-base md:text-lg font-normal leading-7 text-[#4B3621] max-w-[505px] mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam,
+            Share your stay experiences and connect with fellow guests. Follow
+            our community for interior inspiration, travel tips, and exclusive
+            accommodation offers.
           </p>
         </div>
 

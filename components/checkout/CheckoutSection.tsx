@@ -12,7 +12,7 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import TravelInformationForm from "./TravelInformationForm";
 import PaymentDetailsForm from "./PaymentDetailsForm";
@@ -52,7 +52,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   };
 
   // Helper to calculate duration in days
-  const calculateDuration = (dates: string): number => {
+  const calculateDuration = useCallback((dates: string): number => {
     if (!dates) return 1;
     if (dates.includes(" - ")) {
       const [startStr, endStr] = dates.split(" - ");
@@ -63,15 +63,14 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
       return diffDays > 0 ? diffDays : 1; // Minimum 1 day
     }
     return 1; // Single date is 1 day
-  };
+  }, []);
 
-  // Calculate Cart Summary
-  let cartSummary: BookingSummary | undefined;
+  // Memoize cart summary — only recalculates when cartItems change
+  const cartSummary = useMemo<BookingSummary | undefined>(() => {
+    if (cartItems.length === 0) return undefined;
 
-  if (cartItems.length > 0) {
     const itemCount = cartItems.length;
 
-    // Calculate subtotals considering duration
     const roomSubtotal = cartItems
       .filter((item) => item.type === "room")
       .reduce((sum, item) => sum + item.price * calculateDuration(item.dates), 0);
@@ -84,13 +83,13 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
     const subtotal = roomSubtotal + experienceSubtotal;
     const taxesAndFee = Math.round(subtotal * 0.1);
 
-    cartSummary = {
+    return {
       roomSubtotal,
       experienceSubtotal,
       comboSaving,
       taxesAndFee,
     };
-  }
+  }, [cartItems, calculateDuration]);
 
   // Current step state
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(3);
@@ -116,20 +115,20 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   // UPI ID state
   const [upiId, setUpiId] = useState("");
 
-  // Handle travel info change
-  const handleTravelInfoChange = (field: string, value: string) => {
+  // Handle travel info change — passed to TravelInformationForm child
+  const handleTravelInfoChange = useCallback((field: string, value: string) => {
     setTravelInfo((prev) => ({ ...prev, [field]: value }));
-  };
+  }, []);
 
-  // Handle card data change
-  const handleCardChange = (field: string, value: string) => {
+  // Handle card data change — passed to PaymentDetailsForm child
+  const handleCardChange = useCallback((field: string, value: string) => {
     setCardData((prev) => ({ ...prev, [field]: value }));
-  };
+  }, []);
 
   const { showToast } = useToast();
 
-  // Handle payment
-  const handlePay = () => {
+  // Handle payment — passed to OrderSummaryCard child
+  const handlePay = useCallback(() => {
     // 1. Validate Travel Information
     const isTravelInfoValid = Object.values(travelInfo).every(val => val.trim() !== "");
     if (!isTravelInfoValid) {
@@ -160,14 +159,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
       }
     }
 
-    console.log("Processing payment...", {
-      travelInfo,
-      paymentMethod,
-      cardData,
-      upiId,
-      cartSummary,
-      cartItems
-    });
+    // In production, process payment securely via payment gateway API
 
     // Show success toast
     showToast("Payment successful! Redirecting to home...", "success");
@@ -179,7 +171,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
 
     // Implement payment logic
     setCurrentStep(3);
-  };
+  }, [travelInfo, paymentMethod, cardData, upiId, showToast, router]);
 
   return (
     <section className="relative w-full bg-[#FFFCF5] py-8 md:py-12 lg:py-16">

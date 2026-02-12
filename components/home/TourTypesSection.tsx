@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -70,28 +69,32 @@ const TOUR_TYPES = [
     id: 1,
     number: "1",
     title: "Windsurfing",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Ride the waves at world-class surf spots with expert instructors guiding every session.",
     icon: "windsurfing",
   },
   {
     id: 2,
     number: "2",
     title: "Paragliding",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Soar above stunning landscapes and feel the rush of free flight over mountains and valleys.",
     icon: "paragliding",
   },
   {
     id: 3,
     number: "3",
     title: "Wildlife",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Encounter majestic creatures in their natural habitats on guided safari and wildlife treks.",
     icon: "wildlife",
   },
   {
     id: 4,
     number: "4",
     title: "Hang Gliding",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Experience breathtaking aerial views as you glide peacefully over scenic coastlines and hills.",
     icon: "hanggliding",
   },
 ];
@@ -138,7 +141,6 @@ const TourTypeCard = ({
 
     {/* Card Content Outer Wrapper */}
     <div className="relative bg-white border border-brand-orange rounded-tl-[100px] md:rounded-tl-[150px] mt-4 ml-4 overflow-hidden">
-
       {/* 1. Base Layer (Static State - Brown Text) */}
       <div className="relative z-0 flex flex-col items-center pt-12 pb-6 px-4 h-full">
         <div className="mb-4 transition-opacity duration-300">
@@ -153,9 +155,7 @@ const TourTypeCard = ({
       </div>
 
       {/* 2. Overlay Layer (Hover State - Orange BG + White Text + Motion) */}
-      <div
-        className="absolute inset-0 bg-brand-orange z-10 flex flex-col items-center pt-12 pb-6 px-4 transition-all duration-700 ease-out [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)]"
-      >
+      <div className="absolute inset-0 bg-brand-orange z-10 flex flex-col items-center pt-12 pb-6 px-4 transition-all duration-700 ease-out [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)]">
         {/* Animated Icon Container */}
         <div className="mb-4 brightness-0 invert translate-y-[100px] group-hover:translate-y-0 transition-transform duration-700 ease-out">
           {getIcon(icon)}
@@ -225,4 +225,3 @@ export const TourTypesSection = () => {
     </section>
   );
 };
-

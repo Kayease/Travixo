@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { useToast } from "@/app/context/ToastContext";
 
 /**
  * Signup Hero Section
@@ -31,6 +33,8 @@ const SignupHeroSection = () => {
  * Signup Form Section
  */
 const SignupFormSection = () => {
+  const router = useRouter();
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,19 +60,17 @@ const SignupFormSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      showToast("Passwords do not match!", "error");
       return;
     }
     if (!formData.agreeToTerms) {
-      alert("Please agree to the Terms and Conditions");
+      showToast("Please agree to the Terms and Conditions", "error");
       return;
     }
-    console.log("Signup submitted:", formData);
 
-    // Simulate successful signup and redirect to login
-    // In production, this would create account via API
-    alert("Account created successfully! Please log in.");
-    window.location.href = "/login";
+    // In production, this would create the account via API
+    showToast("Account created successfully! Redirecting to login...", "success");
+    setTimeout(() => router.push("/login"), 1500);
   };
 
   return (
@@ -144,7 +146,7 @@ const SignupFormSection = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="john.doe@example.com"
+                placeholder="your@email.com"
                 required
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] leading-[24px] text-brand-brown placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition-all"
               />

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { useToast } from "@/app/context/ToastContext";
 
 /**
  * ContactHeroSection Component
@@ -38,6 +39,7 @@ const ContactHeroSection = () => {
  * Form section with image and contact form
  */
 const ContactFormSection = () => {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -57,8 +59,13 @@ const ContactFormSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission
+    if (!formData.fullName.trim() || !formData.email.trim()) {
+      showToast("Please fill in your name and email", "error");
+      return;
+    }
+    // Demo: simulate form submission
+    showToast("Message sent successfully! We'll get back to you soon.", "success");
+    setFormData({ fullName: "", phoneNumber: "", email: "", destination: "", additionalRequests: "" });
   };
 
   return (
@@ -99,25 +106,27 @@ const ContactFormSection = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div>
-                <label className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
+                <label htmlFor="fullName" className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
                   Full Name
                 </label>
                 <input
+                  id="fullName"
                   type="text"
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="Jimmy Jostar"
+                  placeholder="Your full name"
                   className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
                 />
               </div>
 
               {/* Phone Number */}
               <div>
-                <label className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
+                <label htmlFor="phoneNumber" className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
                   Phone Number
                 </label>
                 <input
+                  id="phoneNumber"
                   type="tel"
                   name="phoneNumber"
                   value={formData.phoneNumber}
@@ -129,25 +138,27 @@ const ContactFormSection = () => {
 
               {/* Email */}
               <div>
-                <label className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
+                <label htmlFor="email" className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
                   Email
                 </label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="jimmy@travixo.com"
+                  placeholder="your@email.com"
                   className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
                 />
               </div>
 
               {/* Preferred Destination */}
               <div>
-                <label className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
+                <label htmlFor="destination" className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
                   Preferred Destination
                 </label>
                 <input
+                  id="destination"
                   type="text"
                   name="destination"
                   value={formData.destination}
@@ -159,15 +170,16 @@ const ContactFormSection = () => {
 
               {/* Additional Requests */}
               <div>
-                <label className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
+                <label htmlFor="additionalRequests" className="block font-display italic font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown mb-2">
                   Additional Requests
                 </label>
                 <input
+                  id="additionalRequests"
                   type="text"
                   name="additionalRequests"
                   value={formData.additionalRequests}
                   onChange={handleChange}
-                  placeholder="If you anything else from us write here..."
+                  placeholder="If you need anything else, let us know..."
                   className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
                 />
               </div>

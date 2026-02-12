@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -62,6 +61,7 @@ export const AboutHeroSection = () => {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                priority
               />
             </div>
             <div className="relative h-[300px] rounded-xl overflow-hidden md:col-span-2">
@@ -71,6 +71,7 @@ export const AboutHeroSection = () => {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                priority
               />
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
@@ -217,6 +218,7 @@ export const AboutHeroSection = () => {
             fill
             className="object-cover"
             sizes="347px"
+            priority
           />
         </div>
 
@@ -236,6 +238,7 @@ export const AboutHeroSection = () => {
             fill
             className="object-cover"
             sizes="489px"
+            priority
           />
         </div>
 

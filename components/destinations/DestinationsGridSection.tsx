@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { DestinationCard, DestinationCardProps } from "./DestinationCard";
 
 /**
@@ -57,23 +57,29 @@ export const DestinationsGridSection: React.FC<
     // State for managing visible destinations count
     const [visibleCount, setVisibleCount] = useState(initialCount);
 
-    // Filter destinations based on search query
-    const filteredDestinations = (destinations || SAMPLE_DESTINATIONS).filter(dest =>
-      !searchQuery || dest.name.toLowerCase().includes(searchQuery.toLowerCase())
+    // Filter destinations based on search query — memoized to avoid re-filtering on unrelated state changes
+    const filteredDestinations = useMemo(() =>
+      (destinations || SAMPLE_DESTINATIONS).filter(dest =>
+        !searchQuery || dest.name.toLowerCase().includes(searchQuery.toLowerCase())
+      ),
+      [destinations, searchQuery]
     );
 
-    // Get currently visible destinations
-    const visibleDestinations = filteredDestinations.slice(0, visibleCount);
+    // Get currently visible destinations — memoized since it drives the grid render
+    const visibleDestinations = useMemo(() =>
+      filteredDestinations.slice(0, visibleCount),
+      [filteredDestinations, visibleCount]
+    );
 
     // Check if there are more destinations to load
     const hasMoreDestinations = visibleCount < filteredDestinations.length;
 
     // Handler for loading more destinations
-    const handleLoadMore = () => {
+    const handleLoadMore = useCallback(() => {
       setVisibleCount((prev) =>
         Math.min(prev + loadMoreCount, destinations.length),
       );
-    };
+    }, [loadMoreCount, destinations.length]);
 
     return (
       <section
@@ -106,7 +112,7 @@ export const DestinationsGridSection: React.FC<
                   No destinations found matching your search.
                 </p>
                 <button
-                  onClick={() => window.location.href = '/destinations'}
+                  onClick={() => window.location.reload()}
                   className="mt-4 text-[#FF6E00] font-medium hover:underline"
                 >
                   View all destinations

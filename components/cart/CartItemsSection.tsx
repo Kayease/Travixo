@@ -8,7 +8,7 @@
  * and a comprehensive booking summary with pricing breakdown.
  */
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { DatePicker, DateRange } from "../ui/DatePicker";
@@ -88,7 +88,7 @@ interface BookingSummaryCardProps {
 
 const BookingSummaryCard: React.FC<BookingSummaryCardProps> = ({
   summary,
-  itemCount,
+  itemCount: _itemCount,
 }) => {
   const router = useRouter();
   const totalAmount =
@@ -282,7 +282,9 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
           {/* Location */}
           <div className="flex items-center gap-2">
             <LocationIcon />
-            <span className="text-base md:text-lg text-[#4B3621]">{item.location}</span>
+            <span className="text-base md:text-lg text-[#4B3621]">
+              {item.location}
+            </span>
           </div>
 
           {/* Dates */}
@@ -355,7 +357,7 @@ const CartItemsSection: React.FC = () => {
   const itemCount = cartItems.length;
 
   // Helper to calculate duration in days
-  const calculateDuration = (dates: string): number => {
+  const calculateDuration = useCallback((dates: string): number => {
     if (!dates) return 1;
     if (dates.includes(" - ")) {
       const [startStr, endStr] = dates.split(" - ");
@@ -366,28 +368,35 @@ const CartItemsSection: React.FC = () => {
       return diffDays > 0 ? diffDays : 1; // Minimum 1 day
     }
     return 1; // Single date is 1 day
-  };
+  }, []);
 
-  // Calculate Summary
-  const roomSubtotal = cartItems
-    .filter((item) => item.type === "room")
-    .reduce((sum, item) => sum + item.price * calculateDuration(item.dates), 0);
+  // Memoize booking summary — recalculates only when cartItems change
+  const bookingSummary = useMemo<BookingSummary>(() => {
+    const roomSubtotal = cartItems
+      .filter((item) => item.type === "room")
+      .reduce(
+        (sum, item) => sum + item.price * calculateDuration(item.dates),
+        0,
+      );
 
-  const experienceSubtotal = cartItems
-    .filter((item) => item.type === "experience")
-    .reduce((sum, item) => sum + item.price * calculateDuration(item.dates), 0);
+    const experienceSubtotal = cartItems
+      .filter((item) => item.type === "experience")
+      .reduce(
+        (sum, item) => sum + item.price * calculateDuration(item.dates),
+        0,
+      );
 
-  // Simplified logic for combo saving and tax
-  const comboSaving = itemCount > 1 ? 50 : 0; // Example: $50 off if more than 1 item
-  const subtotal = roomSubtotal + experienceSubtotal;
-  const taxesAndFee = Math.round(subtotal * 0.1); // 10% tax
+    const comboSaving = itemCount > 1 ? 50 : 0; // Example: $50 off if more than 1 item
+    const subtotal = roomSubtotal + experienceSubtotal;
+    const taxesAndFee = Math.round(subtotal * 0.1); // 10% tax
 
-  const bookingSummary: BookingSummary = {
-    roomSubtotal,
-    experienceSubtotal,
-    comboSaving,
-    taxesAndFee,
-  };
+    return {
+      roomSubtotal,
+      experienceSubtotal,
+      comboSaving,
+      taxesAndFee,
+    };
+  }, [cartItems, itemCount, calculateDuration]);
 
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16">

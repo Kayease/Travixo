@@ -128,7 +128,7 @@ export const HeroSection = () => {
 
   return (
     <section
-      className="relative w-full h-screen lg:h-[120vh]"
+      className="hero-section relative w-full h-screen lg:h-[120vh]"
       style={{
         backgroundColor: "#FFF7E5",
         backgroundImage: "url('/images/home/Desktop43.png')",
@@ -142,7 +142,7 @@ export const HeroSection = () => {
         {/* ========== Pendulum Discount Badge ========== */}
         <div
           ref={pendulumRef}
-          className="absolute top-0 right-[2%] md:right-[1%] lg:right-[8%] z-50 flex flex-col items-center"
+          className="hero-pendulum absolute top-0 right-[2%] md:right-[1%] lg:right-[8%] z-50 flex flex-col items-center"
           onMouseMove={handlePendulumMouseMove}
           onMouseEnter={handlePendulumMouseEnter}
           onMouseLeave={handlePendulumMouseLeave}
@@ -186,19 +186,19 @@ export const HeroSection = () => {
         </div>
 
         {/* ========== Main Content Area ========== */}
-        <div className="relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px] max-[932px]:landscape:pt-8 max-[932px]:landscape:px-10 max-[932px]:landscape:pr-[30%]">
+        <div className="hero-content relative z-20 px-6 md:px-12 lg:px-20 pt-28 md:pt-32 lg:pt-[110px]">
           {/* Main Heading */}
           <h1
-            className="font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px] max-[932px]:landscape:text-[22px] max-[932px]:landscape:mb-1 max-[932px]:landscape:leading-tight"
+            className="hero-heading font-display italic font-semibold text-[32px] sm:text-[42px] md:text-[48px] lg:text-[56px] leading-[1.34] max-w-[726px]"
             style={{ color: "#4B3621" }}
           >
             Let Travixo Guide You to
-            <br className="hidden sm:block max-[932px]:landscape:hidden" /> Your Next Adventure
+            <br className="hidden sm:block" /> Your Next Adventure
           </h1>
 
-          {/* Description */}
+          {/* Description — hidden in landscape to prevent overlap */}
           <p
-            className="font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8 max-[932px]:landscape:mt-1 max-[932px]:landscape:text-[12px] max-[932px]:landscape:leading-snug"
+            className="hero-description font-body font-medium text-[16px] md:text-[18px] lg:text-[20px] leading-[30px] max-w-[795px] mt-6 md:mt-8"
             style={{ color: "#4B3621" }}
           >
             Discover the soul of Africa through iconic wildlife, breathtaking
@@ -210,7 +210,7 @@ export const HeroSection = () => {
           <button
             type="button"
             onClick={() => router.push("/destinations")}
-            className="relative mt-8 md:mt-6 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group/btn cursor-pointer border border-transparent hover:border-[#FF6E00] max-[932px]:landscape:mt-2 max-[932px]:landscape:scale-90 max-[932px]:landscape:origin-left max-[932px]:landscape:text-[14px]"
+            className="hero-cta relative mt-8 md:mt-6 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group/btn cursor-pointer border border-transparent hover:border-[#FF6E00]"
             style={{
               width: "200px",
               height: "45px",
@@ -229,14 +229,14 @@ export const HeroSection = () => {
 
         {/* ========== Diagonal Image Strip ========== */}
         <div
-          className="absolute left-1/2 z-10 top-[420px] md:top-[480px] lg:top-[530px]"
+          className="hero-strip absolute left-1/2 z-10 top-[420px] md:top-[480px] lg:top-[530px]"
           style={{
             width: "200%",
             transform: "translateX(-50%) rotate(-8.6deg)",
             transformOrigin: "center center",
           }}
         >
-          <div className="flex items-center gap-4 animate-scroll-infinite max-[932px]:landscape:gap-16">
+          <div className="hero-strip-inner flex items-center gap-4 animate-scroll-infinite">
             {/* Render images multiple times for infinite scroll effect */}
             {[...HERO_IMAGES, ...HERO_IMAGES, ...HERO_IMAGES].map(
               (image, index) => (
@@ -268,9 +268,9 @@ export const HeroSection = () => {
       {/* End clipped area */}
 
       {/* ========== Glassmorphism Search Bar (outside clip so date picker dropdown can show) ========== */}
-      <div className="absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] lg:w-[900px] z-10 px-4 md:px-0 overflow-visible max-[932px]:landscape:bottom-2">
+      <div className="hero-search-wrapper absolute bottom-8 md:bottom-10 lg:bottom-[40px] left-1/2 -translate-x-1/2 w-[95%] lg:w-[900px] z-10 px-4 md:px-0 overflow-visible">
         <div
-          className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0 overflow-visible max-[932px]:landscape:flex-row max-[932px]:landscape:h-[50px] max-[932px]:landscape:gap-0 max-[932px]:landscape:p-0"
+          className="hero-search-bar flex flex-col md:flex-row items-center justify-between h-auto md:h-[100px] p-4 md:p-0 overflow-visible"
           style={{
             width: "100%",
             maxWidth: "900px",
@@ -282,13 +282,13 @@ export const HeroSection = () => {
           }}
         >
           {/* Destination Field */}
-          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 max-[932px]:landscape:py-0 max-[932px]:landscape:px-3">
+          <div className="hero-search-field flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0">
             <svg
               width="28"
               height="28"
               viewBox="0 0 28 28"
               fill="none"
-              className="shrink-0 max-[932px]:landscape:w-5 max-[932px]:landscape:h-5 text-[#4B3621]"
+              className="hero-search-icon shrink-0 text-[#4B3621]"
             >
               <path
                 d="M14 14.875C15.2426 14.875 16.25 13.8676 16.25 12.625C16.25 11.3824 15.2426 10.375 14 10.375C12.7574 10.375 11.75 11.3824 11.75 12.625C11.75 13.8676 12.7574 14.875 14 14.875Z"
@@ -307,7 +307,7 @@ export const HeroSection = () => {
             </svg>
             <div className="flex flex-col">
               <label
-                className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px] max-[932px]:landscape:text-sm max-[932px]:landscape:leading-tight"
+                className="hero-search-label font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
                 style={{ color: "#4B3621" }}
               >
                 Destination
@@ -318,7 +318,7 @@ export const HeroSection = () => {
                 onChange={(e) => setDestination(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="Enter Location"
-                className="font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60 max-[932px]:landscape:text-[13px] max-[932px]:landscape:leading-tight"
+                className="hero-search-input font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60"
                 style={{ color: "#4B3621" }}
               />
             </div>
@@ -326,12 +326,12 @@ export const HeroSection = () => {
 
           {/* Divider */}
           <div
-            className="hidden md:block w-px h-[70px] max-[932px]:landscape:h-[40px]"
+            className="hero-search-divider hidden md:block w-px h-[70px]"
             style={{ backgroundColor: "rgba(75, 54, 33, 0.2)" }}
           />
 
           {/* Date Field - overflow-visible so calendar dropdown is not clipped */}
-          <div className="flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 border-t md:border-t-0 border-[rgba(75,54,33,0.1)] overflow-visible max-[932px]:landscape:border-none max-[932px]:landscape:py-0 max-[932px]:landscape:px-3">
+          <div className="hero-search-field flex items-center gap-3 flex-1 w-full md:w-auto px-4 md:px-6 py-3 md:py-0 border-t md:border-t-0 border-[rgba(75,54,33,0.1)] overflow-visible">
             <div
               ref={dateIconRef}
               onClick={() => setIsDatePickerOpen(!isDatePickerOpen)}
@@ -355,7 +355,7 @@ export const HeroSection = () => {
             </div>
             <div className="flex flex-col w-full overflow-visible">
               <label
-                className="font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
+                className="hero-search-label font-display italic font-semibold text-[18px] md:text-[22px] leading-[28px]"
                 style={{ color: "#4B3621" }}
               >
                 Date
@@ -410,7 +410,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* ========== CSS Animations ========== */}
+      {/* ========== CSS Animations & Landscape Phone Overrides ========== */}
       <style jsx>{`
         @keyframes scroll-infinite {
           0% {
@@ -422,6 +422,66 @@ export const HeroSection = () => {
         }
         .animate-scroll-infinite {
           animation: scroll-infinite 12s linear infinite;
+        }
+
+        /* Landscape phone: orientation landscape AND short viewport */
+        @media (orientation: landscape) and (max-height: 500px) {
+          .hero-section {
+            height: auto;
+            min-height: 100svh;
+          }
+          .hero-pendulum {
+            display: none;
+          }
+          .hero-content {
+            padding-top: 70px;
+            padding-right: 38%;
+          }
+          .hero-heading {
+            font-size: 22px;
+            line-height: 1.25;
+          }
+          .hero-description {
+            display: none;
+          }
+          .hero-cta {
+            margin-top: 8px;
+            width: 170px;
+            height: 40px;
+            font-size: 15px;
+          }
+          .hero-strip {
+            top: 180px;
+          }
+          .hero-strip-inner {
+            gap: 8px;
+          }
+          .hero-search-wrapper {
+            bottom: 6px;
+            width: 92%;
+          }
+          .hero-search-bar {
+            flex-direction: row;
+            height: 48px;
+            padding: 0;
+          }
+          .hero-search-field {
+            padding: 0 10px;
+          }
+          .hero-search-label {
+            display: none;
+          }
+          .hero-search-input {
+            font-size: 13px;
+          }
+          .hero-search-divider {
+            height: 32px;
+            display: block;
+          }
+          .hero-search-icon {
+            width: 22px;
+            height: 22px;
+          }
         }
       `}</style>
     </section>

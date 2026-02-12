@@ -16,6 +16,9 @@ import Footer from '@/components/layout/Footer';
 export const metadata = {
   title: 'Your Travel Selection | Travixo - Travel & Tour',
   description: 'Review your travel selection. Manage items in your cart and proceed to checkout for tours, stays, and experiences.',
+  alternates: {
+    canonical: 'https://travixo.kayease.com/cart',
+  },
 };
 
 export default function CartPage() {

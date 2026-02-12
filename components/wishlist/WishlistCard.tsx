@@ -41,7 +41,7 @@ interface WishlistCardProps {
   priority?: boolean;
 }
 
-const WishlistCard: React.FC<WishlistCardProps> = ({
+const WishlistCard: React.FC<WishlistCardProps> = React.memo(({
   item,
   onRemove,
   onAddToCart,
@@ -288,6 +288,7 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
       </article>
     </div>
   );
-};
+});
+WishlistCard.displayName = "WishlistCard";
 
 export default WishlistCard;

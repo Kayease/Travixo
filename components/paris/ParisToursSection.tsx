@@ -4,47 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 /**
- * Heart Icon
- */
-const HeartIcon = ({ filled, className }: { filled?: boolean; className?: string }) => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <path
-      d="M12 21C12 21 3 13.5 3 8.5C3 5.5 5.5 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.5 3 23 5.5 23 8.5C23 13.5 14 21 14 21"
-      stroke="currentColor"
-      fill={filled ? "currentColor" : "none"}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-/**
- * Cart Icon
- */
-const CartIcon = () => (
-  <svg
-    width="18"
-    height="14"
-    viewBox="0 0 18 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
-      fill="#4B3621"
-    />
-  </svg>
-);
-
-/**
  * Star Icon
  */
 const StarIcon = ({ filled = true }: { filled?: boolean }) => (
@@ -116,7 +75,7 @@ const PARIS_TOURS = [
     reviews: 311,
     title: "Eiffel Tower",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      "Ascend the iconic Eiffel Tower for panoramic views of Paris, with skip-the-line access and a guided history tour.",
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
@@ -132,7 +91,7 @@ const PARIS_TOURS = [
     reviews: 311,
     title: "Louvre Museum",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      "Explore the world's largest art museum with a curated tour of masterpieces including the Mona Lisa and Venus de Milo.",
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
@@ -148,7 +107,7 @@ const PARIS_TOURS = [
     reviews: 311,
     title: "Centre Pompidou",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      "Discover modern and contemporary art at this architectural marvel, featuring works by Picasso, Kandinsky, and more.",
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
@@ -164,7 +123,7 @@ const PARIS_TOURS = [
     reviews: 311,
     title: "Arc de Triomphe",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      "Climb to the top of this majestic monument for sweeping views down the Champs-Élysées and across Paris.",
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
@@ -180,7 +139,7 @@ const PARIS_TOURS = [
     reviews: 311,
     title: "Catacombs of Paris",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      "Venture deep beneath the streets of Paris to explore the hauntingly beautiful underground ossuaries and tunnels.",
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
@@ -196,7 +155,7 @@ const PARIS_TOURS = [
     reviews: 311,
     title: "Seine River Cruises",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+      "Cruise along the Seine at sunset, passing illuminated landmarks like Notre-Dame, the Louvre, and Pont Alexandre III.",
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
@@ -379,6 +338,7 @@ const ParisTourCard = ({
               onClick={handleAddToWishlist}
               className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
                 }`}
+              aria-label="Add to wishlist"
             >
               <div
                 className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
@@ -386,12 +346,12 @@ const ParisTourCard = ({
                   : "bg-[#4B3621] group-hover/icon:bg-white"
                   }`}
                 style={{
-                  maskImage: 'url("/images/untitled folder/line-md_heart.png")',
+                  maskImage: 'url("/images/icons/line-md_heart.png")',
                   maskSize: "contain",
                   maskRepeat: "no-repeat",
                   maskPosition: "center",
                   WebkitMaskImage:
-                    'url("/images/untitled folder/line-md_heart.png")',
+                    'url("/images/icons/line-md_heart.png")',
                   WebkitMaskSize: "contain",
                   WebkitMaskRepeat: "no-repeat",
                   WebkitMaskPosition: "center",
@@ -402,6 +362,7 @@ const ParisTourCard = ({
               onClick={handleAddToCart}
               className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCart ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
                 }`}
+              aria-label="Add to cart"
             >
               <div className="relative w-[18px] h-[14px]">
                 <svg

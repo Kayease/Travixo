@@ -102,6 +102,7 @@ export const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
       <button
         onClick={handleClose}
         className="shrink-0 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+        aria-label="Dismiss notification"
       >
         <svg
           className="w-4 h-4"

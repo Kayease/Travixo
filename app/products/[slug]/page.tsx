@@ -119,7 +119,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: "related-eiffel-tower",
       title: "Eiffel Tower",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+        "Ascend the iconic Eiffel Tower for panoramic views of Paris, with skip-the-line access and a guided history tour.",
       imageUrl: "/images/products/cards/product-1.png",
       price: 100,
       originalPrice: 120,
@@ -135,7 +135,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: "related-louvre-museum",
       title: "Louvre Museum",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+        "Explore the world's largest art museum with a curated tour of masterpieces including the Mona Lisa and Venus de Milo.",
       imageUrl: "/images/products/cards/product-2.png",
       price: 100,
       originalPrice: 120,
@@ -151,7 +151,7 @@ Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massiv
       id: "related-centre-pompidou",
       title: "Centre Pompidou",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...",
+        "Discover modern and contemporary art at this architectural marvel, featuring works by Picasso, Kandinsky, and more.",
       imageUrl: "/images/products/cards/product-3.png",
       price: 100,
       originalPrice: 120,
@@ -189,6 +189,40 @@ const TourDetailPage: React.FC = () => {
 
   return (
     <main className="relative min-h-screen bg-brand-cream">
+      {/* TouristAttraction JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TouristAttraction",
+            name: tour.title,
+            description: tour.description,
+            image: tour.images[0]?.url
+              ? `https://travixo.kayease.com${tour.images[0].url}`
+              : undefined,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: tour.city,
+              addressCountry: tour.country,
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: tour.reviewSummary.overall,
+              reviewCount: tour.reviewSummary.totalReviews,
+              bestRating: 5,
+            },
+            offers: {
+              "@type": "Offer",
+              price: tour.price,
+              priceCurrency: "USD",
+              availability: "https://schema.org/InStock",
+            },
+            touristType: tour.tourType,
+          }),
+        }}
+      />
+
       {/* Site Navigation */}
       <Navbar />
 

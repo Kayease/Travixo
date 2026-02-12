@@ -22,6 +22,9 @@ export const metadata = {
   title: "Latest Travel News & Updates | Travixo",
   description:
     "Stay updated with the latest travel news, tips, destination guides, and industry insights from Travixo.",
+  alternates: {
+    canonical: "https://travixo.kayease.com/news",
+  },
 };
 
 /**

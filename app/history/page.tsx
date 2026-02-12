@@ -18,6 +18,9 @@ import Footer from '@/components/layout/Footer';
 export const metadata = {
   title: 'Your Travel Legacy | Travixo - Travel & Tour',
   description: 'Your travel legacy with Travixo. Relive past journeys and the stories behind our most breathtaking sanctuaries.',
+  alternates: {
+    canonical: 'https://travixo.kayease.com/history',
+  },
 };
 
 export default function HistoryPage() {

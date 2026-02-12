@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 /**
  * Interface for individual tour comparison data
@@ -101,7 +100,6 @@ const DifficultyBadge: React.FC<{
  * Displays a comparison table of selected tours with details like price,
  * duration, accommodation, meals, activities, and difficulty level
  */
-import { useRouter } from "next/navigation";
 import { useCart, CartItem } from "@/app/context/CartContext";
 
 // ... existing imports ...
@@ -109,7 +107,6 @@ import { useCart, CartItem } from "@/app/context/CartContext";
 // ... existing code ...
 
 const CompareTableSection: React.FC = () => {
-  const router = useRouter();
   const { addToCart } = useCart();
 
   // Sample tour data for comparison
@@ -161,12 +158,15 @@ const CompareTableSection: React.FC = () => {
     },
   ];
 
+  const idCounter = useRef(0);
+
   const handleBookNow = (tour: TourData) => {
     // Parse price - remove $ and commas
     const priceValue = parseInt(tour.price.replace(/[^0-9]/g, "")) || 0;
+    idCounter.current += 1;
 
     const cartItem: CartItem = {
-      id: `${tour.id}-${Date.now()}`,
+      id: `${tour.id}-${idCounter.current}`,
       type: "experience",
       title: tour.name,
       image: tour.image,
@@ -198,7 +198,7 @@ const CompareTableSection: React.FC = () => {
           {tours.map((tour) => (
             <div key={tour.id} className="p-2 md:p-4 flex flex-col items-center border-t lg:border-t-0">
               {/* Tour Image - Max width 302px as per Figma design */}
-              <div className="relative w-full max-w-[302px] aspect-[4/3] lg:h-auto xl:h-[203px] rounded-lg overflow-hidden">
+              <div className="relative w-full max-w-[302px] aspect-4/3 lg:h-auto xl:h-[203px] rounded-lg overflow-hidden">
                 <Image
                   src={tour.image}
                   alt={tour.name}

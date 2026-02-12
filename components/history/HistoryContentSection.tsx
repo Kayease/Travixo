@@ -21,19 +21,19 @@ const milestonesData: MilestoneData[] = [
   {
     id: '1',
     title: 'Alpine Explore',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
+    description: 'Conquered the Swiss Alps with breathtaking hikes through pristine mountain trails and glacier viewpoints.',
     icon: 'alpine',
   },
   {
     id: '2',
     title: 'Beach Wanderer',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
+    description: 'Explored hidden tropical beaches across Southeast Asia, from Bali\'s shores to Thailand\'s turquoise waters.',
     icon: 'beach',
   },
   {
     id: '3',
     title: 'Metropolis',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
+    description: 'Navigated the vibrant streets of Tokyo, New York, and London, discovering urban adventures at every turn.',
     icon: 'metropolis',
   },
 ];

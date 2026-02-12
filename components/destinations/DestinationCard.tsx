@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,8 +34,8 @@ export interface DestinationCardProps {
  * @param {DestinationCardProps} props - Destination data
  * @returns {JSX.Element} The rendered destination card
  */
-export const DestinationCard: React.FC<DestinationCardProps> = ({
-  id,
+export const DestinationCard: React.FC<DestinationCardProps> = React.memo(({
+  id: _id,
   name,
   imageUrl,
   imageAlt,
@@ -49,7 +48,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
     >
       {/* Image Container - Rectangular with 12px radius */}
       <div
-        className="relative w-full aspect-[418/487] overflow-hidden transition-all duration-300 group-hover:shadow-xl rounded-xl"
+        className="relative w-full aspect-418/487 overflow-hidden transition-all duration-300 group-hover:shadow-xl rounded-xl"
       >
         <Image
           src={imageUrl}
@@ -66,6 +65,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
       </h3>
     </Link>
   );
-};
+});
+DestinationCard.displayName = "DestinationCard";
 
 export default DestinationCard;

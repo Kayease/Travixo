@@ -23,9 +23,11 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://travixo.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://travixo.kayease.com";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Travixo - Travel & Tour",
   description: "Your Safari Hub: News, Tips, and Inspiration",
   openGraph: {
@@ -60,6 +62,12 @@ export default function RootLayout({
         className={`${playfair.variable} ${poppins.variable} antialiased overflow-x-hidden max-w-[100vw]`}
         suppressHydrationWarning
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-9999 focus:bg-brand-orange focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:text-lg focus:font-display focus:italic focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <div id="main-content" className="w-full overflow-x-hidden">
           <ToastProvider>
             <WishlistProvider>
@@ -67,6 +75,49 @@ export default function RootLayout({
             </WishlistProvider>
           </ToastProvider>
         </div>
+        {/* Organization JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Travixo",
+              url: siteUrl,
+              logo: `${siteUrl}/logo.png`,
+              description:
+                "Premium travel and tour booking platform offering curated destinations, tours, and stays worldwide.",
+              sameAs: [
+                "https://facebook.com/travixo",
+                "https://twitter.com/travixo",
+                "https://instagram.com/travixo",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+1-555-123-4567",
+                contactType: "customer service",
+                availableLanguage: "English",
+              },
+            }),
+          }}
+        />
+        {/* WebSite JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Travixo",
+              url: siteUrl,
+              potentialAction: {
+                "@type": "SearchAction",
+                target: `${siteUrl}/destinations?q={search_term_string}`,
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
       </body>
     </html>
   );

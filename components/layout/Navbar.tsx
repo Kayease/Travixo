@@ -1,6 +1,6 @@
 "use client";
 /** Site-wide navigation: logo, destination dropdowns, search, and auth links. */
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
@@ -64,12 +64,13 @@ interface DestinationDropdownProps {
 
 const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   isOpen,
-  onClose,
+  onClose: _onClose,
 }) => {
   const [hoveredCountry, setHoveredCountry] = useState<string>("");
 
   // Reset to default view when closed/opened
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isOpen) setHoveredCountry("");
   }, [isOpen]);
 
@@ -98,7 +99,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
           {/* Destination Links */}
           <div className="flex flex-col">
             {topDestinations.map((destination, index) => {
-              const slug =
+              const _slug =
                 destination === "View all"
                   ? "all"
                   : destination.toLowerCase().replace(/\s+/g, "-");
@@ -163,8 +164,8 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
           {/* Overlay Content */}
 
           <p className="text-[10px] md:text-xs text-[#4B3621] text-center mt-2 hidden md:block">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt.
+            Discover handpicked destinations and exclusive travel deals curated
+            by our expert team of adventurers.
           </p>
         </div>
       </div>
@@ -214,7 +215,7 @@ interface PagesDropdownProps {
   onClose: () => void;
 }
 
-const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose }) => {
+const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose: _onClose }) => {
   const renderColumn = (pages: PageLink[]) => (
     <div className="flex flex-col gap-0.5">
       {pages.map((page, index) => (
@@ -434,6 +435,7 @@ export const Navbar = () => {
 
   // Close everything when route changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMobileMenuOpen(false);
     setIsDestinationOpen(false);
     setIsPagesOpen(false);
@@ -516,25 +518,25 @@ export const Navbar = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Handle destination dropdown toggle
-  const handleDestinationClick = () => {
-    setIsDestinationOpen(!isDestinationOpen);
+  // Handle destination dropdown toggle — passed to NavItem child
+  const handleDestinationClick = useCallback(() => {
+    setIsDestinationOpen((prev) => !prev);
     setIsPagesOpen(false);
-  };
+  }, []);
 
-  // Handle pages dropdown toggle
-  const handlePagesClick = () => {
-    setIsPagesOpen(!isPagesOpen);
+  // Handle pages dropdown toggle — passed to NavItem child
+  const handlePagesClick = useCallback(() => {
+    setIsPagesOpen((prev) => !prev);
     setIsDestinationOpen(false);
-  };
+  }, []);
 
-  // Handle Search toggle
-  const handleSearchToggle = () => {
-    setIsSearchOpen(!isSearchOpen);
-  };
+  // Handle Search toggle — passed to icon child
+  const handleSearchToggle = useCallback(() => {
+    setIsSearchOpen((prev) => !prev);
+  }, []);
 
   // Handle Search submit
-  const handleSearchSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       // Always redirect to paris page with search query
@@ -542,11 +544,11 @@ export const Navbar = () => {
       setIsSearchOpen(false);
       setSearchQuery("");
     }
-  };
+  }, [searchQuery, router]);
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-[100] bg-[#FFFCF5] transition-all duration-300 shadow-sm">
+      <header className="fixed top-0 left-0 w-full z-100 bg-[#FFFCF5] transition-all duration-300 shadow-sm">
         {/* Main Navbar Container */}
         <nav className="w-full flex items-center justify-between px-4 md:px-10 lg:px-20 h-[60px] transition-all duration-300">
           {/* Logo Section */}
@@ -635,6 +637,9 @@ export const Navbar = () => {
             <div
               className="hidden lg:flex cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
               onClick={handleSearchToggle}
+              aria-label="Open search"
+              role="button"
+              tabIndex={0}
             >
               <SearchIcon />
             </div>
@@ -692,14 +697,14 @@ export const Navbar = () => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 bg-black/40 z-[90] backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          className={`fixed inset-0 bg-black/40 z-90 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             } touch-none`}
           onClick={() => setIsMobileMenuOpen(false)}
         />
 
         {/* Mobile Menu Content Drawer */}
         <div
-          className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[#FFFCF5] z-[100] lg:hidden transition-transform duration-300 shadow-2xl overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[#FFFCF5] z-100 lg:hidden transition-transform duration-300 shadow-2xl overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
         >
           <div className="flex flex-col p-6 h-full">
@@ -716,6 +721,7 @@ export const Navbar = () => {
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-1 hover:bg-black/5 rounded-full"
+                aria-label="Close menu"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 6L6 18M6 6L18 18" />

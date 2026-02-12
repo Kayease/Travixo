@@ -14,49 +14,46 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useWishlist } from "@/app/context/WishlistContext";
 import WishlistSidebar from "./WishlistSidebar";
-import WishlistCard, { WishlistItem } from "./WishlistCard";
+import WishlistCard from "./WishlistCard";
 import { useCart, CartItem } from "@/app/context/CartContext";
 
-interface WishlistContentSectionProps {
-  // items prop is no longer the primary source
-}
+type WishlistContentSectionProps = object;
 
 const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
   const { wishlistItems, removeFromWishlist } = useWishlist();
   const [activeCollection, setActiveCollection] = useState("all");
   const [showRefineMenu, setShowRefineMenu] = useState(false);
   const { addToCart } = useCart();
-  const router = useRouter();
 
   const [sortBy, setSortBy] = useState("newest"); // newest, price-asc, price-desc, name-asc, name-desc, rating-desc
   const [visibleCount, setVisibleCount] = useState(4);
 
   // Reset visible count when collection changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisibleCount(4);
   }, [activeCollection]);
 
-  // Calculate item counts based on current wishlist
-  const itemCounts = {
+  // Calculate item counts based on current wishlist — memoized to avoid recalculating on every render
+  const itemCounts = useMemo(() => ({
     all: wishlistItems.length,
     tours: wishlistItems.filter((item) => item.type === "tour").length,
     destinations: wishlistItems.filter((item) => item.type === "destination").length,
-  };
+  }), [wishlistItems]);
 
-  // Filter items based on active collection
-  const filteredItems = wishlistItems.filter((item) => {
+  // Filter items based on active collection — memoized since it's used for display and count
+  const filteredItems = useMemo(() => wishlistItems.filter((item) => {
     if (activeCollection === "all") return true;
     if (activeCollection === "tours") return item.type === "tour";
     if (activeCollection === "destinations") return item.type === "destination";
     return true;
-  });
+  }), [wishlistItems, activeCollection]);
 
-  // Sort items based on selected option
-  const sortedItems = [...filteredItems].sort((a, b) => {
+  // Sort items based on selected option — memoized to avoid re-sorting on unrelated state changes
+  const sortedItems = useMemo(() => [...filteredItems].sort((a, b) => {
     switch (sortBy) {
       case "price-asc":
         return a.price - b.price;
@@ -71,15 +68,15 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
       default:
         return 0; // Newest/Default
     }
-  });
+  }), [filteredItems, sortBy]);
 
-  // Handle remove from wishlist
-  const handleRemove = (id: string) => {
+  // Handle remove from wishlist — stable callback passed to WishlistCard children
+  const handleRemove = useCallback((id: string) => {
     removeFromWishlist(id);
-  };
+  }, [removeFromWishlist]);
 
-  // Handle add to cart
-  const handleAddToCart = (id: string) => {
+  // Handle add to cart — stable callback passed to WishlistCard children
+  const handleAddToCart = useCallback((id: string) => {
     const item = wishlistItems.find((i) => i.id === id);
     if (!item) return;
 
@@ -96,7 +93,7 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
     };
 
     addToCart(cartItem);
-  };
+  }, [wishlistItems, addToCart]);
 
   const sortOptions = [
     { label: "Newest Added", value: "newest" },

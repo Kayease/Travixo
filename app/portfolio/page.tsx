@@ -23,6 +23,9 @@ import {
 export const metadata = {
   title: 'Our Global Footprint | Travixo - Travel & Tour',
   description: 'Our global footprint. Discover the destinations and expeditions that define Travixo\'s commitment to extraordinary travel.',
+  alternates: {
+    canonical: 'https://travixo.kayease.com/portfolio',
+  },
 };
 
 export default function PortfolioPage() {

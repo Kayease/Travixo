@@ -155,9 +155,9 @@ const CustomerReviewsSection: React.FC = () => {
   const handleOpenReviewModal = () => setIsReviewModalOpen(true);
   const handleCloseReviewModal = () => setIsReviewModalOpen(false);
 
-  const handleSubmitReview = (data: any) => {
-    console.log("Room Review Submitted:", data);
-    // In a real app, you would send this to your backend
+  const handleSubmitReview = (data: { rating: number; comment: string; name: string; email: string }) => {
+    // In production, send review data to backend API
+    void data;
   };
 
   // Rating categories
@@ -203,7 +203,7 @@ const CustomerReviewsSection: React.FC = () => {
             onClick={handleOpenReviewModal}
             variant="primary"
             size="sm"
-            className="md:text-base px-5 py-2 !rounded-[8px]"
+            className="md:text-base px-5 py-2 rounded-[8px]!"
           >
             Write Review
           </Button>

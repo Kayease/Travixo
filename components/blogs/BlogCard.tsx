@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,8 +39,8 @@ export interface BlogCardProps {
  * @param {BlogCardProps} props - Blog post data
  * @returns {JSX.Element} The rendered blog card
  */
-export const BlogCard: React.FC<BlogCardProps> = ({
-  id,
+export const BlogCard: React.FC<BlogCardProps> = React.memo(({
+  id: _id,
   title,
   date,
   imageUrl,
@@ -110,6 +109,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
       </div>
     </article>
   );
-};
+});
+BlogCard.displayName = "BlogCard";
 
 export default BlogCard;

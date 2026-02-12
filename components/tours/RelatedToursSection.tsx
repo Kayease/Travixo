@@ -42,28 +42,8 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
   title = "You might also like...",
 }) => {
   const router = useRouter();
-  const { addToCart } = useCart();
-  const { addToWishlist } = useWishlist();
-
-  const handleAddToWishlist = (tour: RelatedTour) => {
-    const wishlistItem: WishlistItem = {
-      id: tour.id.toString(),
-      slug: tour.slug,
-      title: tour.title,
-      description: tour.description,
-      image: tour.imageUrl,
-      price: tour.price,
-      originalPrice: tour.originalPrice,
-      rating: tour.rating,
-      reviewCount: tour.reviewCount,
-      duration: tour.duration,
-      groupSize: tour.groupSize,
-      location: tour.location,
-      type: "tour",
-      discountPercent: tour.discount ? parseInt(tour.discount) : undefined,
-    };
-    addToWishlist(wishlistItem);
-  };
+  const { addToCart, cartItems } = useCart();
+  const { addToWishlist, isInWishlist, removeFromWishlist } = useWishlist();
 
   const handleAddToCart = (tour: RelatedTour) => {
     const cartItem: CartItem = {
@@ -113,8 +93,6 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
       {/* Tours Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-6">
         {tours.map((tour) => {
-          const { isInWishlist, removeFromWishlist } = useWishlist();
-          const { cartItems } = useCart();
           const isInWishlistState = isInWishlist(tour.id.toString());
           const isInCartState = cartItems.some(item => item.title === tour.title);
 
@@ -192,6 +170,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                       }}
                       className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 ${isInWishlistState ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
                         }`}
+                      aria-label="Add to wishlist"
                     >
                       <div
                         className={`w-[24px] h-[24px] transition-colors duration-300 ${isInWishlistState
@@ -200,12 +179,12 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                           }`}
                         style={{
                           maskImage:
-                            'url("/images/untitled folder/line-md_heart.png")',
+                            'url("/images/icons/line-md_heart.png")',
                           maskSize: "contain",
                           maskRepeat: "no-repeat",
                           maskPosition: "center",
                           WebkitMaskImage:
-                            'url("/images/untitled folder/line-md_heart.png")',
+                            'url("/images/icons/line-md_heart.png")',
                           WebkitMaskSize: "contain",
                           WebkitMaskRepeat: "no-repeat",
                           WebkitMaskPosition: "center",
@@ -222,6 +201,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
                       }}
                       className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 ${isInCartState ? "bg-[#FF6E00]" : "bg-white hover:bg-[#FF6E00]"
                         }`}
+                      aria-label="Add to cart"
                     >
                       <svg
                         width="18"

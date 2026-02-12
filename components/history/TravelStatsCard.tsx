@@ -21,7 +21,7 @@ interface TravelStatsCardProps {
   globalProgress?: number;
 }
 
-const TravelStatsCard: React.FC<TravelStatsCardProps> = ({
+const TravelStatsCard: React.FC<TravelStatsCardProps> = React.memo(({
   avgDuration = '14 Days',
   favtRegion = 'Asia Sea',
   milesFlown = '124k',
@@ -83,6 +83,7 @@ const TravelStatsCard: React.FC<TravelStatsCardProps> = ({
       </div>
     </div>
   );
-};
+});
+TravelStatsCard.displayName = "TravelStatsCard";
 
 export default TravelStatsCard;

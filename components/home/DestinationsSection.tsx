@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -71,7 +71,7 @@ const PlaneIcon = () => (
  */
 const DestinationCard = ({
   name,
-  listings,
+  listings: _listings,
   image,
   onMouseEnter,
   onMouseLeave,
@@ -204,7 +204,7 @@ export const DestinationsSection = () => {
     return () => cancelAnimationFrame(animationFrameId);
   }, [isHovering]);
 
-  const handleManualScroll = (offset: number) => {
+  const handleManualScroll = useCallback((offset: number) => {
     if (scrollRef.current) {
       isManualScrolling.current = true;
       scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
@@ -214,12 +214,14 @@ export const DestinationsSection = () => {
         isManualScrolling.current = false;
       }, 500);
     }
-  };
+  }, []);
 
-
+  // Stable callbacks for hover state — passed to each DestinationCard
+  const handleCardMouseEnter = useCallback(() => setIsHovering(true), []);
+  const handleCardMouseLeave = useCallback(() => setIsHovering(false), []);
 
   // Duplicate the destinations for a seamless visual loop
-  const displayDestinations = [...DESTINATIONS, ...DESTINATIONS];
+  const displayDestinations = useMemo(() => [...DESTINATIONS, ...DESTINATIONS], []);
 
   return (
     <section
@@ -330,8 +332,8 @@ export const DestinationsSection = () => {
                   name={destination.name}
                   listings={destination.listings}
                   image={destination.image}
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
+                  onMouseEnter={handleCardMouseEnter}
+                  onMouseLeave={handleCardMouseLeave}
                 />
               ))}
             </div>

@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "Account Settings | Travixo - Travel & Tour",
   description:
     "Update your Travixo account preferences, notifications, and security settings.",
+  alternates: {
+    canonical: "https://travixo.kayease.com/settings",
+  },
 };
 
 export default function SettingsLayout({
