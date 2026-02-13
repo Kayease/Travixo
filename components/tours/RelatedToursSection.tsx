@@ -49,24 +49,28 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
       </h2>
 
       {/* Tours Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-6 place-items-center">
         {tours.map((tour) => (
-          <TourCard
+          <div
             key={tour.id}
-            id={tour.id}
-            image={tour.imageUrl}
-            title={tour.title}
-            description={tour.description}
-            currentPrice={tour.price}
-            originalPrice={tour.originalPrice}
-            discount={tour.discount}
-            rating={tour.rating}
-            reviews={tour.reviewCount}
-            duration={tour.duration}
-            people={tour.groupSize}
-            location={tour.location}
-            slug={`/products/${tour.slug || tour.id}`}
-          />
+            className="w-full flex justify-center md:last:col-span-2 lg:last:col-span-1"
+          >
+            <TourCard
+              id={tour.id}
+              image={tour.imageUrl}
+              title={tour.title}
+              description={tour.description}
+              currentPrice={tour.price}
+              originalPrice={tour.originalPrice}
+              discount={tour.discount}
+              rating={tour.rating}
+              reviews={tour.reviewCount}
+              duration={tour.duration}
+              people={tour.groupSize}
+              location={tour.location}
+              slug={`/products/${tour.slug || tour.id}`}
+            />
+          </div>
         ))}
       </div>
     </section>

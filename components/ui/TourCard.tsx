@@ -90,8 +90,14 @@ const TourCard: React.FC<TourCardProps> = ({
   const { addToCart, isInCart } = useCart();
   const { addToWishlist, isInWishlist, removeFromWishlist } = useWishlist();
 
-  const isWishlisted = isInWishlist(id.toString());
-  const isInCartState = isInCart(title);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isWishlisted = mounted && isInWishlist(id.toString());
+  const isInCartState = mounted && isInCart(title);
 
   const handleWishlistAction = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -227,13 +233,13 @@ const TourCard: React.FC<TourCardProps> = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 lg:translate-x-12 lg:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out">
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 xl:translate-x-12 xl:opacity-0 xl:group-hover:translate-x-0 xl:group-hover:opacity-100 transition-all duration-500 ease-out">
             {/* Heart / Wishlist Button */}
             <button
               onClick={handleWishlistAction}
               className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted
-                  ? "bg-[#FF6E00]"
-                  : "bg-white hover:bg-[#FF6E00]"
+                ? "bg-[#FF6E00]"
+                : "bg-white hover:bg-[#FF6E00]"
                 }`}
               aria-label={
                 variant === "wishlist"
@@ -243,8 +249,8 @@ const TourCard: React.FC<TourCardProps> = ({
             >
               <div
                 className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
-                    ? "bg-white"
-                    : "bg-[#4B3621] group-hover/icon:bg-white"
+                  ? "bg-white"
+                  : "bg-[#4B3621] group-hover/icon:bg-white"
                   }`}
                 style={{
                   maskImage: 'url("/images/icons/line-md_heart.png")',
@@ -263,8 +269,8 @@ const TourCard: React.FC<TourCardProps> = ({
             <button
               onClick={handleCartAction}
               className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCartState
-                  ? "bg-[#FF6E00]"
-                  : "bg-white hover:bg-[#FF6E00]"
+                ? "bg-[#FF6E00]"
+                : "bg-white hover:bg-[#FF6E00]"
                 }`}
               aria-label="Add to cart"
             >
@@ -279,8 +285,8 @@ const TourCard: React.FC<TourCardProps> = ({
                   <path
                     d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
                     className={`transition-colors duration-300 ${isInCartState
-                        ? "fill-white"
-                        : "fill-[#4B3621] group-hover/icon:fill-white"
+                      ? "fill-white"
+                      : "fill-[#4B3621] group-hover/icon:fill-white"
                       }`}
                   />
                 </svg>
@@ -359,10 +365,10 @@ const TourCard: React.FC<TourCardProps> = ({
       </div>
 
       {/* Book Now Button — slides up on hover */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 lg:opacity-0 lg:translate-y-4 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto transition-all duration-500 ease-out">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 xl:opacity-0 xl:translate-y-4 transform xl:group-hover:opacity-100 xl:group-hover:translate-y-0 xl:group-hover:pointer-events-auto transition-all duration-500 ease-out">
         <button
           onClick={handleBookNow}
-          className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer shadow-md lg:shadow-none"
+          className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer shadow-md xl:shadow-none"
         >
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
           <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">

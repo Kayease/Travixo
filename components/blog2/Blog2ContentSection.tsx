@@ -1,17 +1,6 @@
-/**
- * Blog2ContentSection Component
- *
- * Displays a list of blog posts with images, titles, descriptions, dates, and read more links.
- *
- * Design specs from Figma:
- * - Background: #FFFCF5
- * - Card dimensions: 1280px x 417px with white background, border, shadow
- * - Image: 511px x 381px on the left
- * - Content on the right with title, description, date, and read more link
- * - Load More button at the bottom
- */
+"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/Button";
@@ -53,15 +42,32 @@ const blogPosts: BlogPost[] = [
     date: "13 May, 2026",
     slug: "destinations-exploring",
   },
+  {
+    id: "4",
+    title: "Embracing the Unexpected in Travel",
+    description:
+      "Sometimes the best moments are the ones you didn't plan for. A wrong turn leading to a hidden café, a chance encounter with a local artisan, or witnessing a sunset from an unmapped viewpoint. Travel teaches us to be adaptable and find joy in the surprises along the way...",
+    image: "/images/room/cards/room-card-2.png",
+    date: "13 May, 2026",
+    slug: "embracing-unexpected",
+  },
 ];
 
 const Blog2ContentSection: React.FC = () => {
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 1);
+  };
+
+  const visiblePosts = blogPosts.slice(0, visibleCount);
+
   return (
     <section className="w-full bg-[#FFFCF5] py-[52px]">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
         {/* Blog Posts Grid */}
         <div className="flex flex-col gap-[12px] mb-[52px]">
-          {blogPosts.map((post) => (
+          {visiblePosts.map((post) => (
             <article
               key={post.id}
               className="bg-white border border-black/20 shadow-[0px_0px_4px_rgba(0,0,0,0.1)] rounded-xl w-full max-w-[1280px] min-h-auto lg:min-h-[417px] mx-auto flex flex-col lg:flex-row items-center p-4 lg:p-[12px] xl:px-[18px] gap-6 lg:gap-[24px] xl:gap-[18px]"
@@ -101,17 +107,17 @@ const Blog2ContentSection: React.FC = () => {
                 >
                   <span className="font-semibold">Read More</span>
                   <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="transition-transform duration-300 group-hover:translate-x-1"
                   >
                     <path
-                      d="M7.5 15L12.5 10L7.5 5"
+                      d="M5 12H19M19 12L12 5M19 12L12 19"
                       stroke="#FF6E00"
-                      strokeWidth="1.5"
+                      strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -123,11 +129,18 @@ const Blog2ContentSection: React.FC = () => {
         </div>
 
         {/* Load More Button */}
-        <div className="flex justify-center">
-          <Button variant="primary" size="lg" className="w-[200px]">
-            Load More
-          </Button>
-        </div>
+        {visibleCount < blogPosts.length && (
+          <div className="flex justify-center">
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-[200px]"
+              onClick={handleLoadMore}
+            >
+              Load More
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

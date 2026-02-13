@@ -239,12 +239,13 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
     }
   };
 
+  /* ============================================
+    State to control DatePicker open status
+  ============================================ */
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+
   const handleEditClick = () => {
-    // Find the button inside the DatePicker wrapper and click it to open the calendar
-    const button = datePickerWrapperRef.current?.querySelector("button");
-    if (button) {
-      button.click();
-    }
+    setIsDatePickerOpen((prev) => !prev);
   };
 
   return (
@@ -307,6 +308,9 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
                 variant="transparent"
                 placeholder="Select Dates"
                 mode="range"
+                hideIcon={true}
+                open={isDatePickerOpen}
+                onOpenChange={setIsDatePickerOpen}
               />
             </div>
           </div>

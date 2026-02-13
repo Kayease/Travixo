@@ -341,15 +341,15 @@ export const Footer = () => {
                 </p>
                 <div className="flex items-center gap-2">
                   <PhoneIcon />
-                  <a href="tel:+911234567890" className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors">
+                  <span className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer">
                     +91 1234567890
-                  </a>
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MailIcon />
-                  <a href="mailto:contact@travixo.com" className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors">
+                  <span className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer">
                     contact@travixo.com
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>

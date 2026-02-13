@@ -43,12 +43,12 @@ export const CTABannerSection = ({
   onButtonClick: _onButtonClick,
 }: CTABannerProps) => {
   return (
-    <section className="relative w-full py-12 lg:py-36 bg-white">
+    <section className="relative w-full py-12 lg:py-24 xl:py-36 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         {/* Container with relative positioning for the image */}
         <div className="relative ml-0">
           {/* Traveler Image - Positioned to overlap */}
-          <div className="hidden md:block absolute left-[80px] -top-[135px] w-[232px] h-[334px] z-10">
+          <div className="hidden md:block absolute left-[80px] -top-[60px] lg:-top-[38px] xl:-top-[135px] w-[232px] h-[334px] z-10">
             <Image
               src="/images/home/cta/cta-banner.png"
               alt="Travel expert"
@@ -70,9 +70,9 @@ export const CTABannerSection = ({
               borderRadius: "12px",
             }}
           >
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[320px]">
+            <div className="flex flex-col lg:flex-row items-center md:items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[320px]">
               {/* Content */}
-              <div className="flex-1">
+              <div className="flex-1 text-center md:text-left">
                 {/* Title */}
                 <h2 className="font-display italic font-semibold text-xl md:text-2xl lg:text-[28px] leading-tight lg:leading-[37px] text-brand-brown mb-3">
                   {title}

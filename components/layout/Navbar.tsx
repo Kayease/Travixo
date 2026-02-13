@@ -583,7 +583,11 @@ export const Navbar = () => {
                   setIsPagesOpen(false);
                 }
               }}
-              onMouseLeave={() => setIsDestinationOpen(false)}
+              onMouseLeave={() => {
+                if (window.matchMedia("(hover: hover)").matches) {
+                  setIsDestinationOpen(false);
+                }
+              }}
             >
               <NavItem
                 label="Destination"
@@ -612,7 +616,11 @@ export const Navbar = () => {
                   setIsDestinationOpen(false);
                 }
               }}
-              onMouseLeave={() => setIsPagesOpen(false)}
+              onMouseLeave={() => {
+                if (window.matchMedia("(hover: hover)").matches) {
+                  setIsPagesOpen(false);
+                }
+              }}
             >
               <NavItem
                 label="Pages"

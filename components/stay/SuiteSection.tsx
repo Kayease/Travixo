@@ -28,7 +28,7 @@ import { useCart, CartItem } from "@/app/context/CartContext";
  * RoomCard Component
  * Displays a room type with image and hover overlay showing details
  */
-const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
+const RoomCard: React.FC<{ room: RoomData; className?: string }> = ({ room, className }) => {
   const { addToCart } = useCart();
 
   const handleBookNow = () => {
@@ -47,7 +47,7 @@ const RoomCard: React.FC<{ room: RoomData }> = ({ room }) => {
   };
 
   return (
-    <div className="relative w-full h-[400px] md:h-[480px] lg:h-[523px] rounded-xl overflow-hidden group cursor-pointer">
+    <div className={`relative w-full h-[400px] md:h-[480px] lg:h-[523px] rounded-xl overflow-hidden group cursor-pointer ${className || ""}`}>
       {/* Room Image */}
       <Image
         src={room.image}
@@ -188,9 +188,17 @@ const SuiteSection: React.FC = () => {
         {/* ============================================
             Room Cards Grid
         ============================================ */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-6">
-          {rooms.map((room) => (
-            <RoomCard key={room.id} room={room} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
+          {rooms.map((room, index) => (
+            <RoomCard
+              key={room.id}
+              room={room}
+              className={
+                index === 2
+                  ? "md:col-span-2 md:w-[calc(50%-12px)] md:mx-auto lg:col-span-1 lg:w-full lg:mx-0"
+                  : ""
+              }
+            />
           ))}
         </div>
       </div>

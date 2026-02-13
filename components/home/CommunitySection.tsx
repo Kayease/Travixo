@@ -42,7 +42,7 @@ const GALLERY_IMAGES = [
   },
   {
     id: 3,
-    url: "/images/travixo-tours/cards/community-3.png",
+    url: "/images/home/explore/cards/hiking.png",
     alt: "Travel moment 3",
   },
   {

@@ -454,6 +454,14 @@ export const TestimonialSection = () => {
              display: flex !important;
              flex-direction: row !important; /* Keep them horizontal */
              flex-wrap: wrap !important;
+             gap: 16px !important;
+           }
+
+           .mobile-avatars-list > div {
+             width: 60px !important;
+fix the amrgins of this section as i want the margin from left nd right to be same 
+this is the heros erion of the room page
+             height: 60px !important;
            }
            
            /* Ensure card is below */

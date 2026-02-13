@@ -165,7 +165,7 @@ export const BenefitsSection = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-6 xl:px-8">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-20">
+        <div className="flex flex-col items-center lg:items-stretch lg:flex-row gap-8 lg:gap-10 xl:gap-20">
           {/* Left Side - Title and Image */}
           <div className="flex-1">
             {/* Label */}

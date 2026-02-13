@@ -95,7 +95,7 @@ export const DestinationsGridSection: React.FC<
           {/* Destinations Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-y-12 lg:gap-y-[32px] gap-x-4 md:gap-x-6 lg:gap-x-[13px]">
             {visibleDestinations.length > 0 ? (
-              visibleDestinations.map((destination) => (
+              visibleDestinations.map((destination, index) => (
                 <DestinationCard
                   key={destination.id}
                   id={destination.id}
@@ -103,6 +103,7 @@ export const DestinationsGridSection: React.FC<
                   imageUrl={destination.imageUrl}
                   imageAlt={destination.imageAlt}
                   slug={destination.slug}
+                  priority={index < 3}
                 />
               ))
             ) : (

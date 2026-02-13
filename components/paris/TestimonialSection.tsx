@@ -394,6 +394,79 @@ export const TestimonialSection = () => {
             max-width: 500px !important;
           }
         }
+
+        /* iPhone 14 Pro Max & iPad Mini Landscape Specialized Layout */
+        @media only screen and (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+          .mobile-testimonial-container {
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            gap: 20px !important;
+            padding-left: 60px !important;
+            padding-right: 60px !important;
+            align-items: center !important;
+          }
+          
+          .mobile-testimonial-card {
+            margin: 0 !important;
+            width: 480px !important;
+            max-width: 500px !important;
+            order: 2 !important;
+          }
+
+          .mobile-avatars-list {
+            order: 1 !important; /* Force to left side */
+            display: flex !important;
+            flex-direction: column !important;
+            flex-wrap: wrap !important;
+            height: 260px !important; /* 70*3 + 24*2 = 258px needed for 3 items */
+            justify-content: center !important; /* Centers items vertically in columns */
+            width: 170px !important; /* Width for 2 columns */
+            gap: 24px !important;
+            margin-top: 0 !important;
+          }
+
+          /* Target the avatars to be bigger */
+          .mobile-avatars-list > div {
+             width: 70px !important;
+             height: 70px !important;
+          }
+        }
+
+        /* iPhone 14 Pro Max Portrait & iPad Portrait */
+        /* iPhone 14 Pro Max width is ~430px. iPad Portrait is ~768px-820px. 
+           We target a range that covers these in PORTRAIT mode. 
+           Standard mobile breakpoint is usually < 768px, but iPad is tablet. */
+        @media only screen and (min-width: 420px) and (max-width: 850px) and (orientation: portrait) {
+           .mobile-testimonial-container {
+             flex-direction: column !important;
+             justify-content: center !important;
+             gap: 40px !important;
+             padding-top: 40px !important;
+             padding-bottom: 40px !important;
+           }
+           
+           .mobile-avatars-list {
+             order: -1 !important; /* Move to top */
+             margin-top: 0 !important;
+             margin-bottom: 20px !important;
+             width: 100% !important;
+             justify-content: center !important;
+             display: flex !important;
+             flex-direction: row !important; /* Keep them horizontal */
+             flex-wrap: wrap !important;
+             gap: 16px !important;
+           }
+
+           .mobile-avatars-list > div {
+             width: 60px !important;
+             height: 60px !important;
+           }
+           
+           /* Ensure card is below */
+           .mobile-testimonial-card {
+             order: 2 !important;
+           }
+        }
       `}</style>
     </section>
   );

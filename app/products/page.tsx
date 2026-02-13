@@ -125,7 +125,7 @@ export default function ProductsPage() {
         <section className="w-full py-12 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {PRODUCTS.map((product) => (
+              {PRODUCTS.map((product, index) => (
                 <Link
                   key={product.id}
                   href={`/products/${product.id}`}
@@ -140,6 +140,7 @@ export default function ProductsPage() {
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        priority={index === 0}
                       />
                       {/* Price Badge */}
                       <div className="absolute bottom-0 right-0 bg-white shadow-sm flex items-center justify-center gap-2 px-4 py-2 rounded-tl-2xl">

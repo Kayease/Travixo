@@ -40,7 +40,7 @@ export const WhenToVisitSection = () => {
           {MONTHS.map((month) => (
             <div
               key={month.name}
-              className="w-[80px] h-[80px] rounded-full flex items-center justify-center border border-dashed"
+              className="w-[80px] h-[80px] rounded-full flex items-center justify-center border border-dashed transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer"
               style={{
                 borderColor: month.color,
                 color: month.color,

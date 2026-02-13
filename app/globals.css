@@ -13,7 +13,8 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Hide scrollbar on body but keep functionality */
+/* Hide scrollbar globally */
+html,
 body {
   scrollbar-width: none;
   /* Firefox */
@@ -21,9 +22,9 @@ body {
   /* IE and Edge */
 }
 
-body::-webkit-scrollbar {
+/* Chrome, Safari, Opera */
+::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari, Opera */
 }
 
 :root {
@@ -189,6 +190,7 @@ textarea:focus-visible {
 /* ========== Reduced Motion Accessibility ========== */
 /* Respect user's OS-level motion preferences (WCAG 2.1 AA) */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

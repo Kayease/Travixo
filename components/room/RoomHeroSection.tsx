@@ -19,7 +19,7 @@ import Image from "next/image";
 const RoomHeroSection: React.FC = () => {
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-0">
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-0">
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-0">
         {/* iPad Mini Landscape Layout (1024px - 1279px) */}
         <div className="hidden lg:max-xl:block relative h-[480px]">
           {/* Section Title */}
@@ -78,7 +78,7 @@ const RoomHeroSection: React.FC = () => {
             style={{
               width: "313px",
               height: "43px",
-              left: "102px",
+              left: "91px",
               top: "182px",
             }}
           >
@@ -91,7 +91,7 @@ const RoomHeroSection: React.FC = () => {
             style={{
               width: "369px",
               height: "120px",
-              left: "102px",
+              left: "91px",
               top: "243px",
             }}
           >
@@ -105,7 +105,7 @@ const RoomHeroSection: React.FC = () => {
             style={{
               width: "295px",
               height: "440px",
-              left: "496px",
+              left: "485px",
               top: "52px",
             }}
           >
@@ -125,7 +125,7 @@ const RoomHeroSection: React.FC = () => {
             style={{
               width: "551px",
               height: "262px",
-              left: "809px",
+              left: "798px",
               top: "52px",
             }}
           >
@@ -145,7 +145,7 @@ const RoomHeroSection: React.FC = () => {
             style={{
               width: "551px",
               height: "262px",
-              left: "809px",
+              left: "798px",
               top: "332px",
             }}
           >

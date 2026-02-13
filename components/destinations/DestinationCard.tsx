@@ -17,6 +17,8 @@ export interface DestinationCardProps {
   imageAlt?: string;
   /** Link to the destination details page */
   slug?: string;
+  /** Priority loading for LCP images */
+  priority?: boolean;
 }
 
 /**
@@ -40,6 +42,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = React.memo(({
   imageUrl,
   imageAlt,
   slug = "#",
+  priority = false,
 }) => {
   return (
     <Link
@@ -54,6 +57,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = React.memo(({
           src={imageUrl}
           alt={imageAlt || name}
           fill
+          priority={priority}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
