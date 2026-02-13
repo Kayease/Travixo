@@ -116,22 +116,7 @@ export const AboutSection = () => {
                 sizes="(max-width: 1024px) 100vw, 611px"
               />
               {/* 50% Off Text */}
-              <div
-                className="absolute lg:left-[320px] xl:left-[418px] top-[93px] hidden lg:block z-10"
-                style={{
-                  width: "103px",
-                  height: "37px",
-                  fontFamily: "'Playfair Display', serif",
-                  fontStyle: "italic",
-                  fontWeight: 800,
-                  fontSize: "28px",
-                  lineHeight: "37px",
-                  color: "#FFFFFF",
-                  textAlign: "center",
-                }}
-              >
-                50% Off
-              </div>
+              {/* 50% Off Text Removed */}
             </div>
 
             {/* Overlapping Secondary Image - Frame 27 */}
