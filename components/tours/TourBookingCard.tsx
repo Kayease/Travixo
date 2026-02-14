@@ -77,16 +77,6 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
     setIsAvailable(false);
   };
 
-  // Mock list of fully booked dates (red dates)
-  const bookedDates = [
-    "2026-02-03",
-    "2026-02-14",
-    "2026-02-15",
-    "2026-02-25",
-    "2026-03-05",
-    "2026-03-10",
-  ];
-
   // Enquiry Form State
   const [enquiryData, setEnquiryData] = useState({
     name: "",
@@ -179,7 +169,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           actionLabel: "Customize",
         };
         addToCart(cartItem);
-        router.push("/cart");
+        router.push("/checkout");
         return;
       }
 
@@ -192,8 +182,8 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
       setIsChecking(false);
 
-      // Simple availability logic: if it's not a "red" date, it's available
-      const isActuallyBooked = bookedDates.includes(selectedDate);
+      // availability logic: make available on all dates as requested
+      const isActuallyBooked = false;
 
       if (!isActuallyBooked) {
         setIsAvailable(true);
@@ -202,6 +192,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           "success",
         );
       } else {
+        // This block is now unreachable but kept for logic structure
         setIsAvailable(false);
         showToast(
           "Sorry, this experience is fully booked for the selected dates. Please try another date.",
@@ -258,9 +249,8 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
             Book
           </span>
           <div
-            className={`absolute -bottom-1 left-[-9px] w-[69px] h-px rounded-[8px] transition-colors duration-300 ${
-              activeTab === "book" ? "bg-[#FF6E00]" : "bg-transparent"
-            }`}
+            className={`absolute -bottom-1 left-[-9px] w-[69px] h-px rounded-[8px] transition-colors duration-300 ${activeTab === "book" ? "bg-[#FF6E00]" : "bg-transparent"
+              }`}
           />
         </div>
 
@@ -272,20 +262,18 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
             Enquiry
           </span>
           <div
-            className={`absolute -bottom-1 left-[-2px] w-[87px] h-px rounded-[8px] transition-colors duration-300 ${
-              activeTab === "enquiry" ? "bg-[#FF6E00]" : "bg-transparent"
-            }`}
+            className={`absolute -bottom-1 left-[-2px] w-[87px] h-px rounded-[8px] transition-colors duration-300 ${activeTab === "enquiry" ? "bg-[#FF6E00]" : "bg-transparent"
+              }`}
           />
         </div>
       </div>
 
       {/* Enquiry Header Transition */}
       <div
-        className={`overflow-hidden transition-all duration-300 ease-out ${
-          activeTab === "enquiry"
-            ? "max-h-20 opacity-100 mb-4"
-            : "max-h-0 opacity-0 mb-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ease-out ${activeTab === "enquiry"
+          ? "max-h-20 opacity-100 mb-4"
+          : "max-h-0 opacity-0 mb-0"
+          }`}
       >
         <p className="font-display italic font-normal text-[16px] leading-[21px] text-[#4B3621]/80 px-1">
           Have a question before booking? Message us to learn more.
@@ -315,11 +303,10 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
         <div
           ref={bookRef}
-          className={`w-full transition-all duration-300 ease-out ${
-            activeTab === "book"
-              ? "opacity-100 translate-y-0 relative z-50"
-              : "opacity-0 translate-y-6 absolute top-0 left-0 pointer-events-none z-0"
-          }`}
+          className={`w-full transition-all duration-300 ease-out ${activeTab === "book"
+            ? "opacity-100 translate-y-0 relative z-50"
+            : "opacity-0 translate-y-6 absolute top-0 left-0 pointer-events-none z-0"
+            }`}
         >
           {/* Date Row */}
           <div className="flex justify-between items-center pt-2 pb-6 booking-row">
@@ -334,7 +321,6 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
                     setSelectedDate(val);
                   }
                 }}
-                bookedDates={bookedDates}
                 variant="transparent"
                 size="sm"
                 align="right"
@@ -401,11 +387,10 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
         <div
           ref={enquiryRef}
-          className={`w-full transition-all duration-300 ease-out ${
-            activeTab === "enquiry"
-              ? "opacity-100 translate-y-0 relative z-50"
-              : "opacity-0 translate-y-6 absolute top-0 left-0 pointer-events-none z-0"
-          }`}
+          className={`w-full transition-all duration-300 ease-out ${activeTab === "enquiry"
+            ? "opacity-100 translate-y-0 relative z-50"
+            : "opacity-0 translate-y-6 absolute top-0 left-0 pointer-events-none z-0"
+            }`}
         >
           <div className="pt-2 pb-2 booking-row">
             <input
@@ -462,9 +447,8 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
         <button
           onClick={handleAction}
           disabled={isChecking}
-          className={`w-full h-[50px] bg-[#FF6E00] rounded-[12px] border border-[#FF6E00] overflow-hidden transition-all duration-300 active:scale-95 group relative cursor-pointer ${
-            isChecking ? "opacity-70 cursor-not-allowed" : ""
-          }`}
+          className={`w-full h-[50px] bg-[#FF6E00] rounded-[12px] border border-[#FF6E00] overflow-hidden transition-all duration-300 active:scale-95 group relative cursor-pointer ${isChecking ? "opacity-70 cursor-not-allowed" : ""
+            }`}
         >
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
           <span className="relative z-0 font-display italic font-normal text-[18px] leading-[24px] text-white group-hover:text-[#FF6E00] transition-colors duration-300 flex items-center justify-center gap-2">
@@ -495,20 +479,18 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
             ) : (
               <div className="relative h-6 w-full flex items-center justify-center">
                 <span
-                  className={`absolute transition-all duration-300 ease-out ${
-                    activeTab === "book"
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 -translate-y-4"
-                  }`}
+                  className={`absolute transition-all duration-300 ease-out ${activeTab === "book"
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 -translate-y-4"
+                    }`}
                 >
                   {isAvailable ? "Book Now" : "Check Availability"}
                 </span>
                 <span
-                  className={`absolute transition-all duration-300 ease-out ${
-                    activeTab === "enquiry"
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4"
-                  }`}
+                  className={`absolute transition-all duration-300 ease-out ${activeTab === "enquiry"
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4"
+                    }`}
                 >
                   Send Enquiry
                 </span>

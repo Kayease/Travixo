@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 /**
@@ -95,7 +95,8 @@ const TESTIMONIALS_DATA = [
 ];
 
 export const TestimonialSection = () => {
-  const [activeId, setActiveId] = React.useState(4);
+  const [mounted, setMounted] = useState(false);
+  const [activeId, setActiveId] = useState(4);
 
   // Map testimonial IDs to Slot Indices
   // Initial state: 1->0, 2->1, 3->2, 4->3 (Active), 5->4
@@ -106,6 +107,10 @@ export const TestimonialSection = () => {
     4: 3,
     5: 4,
   });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const activeTestimonial = TESTIMONIALS_DATA.find((t) => t.id === activeId) || TESTIMONIALS_DATA[3];
 
@@ -118,7 +123,7 @@ export const TestimonialSection = () => {
     // Find current slot of active item (should be ACTIVE_SLOT_INDEX which is 3)
     const activeSlotIndex = ACTIVE_SLOT_INDEX;
 
-    // Slot 4 (Middle Left) acts as the "Buffer" or "Previous Active" position
+    // Slot 4 acts as the "Buffer" position
     const BUFFER_SLOT_INDEX = 4;
 
     // Find the item currently in the buffer slot
@@ -133,9 +138,6 @@ export const TestimonialSection = () => {
       }));
     } else {
       // 3-way rotation for more dynamic animation
-      // 1. Clicked item moves to Active Slot (becomes main)
-      // 2. Active item moves to Buffer Slot (steps aside)
-      // 3. Buffer item moves to Clicked Slot (fills the empty spot)
       setSlotMapping(prev => ({
         ...prev,
         [clickedId]: activeSlotIndex,
@@ -146,6 +148,8 @@ export const TestimonialSection = () => {
 
     setActiveId(clickedId);
   };
+
+  if (!mounted) return null;
 
   return (
     <section
@@ -168,7 +172,8 @@ export const TestimonialSection = () => {
             maxWidth: "1440px",
             width: "100%",
             height: "500px",
-            left: "calc(50% - 1440px/2)",
+            left: "50%",
+            transform: "translateX(-50%)",
             top: "calc(50% - 500px/2 + 0.5px)",
             backgroundColor: "#FFFCF5",
           }}
@@ -341,7 +346,7 @@ export const TestimonialSection = () => {
             {TESTIMONIALS_DATA.map((item) => (
               <div
                 key={item.id}
-                onClick={() => setActiveId(item.id)}
+                onClick={() => handleAvatarClick(item.id)}
                 className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer transition-all ${activeId === item.id ? 'border-brand-orange scale-110' : 'border-transparent opacity-60 hover:opacity-100'}`}
               >
                 <Image src={item.url} fill sizes="40px" className="object-cover" alt="avatar" />
@@ -418,7 +423,7 @@ export const TestimonialSection = () => {
             display: flex !important;
             flex-direction: column !important;
             flex-wrap: wrap !important;
-            height: 260px !important; /* 70*3 + 24*2 = 258px needed for 3 items */
+            height: 300px !important; /* Increased height to ensure 5 items don't overlap or hide */
             justify-content: center !important; /* Centers items vertically in columns */
             width: 170px !important; /* Width for 2 columns */
             gap: 24px !important;
@@ -491,7 +496,7 @@ export const TestimonialSection = () => {
             display: flex !important;
             flex-direction: column !important;
             flex-wrap: wrap !important;
-            height: 250px !important;
+            height: 300px !important; /* Increased height for iPad Mini 5-item layout */
             justify-content: center !important;
             width: 160px !important; 
             gap: 20px !important;

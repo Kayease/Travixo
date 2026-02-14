@@ -669,6 +669,14 @@ export const Navbar = () => {
               )}
             </Link>
 
+            <Link
+              href="/profile"
+              aria-label="View profile"
+              className="cursor-pointer scale-90 md:scale-100"
+            >
+              <ProfileIcon />
+            </Link>
+
             {/* Icons shown only on Large Screens */}
             <div className="hidden lg:flex items-center gap-2 md:gap-4 lg:gap-6">
               <Link href="/wishlist" aria-label="View wishlist" className="relative cursor-pointer scale-90 md:scale-100">
@@ -678,13 +686,6 @@ export const Navbar = () => {
                     {wishlistItems.length}
                   </span>
                 )}
-              </Link>
-              <Link
-                href="/profile"
-                aria-label="View profile"
-                className="cursor-pointer scale-90 md:scale-100"
-              >
-                <ProfileIcon />
               </Link>
             </div>
 

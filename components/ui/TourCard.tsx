@@ -64,6 +64,24 @@ const StarIcon = ({ filled = true }: { filled?: boolean }) => (
 );
 
 /**
+ * Cart Icon for top-right actions
+ */
+const CartIcon = () => (
+  <svg
+    width="25"
+    height="20"
+    viewBox="0 0 25 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.75 12.5H10V3.75H8.75C8.06 3.75 7.5 4.3098 7.5 5V11.25C7.5 11.9402 8.06 12.5 8.75 12.5ZM22.5 11.25V5C22.5 4.3098 21.94 3.75 21.25 3.75H20V12.5H21.25C21.94 12.5 22.5 11.9402 22.5 11.25ZM24.38 15H5V0.625C5 0.2797 4.72 0 4.38 0H0.62C0.28 0 0 0.2797 0 0.625V1.875C0 2.2203 0.28 2.5 0.62 2.5H2.5V16.875C2.5 17.2203 2.78 17.5 3.12 17.5H6.36C6.29 17.6965 6.25 17.9047 6.25 18.125C6.25 19.1605 7.09 20 8.12 20C9.16 20 10 19.1605 10 18.125C10 17.9047 9.96 17.6965 9.89 17.5H17.61C17.54 17.6965 17.5 17.9047 17.5 18.125C17.5 19.1605 18.34 20 19.38 20C20.41 20 21.25 19.1605 21.25 18.125C21.25 17.9047 21.21 17.6965 21.14 17.5H24.38C24.72 17.5 25 17.2203 25 16.875V15.625C25 15.2797 24.72 15 24.38 15ZM18.75 3.75V1.875C18.75 0.8395 17.91 0 16.88 0H13.12C12.09 0 11.25 0.8395 11.25 1.875V12.5H18.75V3.75ZM16.88 3.75H13.12V1.875H16.88V3.75Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+/**
  * TourCard Component
  * Single reusable card with consistent UI across the entire site.
  */
@@ -141,12 +159,7 @@ const TourCard: React.FC<TourCardProps> = ({
       return;
     }
 
-    if (isInCartState) {
-      const itemToRemove = cartItems.find((item) => item.title === title);
-      if (itemToRemove) {
-        removeFromCart(itemToRemove.id);
-      }
-    } else {
+    if (!isInCartState) {
       addToCart({
         id: `${id}-${crypto.randomUUID()}`,
         type: "experience",
@@ -159,12 +172,27 @@ const TourCard: React.FC<TourCardProps> = ({
         actionLabel: "Customize",
       });
     }
+    router.push("/cart");
   };
 
   const handleBookNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    router.push("/products/grand-palace-tour");
+
+    // Add to cart before redirecting
+    addToCart({
+      id: `${id}-${crypto.randomUUID()}`,
+      type: "experience",
+      title,
+      image,
+      location,
+      dates: new Date().toISOString().split("T")[0],
+      amenities: [duration, people],
+      price: currentPrice,
+      actionLabel: "Customize",
+    });
+
+    router.push("/checkout");
   };
 
   const fullStars = Math.floor(rating);
@@ -248,6 +276,20 @@ const TourCard: React.FC<TourCardProps> = ({
                   WebkitMaskPosition: "center",
                 }}
               />
+            </button>
+
+            {/* Cart Button */}
+            <button
+              onClick={handleCartAction}
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isInCartState
+                ? "bg-[#FF6E00] text-white"
+                : "bg-white text-[#4B3621] lg:hover:bg-[#FF6E00] lg:hover:text-white"
+                }`}
+              aria-label="Add to cart"
+            >
+              <div className="scale-[0.6]">
+                <CartIcon />
+              </div>
             </button>
           </div>
         </div>

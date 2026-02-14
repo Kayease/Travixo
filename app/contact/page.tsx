@@ -114,7 +114,7 @@ const ContactFormSection = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="Your full name"
-                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
+                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus-visible:outline-none focus-visible:ring-0 transition-colors"
                 />
               </div>
 
@@ -130,7 +130,7 @@ const ContactFormSection = () => {
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   placeholder="+91 1234567890"
-                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
+                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus-visible:outline-none focus-visible:ring-0 transition-colors"
                 />
               </div>
 
@@ -146,7 +146,7 @@ const ContactFormSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="your@email.com"
-                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
+                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus-visible:outline-none focus-visible:ring-0 transition-colors"
                 />
               </div>
 
@@ -162,7 +162,7 @@ const ContactFormSection = () => {
                   value={formData.destination}
                   onChange={handleChange}
                   placeholder="Paris"
-                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
+                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus-visible:outline-none focus-visible:ring-0 transition-colors"
                 />
               </div>
 
@@ -178,7 +178,7 @@ const ContactFormSection = () => {
                   value={formData.additionalRequests}
                   onChange={handleChange}
                   placeholder="If you need anything else, let us know..."
-                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus:border-brand-orange transition-colors"
+                  className="w-full pb-3 bg-transparent border-b border-brand-brown/50 font-body font-normal text-[16px] leading-[30px] text-brand-brown placeholder:text-brand-brown/60 focus:outline-none focus-visible:outline-none focus-visible:ring-0 transition-colors"
                 />
               </div>
 
@@ -267,6 +267,14 @@ const ContactFormSection = () => {
 export default function ContactPage() {
   return (
     <main className="min-h-screen relative">
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        input:focus, input:focus-visible, textarea:focus, textarea:focus-visible {
+          outline: none !important;
+          box-shadow: none !important;
+          border-color: rgba(75, 54, 33, 0.5) !important;
+        }
+      `}} />
       <Navbar />
       <ContactHeroSection />
       <ContactFormSection />

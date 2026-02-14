@@ -101,6 +101,7 @@ const DifficultyBadge: React.FC<{
  * duration, accommodation, meals, activities, and difficulty level
  */
 import { useCart, CartItem } from "@/app/context/CartContext";
+import { useRouter } from "next/navigation";
 
 // ... existing imports ...
 
@@ -108,6 +109,7 @@ import { useCart, CartItem } from "@/app/context/CartContext";
 
 const CompareTableSection: React.FC = () => {
   const { addToCart } = useCart();
+  const router = useRouter();
 
   // Sample tour data for comparison
   const tours: TourData[] = [
@@ -178,6 +180,7 @@ const CompareTableSection: React.FC = () => {
     };
 
     addToCart(cartItem);
+    router.push("/checkout");
   };
 
   return (

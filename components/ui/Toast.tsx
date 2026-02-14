@@ -54,21 +54,7 @@ export const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
           </svg>
         );
       case "error":
-        return (
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        );
+        return null;
       default:
         return (
           <svg
@@ -90,12 +76,11 @@ export const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
 
   return (
     <div
-      className={`flex items-center gap-3 px-6 py-4 rounded-xl border shadow-lg transition-all duration-300 ease-out transform ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-      } ${getStyle()}`}
+      className={`flex items-center gap-3 px-6 py-4 rounded-xl border shadow-lg transition-all duration-300 ease-out transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+        } ${getStyle()}`}
       style={{ minWidth: "300px", maxWidth: "450px" }}
     >
-      <div className="shrink-0">{getIcon()}</div>
+      {getIcon() && <div className="shrink-0">{getIcon()}</div>}
       <p className="font-body font-medium text-[15px] leading-tight flex-1">
         {message}
       </p>

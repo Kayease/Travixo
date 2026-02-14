@@ -1,3 +1,4 @@
+"use client";
 /**
  * FavoriteRoomSection Component
  *
@@ -9,8 +10,67 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCart } from "@/app/context/CartContext";
+
+const CartIcon = () => (
+  <svg
+    width="25"
+    height="20"
+    viewBox="0 0 25 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.75 12.5H10V3.75H8.75C8.06 3.75 7.5 4.3098 7.5 5V11.25C7.5 11.9402 8.06 12.5 8.75 12.5ZM22.5 11.25V5C22.5 4.3098 21.94 3.75 21.25 3.75H20V12.5H21.25C21.94 12.5 22.5 11.9402 22.5 11.25ZM24.38 15H5V0.625C5 0.2797 4.72 0 4.38 0H0.62C0.28 0 0 0.2797 0 0.625V1.875C0 2.2203 0.28 2.5 0.62 2.5H2.5V16.875C2.5 17.2203 2.78 17.5 3.12 17.5H6.36C6.29 17.6965 6.25 17.9047 6.25 18.125C6.25 19.1605 7.09 20 8.12 20C9.16 20 10 19.1605 10 18.125C10 17.9047 9.96 17.6965 9.89 17.5H17.61C17.54 17.6965 17.5 17.9047 17.5 18.125C17.5 19.1605 18.34 20 19.38 20C20.41 20 21.25 19.1605 21.25 18.125C21.25 17.9047 21.21 17.6965 21.14 17.5H24.38C24.72 17.5 25 17.2203 25 16.875V15.625C25 15.2797 24.72 15 24.38 15ZM18.75 3.75V1.875C18.75 0.8395 17.91 0 16.88 0H13.12C12.09 0 11.25 0.8395 11.25 1.875V12.5H18.75V3.75ZM16.88 3.75H13.12V1.875H16.88V3.75Z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 const FavoriteRoomSection: React.FC = () => {
+  const router = useRouter();
+  const { addToCart, isInCart } = useCart();
+
+  const handleCartAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!isInCart("Special Room")) {
+      addToCart({
+        id: `special-room-${Date.now()}`,
+        type: "room",
+        title: "Special Room",
+        image: "/images/room/cards/room-card-3.png",
+        location: "Luxurious Hotel",
+        dates: new Date().toISOString().split("T")[0],
+        amenities: ["Golden Interior", "Premium Amenities"],
+        price: 45,
+        actionLabel: "Customize",
+      });
+    }
+
+    router.push("/cart");
+  };
+
+  const handleBookNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    addToCart({
+      id: `special-room-${Date.now()}`,
+      type: "room",
+      title: "Special Room",
+      image: "/images/room/cards/room-card-3.png",
+      location: "Luxurious Hotel",
+      dates: new Date().toISOString().split("T")[0],
+      amenities: ["Golden Interior", "Premium Amenities"],
+      price: 45,
+      actionLabel: "Customize",
+    });
+
+    router.push("/checkout");
+  };
+
   return (
     <section className="relative w-full min-h-[600px] md:min-h-[650px] lg:min-h-[705px]">
       {/* Background Image */}
@@ -35,7 +95,7 @@ const FavoriteRoomSection: React.FC = () => {
           ============================================ */}
           <div className="w-full max-w-[418px] bg-[#FFFCF5] rounded-xl overflow-hidden shrink-0">
             {/* Room Image */}
-            <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden">
+            <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden group/card">
               <Image
                 src="/images/room/cards/room-card-3.png"
                 alt="Special room with golden interior"
@@ -43,6 +103,18 @@ const FavoriteRoomSection: React.FC = () => {
                 className="object-cover scale-105"
                 sizes="(max-width: 768px) 100vw, 418px"
               />
+
+              {/* Cart Icon in top right */}
+              <div className="absolute top-4 right-4 z-30 transition-all duration-500 xl:translate-x-12 xl:opacity-0 xl:group-hover/card:translate-x-0 xl:group-hover/card:opacity-100">
+                <button
+                  onClick={handleCartAction}
+                  className="w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[#4B3621] hover:bg-[#FF6E00] hover:text-white transition-colors cursor-pointer shadow-md"
+                >
+                  <div className="scale-[0.6]">
+                    <CartIcon />
+                  </div>
+                </button>
+              </div>
             </div>
 
             {/* Room Details */}
@@ -111,19 +183,18 @@ const FavoriteRoomSection: React.FC = () => {
             </p>
 
             {/* Book Now Button */}
-            {/* Book Now Button */}
-            <Link
-              href="/room-detail"
-              className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer flex items-center justify-center"
+            <button
+              onClick={handleBookNow}
+              className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer flex items-center justify-center font-display text-lg italic text-[#FF6E00]"
             >
               {/* Fill animation from bottom to top */}
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
 
               {/* Button Text */}
-              <span className="relative z-10 font-display text-lg italic text-[#FF6E00] group-hover:text-white transition-colors duration-300">
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">
                 Book Now
               </span>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   tourData: initialTourData,
 }) => {
   const searchParams = useSearchParams();
-  const { cartItems } = useCart();
+  const { cartItems, clearCart } = useCart();
   const router = useRouter();
 
   // Prioritize search params, fallback to props, then default
@@ -92,7 +92,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
   }, [cartItems, calculateDuration]);
 
   // Current step state
-  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(3);
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
 
   // Travel information form state
   const [travelInfo, setTravelInfo] = useState({
@@ -161,6 +161,9 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
 
     // In production, process payment securely via payment gateway API
 
+    // Clear cart upon successful payment
+    clearCart();
+
     // Show success toast
     showToast("Payment successful! Redirecting to home...", "success");
 
@@ -171,7 +174,7 @@ const CheckoutSection: React.FC<CheckoutSectionProps> = ({
 
     // Implement payment logic
     setCurrentStep(3);
-  }, [travelInfo, paymentMethod, cardData, upiId, showToast, router]);
+  }, [travelInfo, paymentMethod, cardData, upiId, showToast, router, clearCart]);
 
   return (
     <section className="relative w-full bg-[#FFFCF5] py-8 md:py-12 lg:py-16">

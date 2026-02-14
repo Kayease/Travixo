@@ -22,7 +22,6 @@ interface DatePickerProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   externalTriggerRef?: React.RefObject<HTMLElement>;
-  bookedDates?: string[];
 }
 
 const MONTHS = [
@@ -62,7 +61,6 @@ export const DatePicker = ({
   open,
   onOpenChange,
   externalTriggerRef,
-  bookedDates = [],
 }: DatePickerProps) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -295,7 +293,6 @@ export const DatePicker = ({
       const disabled = isDateDisabled(day);
       const today = isToday(day);
       const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-      const isBooked = bookedDates.includes(dateStr);
 
       let buttonClass = "";
 
@@ -306,13 +303,11 @@ export const DatePicker = ({
           transition-all duration-200 cursor-pointer
           ${disabled
             ? "text-gray-300 cursor-not-allowed"
-            : isBooked
-              ? "bg-red-500 text-white shadow-lg shadow-red-500/30"
-              : selected
-                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
-                : today
-                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+            : selected
+              ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30"
+              : today
+                ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
           }
         `;
       } else {
@@ -329,13 +324,11 @@ export const DatePicker = ({
           ${isInRange ? "bg-brand-orange/10 !rounded-none" : ""}
           ${disabled
             ? "text-gray-300 cursor-not-allowed"
-            : isBooked
-              ? "bg-red-500 text-white rounded-full shadow-lg shadow-red-500/30"
-              : isSelected
-                ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30 rounded-full" // Force round selection
-                : today && !isInRange
-                  ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
-                  : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
+            : isSelected
+              ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30 rounded-full" // Force round selection
+              : today && !isInRange
+                ? "bg-brand-orange/10 text-brand-orange border border-brand-orange"
+                : "text-brand-brown hover:bg-brand-orange/10 hover:text-brand-orange"
           }
         `;
       }

@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useCart } from "@/app/context/CartContext";
 
 /**
  * PromoPopup Component
@@ -18,6 +19,8 @@ import { usePathname } from "next/navigation";
 export const PromoPopup: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const router = useRouter();
+    const { addToCart } = useCart();
 
     useEffect(() => {
         // Show popup ONLY on initial mount (full reload/refresh) if on the home page
@@ -27,10 +30,30 @@ export const PromoPopup: React.FC = () => {
             }, 1000);
             return () => clearTimeout(timer);
         }
-    }, []); // Empty dependency array ensures it only runs once per full page load
+    }, [pathname]); // Added pathname dependency for correctness
 
     const handleClose = () => {
         setIsOpen(false);
+    };
+
+    const handleBookNow = (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        // Add Paris Tour to cart
+        addToCart({
+            id: `paris-promo-${Date.now()}`,
+            type: "experience",
+            title: "Paris Tour Promotion",
+            image: "/images/paris/paris_promo_bg.png",
+            location: "Paris, France",
+            dates: new Date().toISOString().split("T")[0],
+            amenities: ["Limited Time Offer", "50% Off"],
+            price: 750, // Example discounted price
+            actionLabel: "Customize",
+        });
+
+        handleClose();
+        router.push("/checkout");
     };
 
     if (!isOpen) return null;
@@ -81,10 +104,9 @@ export const PromoPopup: React.FC = () => {
                     </p>
 
                     {/* CTA Button */}
-                    <Link
-                        href="/products/grand-palace-tour"
-                        className="relative flex items-center justify-center w-[200px] h-[50px] bg-white border border-brand-orange rounded-[12px] shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden group/btn"
-                        onClick={handleClose}
+                    <button
+                        onClick={handleBookNow}
+                        className="relative flex items-center justify-center w-[200px] h-[50px] bg-white border border-brand-orange rounded-[12px] shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden group/btn cursor-pointer"
                     >
                         {/* Bottom-to-top fill animation */}
                         <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
@@ -92,7 +114,7 @@ export const PromoPopup: React.FC = () => {
                         <span className="relative z-10 font-body italic font-normal text-[20px] md:text-[24px] leading-[36px] text-brand-orange group-hover/btn:text-white transition-colors duration-300">
                             Book Now
                         </span>
-                    </Link>
+                    </button>
 
                     {/* View Detail Link */}
                     <Link
