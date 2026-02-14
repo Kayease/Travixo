@@ -61,6 +61,12 @@ interface DestinationDropdownProps {
   onClose: () => void;
 }
 
+const topCountryItems: DestinationItem[] = [
+  { name: "France", image: "/images/destinations/cards/Component_68.png" },
+  { name: "Thailand", image: "/images/destinations/cards/Component_71.png" },
+  { name: "United Kingdom", image: "/images/destinations/cards/Component_68.png" },
+];
+
 const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   isOpen,
   onClose: _onClose,
@@ -76,9 +82,11 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   // Early return removed for transition
 
   const currentCities =
-    !hoveredCountry || hoveredCountry === "View all"
-      ? []
-      : destinationCities[hoveredCountry] || featuredDestinations;
+    hoveredCountry === ""
+      ? topCountryItems
+      : hoveredCountry === "View all"
+        ? []
+        : destinationCities[hoveredCountry] || featuredDestinations;
 
   return (
     <div
@@ -91,7 +99,10 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         {/* Left Column - Menu Items */}
         <div className="flex flex-col w-full md:w-[190px] lg:max-xl:w-[200px] pt-2 mb-4 md:mb-0">
           {/* Top Destination Header */}
-          <div className="bg-[#FF6E00] px-4 py-1.5 rounded-sm mb-1">
+          <div
+            className="bg-[#FF6E00] px-4 py-1.5 rounded-sm mb-1 cursor-pointer"
+            onMouseEnter={() => setHoveredCountry("")}
+          >
             <span className="font-display text-lg italic text-white whitespace-nowrap">
               Top Destination
             </span>
@@ -108,7 +119,8 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
                 <Link
                   key={destination}
                   href={destination === "View all" ? "/destinations" : "/paris"}
-                  className="group relative block text-left px-4 lg:max-xl:px-3 py-1.5 font-display text-lg italic text-[#4B3621] hover:text-white overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap"
+                  className={`group relative block text-left px-4 lg:max-xl:px-3 py-1.5 font-display text-lg italic overflow-hidden rounded-sm transition-colors duration-300 whitespace-nowrap ${hoveredCountry === destination ? "text-white" : "text-[#4B3621] hover:text-white"
+                    }`}
                   onMouseEnter={() => setHoveredCountry(destination)}
                 >
                   <span
@@ -432,7 +444,12 @@ export const Navbar = () => {
   const pathname = usePathname();
   const { cartItems } = useCart();
   const { wishlistItems } = useWishlist();
-  const [mounted] = useState(() => typeof window !== "undefined");
+  const [mounted, setMounted] = useState(false);
+
+  // Set mounted state
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close everything when route changes
   useEffect(() => {
