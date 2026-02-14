@@ -43,65 +43,71 @@ export const AboutHeroSection = () => {
 
           {/* Images Grid Mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative h-[400px] rounded-xl overflow-hidden">
+            <div className="relative h-[400px] rounded-xl overflow-hidden group outline-none" tabIndex={0}>
               <Image
                 src={HERO_IMAGES.frame345}
                 alt="Travixo Story"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
                 priority
               />
             </div>
-            <div className="relative h-[400px] rounded-xl overflow-hidden">
+            <div className="relative h-[400px] rounded-xl overflow-hidden group outline-none" tabIndex={0}>
               <Image
                 src={HERO_IMAGES.frame346}
                 alt="Eiffel Tower"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
                 priority
               />
             </div>
-            <div className="relative h-[300px] rounded-xl overflow-hidden md:col-span-2">
+            <div className="relative h-[300px] rounded-xl overflow-hidden md:col-span-2 group outline-none" tabIndex={0}>
               <Image
                 src={HERO_IMAGES.frame347}
                 alt="Safari"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
                 priority
               />
             </div>
-            <div className="relative h-[400px] rounded-xl overflow-hidden">
+            <div className="relative h-[400px] rounded-xl overflow-hidden group outline-none" tabIndex={0}>
               <Image
                 src={HERO_IMAGES.frame350}
                 alt="Hot Air Balloon"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
               />
             </div>
-            <div className="relative h-[400px] rounded-xl overflow-hidden">
+            <div className="relative h-[400px] rounded-xl overflow-hidden group outline-none" tabIndex={0}>
               <Image
                 src={HERO_IMAGES.frame348}
                 alt="River Boats"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
               />
             </div>
           </div>
 
           {/* Mission & Vision Mobile */}
           <div className="space-y-8 mt-4">
-            <div className="relative h-[200px] rounded-xl overflow-hidden">
+            <div className="relative h-[200px] rounded-xl overflow-hidden group outline-none" tabIndex={0}>
               <Image
                 src={HERO_IMAGES.frame349}
                 alt="Venice"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
               />
             </div>
 
@@ -129,13 +135,14 @@ export const AboutHeroSection = () => {
               </p>
             </div>
 
-            <div className="relative h-[125px] rounded-xl overflow-hidden">
+            <div className="relative h-[125px] rounded-xl overflow-hidden group outline-none" tabIndex={0}>
               <Image
                 src={HERO_IMAGES.frame356}
                 alt="Travel Vision"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
               />
             </div>
           </div>
@@ -183,7 +190,8 @@ export const AboutHeroSection = () => {
 
         {/* Frame 345 (Top Right) */}
         <div
-          className="absolute overflow-hidden rounded-xl bg-white"
+          className="absolute overflow-hidden rounded-xl bg-white group outline-none"
+          tabIndex={0}
           style={{
             width: "418px",
             height: "545px",
@@ -195,15 +203,17 @@ export const AboutHeroSection = () => {
             src={HERO_IMAGES.frame345}
             alt="Travixo Story"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
             sizes="418px"
+            style={{ objectFit: 'cover' }}
             priority
           />
         </div>
 
         {/* Frame 346 (Left Tall) */}
         <div
-          className="absolute overflow-hidden rounded-xl bg-white"
+          className="absolute overflow-hidden rounded-xl bg-white group outline-none"
+          tabIndex={0}
           style={{
             width: "347px",
             height: "545px",
@@ -215,15 +225,17 @@ export const AboutHeroSection = () => {
             src={HERO_IMAGES.frame346}
             alt="Eiffel Tower"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
             sizes="347px"
+            style={{ objectFit: 'cover' }}
             priority
           />
         </div>
 
         {/* Frame 347 (Center Top) */}
         <div
-          className="absolute overflow-hidden rounded-xl bg-white"
+          className="absolute overflow-hidden rounded-xl bg-white group outline-none"
+          tabIndex={0}
           style={{
             width: "489px",
             height: "380px",
@@ -235,15 +247,17 @@ export const AboutHeroSection = () => {
             src={HERO_IMAGES.frame347}
             alt="Safari"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
             sizes="489px"
+            style={{ objectFit: 'cover' }}
             priority
           />
         </div>
 
         {/* Frame 348 (Right Bottom) */}
         <div
-          className="absolute overflow-hidden rounded-xl bg-white"
+          className="absolute overflow-hidden rounded-xl bg-white group outline-none"
+          tabIndex={0}
           style={{
             width: "418px",
             height: "608px",
@@ -255,14 +269,16 @@ export const AboutHeroSection = () => {
             src={HERO_IMAGES.frame348}
             alt="River Boats"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
             sizes="418px"
+            style={{ objectFit: 'cover' }}
           />
         </div>
 
         {/* Frame 350 (Center Bottom) */}
         <div
-          className="absolute overflow-hidden rounded-xl bg-white"
+          className="absolute overflow-hidden rounded-xl bg-white group outline-none"
+          tabIndex={0}
           style={{
             width: "489px",
             height: "469px",
@@ -274,14 +290,16 @@ export const AboutHeroSection = () => {
             src={HERO_IMAGES.frame350}
             alt="Hot Air Balloon"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
             sizes="489px"
+            style={{ objectFit: 'cover' }}
           />
         </div>
 
         {/* Frame 349 (Left Bottom) */}
         <div
-          className="absolute overflow-hidden rounded-xl bg-white"
+          className="absolute overflow-hidden rounded-xl bg-white group outline-none"
+          tabIndex={0}
           style={{
             width: "347px",
             height: "545px",
@@ -293,14 +311,16 @@ export const AboutHeroSection = () => {
             src={HERO_IMAGES.frame349}
             alt="Venice"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
             sizes="347px"
+            style={{ objectFit: 'cover' }}
           />
         </div>
 
         {/* Frame 356 (Left Bottom Small) */}
         <div
-          className="absolute overflow-hidden rounded-xl bg-white"
+          className="absolute overflow-hidden rounded-xl bg-white group outline-none"
+          tabIndex={0}
           style={{
             width: "347px",
             height: "125px",
@@ -312,8 +332,9 @@ export const AboutHeroSection = () => {
             src={HERO_IMAGES.frame356}
             alt="Travel Vision"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 lg:group-hover:scale-105 group-focus:scale-105"
             sizes="347px"
+            style={{ objectFit: 'cover' }}
           />
         </div>
 

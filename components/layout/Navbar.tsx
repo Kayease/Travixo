@@ -50,12 +50,11 @@ const destinationCities: Record<string, DestinationItem[]> = {
       image: "/images/destinations/cards/Component_70.png",
     },
   ],
-  "View all": featuredDestinations,
 };
 
 /* ============================================
    DestinationDropdown Component
-============================================ */
+ ============================================ */
 
 interface DestinationDropdownProps {
   isOpen: boolean;
@@ -77,7 +76,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   // Early return removed for transition
 
   const currentCities =
-    hoveredCountry === "View all"
+    !hoveredCountry || hoveredCountry === "View all"
       ? []
       : destinationCities[hoveredCountry] || featuredDestinations;
 
@@ -922,7 +921,10 @@ export const Navbar = () => {
         </div>
       </header>
       {/* Spacer to push content down below fixed header */}
-      <div className="h-[60px]" aria-hidden="true" />
+      <div
+        className={`transition-all duration-300 ease-in-out ${isSearchOpen ? "h-[140px]" : "h-[60px]"}`}
+        aria-hidden="true"
+      />
     </>
   );
 };

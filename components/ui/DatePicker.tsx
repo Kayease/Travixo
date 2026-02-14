@@ -396,7 +396,7 @@ export const DatePicker = ({
       {isOpen && (
         <div
           className={`
-            absolute top-full mt-2 z-[1100]
+            absolute top-full mt-2 z-40
             ${align === "right" ? "right-0" : "left-0"}
             bg-white rounded-2xl shadow-2xl shadow-brand-brown/10
             border border-brand-brown/10 overflow-hidden

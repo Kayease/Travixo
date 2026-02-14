@@ -71,7 +71,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = React.memo(({
   };
 
   return (
-    <div className="bg-white border border-brand-brown/20 rounded-xl overflow-hidden sticky top-4">
+    <div className="bg-white border border-brand-brown/20 rounded-xl overflow-hidden">
       {/* Tour Image - Only show if single item or we pick one from cart to show */}
       {/* For cart summary, we might want to keep the image of the first item? Or hide it?
           The current design shows an image. Keeping it. */}

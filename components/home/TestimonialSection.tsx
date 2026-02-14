@@ -342,7 +342,7 @@ export const TestimonialSection = () => {
               <div
                 key={item.id}
                 onClick={() => setActiveId(item.id)}
-                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer transition-all ${activeId === item.id ? 'border-brand-orange scale-110' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer transition-all outline-none ${activeId === item.id ? 'border-brand-orange scale-110' : 'border-transparent opacity-60 lg:hover:opacity-100 active:opacity-100'}`}
               >
                 <Image src={item.url} fill sizes="40px" className="object-cover" alt="avatar" />
               </div>

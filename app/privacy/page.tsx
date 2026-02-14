@@ -183,12 +183,9 @@ const PrivacyContentSection = () => {
             </ul>
             <p className="font-body font-normal text-[16px] leading-[28px] text-gray-700 mt-3">
               To exercise these rights, please contact us at{" "}
-              <a
-                href="mailto:privacy@travixo.com"
-                className="text-brand-orange hover:underline"
-              >
+              <span className="text-brand-orange">
                 privacy@travixo.com
-              </a>
+              </span>
             </p>
           </div>
 
@@ -255,12 +252,9 @@ const PrivacyContentSection = () => {
             <div className="space-y-2 font-body font-normal text-[16px] leading-[28px] text-gray-700">
               <p>
                 <strong>Email:</strong>{" "}
-                <a
-                  href="mailto:privacy@travixo.com"
-                  className="text-brand-orange hover:underline"
-                >
+                <span className="text-brand-orange">
                   privacy@travixo.com
-                </a>
+                </span>
               </p>
               <p>
                 <strong>Phone:</strong> +1 (555) 123-4567

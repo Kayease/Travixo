@@ -27,14 +27,14 @@ const CommunityImageCard: React.FC<{ image: CommunityImage }> = ({ image }) => {
       />
 
       {/* Hover Overlay with Instagram Icon - Slides from top to bottom */}
-      <div className="absolute inset-0 bg-black/40 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out flex items-center justify-center">
+      <div className="absolute inset-0 bg-black/40 translate-y-0 xl:-translate-y-full xl:group-hover:translate-y-0 transition-transform duration-500 ease-out flex items-center justify-center">
         {/* Instagram Icon */}
         <svg
           width="28"
           height="28"
           viewBox="0 0 28 28"
           fill="none"
-          className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200"
+          className="text-white opacity-100 xl:opacity-0 xl:group-hover:opacity-100 transition-opacity duration-300 delay-200"
         >
           <rect
             x="3.5"

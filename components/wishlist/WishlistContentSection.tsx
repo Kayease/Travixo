@@ -40,15 +40,15 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
   // Calculate item counts based on current wishlist — memoized to avoid recalculating on every render
   const itemCounts = useMemo(() => ({
     all: wishlistItems.length,
-    tours: wishlistItems.filter((item) => item.type === "tour").length,
-    destinations: wishlistItems.filter((item) => item.type === "destination").length,
+    tours: wishlistItems.filter((item) => item.type !== "room").length,
+    destinations: wishlistItems.filter((item) => item.type === "room").length,
   }), [wishlistItems]);
 
   // Filter items based on active collection — memoized since it's used for display and count
   const filteredItems = useMemo(() => wishlistItems.filter((item) => {
     if (activeCollection === "all") return true;
-    if (activeCollection === "tours") return item.type === "tour";
-    if (activeCollection === "destinations") return item.type === "destination";
+    if (activeCollection === "tours") return item.type !== "room";
+    if (activeCollection === "destinations") return item.type === "room";
     return true;
   }), [wishlistItems, activeCollection]);
 
@@ -82,11 +82,11 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
 
     const cartItem: CartItem = {
       id: item.id,
-      type: "experience",
+      type: item.type === "room" ? "room" : "experience",
       title: item.title,
       image: item.image,
       location: item.location,
-      dates: "Select Date",
+      dates: new Date().toISOString().split("T")[0],
       amenities: [item.duration, item.groupSize],
       price: item.price,
       actionLabel: "Book Now",
@@ -108,7 +108,7 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
     <section className="relative w-full bg-[#FFFCF5] py-12 md:py-16 lg:py-20">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20">
         {/* Main Layout: Sidebar + Content */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 ipad-landscape-wishlist">
           {/* Sidebar - Collections */}
           <div className="w-full lg:w-auto lg:shrink-0">
             <WishlistSidebar
@@ -234,6 +234,22 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
           </div>
         </div>
       </div>
+
+      {/* iPad Landscape Specific Styles */}
+      <style jsx>{`
+        /* iPad Landscape (1024x768) - Keep column layout */
+        @media only screen 
+          and (min-width: 1024px) 
+          and (max-width: 1024px) 
+          and (min-height: 768px) 
+          and (max-height: 768px) 
+          and (orientation: landscape) {
+          .ipad-landscape-wishlist {
+            flex-direction: column !important;
+            gap: 2rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

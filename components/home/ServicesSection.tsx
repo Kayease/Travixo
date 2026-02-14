@@ -65,20 +65,20 @@ const ServiceCard = ({
   iconPath: string;
   borderRadius: string;
 }) => (
-  <div className="flex flex-col items-center gap-[18px] w-[208px] group cursor-pointer">
+  <div className="flex flex-col items-center gap-[18px] w-[208px] group cursor-pointer outline-none shadow-none" tabIndex={0}>
     {/* Icon Container with Organic Border */}
     <div
-      className="relative w-[100px] h-[100px] flex items-center justify-center border border-brand-orange text-brand-orange overflow-hidden transition-all duration-500 ease-in-out group-hover:shadow-lg"
+      className="relative w-[100px] h-[100px] flex items-center justify-center border border-brand-orange text-brand-orange overflow-hidden transition-all duration-500 ease-in-out lg:group-hover:shadow-lg group-focus:shadow-lg group-active:shadow-lg"
       style={{ borderRadius }}
     >
       {/* Fill Animation Layer */}
       <div
-        className="absolute inset-0 bg-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out z-0"
+        className="absolute inset-0 bg-brand-orange opacity-0 lg:group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500 ease-in-out z-0"
         style={{ borderRadius: "inherit" }}
       />
 
       {/* Icon */}
-      <div className="relative w-10 h-10 z-10 transition-all duration-500 ease-in-out group-hover:brightness-0 group-hover:invert text-brand-orange">
+      <div className="relative w-10 h-10 z-10 transition-all duration-500 ease-in-out lg:group-hover:brightness-0 lg:group-hover:invert group-focus:brightness-0 group-focus:invert group-active:brightness-0 group-active:invert text-brand-orange">
         <Image
           src={iconPath}
           alt={title}
@@ -92,7 +92,7 @@ const ServiceCard = ({
     {/* Text Content */}
     <div className="flex flex-col items-center gap-3 w-full">
       {/* Title - Playfair Display italic 500, 18px/24px, orange on hover */}
-      <h3 className="font-display italic font-medium text-[18px] leading-[24px] text-center text-brand-brown w-full transition-colors duration-500 group-hover:text-brand-orange">
+      <h3 className="font-display italic font-medium text-[18px] leading-[24px] text-center text-brand-brown w-full transition-colors duration-500 lg:group-hover:text-brand-orange group-focus:text-brand-orange group-active:text-brand-orange">
         {title}
       </h3>
 
@@ -114,7 +114,7 @@ const ServiceCard = ({
  * Poppins 400, 14px/21px with 24px arrow icon, 4px gap
  */
 const ReadMoreLink = () => (
-  <Link href="/about" className="flex items-center gap-1 text-brand-brown font-body font-normal text-[14px] leading-[21px] hover:text-brand-orange transition-colors group cursor-pointer">
+  <Link href="/about" className="flex items-center gap-1 text-brand-brown font-body font-normal text-[14px] leading-[21px] lg:hover:text-brand-orange transition-colors group cursor-pointer outline-none">
     <span>Read More</span>
     <svg
       width="24"
@@ -122,7 +122,7 @@ const ReadMoreLink = () => (
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="group-hover:translate-x-1 transition-transform"
+      className="lg:group-hover:translate-x-1 transition-transform"
     >
       <path
         d="M4.5 12H19.5M19.5 12L13.5 6M19.5 12L13.5 18"

@@ -108,7 +108,7 @@ const RoomDetailContentSection: React.FC = () => {
                 src="/images/room_detail/cards/detail-1.png"
                 alt="Cozy room interior"
                 fill
-                className="object-contain"
+                className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
@@ -117,7 +117,7 @@ const RoomDetailContentSection: React.FC = () => {
                 src="/images/room_detail/cards/detail-2.png"
                 alt="Comfortable seating area"
                 fill
-                className="object-contain"
+                className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>

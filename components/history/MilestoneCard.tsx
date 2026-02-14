@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * MilestoneCard Component
  * 
@@ -53,14 +55,29 @@ const MilestoneCard: React.FC<MilestoneCardProps> = React.memo(({ milestone }) =
       </div>
 
       {/* Title - positioned at top: 75px, centered */}
-      <h4 className="absolute left-[18px] top-[75px] font-display italic font-semibold text-[24px] leading-[30px] text-[#4B3621]">
+      <h4 className="absolute left-[18px] top-[75px] font-display italic font-semibold text-[24px] leading-[30px] text-[#4B3621] milestone-title">
         {milestone.title}
       </h4>
 
       {/* Description - positioned at left: 18px, top: 113px, width: 210px, height: 96px */}
-      <p className="absolute left-[18px] top-[113px] w-[210px] h-[96px] font-body font-normal text-[14px] leading-[24px] text-[#4B3621]/60 overflow-hidden">
+      <p className="absolute left-[18px] top-[113px] w-[210px] h-[96px] font-body font-normal text-[14px] leading-[24px] text-[#4B3621]/60 overflow-hidden milestone-description">
         {milestone.description}
       </p>
+
+      {/* iPad Mini Portrait Specific Styles */}
+      <style jsx>{`
+        @media only screen and (min-width: 768px) and (max-width: 768px) and (orientation: portrait) {
+          .milestone-title {
+            font-size: 20px !important;
+            line-height: 26px !important;
+          }
+          .milestone-description {
+            font-size: 11px !important;
+            line-height: 18px !important;
+            width: 200px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 });

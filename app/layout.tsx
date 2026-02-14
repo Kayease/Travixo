@@ -59,13 +59,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${poppins.variable} antialiased`}
       >
-        {/* Skip to main content — WCAG 2.1 AA accessibility requirement */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-1/2 focus:-translate-x-1/2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-brand-orange focus:text-white focus:rounded-lg focus:text-sm focus:font-medium focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
-        >
-          Skip to main content
-        </a>
+        
 
         <div id="main-content" className="w-full">
           <ToastProvider>

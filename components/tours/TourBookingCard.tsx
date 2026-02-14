@@ -119,7 +119,14 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
 
     measure();
     const timer = setTimeout(measure, 50);
-    return () => clearTimeout(timer);
+
+    // Add resize listener for orientation changes
+    window.addEventListener('resize', measure);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', measure);
+    };
   }, [activeTab]);
 
   const router = useRouter();
@@ -266,7 +273,7 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
       <div
         ref={containerRef}
         className="relative transition-all duration-300 ease-out"
-        style={{ height: contentHeight === "auto" ? "auto" : `${contentHeight}px` }}
+        style={{ minHeight: contentHeight === "auto" ? "auto" : `${contentHeight}px` }}
       >
         {/* Animated Shared Dividers */}
         {[0, 1, 2, 3].map((idx) => (

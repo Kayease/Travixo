@@ -87,7 +87,7 @@ const TourCard: React.FC<TourCardProps> = ({
   priority = false,
 }) => {
   const router = useRouter();
-  const { addToCart, isInCart } = useCart();
+  const { addToCart, isInCart, removeFromCart, cartItems } = useCart();
   const { addToWishlist, isInWishlist, removeFromWishlist } = useWishlist();
 
   const [mounted, setMounted] = React.useState(false);
@@ -141,29 +141,29 @@ const TourCard: React.FC<TourCardProps> = ({
       return;
     }
 
-    addToCart({
-      id: `${id}-${crypto.randomUUID()}`,
-      type: "experience",
-      title,
-      image,
-      location,
-      dates: new Date().toISOString().split("T")[0],
-      amenities: [duration, people],
-      price: currentPrice,
-      actionLabel: "Customize",
-    });
+    if (isInCartState) {
+      const itemToRemove = cartItems.find((item) => item.title === title);
+      if (itemToRemove) {
+        removeFromCart(itemToRemove.id);
+      }
+    } else {
+      addToCart({
+        id: `${id}-${crypto.randomUUID()}`,
+        type: "experience",
+        title,
+        image,
+        location,
+        dates: new Date().toISOString().split("T")[0],
+        amenities: [duration, people],
+        price: currentPrice,
+        actionLabel: "Customize",
+      });
+    }
   };
 
   const handleBookNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
-    if (variant === "wishlist") {
-      router.push(
-        `/checkout?name=${encodeURIComponent(title)}&price=${currentPrice}&image=${encodeURIComponent(image)}`,
-      );
-      return;
-    }
 
     addToCart({
       id: `${id}-${crypto.randomUUID()}`,
@@ -182,10 +182,10 @@ const TourCard: React.FC<TourCardProps> = ({
   const fullStars = Math.floor(rating);
 
   return (
-    <div className="relative w-full max-w-[418px] group hover:z-50 pb-[58px]">
+    <div className="relative w-full max-w-[418px] group lg:hover:z-50 focus-within:z-50 pb-[58px] outline-none" tabIndex={0}>
       {/* Card Container */}
       <div
-        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 hover:shadow-lg z-10 h-full bg-[#FFFCF5]"
+        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 lg:hover:shadow-lg group-focus:shadow-lg group-active:shadow-lg z-10 h-full bg-[#FFFCF5]"
       >
         {/* Image Container */}
         <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
@@ -233,13 +233,13 @@ const TourCard: React.FC<TourCardProps> = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 xl:translate-x-12 xl:opacity-0 xl:group-hover:translate-x-0 xl:group-hover:opacity-100 transition-all duration-500 ease-out">
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 xl:translate-x-12 xl:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100 group-active:translate-x-0 group-active:opacity-100 transition-all duration-500 ease-out">
             {/* Heart / Wishlist Button */}
             <button
               onClick={handleWishlistAction}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isWishlisted
                 ? "bg-[#FF6E00]"
-                : "bg-white hover:bg-[#FF6E00]"
+                : "bg-white lg:hover:bg-[#FF6E00]"
                 }`}
               aria-label={
                 variant === "wishlist"
@@ -250,7 +250,7 @@ const TourCard: React.FC<TourCardProps> = ({
               <div
                 className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
                   ? "bg-white"
-                  : "bg-[#4B3621] group-hover/icon:bg-white"
+                  : "bg-[#4B3621] lg:group-hover/icon:bg-white"
                   }`}
                 style={{
                   maskImage: 'url("/images/icons/line-md_heart.png")',
@@ -268,9 +268,9 @@ const TourCard: React.FC<TourCardProps> = ({
             {/* Cart Button */}
             <button
               onClick={handleCartAction}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCartState
+              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isInCartState
                 ? "bg-[#FF6E00]"
-                : "bg-white hover:bg-[#FF6E00]"
+                : "bg-white lg:hover:bg-[#FF6E00]"
                 }`}
               aria-label="Add to cart"
             >
@@ -286,7 +286,7 @@ const TourCard: React.FC<TourCardProps> = ({
                     d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
                     className={`transition-colors duration-300 ${isInCartState
                       ? "fill-white"
-                      : "fill-[#4B3621] group-hover/icon:fill-white"
+                      : "fill-[#4B3621] lg:group-hover/icon:fill-white"
                       }`}
                   />
                 </svg>
@@ -313,7 +313,7 @@ const TourCard: React.FC<TourCardProps> = ({
 
         {/* Title */}
         <Link href={slug} className="cursor-pointer">
-          <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 hover:text-brand-orange transition-colors">
+          <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 lg:hover:text-brand-orange focus:text-brand-orange transition-colors">
             {title}
           </h3>
         </Link>
@@ -365,13 +365,13 @@ const TourCard: React.FC<TourCardProps> = ({
       </div>
 
       {/* Book Now Button — slides up on hover */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 xl:opacity-0 xl:translate-y-4 transform xl:group-hover:opacity-100 xl:group-hover:translate-y-0 xl:group-hover:pointer-events-auto transition-all duration-500 ease-out">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 xl:opacity-0 xl:translate-y-4 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto group-focus:opacity-100 group-focus:translate-y-0 group-focus:pointer-events-auto transition-all duration-500 ease-out">
         <button
           onClick={handleBookNow}
-          className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer shadow-md xl:shadow-none"
+          className="relative flex items-center justify-center w-[253px] h-[50px] bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-brown overflow-hidden group/btn transition-all duration-300 cursor-pointer shadow-md xl:shadow-none outline-none"
         >
-          <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
-          <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">
+          <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange lg:group-hover/btn:h-full transition-all duration-300 ease-out" />
+          <span className="relative z-10 lg:group-hover/btn:text-white transition-colors duration-300">
             Book Now
           </span>
         </button>

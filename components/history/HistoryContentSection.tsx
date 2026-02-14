@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * HistoryContentSection Component
  * 
@@ -129,14 +131,26 @@ const HistoryContentSection: React.FC<HistoryContentSectionProps> = ({
             {scrapbook.map((item, index) => (
               <div
                 key={item.id}
-                className={`w-full max-w-[400px] ${index === 2 ? 'md:col-span-2 lg:col-span-1 flex justify-center lg:block' : ''}`}
+                className={`w-full max-w-[400px] scrapbook-wrapper ${index === 2 ? 'md:col-span-2 md:flex md:justify-center lg:col-span-1 lg:block' : ''}`}
               >
-                <div className="w-full">
+                <div className={`w-full ${index === 2 ? 'md:max-w-[400px] scrapbook-inner' : ''}`}>
                   <ScrapbookCard item={item} />
                 </div>
               </div>
             ))}
           </div>
+
+          {/* iPad Mini Portrait Specific Styles */}
+          <style jsx>{`
+            @media only screen and (min-width: 768px) and (max-width: 768px) and (orientation: portrait) {
+              .scrapbook-wrapper {
+                max-width: 326px !important;
+              }
+              .scrapbook-inner {
+                max-width: 326px !important;
+              }
+            }
+          `}</style>
         </div>
       </div>
     </section>

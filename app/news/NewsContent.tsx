@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -19,7 +20,6 @@ const FEATURED_ARTICLE = {
   author: "Emily Watson",
   date: "February 4, 2026",
   readTime: "8 min read",
-  slug: "/news/southeast-asia-hidden-gems",
 };
 
 const NEWS_ARTICLES = [
@@ -33,7 +33,6 @@ const NEWS_ARTICLES = [
     author: "Michael Chen",
     date: "February 3, 2026",
     readTime: "6 min read",
-    slug: "/news/sustainable-travel-tips",
   },
   {
     id: 3,
@@ -45,7 +44,6 @@ const NEWS_ARTICLES = [
     author: "Sarah Johnson",
     date: "February 2, 2026",
     readTime: "5 min read",
-    slug: "/news/thailand-travel-guide",
   },
   {
     id: 4,
@@ -57,7 +55,6 @@ const NEWS_ARTICLES = [
     author: "David Park",
     date: "February 1, 2026",
     readTime: "7 min read",
-    slug: "/news/travel-photography-tips",
   },
   {
     id: 5,
@@ -69,7 +66,6 @@ const NEWS_ARTICLES = [
     author: "Emma Rodriguez",
     date: "January 31, 2026",
     readTime: "6 min read",
-    slug: "/news/cultural-etiquette-guide",
   },
   {
     id: 6,
@@ -81,7 +77,6 @@ const NEWS_ARTICLES = [
     author: "James Anderson",
     date: "January 30, 2026",
     readTime: "8 min read",
-    slug: "/news/budget-travel-guide",
   },
 ];
 
@@ -109,7 +104,7 @@ const FeaturedArticleCard: React.FC<typeof FEATURED_ARTICLE> = ({
   readTime,
 }) => {
   return (
-    <div className="group">
+    <Link href="/news-detail" className="group block">
       <div className="relative bg-white border border-brand-brown/20 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 ">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Image */}
@@ -146,7 +141,7 @@ const FeaturedArticleCard: React.FC<typeof FEATURED_ARTICLE> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -162,7 +157,6 @@ interface NewsCardProps {
   author: string;
   date: string;
   readTime: string;
-  slug: string;
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({
@@ -175,7 +169,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   readTime,
 }) => {
   return (
-    <div className="group">
+    <Link href="/news-detail" className="group block h-full">
       <div className="bg-white border border-brand-brown/20 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
         {/* Image */}
         <div className="relative h-[220px] overflow-hidden">
@@ -210,7 +204,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -298,27 +292,7 @@ export default function NewsContent() {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="relative w-full bg-brand-orange py-16 md:py-20">
-          <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20 text-center">
-            <h2 className="font-display italic font-semibold text-[28px] md:text-[36px] leading-[1.2] text-white mb-4">
-              Never Miss an Update
-            </h2>
-            <p className="font-body font-medium text-base md:text-lg leading-[30px] text-white/90 mb-8 max-w-[600px] mx-auto">
-              Subscribe to our newsletter and get the latest travel news, tips,
-              and exclusive offers delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-[500px] mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full sm:flex-1 px-6 py-4 rounded-xl font-body text-base text-brand-brown border-2 border-white/20 focus:outline-none focus:border-white"
-              />
-              <button className="w-full sm:w-auto bg-white text-brand-orange px-8 py-4 rounded-xl font-body font-semibold text-base hover:bg-brand-cream transition-colors duration-300 whitespace-nowrap cursor-pointer">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </section>
+
       </main>
       <Footer />
     </>

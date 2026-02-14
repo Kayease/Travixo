@@ -24,7 +24,7 @@ export interface WishlistItem {
   reviewCount: number;
   duration: string;
   groupSize: string;
-  type: "tour" | "destination";
+  type: "tour" | "destination" | "room";
   location: string;
 }
 

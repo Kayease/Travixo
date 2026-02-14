@@ -227,7 +227,7 @@ export const Footer = () => {
       )}
 
       {/* Container to match 1440px design width */}
-      <div className="w-full max-w-[1440px] mx-auto relative px-4 md:px-10 lg:px-20 py-12">
+      <div className="w-full max-w-[1440px] mx-auto relative px-4 md:px-10 lg:px-10 xl:px-20 py-12">
         {/* Top Section: Logo and Socials */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 md:gap-0">
           {/* Logo */}
@@ -285,98 +285,94 @@ export const Footer = () => {
         {/* Divider 1 */}
         <div className="w-full h-px bg-white mb-10" />
 
-        {/* Main Content Grid */}
-        <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-0 relative">
-          {/* Columns Container */}
-          <div className="flex flex-col md:flex-row lg:flex-row gap-10 md:gap-12 lg:gap-12 xl:gap-[134px]">
-            {/* Company Column */}
-            <div className="flex flex-col">
-              <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">
-                Company
-              </h3>
-              <ul className="flex flex-col gap-2">
-                {COMPANY_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Main Grid Container */}
+        <div className="grid grid-cols-2 lg:flex lg:flex-row lg:justify-between items-start gap-x-4 gap-y-10 lg:gap-6 xl:gap-12 relative w-full">
+          {/* Company Column */}
+          <div className="flex flex-col shrink-0">
+            <h3 className="font-display italic font-semibold text-[22px] md:text-[28px] leading-[28px] text-white mb-6">
+              Company
+            </h3>
+            <ul className="flex flex-col gap-2">
+              {COMPANY_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Explore Column */}
-            <div className="flex flex-col">
-              <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">
-                Explore
-              </h3>
-              <ul className="flex flex-col gap-2">
-                {EXPLORE_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Explore Column */}
+          <div className="flex flex-col shrink-0">
+            <h3 className="font-display italic font-semibold text-[22px] md:text-[28px] leading-[28px] text-white mb-6">
+              Explore
+            </h3>
+            <ul className="flex flex-col gap-2">
+              {EXPLORE_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Contact Column */}
-            <div className="flex flex-col">
-              <h3 className="font-display italic font-semibold text-[28px] leading-[28px] text-white mb-6">
-                Contact
-              </h3>
-              <div className="flex flex-col gap-4">
-                {/* Demo placeholder contact info — update with real data */}
-                <p className="font-body font-medium text-[18px] leading-[28px] text-white max-w-[255px]">
-                  6391 Elgin St. Celina,
-                  <br />
-                  Delaware 10001, USA
-                </p>
-                <div className="flex items-center gap-2">
-                  <PhoneIcon />
-                  <span className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer">
-                    +91 1234567890
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MailIcon />
-                  <span className="font-body font-medium text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer">
-                    contact@travixo.com
-                  </span>
-                </div>
+          {/* Contact Column */}
+          <div className="flex flex-col shrink-0 md:min-w-[255px]">
+            <h3 className="font-display italic font-semibold text-[22px] md:text-[28px] leading-[28px] text-white mb-6">
+              Contact
+            </h3>
+            <div className="flex flex-col gap-4">
+              <p className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] text-white max-w-[255px]">
+                6391 Elgin St. Celina,
+                <br />
+                Delaware 10001, USA
+              </p>
+              <div className="flex items-center gap-2">
+                <PhoneIcon />
+                <span className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer">
+                  +91 1234567890
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MailIcon />
+                <span className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer">
+                  contact@travixo.com
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Newsletter Box (Right aligned) */}
-          <div className="xl:absolute xl:right-0 xl:top-0 w-[291px] h-[145px] bg-[#FFFCF5] rounded-[12px] p-[18px] flex flex-col justify-between shadow-lg mx-auto lg:mx-0">
-            <h4 className="font-display italic font-medium text-[18px] leading-[28px] text-[#4B3621] text-center w-full">
+          {/* Newsletter Box */}
+          <div className="w-full md:w-[291px] shrink-0 min-h-[145px] bg-[#FFFCF5] rounded-[12px] p-3 md:p-[18px] flex flex-col justify-between shadow-lg">
+            <h4 className="font-display italic font-medium text-[15px] md:text-[18px] leading-[22px] md:leading-[28px] text-[#4B3621] text-center w-full mb-3 md:mb-0">
               Signup for our latest news & articles
             </h4>
-            <div className="relative w-[255px] h-[45px] mx-auto">
+            <div className="relative w-full h-[45px]">
               <input
                 type="email"
-                placeholder="Email address"
+                placeholder="Email"
                 aria-label="Email address for newsletter"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-full bg-white border border-[#FF6E00] rounded-[12px] pl-[18px] pr-[55px] font-body text-[18px] text-[#4B3621] placeholder:text-[#4B3621]/60 focus:outline-none"
+                className="w-full h-full bg-white border border-[#FF6E00] rounded-[12px] pl-3 pr-[45px] font-body text-[14px] md:text-[18px] text-[#4B3621] placeholder:text-[#4B3621]/60 focus:outline-none"
               />
               <button
                 onClick={handleSubscribe}
                 aria-label="Subscribe to newsletter"
-                className="group absolute right-0 top-0 w-[50px] h-[45px] bg-[#FFFCF5] border border-[#FF6E00] rounded-[12px] flex items-center justify-center cursor-pointer overflow-hidden"
+                className="group absolute right-0 top-0 w-[40px] md:w-[50px] h-[45px] bg-[#FFFCF5] border border-[#FF6E00] rounded-[12px] flex items-center justify-center cursor-pointer overflow-hidden"
               >
                 <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
                 <div className="relative z-10">
-                  <ArrowIcon className="text-[#4B3621] group-hover:text-white transform -rotate-45 group-hover:rotate-0 transition-all duration-300" />
+                  <ArrowIcon className="text-[#4B3621] group-hover:text-white transform -rotate-45 group-hover:rotate-0 transition-all duration-300 scale-75 md:scale-100" />
                 </div>
               </button>
             </div>

@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * History Components Index
  * 

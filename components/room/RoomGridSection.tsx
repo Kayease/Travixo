@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useWishlist } from "@/app/context/WishlistContext";
 
 /**
  * Interface for room card data
@@ -21,17 +22,79 @@ interface RoomCardData {
  * and check availability link
  */
 const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
+  const { addToWishlist, isInWishlist, removeFromWishlist } = useWishlist();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isWishlisted = mounted && isInWishlist(room.id);
+
+  const handleWishlistAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isWishlisted) {
+      removeFromWishlist(room.id);
+    } else {
+      addToWishlist({
+        id: room.id,
+        slug: "/room-detail",
+        title: room.name,
+        description: room.description,
+        image: room.image,
+        price: parseInt(room.price.replace(/[^0-9]/g, "")) || 0,
+        type: "room",
+        rating: 5,
+        reviewCount: 0,
+        duration: "1 night",
+        groupSize: "2 guests",
+        location: "Resort",
+      });
+    }
+  };
+
   return (
-    <div className="bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group">
+    <div className="bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group relative">
       {/* Room Image */}
       <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden">
         <Image
           src={room.image}
           alt={room.name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover scale-105 transition-transform duration-500 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+
+        {/* Wishlist Button - Slides in from right */}
+        <div className="absolute top-3 right-3 z-20 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+          <button
+            onClick={handleWishlistAction}
+            className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted
+              ? "bg-[#FF6E00]"
+              : "bg-white hover:bg-[#FF6E00]"
+              }`}
+            aria-label="Add to wishlist"
+          >
+            <div
+              className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
+                ? "bg-white"
+                : "bg-[#4B3621] group-hover/icon:bg-white"
+                }`}
+              style={{
+                maskImage: 'url("/images/icons/line-md_heart.png")',
+                maskSize: "contain",
+                maskRepeat: "no-repeat",
+                maskPosition: "center",
+                WebkitMaskImage: 'url("/images/icons/line-md_heart.png")',
+                WebkitMaskSize: "contain",
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskPosition: "center",
+              }}
+            />
+          </button>
+        </div>
       </div>
 
       {/* Room Details */}

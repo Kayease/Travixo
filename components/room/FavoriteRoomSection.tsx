@@ -33,7 +33,7 @@ const FavoriteRoomSection: React.FC = () => {
           {/* ============================================
               Left - Room Card
           ============================================ */}
-          <div className="w-full max-w-[418px] bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] shrink-0">
+          <div className="w-full max-w-[418px] bg-[#FFFCF5] rounded-xl overflow-hidden shrink-0">
             {/* Room Image */}
             <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden">
               <Image

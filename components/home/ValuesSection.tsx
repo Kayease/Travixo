@@ -40,9 +40,12 @@ const ValueCard = ({
   description: string;
   icon: string;
 }) => (
-  <div className="rounded-xl p-5 h-full bg-[#FFFCF5]">
+  <div
+    className="rounded-xl p-5 h-full bg-[#FFFCF5] transition-all duration-300 transform lg:hover:scale-[1.02] focus:scale-[1.02] lg:hover:shadow-md focus:shadow-md outline-none cursor-default"
+    tabIndex={0}
+  >
     {/* Icon */}
-    <div className="mb-4 relative w-[42px] h-[42px]">
+    <div className="mb-4 relative w-[42px] h-[42px] transition-transform duration-300">
       <Image
         src={icon}
         alt={title}
@@ -53,7 +56,7 @@ const ValueCard = ({
     </div>
 
     {/* Title */}
-    <h3 className="font-display italic font-semibold text-[24px] md:text-[32px] leading-[43px] text-brand-brown mb-3">
+    <h3 className="font-display italic font-semibold text-[24px] md:text-[32px] leading-[43px] text-brand-brown mb-3 transition-colors duration-300">
       {title}
     </h3>
 

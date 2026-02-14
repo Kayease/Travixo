@@ -217,7 +217,7 @@ export const HeroSection = () => {
           <button
             type="button"
             onClick={() => router.push("/destinations")}
-            className="hero-cta relative mt-8 md:mt-6 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 active:scale-[0.98] overflow-hidden group/btn cursor-pointer border border-transparent hover:border-[#FF6E00]"
+            className="hero-cta relative mt-8 md:mt-6 lg:mt-[40px] font-display italic font-medium text-[18px] md:text-[20px] leading-[27px] text-center text-white transition-all duration-300 lg:active:scale-[0.98] focus:outline-none focus:border-[#FF6E00] overflow-hidden group/btn cursor-pointer border border-transparent lg:hover:border-[#FF6E00]"
             style={{
               width: "200px",
               height: "45px",
@@ -226,9 +226,9 @@ export const HeroSection = () => {
             }}
           >
             {/* Bottom-to-top fill animation overlay */}
-            <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover/btn:h-full transition-all duration-300 ease-out" />
+            <span className="absolute bottom-0 left-0 right-0 h-0 bg-white lg:group-hover/btn:h-full transition-all duration-300 ease-out" />
             {/* Button text */}
-            <span className="relative z-10 group-hover/btn:text-[#FF6E00] transition-colors duration-300">
+            <span className="relative z-10 lg:group-hover/btn:text-[#FF6E00] transition-colors duration-300">
               Explore More
             </span>
           </button>
@@ -323,7 +323,7 @@ export const HeroSection = () => {
                 onChange={(e) => setDestination(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="Enter Location"
-                className="hero-search-input font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none w-full placeholder:text-[#4B3621]/60 text-brand-brown"
+                className="hero-search-input font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent !outline-none !focus:outline-none !focus-visible:outline-none !ring-0 !border-none w-full placeholder:text-[#4B3621]/60 text-brand-brown shadow-none"
               />
             </div>
           </div>
@@ -390,7 +390,7 @@ export const HeroSection = () => {
           <button
             type="button"
             onClick={handleSearch}
-            className="p-4 md:pr-6 transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="p-4 md:pr-6 transition-transform lg:hover:scale-110 lg:active:scale-95 cursor-pointer outline-none"
             aria-label="Search"
           >
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
@@ -430,14 +430,10 @@ export const HeroSection = () => {
         @media (orientation: landscape) and (max-height: 500px) {
           .hero-section {
             height: auto;
-            min-height: 100svh;
+            min-height: 140vh;
           }
           .hero-pendulum {
-            display: flex !important;
-            top: -10px !important;
-            right: 200px !important; 
-            transform: scale(0.6);
-            transform-origin: top right;
+            display: none !important;
           }
           .hero-content {
             padding-top: 40px;
@@ -464,29 +460,36 @@ export const HeroSection = () => {
           }
           .hero-search-wrapper {
             bottom: 6px;
-            width: 92%;
+            width: 85%;
           }
           .hero-search-bar {
             flex-direction: row;
-            height: 48px;
+            height: 42px;
             padding: 0;
           }
           .hero-search-field {
-            padding: 0 10px;
+            padding: 0 8px;
           }
           .hero-search-label {
             display: none;
           }
           .hero-search-input {
-            font-size: 13px;
+            font-size: 12px;
           }
           .hero-search-divider {
-            height: 32px;
+            height: 24px;
             display: block;
           }
           .hero-search-icon {
-            width: 22px;
-            height: 22px;
+            width: 18px;
+            height: 18px;
+          }
+          .hero-search-bar button {
+            padding: 0 12px !important;
+          }
+          .hero-search-bar button svg {
+            width: 24px !important;
+            height: 24px !important;
           }
         }
 

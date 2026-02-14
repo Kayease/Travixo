@@ -169,12 +169,13 @@ export const AboutSection = () => {
               {FEATURES.map((feature, index) => (
                 <div
                   key={feature.id}
-                  className={`py-8 md:py-10 px-4 group transition-all duration-500 hover:bg-[#FFF9F0] ${index === 0 ? "border-r border-b border-black/10" : "border-b border-black/10"}`}
+                  tabIndex={0}
+                  className={`py-8 md:py-10 px-4 group transition-all duration-500 lg:hover:bg-[#FFF9F0] focus:bg-[#FFF9F0] outline-none ${index === 0 ? "border-r border-b border-black/10" : "border-b border-black/10"}`}
                 >
                   <div className="flex items-start gap-4">
                     {/* Icon Container - Component 29/30 */}
-                    <div className="w-[50px] h-[50px] bg-white border-[0.5px] border-[#FF6E00] rounded-full flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#FF6E00]">
-                      <div className="transition-all duration-300 group-hover:brightness-0 group-hover:invert">
+                    <div className="w-[50px] h-[50px] bg-white border-[0.5px] border-[#FF6E00] rounded-full flex items-center justify-center shrink-0 transition-all duration-300 lg:group-hover:bg-[#FF6E00] group-focus:bg-[#FF6E00]">
+                      <div className="transition-all duration-300 lg:group-hover:brightness-0 lg:group-hover:invert group-focus:brightness-0 group-focus:invert">
                         {feature.icon === "travel" ? (
                           <TravelIcon />
                         ) : (
@@ -185,7 +186,7 @@ export const AboutSection = () => {
 
                     {/* Content */}
                     <div>
-                      <h4 className="font-display italic font-normal text-xl leading-[27px] text-brand-brown group-hover:text-[#FF6E00] transition-colors duration-300">
+                      <h4 className="font-display italic font-normal text-xl leading-[27px] text-brand-brown lg:group-hover:text-[#FF6E00] group-focus:text-[#FF6E00] transition-colors duration-300">
                         {feature.title}
                       </h4>
                       <p className="font-body font-normal text-base leading-6 text-brand-brown/70 mt-2 max-w-[240px]">
@@ -200,8 +201,8 @@ export const AboutSection = () => {
             {/* Checklist items - Frame 33 */}
             <div className="flex flex-col gap-4 mb-12">
               {CHECKLIST.map((item) => (
-                <div key={item} className="flex items-center gap-3 group">
-                  <div className="shrink-0 transition-transform duration-300 group-hover:scale-110">
+                <div key={item} className="flex items-center gap-3 group outline-none" tabIndex={0}>
+                  <div className="shrink-0 transition-transform duration-300 lg:group-hover:scale-110 group-focus:scale-110">
                     <CheckIcon />
                   </div>
                   <span className="font-body font-normal text-base leading-6 text-brand-brown/90">
@@ -213,10 +214,10 @@ export const AboutSection = () => {
 
             {/* CTA Button - Component 1 */}
             <div className="flex justify-center xl:justify-start">
-              <Link href="/destinations" className="inline-block">
-                <button className="w-[244px] h-[50px] bg-white border border-[#FF6E00] rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer shadow-sm">
-                  <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+              <Link href="/destinations" className="inline-block outline-none">
+                <button className="w-[244px] h-[50px] bg-white border border-[#FF6E00] rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer shadow-sm outline-none">
+                  <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange lg:group-hover:h-full transition-all duration-300 ease-out" />
+                  <span className="relative z-10 lg:group-hover:text-white transition-colors duration-300">
                     Explore More
                   </span>
                 </button>

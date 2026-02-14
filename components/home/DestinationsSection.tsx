@@ -86,7 +86,7 @@ const DestinationCard = ({
     href="/paris"
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
-    className="shrink-0 relative cursor-pointer group block overflow-hidden transition-all duration-500 ease-in-out hover:shadow-[0px_0px_4px_rgba(255,255,255,0.1)]"
+    className="shrink-0 relative cursor-pointer group block overflow-hidden transition-all duration-500 ease-in-out lg:hover:shadow-[0px_0px_4px_rgba(255,255,255,0.1)] focus:shadow-[0px_0px_4px_rgba(255,255,255,0.1)] outline-none"
     style={{
       width: "var(--card-width, 418px)",
       height: "var(--card-height, 657px)",
@@ -123,20 +123,26 @@ const DestinationCard = ({
 
     {/* Orange hover: hover-bg.png in place of white, in front of image in lower band */}
     <div
-      className="absolute left-0 w-full h-[15px] group-hover:h-[55%] transition-all duration-500 ease-in-out"
+      className="absolute left-0 w-full h-[15px] lg:group-hover:h-[55%] group-focus:h-[55%] group-active:h-[55%] transition-all duration-500 ease-in-out bg-[#FF8930]"
       style={{
         top: "var(--overlay-top, 316px)",
         zIndex: 0,
-        backgroundImage: "url('/images/home/destination/hover-bg.png')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
       }}
-    />
+    >
+      <div
+        className="absolute inset-0 opacity-50"
+        style={{
+          backgroundImage: "url('/images/home/destination/hover-bg.png')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      />
+    </div>
 
     {/* TRAVEL TO */}
     <span
-      className="absolute left-1/2 -translate-x-1/2 text-center transition-colors duration-500 ease-in-out group-hover:text-white"
+      className="absolute left-1/2 -translate-x-1/2 text-center transition-colors duration-500 ease-in-out lg:group-hover:text-white group-focus:text-white group-active:text-white"
       style={{
         width: "98px",
         top: "var(--label-top, 537px)",
@@ -153,7 +159,7 @@ const DestinationCard = ({
 
     {/* Destination name */}
     <h3
-      className="absolute left-1/2 -translate-x-1/2 text-center font-display italic transition-colors duration-500 ease-in-out group-hover:text-white"
+      className="absolute left-1/2 -translate-x-1/2 text-center font-display italic transition-colors duration-500 ease-in-out lg:group-hover:text-white group-focus:text-white group-active:text-white"
       style={{
         top: "var(--name-top, 577px)",
         fontWeight: 500,
@@ -261,11 +267,11 @@ export const DestinationsSection = () => {
             </p>
 
             <button
-              className="w-[300px] h-[50px] bg-white border border-brand-orange rounded-[12px] font-display italic font-normal text-[18px] leading-[24px] text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-[300px] h-[50px] bg-white border border-brand-orange rounded-[12px] font-display italic font-normal text-[18px] leading-[24px] text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed outline-none"
               onClick={() => router.push("/destinations")}
             >
-              <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+              <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange lg:group-hover:h-full transition-all duration-300 ease-out" />
+              <span className="relative z-10 lg:group-hover:text-white transition-colors duration-300">
                 Discover More
               </span>
             </button>
@@ -276,7 +282,7 @@ export const DestinationsSection = () => {
             {/* Left Navigation Button */}
             <button
               onClick={() => handleManualScroll(-450)}
-              className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/80 border border-brand-orange text-brand-orange flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-md backdrop-blur-sm"
+              className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/80 border border-brand-orange text-brand-orange flex items-center justify-center lg:hover:bg-brand-orange lg:hover:text-white transition-all duration-300 shadow-md backdrop-blur-sm outline-none"
               aria-label="Previous slide"
             >
               <svg
@@ -299,7 +305,7 @@ export const DestinationsSection = () => {
             {/* Right Navigation Button */}
             <button
               onClick={() => handleManualScroll(450)}
-              className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/80 border border-brand-orange text-brand-orange flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-md backdrop-blur-sm"
+              className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/80 border border-brand-orange text-brand-orange flex items-center justify-center lg:hover:bg-brand-orange lg:hover:text-white transition-all duration-300 shadow-md backdrop-blur-sm outline-none"
               aria-label="Next slide"
             >
               <svg

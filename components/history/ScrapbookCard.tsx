@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * ScrapbookCard Component
  * 
@@ -30,10 +32,10 @@ const ScrapbookCard: React.FC<ScrapbookCardProps> = React.memo(({ item }) => {
   return (
     <Link
       href={`/products/${item.slug}`}
-      className="group block bg-white border border-brand-brown/40 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer"
+      className="group block bg-white border border-brand-brown/40 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer scrapbook-card"
     >
       {/* Image Container */}
-      <div className="relative w-full aspect-418/375 overflow-hidden">
+      <div className="relative w-full aspect-418/375 overflow-hidden scrapbook-image">
         <Image
           src={item.image}
           alt={item.destination}
@@ -44,19 +46,54 @@ const ScrapbookCard: React.FC<ScrapbookCardProps> = React.memo(({ item }) => {
       </div>
 
       {/* Card Footer */}
-      <div className="flex items-center justify-between px-4 py-4 md:px-5 md:py-5">
+      <div className="flex items-center justify-between px-4 py-4 md:px-5 md:py-5 scrapbook-footer">
         {/* Destination Name */}
-        <h3 className="font-display italic font-semibold text-xl md:text-[24px] leading-8 text-brand-brown">
+        <h3 className="font-display italic font-semibold text-xl md:text-[24px] leading-8 text-brand-brown scrapbook-title">
           {item.destination}
         </h3>
 
         {/* Date Badge */}
-        <span className="inline-flex items-center justify-center px-2.5 py-1.5 bg-brand-orange rounded-xl">
+        <span className="inline-flex items-center justify-center px-2.5 py-1.5 bg-brand-orange rounded-xl scrapbook-badge">
           <span className="font-display italic font-semibold text-base md:text-lg leading-6 text-white">
             {item.date}
           </span>
         </span>
       </div>
+
+      {/* iPad Mini Portrait Specific Styles */}
+      <style jsx>{`
+        @media only screen and (min-width: 768px) and (max-width: 768px) and (orientation: portrait) {
+          .scrapbook-card {
+            width: 326px !important;
+            max-width: 326px !important;
+            height: 292.46px !important;
+          }
+          
+          .scrapbook-image {
+            height: 232px !important;
+            aspect-ratio: auto !important;
+          }
+          
+          .scrapbook-footer {
+            padding: 12px 16px !important;
+            min-height: 60.46px !important;
+          }
+          
+          .scrapbook-title {
+            font-size: 18px !important;
+            line-height: 24px !important;
+          }
+          
+          .scrapbook-badge {
+            padding: 6px 10px !important;
+          }
+          
+          .scrapbook-badge span {
+            font-size: 14px !important;
+            line-height: 20px !important;
+          }
+        }
+      `}</style>
     </Link>
   );
 });

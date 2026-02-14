@@ -37,12 +37,10 @@ const RoomDetailHeroSection: React.FC = () => {
               src="/images/room_detail/cards/detail-hero-2.png"
               alt="Serenity Suite with mountain view"
               fill
-              className="object-cover object-top"
+              className="object-cover object-top scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 445px"
               priority
             />
-            {/* Subtle border glow effect */}
-            <div className="absolute inset-0 rounded-2xl ring-1 ring-white/20" />
           </div>
 
           {/* ============================================

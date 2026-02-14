@@ -34,12 +34,12 @@ const RoomHeroSection: React.FC = () => {
           </p>
 
           {/* Frame 490 - Left Tall Image */}
-          <div className="absolute rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] left-[360px] top-[40px] w-[250px] h-[380px]">
+          <div className="absolute rounded-xl overflow-hidden left-[360px] top-[40px] w-[250px] h-[380px]">
             <Image
               src="/images/room/cards/hero-1.png"
               alt="Stylish room"
               fill
-              className="object-cover"
+              className="object-cover scale-105"
               sizes="250px"
               priority
             />
@@ -47,22 +47,22 @@ const RoomHeroSection: React.FC = () => {
 
           {/* Right Images Column */}
           <div className="absolute flex flex-col gap-[18px] left-[628px] top-[40px]">
-            <div className="relative rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] w-[360px] h-[181px]">
+            <div className="relative rounded-xl overflow-hidden w-[360px] h-[181px]">
               <Image
                 src="/images/room/cards/hero-2.png"
                 alt="Bright room"
                 fill
-                className="object-cover"
+                className="object-cover scale-105"
                 sizes="360px"
                 priority
               />
             </div>
-            <div className="relative rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] w-[360px] h-[181px]">
+            <div className="relative rounded-xl overflow-hidden w-[360px] h-[181px]">
               <Image
                 src="/images/room/cards/hero-3.png"
                 alt="Elegant bedroom"
                 fill
-                className="object-cover"
+                className="object-cover scale-105"
                 sizes="360px"
                 priority
               />
@@ -101,7 +101,7 @@ const RoomHeroSection: React.FC = () => {
 
           {/* Frame 490 - Left Tall Image */}
           <div
-            className="absolute rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]"
+            className="absolute rounded-xl overflow-hidden"
             style={{
               width: "295px",
               height: "440px",
@@ -113,7 +113,7 @@ const RoomHeroSection: React.FC = () => {
               src="/images/room/cards/hero-1.png"
               alt="Stylish room with yellow wall and plants"
               fill
-              className="object-cover"
+              className="object-cover scale-105"
               sizes="295px"
               priority
             />
@@ -121,7 +121,7 @@ const RoomHeroSection: React.FC = () => {
 
           {/* Frame 491 - Top Right Image */}
           <div
-            className="absolute rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]"
+            className="absolute rounded-xl overflow-hidden"
             style={{
               width: "551px",
               height: "262px",
@@ -133,7 +133,7 @@ const RoomHeroSection: React.FC = () => {
               src="/images/room/cards/hero-2.png"
               alt="Bright living room with pink chairs"
               fill
-              className="object-cover"
+              className="object-cover scale-105"
               sizes="551px"
               priority
             />
@@ -141,7 +141,7 @@ const RoomHeroSection: React.FC = () => {
 
           {/* Frame 492 - Bottom Right Image */}
           <div
-            className="absolute rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]"
+            className="absolute rounded-xl overflow-hidden"
             style={{
               width: "551px",
               height: "262px",
@@ -153,7 +153,7 @@ const RoomHeroSection: React.FC = () => {
               src="/images/room/cards/hero-3.png"
               alt="Elegant white bedroom"
               fill
-              className="object-cover"
+              className="object-cover scale-105"
               sizes="551px"
               priority
             />
@@ -179,12 +179,12 @@ const RoomHeroSection: React.FC = () => {
           {/* Image Gallery */}
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             {/* Left Tall Image */}
-            <div className="relative h-[240px] xs:h-[300px] md:h-[350px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
+            <div className="relative h-[240px] xs:h-[300px] md:h-[350px] rounded-xl overflow-hidden">
               <Image
                 src="/images/room/cards/hero-1.png"
                 alt="Stylish room with yellow wall and plants"
                 fill
-                className="object-cover"
+                className="object-cover scale-105"
                 sizes="(max-width: 768px) 50vw, 350px"
                 priority
               />
@@ -193,24 +193,24 @@ const RoomHeroSection: React.FC = () => {
             {/* Right Column - Two Stacked Images */}
             <div className="flex flex-col gap-3 md:gap-4">
               {/* Top Image */}
-              <div className="relative h-[114px] xs:h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
+              <div className="relative h-[114px] xs:h-[143px] md:h-[168px] rounded-xl overflow-hidden">
                 <Image
                   src="/images/room/cards/hero-2.png"
                   alt="Bright living room with pink chairs"
                   fill
-                  className="object-cover"
+                  className="object-cover scale-105"
                   sizes="(max-width: 768px) 50vw, 168px"
                   priority
                 />
               </div>
 
               {/* Bottom Image */}
-              <div className="relative h-[114px] xs:h-[143px] md:h-[168px] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)]">
+              <div className="relative h-[114px] xs:h-[143px] md:h-[168px] rounded-xl overflow-hidden">
                 <Image
                   src="/images/room/cards/hero-3.png"
                   alt="Elegant white bedroom"
                   fill
-                  className="object-cover"
+                  className="object-cover scale-105"
                   sizes="(max-width: 768px) 50vw, 168px"
                   priority
                 />

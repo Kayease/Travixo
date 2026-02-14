@@ -303,24 +303,7 @@ export default function TestimonialsPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="relative w-full bg-brand-orange py-16 md:py-20">
-          <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-20 text-center">
-            <h2 className="font-display italic font-semibold text-[28px] md:text-[36px] leading-[1.2] text-white mb-4">
-              Ready to Create Your Own Story?
-            </h2>
-            <p className="font-body font-medium text-base md:text-lg leading-[30px] text-white/90 mb-8 max-w-[600px] mx-auto">
-              Join thousands of satisfied travelers and embark on your next
-              adventure with Travixo.
-            </p>
-            <Link
-              href="/products"
-              className="inline-block bg-white text-brand-orange px-8 py-4 rounded-xl font-body font-semibold text-base hover:bg-brand-cream transition-colors duration-300"
-            >
-              Browse Tours
-            </Link>
-          </div>
-        </section>
+       
       </main>
       <Footer />
     </>

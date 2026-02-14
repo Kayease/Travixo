@@ -249,9 +249,9 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] p-3 flex flex-col md:flex-row gap-4">
+    <div className="bg-white rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] p-3 flex flex-col md:flex-row gap-4 cart-item-card">
       {/* Item Image */}
-      <div className="relative w-full md:w-[278px] h-[200px] md:h-[238px] shrink-0 rounded-xl overflow-hidden bg-gray-100">
+      <div className="relative w-full md:w-[278px] h-[200px] md:h-[238px] shrink-0 rounded-xl overflow-hidden bg-gray-100 cart-item-image">
         {item.image ? (
           <Image
             src={item.image}
@@ -270,7 +270,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
       </div>
 
       {/* Item Details */}
-      <div className="flex-1 py-2 relative">
+      <div className="flex-1 py-2 relative cart-item-details">
         {/* Type & Price Row */}
         <div className="flex justify-between items-start mb-2">
           <span className="text-base md:text-lg text-[#4B3621]">
@@ -301,7 +301,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
             <div onClick={handleEditClick} className="cursor-pointer">
               <CalendarIcon />
             </div>
-            <div ref={datePickerWrapperRef} className="w-[240px]">
+            <div ref={datePickerWrapperRef} className="w-[240px] cart-datepicker">
               <DatePicker
                 value={dateValue}
                 onChange={handleDateChange}
@@ -349,6 +349,85 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
           </button>
         </div>
       </div>
+
+      {/* iPad Mini Specific Styles */}
+      <style jsx>{`
+        /* iPad Mini Portrait (768x1024) - Compact for 2-column grid */
+        @media only screen 
+          and (min-width: 768px) 
+          and (max-width: 768px) 
+          and (min-height: 1024px) 
+          and (max-height: 1024px) 
+          and (orientation: portrait) {
+          .cart-item-card {
+            flex-direction: column !important;
+            padding: 0.5rem !important;
+          }
+          
+          .cart-item-image {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 140px !important;
+          }
+          
+          .cart-item-details h3 {
+            font-size: 0.95rem !important;
+            margin-bottom: 0.5rem !important;
+            line-height: 1.3 !important;
+          }
+          
+          .cart-item-details span {
+            font-size: 0.8rem !important;
+          }
+          
+          .cart-item-details button {
+            padding: 0.375rem 0.625rem !important;
+            font-size: 0.75rem !important;
+          }
+          
+          .cart-datepicker {
+            max-width: 140px !important;
+          }
+        }
+        
+        /* iPad Mini Landscape (1024x768) - Very compact for 3-column grid */
+        @media only screen 
+          and (min-width: 1024px) 
+          and (max-width: 1024px) 
+          and (min-height: 768px) 
+          and (max-height: 768px) 
+          and (orientation: landscape) {
+          .cart-item-card {
+            flex-direction: column !important;
+            padding: 0.5rem !important;
+          }
+          
+          .cart-item-image {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 120px !important;
+          }
+          
+          .cart-item-details h3 {
+            font-size: 0.875rem !important;
+            margin-bottom: 0.375rem !important;
+            line-height: 1.2 !important;
+          }
+          
+          .cart-item-details span {
+            font-size: 0.75rem !important;
+          }
+          
+          .cart-item-details button {
+            padding: 0.25rem 0.5rem !important;
+            font-size: 0.7rem !important;
+          }
+          
+          .cart-datepicker {
+            max-width: 120px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
@@ -411,12 +490,12 @@ const CartItemsSection: React.FC = () => {
   }, [cartItems, itemCount, calculateDuration]);
 
   return (
-    <section className="w-full bg-[#FFFCF5] py-12 md:py-16">
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-20">
+    <section className="w-full bg-[#FFFCF5] py-12 md:py-16 cart-items-section">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-20 cart-container">
         {/* Two Column Layout */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 cart-layout">
           {/* Left Column - Cart Items */}
-          <div className="flex-1 lg:max-w-[800px]">
+          <div className="flex-1 lg:max-w-[800px] cart-items-column">
             {/* Header Row */}
             <div className="flex justify-between items-center mb-6">
               <h2 className="font-display text-2xl md:text-[32px] italic font-semibold leading-[43px] text-[#4B3621]">
@@ -431,7 +510,7 @@ const CartItemsSection: React.FC = () => {
             <div className="border-t border-[rgba(0,0,0,0.4)] mb-8" />
 
             {/* Cart Items List */}
-            <div className="space-y-6">
+            <div className="space-y-6 cart-items-grid">
               {cartItems.length > 0 ? (
                 cartItems.map((item) => (
                   <CartItemCard
@@ -453,7 +532,7 @@ const CartItemsSection: React.FC = () => {
 
           {/* Right Column - Booking Summary */}
           {cartItems.length > 0 && (
-            <div className="w-full lg:w-[467px] shrink-0">
+            <div className="w-full lg:w-[467px] shrink-0 cart-summary-column">
               <BookingSummaryCard
                 summary={bookingSummary}
                 itemCount={itemCount}
@@ -462,6 +541,77 @@ const CartItemsSection: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* iPad Mini Specific Styles */}
+      <style jsx>{`
+        /* iPad Mini Portrait (768x1024) - 2 column grid */
+        @media only screen 
+          and (min-width: 768px) 
+          and (max-width: 768px) 
+          and (min-height: 1024px) 
+          and (max-height: 1024px) 
+          and (orientation: portrait) {
+          .cart-container {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            max-width: 100% !important;
+          }
+          
+          .cart-layout {
+            flex-direction: column !important;
+            gap: 2rem !important;
+          }
+          
+          .cart-items-column {
+            max-width: 100% !important;
+          }
+          
+          .cart-items-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem !important;
+          }
+          
+          .cart-summary-column {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+        
+        /* iPad Mini Landscape (1024x768) - 3 column grid */
+        @media only screen 
+          and (min-width: 1024px) 
+          and (max-width: 1024px) 
+          and (min-height: 768px) 
+          and (max-height: 768px) 
+          and (orientation: landscape) {
+          .cart-container {
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+            max-width: 100% !important;
+          }
+          
+          .cart-layout {
+            flex-direction: column !important;
+            gap: 2rem !important;
+          }
+          
+          .cart-items-column {
+            max-width: 100% !important;
+          }
+          
+          .cart-items-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.75rem !important;
+          }
+          
+          .cart-summary-column {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

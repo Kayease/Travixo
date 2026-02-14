@@ -75,26 +75,25 @@ export const ProcessSection = () => {
             >
               {/* Image */}
               <div className="w-full xl:w-[640px] shrink-0">
-                <div className="relative h-[350px] md:h-[450px] lg:h-[496px] rounded-xl overflow-hidden">
+                <div className="relative h-[350px] md:h-[450px] lg:h-[496px] rounded-xl overflow-hidden bg-gray-100">
                   <Image
                     src={step.image}
                     alt={step.imageAlt}
                     fill
-                    className="object-cover object-top"
+                    className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 640px"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
               </div>
 
               {/* Content */}
-              <div
-                className={`flex-1 flex flex-col justify-center ${step.layout === "image-left"
-                  ? "xl:items-start xl:text-left"
-                  : "xl:items-end xl:text-right"
-                  }`}
-              >
+              <div className="flex-1 flex flex-col justify-center items-center md:items-center xl:items-start text-left">
                 {/* Icon Circle */}
-                <div className="group relative w-[80px] h-[80px] lg:w-[95px] lg:h-[95px] mb-6 flex items-center justify-center cursor-pointer">
+                <div
+                  className="group relative w-[80px] h-[80px] lg:w-[95px] lg:h-[95px] mb-6 flex items-center justify-center cursor-pointer mx-auto xl:mx-0 outline-none"
+                  tabIndex={0}
+                >
                   {/* Outer Shape (Orange Blob) */}
                   <div className="absolute inset-0 w-full h-full transition-all duration-300">
                     <Image
@@ -102,12 +101,12 @@ export const ProcessSection = () => {
                       alt={`${step.title} decorative icon`}
                       fill
                       role="presentation"
-                      className="object-contain transition-all duration-300 group-hover:scale-[0.96] group-hover:filter-[brightness(0)_invert(1)_drop-shadow(0.5px_0_0_#FF6E00)_drop-shadow(-0.5px_0_0_#FF6E00)_drop-shadow(0_0.5px_0_#FF6E00)_drop-shadow(0_-0.5px_0_#FF6E00)]"
+                      className="object-contain transition-all duration-300 lg:group-hover:scale-[0.96] group-focus:scale-[0.96] lg:group-hover:filter-[brightness(0)_invert(1)_drop-shadow(0.5px_0_0_#FF6E00)_drop-shadow(-0.5px_0_0_#FF6E00)_drop-shadow(0_0.5px_0_#FF6E00)_drop-shadow(0_-0.5px_0_#FF6E00)] group-focus:filter-[brightness(0)_invert(1)_drop-shadow(0.5px_0_0_#FF6E00)_drop-shadow(-0.5px_0_0_#FF6E00)_drop-shadow(0_0.5px_0_#FF6E00)_drop-shadow(0_-0.5px_0_#FF6E00)]"
                       sizes="(max-width: 1024px) 80px, 95px"
                     />
                   </div>
                   {/* Inner Icon (White Icon) */}
-                  <div className="relative z-10 w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] transition-all duration-300 group-hover:brightness-0 group-hover:filter-[brightness(0)_invert(48%)_sepia(99%)_saturate(4155%)_hue-rotate(1deg)_brightness(102%)_contrast(106%)]">
+                  <div className="relative z-10 w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] transition-all duration-300 lg:group-hover:brightness-0 lg:group-hover:filter-[brightness(0)_invert(48%)_sepia(99%)_saturate(4155%)_hue-rotate(1deg)_brightness(102%)_contrast(106%)] group-focus:brightness-0 group-focus:filter-[brightness(0)_invert(48%)_sepia(99%)_saturate(4155%)_hue-rotate(1deg)_brightness(102%)_contrast(106%)]">
                     <Image
                       src={step.innerIcon}
                       alt={`Step ${step.id} icon`}
@@ -119,12 +118,12 @@ export const ProcessSection = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display italic font-semibold text-[28px] md:text-[36px] lg:text-[42px] leading-[40px] lg:leading-[56px] text-brand-brown mb-4">
+                <h3 className="font-display italic font-semibold text-[28px] md:text-[36px] lg:text-[42px] leading-[40px] lg:leading-[56px] text-brand-brown mb-4 text-center xl:text-left">
                   {step.stepNumber} {step.title}
                 </h3>
 
                 {/* Description */}
-                <p className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] md:leading-[30px] text-brand-brown max-w-[608px]">
+                <p className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] md:leading-[30px] text-brand-brown max-w-[608px] text-center xl:text-left">
                   {step.description}
                 </p>
               </div>

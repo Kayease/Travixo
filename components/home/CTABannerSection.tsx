@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,12 +44,12 @@ export const CTABannerSection = ({
   onButtonClick: _onButtonClick,
 }: CTABannerProps) => {
   return (
-    <section className="relative w-full py-12 lg:py-24 xl:py-36 bg-white">
+    <section className="relative w-full py-10 md:py-6 lg:py-24 xl:py-36 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
         {/* Container with relative positioning for the image */}
         <div className="relative ml-0">
           {/* Traveler Image - Positioned to overlap */}
-          <div className="hidden md:block absolute left-[80px] -top-[60px] lg:-top-[38px] xl:-top-[135px] w-[232px] h-[334px] z-10">
+          <div className="cta-person-image hidden md:block absolute left-[80px] -top-[10px] lg:-top-[38px] xl:-top-[135px] w-[232px] md:h-[280px] lg:h-[334px] z-10">
             <Image
               src="/images/home/cta/cta-banner.png"
               alt="Travel expert"
@@ -60,7 +61,7 @@ export const CTABannerSection = ({
 
           {/* CTA Card */}
           <div
-            className="relative py-10 md:py-12 px-6 md:px-8 lg:px-12 w-full max-w-[1280px] mx-auto"
+            className="relative py-10 md:py-8 px-6 md:px-8 lg:px-12 w-full max-w-[1280px] mx-auto"
             style={{
               minHeight: "200px",
               backgroundImage: "url('/images/home/cta/bg.png')",
@@ -87,21 +88,28 @@ export const CTABannerSection = ({
               {/* CTA Button */}
               <Link
                 href="/contact"
-                className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer"
+                className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-brand-orange rounded-xl font-display italic text-lg text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer outline-none"
               >
                 {/* Fill animation from bottom to top */}
-                <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange lg:group-hover:h-full transition-all duration-300 ease-out" />
+                <span className="relative z-10 lg:group-hover:text-white transition-colors duration-300">
                   {buttonText}
                 </span>
-                <span className="relative z-10 group-hover:translate-x-1 transition-transform text-brand-orange group-hover:text-white">
-                  <ArrowIcon className="transition-transform duration-300 group-hover:rotate-0" />
+                <span className="relative z-10 lg:group-hover:translate-x-1 transition-transform text-brand-orange lg:group-hover:text-white">
+                  <ArrowIcon className="transition-transform duration-300 lg:group-hover:rotate-0" />
                 </span>
               </Link>
             </div>
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @media screen and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+          .cta-person-image {
+            top: -35px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

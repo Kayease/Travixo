@@ -56,7 +56,7 @@ const GALLERY_IMAGES = [
  * GalleryCard Component
  */
 const GalleryCard = ({ url, alt }: { url: string; alt: string }) => (
-  <div className="relative w-full h-[280px] md:h-[320px] lg:h-[365px] rounded-xl overflow-hidden group cursor-pointer">
+  <div className="relative w-full h-[280px] md:h-[320px] lg:h-[365px] rounded-xl overflow-hidden group cursor-pointer outline-none" tabIndex={0}>
     <Image
       src={url}
       alt={alt}
@@ -65,8 +65,8 @@ const GalleryCard = ({ url, alt }: { url: string; alt: string }) => (
       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 311px"
     />
 
-    {/* Overlay with Instagram Icon - Slides down on Hover */}
-    <div className="absolute inset-0 bg-black/40 z-10 w-full h-full -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out flex items-center justify-center">
+    {/* Overlay with Instagram Icon - Slides down on Hover/Tap */}
+    <div className="absolute inset-0 bg-black/40 z-10 w-full h-full -translate-y-full lg:group-hover:translate-y-0 group-focus:translate-y-0 transition-transform duration-500 ease-in-out flex items-center justify-center">
       <InstagramIcon />
     </div>
   </div>

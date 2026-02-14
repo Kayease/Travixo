@@ -81,21 +81,39 @@ const CheckoutProgressBar: React.FC<CheckoutProgressBarProps> = ({ currentStep }
       </div>
 
       {/* Mobile Progress Bar */}
-      <div className="sm:hidden flex items-center justify-between">
-        {steps.map((step) => (
-          <div key={step.id} className="flex flex-col items-center">
-            <div
-              className={`
-                w-10 h-10 rounded-full flex items-center justify-center
-                ${step.id <= currentStep ? 'bg-brand-orange' : 'bg-brand-brown/30'}
-              `}
-            >
-              <span className="text-white font-body font-semibold text-sm">{step.id}</span>
+      <div className="sm:hidden flex items-start justify-center px-4 w-full">
+        {steps.map((step, index) => (
+          <React.Fragment key={step.id}>
+            {/* Step Item */}
+            <div className="flex flex-col items-center flex-1">
+              {/* Icon Circle */}
+              <div
+                className={`
+                  w-10 h-10 rounded-full flex items-center justify-center
+                  ${step.id <= currentStep ? 'bg-brand-orange' : 'bg-brand-brown/30'}
+                `}
+              >
+                <Image
+                  src={step.iconSrc}
+                  alt={step.label}
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                />
+              </div>
+              {/* Label */}
+              <span className="font-display italic font-medium text-sm text-brand-brown mt-2 text-center">
+                {step.label}
+              </span>
             </div>
-            <span className="font-display italic font-medium text-sm text-brand-brown mt-2 text-center">
-              {step.label}
-            </span>
-          </div>
+
+            {/* Connecting Line */}
+            {index < steps.length - 1 && (
+              <div className="flex-[0.5] pt-5">
+                <div className="w-full h-[1px] bg-brand-orange" />
+              </div>
+            )}
+          </React.Fragment>
         ))}
       </div>
     </div>

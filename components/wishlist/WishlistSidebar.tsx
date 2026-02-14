@@ -83,7 +83,7 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
     },
     {
       id: "destinations",
-      name: "Destinations",
+      name: "Saved Rooms",
       count: itemCounts.destinations,
       icon: (
         <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
@@ -100,25 +100,24 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
   ];
 
   return (
-    <aside className="w-full lg:w-[379px]">
+    <aside className="w-full lg:w-[379px] wishlist-sidebar-container">
       {/* Collections Title */}
-      <h2 className="font-display italic font-semibold text-xl md:text-[24px] leading-[30px] text-brand-brown mb-6 md:mb-8">
+      <h2 className="font-display italic font-semibold text-xl md:text-[24px] leading-[30px] text-brand-brown mb-6 md:mb-8 wishlist-collections-title">
         Collections
       </h2>
 
       {/* Collection Filter List */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 wishlist-collections-list">
         {collections.map((collection) => (
           <button
             key={collection.id}
             onClick={() => handleCollectionClick(collection.id)}
             className={`
               w-full h-[58px] rounded-xl flex items-center justify-between px-5 cursor-pointer
-              transition-all duration-200
-              ${
-                active === collection.id
-                  ? "bg-white border border-brand-brown/40"
-                  : "bg-transparent hover:bg-white/50"
+              transition-all duration-200 wishlist-collection-btn
+              ${active === collection.id
+                ? "bg-white border border-brand-brown/40"
+                : "bg-transparent hover:bg-white/50"
               }
             `}
           >
@@ -274,12 +273,49 @@ const WishlistSidebar: React.FC<WishlistSidebarProps> = ({
             </div>
 
             {/* Right: Count */}
-            <span className="font-body font-medium text-base leading-[30px] text-brand-brown">
+            <span className="font-body font-medium text-base leading-[30px] text-brand-brown wishlist-collection-count">
               {collection.count.toString().padStart(2, "0")}
             </span>
           </button>
         ))}
       </div>
+
+      {/* iPad Landscape Specific Styles */}
+      <style jsx>{`
+        /* iPad Landscape (1024x768) - Horizontal layout for collections */
+        @media only screen 
+          and (min-width: 1024px) 
+          and (max-width: 1024px) 
+          and (min-height: 768px) 
+          and (max-height: 768px) 
+          and (orientation: landscape) {
+          .wishlist-sidebar-container {
+            width: 100% !important;
+          }
+          
+          .wishlist-collections-title {
+            margin-bottom: 1rem !important;
+          }
+          
+          .wishlist-collections-list {
+            flex-direction: row !important;
+            gap: 0.75rem !important;
+            justify-content: flex-start;
+          }
+          
+          .wishlist-collection-btn {
+            width: auto !important;
+            flex: 0 0 auto !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            min-width: fit-content !important;
+          }
+          
+          .wishlist-collection-count {
+            display: none !important;
+          }
+        }
+      `}</style>
     </aside>
   );
 };

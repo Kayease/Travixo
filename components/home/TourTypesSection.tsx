@@ -108,11 +108,11 @@ const TourTypeCard = ({
   description: string;
   icon: string;
 }) => (
-  <div className="relative w-[221px] h-[245px] group cursor-pointer shrink-0">
+  <div className="relative w-[221px] h-[245px] group cursor-pointer shrink-0 outline-none" tabIndex={0}>
     {/* Main Card */}
     <div className="absolute inset-0 bg-white border border-[#FF6E00] rounded-[150px_0px_0px_0px] overflow-hidden">
       {/* 1. Orange BG + white icon — slides up from bottom on hover */}
-      <div className="absolute inset-0 bg-brand-orange translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+      <div className="absolute inset-0 bg-brand-orange translate-y-full lg:group-hover:translate-y-0 group-focus:translate-y-0 transition-transform duration-500 ease-out">
         {/* White Icon — rides up with the orange */}
         <div
           className="absolute left-[calc(50%-42px/2+0.5px)] top-[36px] w-[42px] h-[42px] bg-white"
@@ -133,7 +133,7 @@ const TourTypeCard = ({
       <div className="relative w-full h-full z-10 pointer-events-none">
         {/* Orange icon (hidden on hover since white one takes over) */}
         <div
-          className="absolute left-[calc(50%-42px/2+0.5px)] top-[36px] w-[42px] h-[42px] bg-[#FF6E00] group-hover:opacity-0 transition-opacity duration-500 ease-out"
+          className="absolute left-[calc(50%-42px/2+0.5px)] top-[36px] w-[42px] h-[42px] bg-[#FF6E00] lg:group-hover:opacity-0 group-focus:opacity-0 transition-opacity duration-500 ease-out"
           style={{
             maskImage: `url(${icon})`,
             maskSize: "contain",
@@ -147,12 +147,12 @@ const TourTypeCard = ({
         />
 
         {/* Title — stays in place, color changes */}
-        <h3 className="absolute left-[calc(50%-190px/2)] top-[96px] w-[190px] font-display italic font-semibold text-[22px] leading-[29px] text-[#4B3621] group-hover:text-white text-center whitespace-nowrap transition-colors duration-500 ease-out">
+        <h3 className="absolute left-[calc(50%-190px/2)] top-[96px] w-[190px] font-display italic font-semibold text-[22px] leading-[29px] text-[#4B3621] lg:group-hover:text-white group-focus:text-white text-center whitespace-nowrap transition-colors duration-500 ease-out">
           {title}
         </h3>
 
         {/* Description — stays in place, color changes */}
-        <p className="absolute left-[calc(50%-185px/2)] top-[137px] w-[185px] font-body font-normal text-[14px] leading-[24px] text-[#4B3621] group-hover:text-white text-center transition-colors duration-500 ease-out">
+        <p className="absolute left-[calc(50%-185px/2)] top-[137px] w-[185px] font-body font-normal text-[14px] leading-[24px] text-[#4B3621] lg:group-hover:text-white group-focus:text-white text-center transition-colors duration-500 ease-out">
           {description}
         </p>
       </div>

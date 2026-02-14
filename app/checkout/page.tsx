@@ -14,6 +14,7 @@ import React from "react";
 import { siteUrl } from "@/app/lib/siteConfig";
 import { CheckoutSection } from "@/components/checkout";
 import Navbar from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 // Metadata for SEO
 export const metadata = {
@@ -51,6 +52,8 @@ export default async function CheckoutPage({
       <Navbar />
       {/* Checkout Section */}
       <CheckoutSection tourData={tourData} />
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
