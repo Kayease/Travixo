@@ -16,7 +16,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { siteUrl } from "@/app/lib/siteConfig";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -302,8 +301,6 @@ export default function TestimonialsPage() {
             </div>
           </div>
         </section>
-
-       
       </main>
       <Footer />
     </>

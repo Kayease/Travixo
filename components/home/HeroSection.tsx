@@ -264,6 +264,7 @@ export const HeroSection = () => {
                     fill
                     className="object-cover"
                     sizes="272px"
+                    priority={index < 5}
                   />
                 </div>
               ),

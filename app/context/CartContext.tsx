@@ -33,22 +33,17 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const { showToast } = useToast();
-
-  // Load from localStorage on mount
-  useEffect(() => {
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    if (typeof window === "undefined") return [];
     try {
       const savedCart = localStorage.getItem("travixo_cart");
-      if (savedCart) {
-        setCartItems(JSON.parse(savedCart));
-      }
+      return savedCart ? JSON.parse(savedCart) : [];
     } catch {
-      // Silently handle corrupted localStorage data
+      return [];
     }
-    setIsLoaded(true);
-  }, []);
+  });
+  const [isLoaded] = useState(typeof window !== "undefined");
+  const { showToast } = useToast();
 
   // Save to localStorage whenever cart changes
   useEffect(() => {

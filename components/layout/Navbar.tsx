@@ -432,12 +432,7 @@ export const Navbar = () => {
   const pathname = usePathname();
   const { cartItems } = useCart();
   const { wishlistItems } = useWishlist();
-  const [mounted, setMounted] = useState(false);
-
-  // Set mounted state
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const [mounted] = useState(() => typeof window !== "undefined");
 
   // Close everything when route changes
   useEffect(() => {

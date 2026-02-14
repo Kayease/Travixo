@@ -122,13 +122,14 @@ const ProfileContentSection = () => {
         "/images/room/cards/testimonial-3.png",
         "/images/room/cards/testimonial-4.png"
       ];
-      // Demo: random avatar for illustration
-      const randomAvatar = mockAvatars[Math.floor(Math.random() * mockAvatars.length)];
-      setAvatarImage(randomAvatar);
-      localStorage.setItem("userAvatar", randomAvatar);
+      // Demo: cycle through avatars deterministically
+      const currentIdx = avatarImage ? mockAvatars.indexOf(avatarImage) : -1;
+      const nextAvatar = mockAvatars[(currentIdx + 1) % mockAvatars.length];
+      setAvatarImage(nextAvatar);
+      localStorage.setItem("userAvatar", nextAvatar);
       showToast("Avatar Updated!", "success");
     }, 1000);
-  }, [showToast]);
+  }, [showToast, avatarImage]);
 
   const handleLogout = useCallback(() => {
     showToast("Logged out successfully.", "success");

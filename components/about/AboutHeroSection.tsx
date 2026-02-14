@@ -152,7 +152,7 @@ export const AboutHeroSection = () => {
       {/* Desktop Layout (>= 1440px) - Strict Match to Figma */}
       <div
         className="hidden xl:block relative mx-auto"
-        style={{ width: "1440px", height: "1574px" }}
+        style={{ maxWidth: "1440px", width: "100%", height: "1574px" }}
       >
         {/* Title: The Story of Travixo */}
         <h1

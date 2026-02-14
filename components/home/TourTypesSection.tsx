@@ -14,54 +14,6 @@ const PlaneIcon = () => (
 );
 
 /**
- * Windsurfing Icon
- */
-const WindsurfingIcon = () => (
-  <Image
-    src="/images/home/tourtypes/temaki_wind-surfing.png"
-    alt="Windsurfing"
-    width={42}
-    height={42}
-  />
-);
-
-/**
- * Paragliding Icon
- */
-const ParaglidingIcon = () => (
-  <Image
-    src="/images/home/tourtypes/material-symbols-light_paragliding-outline.png"
-    alt="Paragliding"
-    width={42}
-    height={42}
-  />
-);
-
-/**
- * Wildlife/Deer Icon
- */
-const WildlifeIcon = () => (
-  <Image
-    src="/images/home/tourtypes/game-icons_deer.png"
-    alt="Wildlife"
-    width={42}
-    height={42}
-  />
-);
-
-/**
- * Hang Gliding Icon
- */
-const HangGlidingIcon = () => (
-  <Image
-    src="/images/home/tourtypes/temaki_hang-gliding.png"
-    alt="Hang Gliding"
-    width={42}
-    height={42}
-  />
-);
-
-/**
  * Tour types data
  */
 const TOUR_TYPES = [
@@ -108,7 +60,10 @@ const TourTypeCard = ({
   description: string;
   icon: string;
 }) => (
-  <div className="relative w-[221px] h-[245px] group cursor-pointer shrink-0 outline-none" tabIndex={0}>
+  <div
+    className="relative w-[221px] h-[245px] group cursor-pointer shrink-0 outline-none"
+    tabIndex={0}
+  >
     {/* Main Card */}
     <div className="absolute inset-0 bg-white border border-[#FF6E00] rounded-[150px_0px_0px_0px] overflow-hidden">
       {/* 1. Orange BG + white icon — slides up from bottom on hover */}
@@ -177,16 +132,12 @@ const TourTypeCard = ({
  */
 export const TourTypesSection = () => {
   return (
-    <section
-      className="relative w-full py-16 lg:py-24 bg-[#FFFCF5]"
-    >
+    <section className="relative w-full py-16 lg:py-24 bg-[#FFFCF5]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="flex flex-col items-center mb-16 lg:mb-20">
           {/* Badge */}
-          <div
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl mb-6 shadow-sm bg-[#FF6E00]"
-          >
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-xl mb-6 shadow-sm bg-[#FF6E00]">
             <PlaneIcon />
             <span className="font-display italic font-medium text-sm text-white uppercase tracking-wider">
               Service
