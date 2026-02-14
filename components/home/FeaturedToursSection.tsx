@@ -124,6 +124,7 @@ export const FeaturedToursSection = () => {
                 people={tour.people}
                 location={tour.location}
                 slug={tour.slug}
+                priority={true}
               />
             </div>
           ))}

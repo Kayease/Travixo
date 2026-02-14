@@ -41,13 +41,17 @@ export const metadata: Metadata = {
     description: "Your Safari Hub: News, Tips, and Inspiration",
   },
   icons: {
-    icon: "/images/favicon/faviconFinal.png",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
   },
 };
 
 import { ToastProvider } from "./context/ToastContext";
 import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
+import { PromoPopup } from "@/components/ui/PromoPopup";
 
 export default function RootLayout({
   children,
@@ -59,18 +63,15 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${poppins.variable} antialiased`}
       >
-        {/* Accessible skip-to-content link for keyboard navigation (WCAG 2.1 AA) */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-brand-orange focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:text-lg focus:font-display focus:italic focus:shadow-lg"
-        >
-          Skip to main content
-        </a>
+
 
         <div id="main-content" className="w-full">
           <ToastProvider>
             <WishlistProvider>
-              <CartProvider>{children}</CartProvider>
+              <CartProvider>
+                <PromoPopup />
+                {children}
+              </CartProvider>
             </WishlistProvider>
           </ToastProvider>
         </div>

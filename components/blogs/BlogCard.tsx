@@ -24,7 +24,7 @@ export interface BlogCardProps {
 /**
  * BlogCard Component
  *
- * A reusable card component for displaying blog post previews.
+ * A reusable card component for displaying blog post previews. 
  * Features an image, title, date, and "Read More" link.
  *
  * Design Specifications (from Figma):

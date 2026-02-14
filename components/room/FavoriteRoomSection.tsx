@@ -113,7 +113,7 @@ const FavoriteRoomSection: React.FC = () => {
             {/* Book Now Button */}
             {/* Book Now Button */}
             <Link
-              href={`/checkout?name=Special%20Room&price=45&image=${encodeURIComponent("/images/room/cards/room-card-3.png")}`}
+              href="/room-detail"
               className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer flex items-center justify-center"
             >
               {/* Fill animation from bottom to top */}

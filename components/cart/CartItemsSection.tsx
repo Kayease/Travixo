@@ -445,6 +445,12 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
 
 const CartItemsSection: React.FC = () => {
   const { cartItems, removeFromCart, updateCartItem } = useCart();
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const itemCount = cartItems.length;
 
   // Helper to calculate duration in days
@@ -502,7 +508,7 @@ const CartItemsSection: React.FC = () => {
                 Selected Experiences
               </h2>
               <span className="text-xl md:text-2xl text-[#4B3621]">
-                {itemCount} items
+                {mounted ? itemCount : 0} items
               </span>
             </div>
 

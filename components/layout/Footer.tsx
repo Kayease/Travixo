@@ -231,54 +231,38 @@ export const Footer = () => {
         {/* Top Section: Logo and Socials */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 md:gap-0">
           {/* Logo */}
-          <Link href="/" className="cursor-pointer">
-            <Image
-              src="/images/footer/payment-badge.png"
-              alt="Travixo"
-              width={140}
-              height={68}
-              className="object-contain"
-            />
+          <Link href="/" className="flex items-center cursor-pointer">
+            <span className="font-display italic  text-[32px] text-white tracking-tight">
+              Travixo
+            </span>
           </Link>
 
           {/* Social Icons */}
           <div className="flex items-center gap-[18px]">
-            <a
-              href="https://facebook.com/travixo"
-              target="_blank"
-              rel="noopener noreferrer"
+            <div
               aria-label="Follow us on Facebook"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <FacebookIcon />
-            </a>
-            <a
-              href="https://instagram.com/travixo"
-              target="_blank"
-              rel="noopener noreferrer"
+            </div>
+            <div
               aria-label="Follow us on Instagram"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <InstagramIcon />
-            </a>
-            <a
-              href="https://linkedin.com/company/travixo"
-              target="_blank"
-              rel="noopener noreferrer"
+            </div>
+            <div
               aria-label="Connect with us on LinkedIn"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <LinkedInIcon />
-            </a>
-            <a
-              href="https://x.com/travixo"
-              target="_blank"
-              rel="noopener noreferrer"
+            </div>
+            <div
               aria-label="Follow us on X (Twitter)"
               className="hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             >
               <TwitterIcon />
-            </a>
+            </div>
           </div>
         </div>
 

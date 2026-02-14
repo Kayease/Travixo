@@ -24,7 +24,7 @@ export const BlogDetailContent: React.FC = () => {
         {/* Back to Blog - Frame 338 */}
         <Link
           href={backLink}
-          className="flex lg:absolute items-center gap-2 group px-5 lg:px-0 py-2 lg:py-0"
+          className="flex lg:absolute items-center gap-2 group px-5 lg:px-0 py-2 lg:py-0 max-w-[846px] mx-auto lg:mx-0"
           style={{
             left: "297px",
             top: "52px",
@@ -55,7 +55,7 @@ export const BlogDetailContent: React.FC = () => {
 
         {/* Intro Paragraphs */}
         <div
-          className="px-5 lg:px-0 lg:absolute"
+          className="px-5 lg:px-0 lg:absolute max-w-[846px] mx-auto lg:mx-0"
           style={{
             left: "297px",
             top: "128px",
@@ -83,7 +83,7 @@ export const BlogDetailContent: React.FC = () => {
 
         {/* Featured Video - Desktop 39 */}
         <div
-          className="lg:absolute mx-auto mt-6 lg:mt-0 rounded-xl overflow-hidden shadow-sm"
+          className="lg:absolute mx-auto mt-6 lg:mt-0 rounded-xl overflow-hidden shadow-sm lg:mx-0"
           style={{
             width: "min(1280px, 95%)",
             height: "auto",
@@ -109,7 +109,7 @@ export const BlogDetailContent: React.FC = () => {
 
         {/* Main Detailed Content */}
         <div
-          className="px-5 lg:px-0 lg:absolute mt-6 lg:mt-0"
+          className="px-5 lg:px-0 lg:absolute mt-6 lg:mt-0 max-w-[846px] mx-auto lg:mx-0"
           style={{
             left: "297px",
             top: "996px",

@@ -164,19 +164,7 @@ const TourCard: React.FC<TourCardProps> = ({
   const handleBookNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
-    addToCart({
-      id: `${id}-${crypto.randomUUID()}`,
-      type: "experience",
-      title,
-      image,
-      location,
-      dates: new Date().toISOString().split("T")[0],
-      amenities: [duration, people],
-      price: currentPrice,
-      actionLabel: "Customize",
-    });
-    router.push("/cart");
+    router.push("/products/grand-palace-tour");
   };
 
   const fullStars = Math.floor(rating);
@@ -189,10 +177,7 @@ const TourCard: React.FC<TourCardProps> = ({
       >
         {/* Image Container */}
         <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
-          <Link
-            href={slug}
-            className="block w-full h-full relative cursor-pointer"
-          >
+          <div className="block w-full h-full relative">
             <Image
               src={image}
               alt={title}
@@ -201,7 +186,7 @@ const TourCard: React.FC<TourCardProps> = ({
               sizes="(max-width: 768px) 100vw, 418px"
               priority={priority}
             />
-          </Link>
+          </div>
 
           {/* Discount Badge */}
           {discount && (
@@ -233,7 +218,7 @@ const TourCard: React.FC<TourCardProps> = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 xl:translate-x-12 xl:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100 group-active:translate-x-0 group-active:opacity-100 transition-all duration-500 ease-out">
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 transition-all duration-500 ease-out xl:translate-x-12 xl:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100 group-active:translate-x-0 group-active:opacity-100">
             {/* Heart / Wishlist Button */}
             <button
               onClick={handleWishlistAction}
@@ -264,34 +249,6 @@ const TourCard: React.FC<TourCardProps> = ({
                 }}
               />
             </button>
-
-            {/* Cart Button */}
-            <button
-              onClick={handleCartAction}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isInCartState
-                ? "bg-[#FF6E00]"
-                : "bg-white lg:hover:bg-[#FF6E00]"
-                }`}
-              aria-label="Add to cart"
-            >
-              <div className="relative w-[18px] h-[14px]">
-                <svg
-                  width="18"
-                  height="14"
-                  viewBox="0 0 18 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6 12C6 13.1 5.1 14 4 14C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10C5.1 10 6 10.9 6 12ZM16 12C16 13.1 15.1 14 14 14C12.9 14 12 13.1 12 12C12 10.9 12.9 10 14 10C15.1 10 16 10.9 16 12ZM1 0H3L4.5 4H15L17 2H18V4L16.5 8H5L4 10H16V12H4L2.5 8L1 4V0Z"
-                    className={`transition-colors duration-300 ${isInCartState
-                      ? "fill-white"
-                      : "fill-[#4B3621] lg:group-hover/icon:fill-white"
-                      }`}
-                  />
-                </svg>
-              </div>
-            </button>
           </div>
         </div>
 
@@ -312,11 +269,11 @@ const TourCard: React.FC<TourCardProps> = ({
         </div>
 
         {/* Title */}
-        <Link href={slug} className="cursor-pointer">
-          <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 lg:hover:text-brand-orange focus:text-brand-orange transition-colors">
+        <div className="block">
+          <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 transition-colors">
             {title}
           </h3>
-        </Link>
+        </div>
 
         {/* Description */}
         <p className="font-body font-normal text-sm leading-6 text-brand-brown/60 mb-4 line-clamp-2">

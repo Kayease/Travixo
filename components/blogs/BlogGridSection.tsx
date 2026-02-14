@@ -14,7 +14,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-1.png",
-    slug: "/blog/safari-explorer",
+    slug: "/blog-detail",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-2.png",
-    slug: "/blog/kayak-adventure",
+    slug: "/blog-detail",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-3.png",
-    slug: "/blog/road-trip",
+    slug: "/blog-detail",
   },
   {
     id: 4,
@@ -38,7 +38,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-4.png",
-    slug: "/blog/mountain-hiking",
+    slug: "/blog-detail",
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-5.png",
-    slug: "/blog/hot-air-balloon",
+    slug: "/blog-detail",
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-6.png",
-    slug: "/blog/group-hiking",
+    slug: "/blog-detail",
   },
   {
     id: 7,
@@ -62,7 +62,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-1.png",
-    slug: "/blog/safari-explorer-2",
+    slug: "/blog-detail",
   },
   {
     id: 8,
@@ -70,7 +70,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-2.png",
-    slug: "/blog/kayak-adventure-2",
+    slug: "/blog-detail",
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const SAMPLE_BLOG_POSTS: BlogCardProps[] = [
       "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
     date: "13 May, 2026",
     imageUrl: "/images/blogs/cards/article-3.png",
-    slug: "/blog/road-trip-2",
+    slug: "/blog-detail",
   },
 ];
 

@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ParisToursSection } from "@/components/paris/ParisToursSection";
 import { AdventureSection } from "@/components/paris/AdventureSection";
 import { WhenToVisitSection } from "@/components/paris/WhenToVisitSection";
-import { TestimonialSection } from "@/components/paris/TestimonialSection";
+import { TestimonialSection } from "@/components/home/TestimonialSection";
 
 export default function ParisPage() {
   return (

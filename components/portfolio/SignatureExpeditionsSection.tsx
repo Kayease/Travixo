@@ -52,8 +52,15 @@ const SignatureExpeditionsSection: React.FC<SignatureExpeditionsSectionProps> = 
 
         {/* Expeditions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-[13px]">
-          {expeditions.map((expedition) => (
-            <ExpeditionCard key={expedition.id} expedition={expedition} />
+          {expeditions.map((expedition, index) => (
+            <div
+              key={expedition.id}
+              className={`flex justify-center ${index === 2 ? "md:col-span-2 lg:col-span-1" : ""}`}
+            >
+              <div className="w-full max-w-[418px]">
+                <ExpeditionCard expedition={expedition} />
+              </div>
+            </div>
           ))}
         </div>
       </div>

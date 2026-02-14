@@ -95,17 +95,28 @@ export const DestinationsGridSection: React.FC<
           {/* Destinations Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-y-12 lg:gap-y-[32px] gap-x-4 md:gap-x-6 lg:gap-x-[13px]">
             {visibleDestinations.length > 0 ? (
-              visibleDestinations.map((destination, index) => (
-                <DestinationCard
-                  key={destination.id}
-                  id={destination.id}
-                  name={destination.name}
-                  imageUrl={destination.imageUrl}
-                  imageAlt={destination.imageAlt}
-                  slug={destination.slug}
-                  priority={index < 3}
-                />
-              ))
+              visibleDestinations.map((destination, index) => {
+                const isLast = index === visibleDestinations.length - 1;
+                const isOddTotal = visibleDestinations.length % 2 !== 0;
+
+                return (
+                  <div
+                    key={destination.id}
+                    className={`flex justify-center ${isLast && isOddTotal ? "md:col-span-2 lg:col-span-1" : ""}`}
+                  >
+                    <div className="w-full max-w-[418px]">
+                      <DestinationCard
+                        id={destination.id}
+                        name={destination.name}
+                        imageUrl={destination.imageUrl}
+                        imageAlt={destination.imageAlt}
+                        slug={destination.slug}
+                        priority={index < 3}
+                      />
+                    </div>
+                  </div>
+                );
+              })
             ) : (
               <div className="col-span-full py-20 text-center">
                 <p className="font-display italic text-2xl text-brand-brown/60">

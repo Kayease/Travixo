@@ -102,7 +102,7 @@ const Blog2ContentSection: React.FC = () => {
 
                 {/* Read More Link */}
                 <Link
-                  href={`/blog/${post.slug}?from=blog2`}
+                  href={`/blog-detail?from=blog2`}
                   className="flex items-center gap-2 font-body font-normal text-[14px] leading-[17px] text-[#4B3621] hover:text-[#FF6E00] transition-colors group w-fit"
                 >
                   <span className="font-semibold">Read More</span>

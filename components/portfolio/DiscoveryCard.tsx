@@ -55,7 +55,7 @@ const DiscoveryCard: React.FC<DiscoveryCardProps> = React.memo(({ item }) => {
 
         {/* Read More Link */}
         <Link
-          href={`/blog/${item.slug}`}
+          href="/blog-detail"
           className="inline-flex items-center justify-center gap-2 w-full group"
         >
           <span className="font-body font-normal text-sm leading-[17px] text-brand-brown group-hover:text-brand-orange transition-colors">

@@ -2,7 +2,6 @@
 
 /* Global Scroll Reset */
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 

@@ -568,16 +568,11 @@ export const Navbar = () => {
           {/* Logo Section */}
           <Link
             href="/"
-            className="relative w-[120px] md:w-[150px] h-[40px] md:h-[50px] cursor-pointer"
+            className="flex items-center cursor-pointer"
           >
-            <Image
-              src="/images/logo/logo.png"
-              alt="Travixo Logo"
-              fill
-              className="object-contain"
-              sizes="150px"
-              priority
-            />
+            <span className="font-display italic  text-[32px] text-brand-brown tracking-tight">
+              Travixo
+            </span>
           </Link>
 
           {/* Center Navigation Links - Hidden on Mobile */}
@@ -657,7 +652,7 @@ export const Navbar = () => {
           {/* Right Icons Section */}
           <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
             <div
-              className="hidden lg:flex cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
+              className="flex cursor-pointer scale-90 md:scale-100 p-1 hover:bg-[#FF6E00]/10 rounded-full transition-colors"
               onClick={handleSearchToggle}
               aria-label="Open search"
               role="button"
@@ -675,7 +670,7 @@ export const Navbar = () => {
             </Link>
 
             {/* Icons shown only on Large Screens */}
-            <div className="flex items-center gap-2 md:gap-4 lg:gap-6">
+            <div className="hidden lg:flex items-center gap-2 md:gap-4 lg:gap-6">
               <Link href="/wishlist" aria-label="View wishlist" className="relative cursor-pointer scale-90 md:scale-100">
                 <WishlistIcon />
                 {mounted && wishlistItems.length > 0 && (
@@ -734,14 +729,15 @@ export const Navbar = () => {
           <div className="flex flex-col p-6 h-full">
             {/* Logo in Menu */}
             <div className="flex justify-between items-center mb-8 border-b border-black/10 pb-4">
-              <Image
-                src="/images/logo/logo.png"
-                alt="Travixo Logo"
-                width={100}
-                height={33}
-                className="object-contain"
-                style={{ width: 'auto', height: 'auto' }}
-              />
+              <Link
+                href="/"
+                className="flex items-center"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="font-display italic font-semibold text-[32px] text-brand-brown">
+                  Travixo
+                </span>
+              </Link>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-1 hover:bg-black/5 rounded-full"
@@ -899,7 +895,7 @@ export const Navbar = () => {
                 ref={searchInputRef}
                 type="text"
                 aria-label="Search destinations, tours, and activities"
-                placeholder="What are you looking for? (e.g. Paris, Bangkok, Safari...)"
+                placeholder="What are you looking for?"
                 className="w-full h-[50px] bg-white border border-[#4B3621]/20 rounded-xl pl-12 pr-4 font-display italic text-lg outline-none focus:border-[#4B3621]/40 shadow-sm transition-all"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

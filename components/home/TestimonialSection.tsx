@@ -342,7 +342,7 @@ export const TestimonialSection = () => {
               <div
                 key={item.id}
                 onClick={() => setActiveId(item.id)}
-                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer transition-all outline-none ${activeId === item.id ? 'border-brand-orange scale-110' : 'border-transparent opacity-60 lg:hover:opacity-100 active:opacity-100'}`}
+                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer transition-all ${activeId === item.id ? 'border-brand-orange scale-110' : 'border-transparent opacity-60 hover:opacity-100'}`}
               >
                 <Image src={item.url} fill sizes="40px" className="object-cover" alt="avatar" />
               </div>
@@ -432,11 +432,8 @@ export const TestimonialSection = () => {
           }
         }
 
-        /* iPhone 14 Pro Max Portrait & iPad Portrait */
-        /* iPhone 14 Pro Max width is ~430px. iPad Portrait is ~768px-820px. 
-           We target a range that covers these in PORTRAIT mode. 
-           Standard mobile breakpoint is usually < 768px, but iPad is tablet. */
-        @media only screen and (min-width: 420px) and (max-width: 850px) and (orientation: portrait) {
+        /* iPhone 14 Pro Max Portrait */
+        @media only screen and (min-width: 420px) and (max-width: 767px) and (orientation: portrait) {
            .mobile-testimonial-container {
              flex-direction: column !important;
              justify-content: center !important;
@@ -450,6 +447,9 @@ export const TestimonialSection = () => {
              margin-top: 0 !important;
              margin-bottom: 20px !important;
              width: 100% !important;
+             max-width: 240px !important; /* Force 3+2 layout */
+             margin-left: auto !important;
+             margin-right: auto !important;
              justify-content: center !important;
              display: flex !important;
              flex-direction: row !important; /* Keep them horizontal */
@@ -459,8 +459,6 @@ export const TestimonialSection = () => {
 
            .mobile-avatars-list > div {
              width: 60px !important;
-fix the amrgins of this section as i want the margin from left nd right to be same 
-this is the heros erion of the room page
              height: 60px !important;
            }
            
@@ -468,6 +466,42 @@ this is the heros erion of the room page
            .mobile-testimonial-card {
              order: 2 !important;
            }
+        }
+
+        /* iPad Mini Portrait - Match Landscape side-by-side layout */
+        @media only screen and (min-width: 768px) and (max-width: 850px) and (orientation: portrait) {
+          .mobile-testimonial-container {
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            gap: 20px !important;
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+            align-items: center !important;
+          }
+          
+          .mobile-testimonial-card {
+            margin: 0 !important;
+            width: 420px !important; /* Slightly narrower for portrait */
+            max-width: 500px !important;
+            order: 2 !important;
+          }
+
+          .mobile-avatars-list {
+            order: 1 !important; 
+            display: flex !important;
+            flex-direction: column !important;
+            flex-wrap: wrap !important;
+            height: 250px !important;
+            justify-content: center !important;
+            width: 160px !important; 
+            gap: 20px !important;
+            margin-top: 0 !important;
+          }
+
+          .mobile-avatars-list > div {
+             width: 65px !important;
+             height: 65px !important;
+          }
         }
       `}</style>
     </section>

@@ -26,7 +26,7 @@ interface ExpeditionCardProps {
 const ExpeditionCard: React.FC<ExpeditionCardProps> = React.memo(({ expedition }) => {
   return (
     <Link
-      href={`/tours/${expedition.slug}`}
+      href="/paris"
       className="group block cursor-pointer"
     >
       {/* Image Card */}

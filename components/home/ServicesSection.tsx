@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,7 +66,7 @@ const ServiceCard = ({
   iconPath: string;
   borderRadius: string;
 }) => (
-  <div className="flex flex-col items-center gap-[18px] w-[208px] group cursor-pointer outline-none shadow-none" tabIndex={0}>
+  <div className="flex flex-col items-center gap-[18px] w-[208px] service-card-item group cursor-pointer outline-none shadow-none" tabIndex={0}>
     {/* Icon Container with Organic Border */}
     <div
       className="relative w-[100px] h-[100px] flex items-center justify-center border border-brand-orange text-brand-orange overflow-hidden transition-all duration-500 ease-in-out lg:group-hover:shadow-lg group-focus:shadow-lg group-active:shadow-lg"
@@ -141,10 +142,8 @@ const ReadMoreLink = () => (
  */
 export const ServicesSection = () => {
   return (
-    <section
-      className="relative w-full bg-[#FFFCF5] min-h-[551px]"
-    >
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-[170px] py-[52px]">
+    <section className="relative w-full bg-[#FFFCF5] min-h-[551px]">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 xl:px-[170px] py-[52px]">
         {/* Section Header */}
         <div className="text-center mb-[43px]">
           {/* Small Title - Poppins 500, 24px/36px */}
@@ -159,24 +158,25 @@ export const ServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap justify-center items-center gap-8 lg:gap-[40px] xl:gap-[90px]">
+        <div className="flex flex-col md:flex-row flex-wrap lg:flex-nowrap justify-center items-center gap-8 lg:gap-4 xl:gap-[90px]">
           {SERVICES.map((service) => (
-            <ServiceCard
-              key={service.id}
-              title={service.title}
-              description={service.description}
-              iconPath={service.iconPath}
-              borderRadius={service.borderRadius}
-            />
+            <div key={service.id} className="w-[208px] lg:w-[235px] xl:w-[208px]">
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                iconPath={service.iconPath}
+                borderRadius={service.borderRadius}
+              />
+            </div>
           ))}
         </div>
 
         {/* Read More Links Row (Desktop Only) */}
-        <div className="hidden lg:flex justify-center gap-[40px] xl:gap-[90px] mt-[32px]">
+        <div className="hidden lg:flex justify-center gap-4 xl:gap-[90px] mt-[32px]">
           {SERVICES.map((service) => (
             <div
               key={`read-more-${service.id}`}
-              className="w-[208px] flex justify-center"
+              className="w-[208px] lg:w-[235px] xl:w-[208px] flex justify-center"
             >
               <ReadMoreLink />
             </div>

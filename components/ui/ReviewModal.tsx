@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
 
 interface ReviewFormData {
@@ -68,6 +68,22 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
     const [errors, setErrors] = useState<Partial<Record<keyof ReviewFormData, string>>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Lock scroll when modal is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            document.body.style.removeProperty("overflow");
+            document.documentElement.style.removeProperty("overflow");
+        }
+
+        return () => {
+            document.body.style.removeProperty("overflow");
+            document.documentElement.style.removeProperty("overflow");
+        };
+    }, [isOpen]);
 
     if (!isOpen) return null;
 

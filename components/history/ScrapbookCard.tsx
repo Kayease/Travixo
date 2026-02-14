@@ -31,7 +31,7 @@ interface ScrapbookCardProps {
 const ScrapbookCard: React.FC<ScrapbookCardProps> = React.memo(({ item }) => {
   return (
     <Link
-      href={`/products/${item.slug}`}
+      href="/paris"
       className="group block bg-white border border-brand-brown/40 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer scrapbook-card"
     >
       {/* Image Container */}
