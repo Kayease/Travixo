@@ -26,7 +26,7 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
   const { wishlistItems, removeFromWishlist } = useWishlist();
   const [activeCollection, setActiveCollection] = useState("all");
   const [showRefineMenu, setShowRefineMenu] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, isInCart, cartItems, removeFromCart } = useCart();
 
   const [sortBy, setSortBy] = useState("newest"); // newest, price-asc, price-desc, name-asc, name-desc, rating-desc
   const [visibleCount, setVisibleCount] = useState(4);
@@ -80,20 +80,26 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
     const item = wishlistItems.find((i) => i.id === id);
     if (!item) return;
 
-    const cartItem: CartItem = {
-      id: item.id,
-      type: item.type === "room" ? "room" : "experience",
-      title: item.title,
-      image: item.image,
-      location: item.location,
-      dates: new Date().toISOString().split("T")[0],
-      amenities: [item.duration, item.groupSize],
-      price: item.price,
-      actionLabel: "Book Now",
-    };
-
-    addToCart(cartItem);
-  }, [wishlistItems, addToCart]);
+    if (!isInCart(item.title)) {
+      const cartItem: CartItem = {
+        id: item.id,
+        type: item.type === "room" ? "room" : "experience",
+        title: item.title,
+        image: item.image,
+        location: item.location,
+        dates: new Date().toISOString().split("T")[0],
+        amenities: [item.duration, item.groupSize],
+        price: item.price,
+        actionLabel: "Book Now",
+      };
+      addToCart(cartItem);
+    } else {
+      const itemToRemove = cartItems.find((i) => i.title === item.title);
+      if (itemToRemove) {
+        removeFromCart(itemToRemove.id);
+      }
+    }
+  }, [wishlistItems, addToCart, isInCart, cartItems, removeFromCart]);
 
   const sortOptions = [
     { label: "Newest Added", value: "newest" },

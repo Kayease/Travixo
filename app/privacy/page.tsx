@@ -184,7 +184,7 @@ const PrivacyContentSection = () => {
             <p className="font-body font-normal text-[16px] leading-[28px] text-gray-700 mt-3">
               To exercise these rights, please contact us at{" "}
               <span className="text-brand-orange">
-                privacy@travixo.com
+                example@example.com 
               </span>
             </p>
           </div>
@@ -253,7 +253,7 @@ const PrivacyContentSection = () => {
               <p>
                 <strong>Email:</strong>{" "}
                 <span className="text-brand-orange">
-                  privacy@travixo.com
+                  example@example.com 
                 </span>
               </p>
               <p>

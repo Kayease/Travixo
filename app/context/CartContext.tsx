@@ -14,6 +14,8 @@ export interface CartItem {
   amenities: string[];
   price: number;
   actionLabel: string;
+  adults?: number;
+  children?: number;
 }
 
 interface CartContextType {
@@ -33,24 +35,29 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    if (typeof window === "undefined") return [];
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [mounted, setMounted] = useState(false);
+  const { showToast } = useToast();
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    setMounted(true);
     try {
       const savedCart = localStorage.getItem("travixo_cart");
-      return savedCart ? JSON.parse(savedCart) : [];
-    } catch {
-      return [];
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
+      }
+    } catch (error) {
+      console.error("Failed to load cart from localStorage:", error);
     }
-  });
-  const [isLoaded] = useState(typeof window !== "undefined");
-  const { showToast } = useToast();
+  }, []);
 
   // Save to localStorage whenever cart changes
   useEffect(() => {
-    if (isLoaded) {
+    if (mounted) {
       localStorage.setItem("travixo_cart", JSON.stringify(cartItems));
     }
-  }, [cartItems, isLoaded]);
+  }, [cartItems, mounted]);
 
   const addToCart = (item: CartItem) => {
     const exists = cartItems.some((i) => i.title === item.title);

@@ -329,14 +329,14 @@ export const Footer = () => {
               <div className="flex items-center gap-2">
                 <MailIcon />
                 <span className="font-body font-medium text-[16px] md:text-[18px] leading-[28px] text-white hover:text-white/80 transition-colors cursor-pointer">
-                  contact@travixo.com
+                  example@example.com
                 </span>
               </div>
             </div>
           </div>
 
           {/* Newsletter Box */}
-          <div className="w-full md:w-[291px] shrink-0 min-h-[145px] bg-[#FFFCF5] rounded-[12px] p-3 md:p-[18px] flex flex-col justify-between shadow-lg">
+          <div className="col-span-2 md:col-span-1 w-full max-w-[320px] mx-auto md:mx-0 shrink-0 min-h-[145px] bg-[#FFFCF5] rounded-[12px] p-3 md:p-[18px] flex flex-col justify-between shadow-lg">
             <h4 className="font-display italic font-medium text-[15px] md:text-[18px] leading-[22px] md:leading-[28px] text-[#4B3621] text-center w-full mb-3 md:mb-0">
               Signup for our latest news & articles
             </h4>
@@ -347,7 +347,7 @@ export const Footer = () => {
                 aria-label="Email address for newsletter"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-full bg-white border border-[#FF6E00] rounded-[12px] pl-3 pr-[45px] font-body text-[14px] md:text-[18px] text-[#4B3621] placeholder:text-[#4B3621]/60 focus:outline-none"
+                className="w-full h-full bg-white border border-[#FF6E00] rounded-[12px] pl-3 pr-[55px] font-body text-[12px] text-[#4B3621] placeholder:text-[#4B3621]/60 focus:outline-none"
               />
               <button
                 onClick={handleSubscribe}

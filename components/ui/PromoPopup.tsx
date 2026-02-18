@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useCart } from "@/app/context/CartContext";
 
 /**
  * PromoPopup Component
@@ -20,17 +19,49 @@ export const PromoPopup: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
-    const { addToCart } = useCart();
 
     useEffect(() => {
-        // Show popup ONLY on initial mount (full reload/refresh) if on the home page
-        if (pathname === "/") {
+        // Show popup only once per session on the home page
+        if (pathname === "/" && !sessionStorage.getItem("promoPopupShown")) {
             const timer = setTimeout(() => {
                 setIsOpen(true);
+                sessionStorage.setItem("promoPopupShown", "true");
             }, 1000);
             return () => clearTimeout(timer);
         }
-    }, [pathname]); // Added pathname dependency for correctness
+    }, []); // Empty dependency — only runs on initial mount
+
+    // Lock body scroll when popup is open (works on iOS Safari + all devices)
+    useEffect(() => {
+        if (isOpen) {
+            const scrollY = window.scrollY;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            const scrollY = document.body.style.top;
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+            window.scrollTo(0, parseInt(scrollY || "0") * -1);
+        }
+        return () => {
+            const scrollY = document.body.style.top;
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+            window.scrollTo(0, parseInt(scrollY || "0") * -1);
+        };
+    }, [isOpen]);
 
     const handleClose = () => {
         setIsOpen(false);
@@ -38,29 +69,17 @@ export const PromoPopup: React.FC = () => {
 
     const handleBookNow = (e: React.MouseEvent) => {
         e.preventDefault();
-
-        // Add Paris Tour to cart
-        addToCart({
-            id: `paris-promo-${Date.now()}`,
-            type: "experience",
-            title: "Paris Tour Promotion",
-            image: "/images/paris/paris_promo_bg.png",
-            location: "Paris, France",
-            dates: new Date().toISOString().split("T")[0],
-            amenities: ["Limited Time Offer", "50% Off"],
-            price: 750, // Example discounted price
-            actionLabel: "Customize",
-        });
-
         handleClose();
-        router.push("/checkout");
+        router.push("/products/grand-palace-tour");
     };
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-10000 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300">
-            {/* Main Popup Container */}
+        <div
+            className="fixed inset-0 z-10000 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
+            style={{ touchAction: "none", overscrollBehavior: "none" }}
+        >            {/* Main Popup Container */}
             <div
                 className="relative w-full max-w-[555px] h-auto min-h-[293px] rounded-[12px] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300"
                 onClick={(e) => e.stopPropagation()}

@@ -137,13 +137,13 @@ export const DestinationsGridSection: React.FC<
             <div className="flex justify-center mt-8 md:mt-12 lg:mt-[76px]">
               <button
                 onClick={handleLoadMore}
-                className="group relative flex items-center justify-center w-[200px] h-[50px] bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer shadow-[0px_8px_24px_rgba(255,110,0,0.15)]"
+                className="group relative flex items-center justify-center w-[200px] h-[50px] bg-[#FF6E00] border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer shadow-[0px_8px_24px_rgba(255,110,0,0.15)]"
               >
-                {/* Fill animation from bottom to top */}
-                <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
+                {/* Fill animation from bottom to top on hover (reveals white) */}
+                <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
 
                 {/* Button Text */}
-                <span className="relative z-10 font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-[#FF6E00] group-hover:text-white transition-colors duration-300">
+                <span className="relative z-10 font-display italic font-medium text-lg md:text-[20px] leading-[27px] text-white group-hover:text-[#FF6E00] transition-colors duration-300">
                   Load More
                 </span>
               </button>

@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/context/ToastContext";
 import { useCart, CartItem } from "@/app/context/CartContext";
-import { DatePicker } from "@/components/ui/DatePicker";
+import { DatePicker, DateRange } from "@/components/ui/DatePicker";
 
 /**
  * TourBookingCard Props Interface
@@ -55,16 +55,18 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
     return `${year}-${month}-${day}`;
   };
 
-  const [selectedDate, setSelectedDateRaw] = useState(
-    defaultDate || getTodayDate(),
-  );
+  const [selectedDate, setSelectedDateRaw] = useState<string | DateRange>(() => {
+    if (defaultDate) return defaultDate;
+    const today = getTodayDate();
+    return { from: today, to: null };
+  });
   const [isChecking, setIsChecking] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
 
   const { addToCart } = useCart();
 
   // Wrap setters to reset availability when inputs change
-  const setSelectedDate = (val: string) => {
+  const setSelectedDate = (val: string | DateRange) => {
     setSelectedDateRaw(val);
     setIsAvailable(false);
   };
@@ -138,17 +140,19 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
   const handleAction = async () => {
     if (activeTab === "book") {
       // Robust date validation
-      const isInvalidDate =
-        !selectedDate ||
-        selectedDate === "Invalid Date" ||
-        selectedDate.includes("Invalid") ||
-        selectedDate.trim() === "";
+      const isRange = typeof selectedDate === "object";
+      const from = isRange ? selectedDate.from : selectedDate;
+      const to = isRange ? selectedDate.to : null;
+
+      const isInvalidDate = !from || from === "Invalid Date" || from.includes("Invalid") || from.trim() === "";
 
       if (isInvalidDate) {
         showToast("Please select a valid date first.", "warning");
-        setIsAvailable(false); // Force reset
+        setIsAvailable(false);
         return;
       }
+
+      const dateString = isRange && from && to ? `${from} - ${to}` : from;
 
       if (adults === 0 && children === 0) {
         showToast("Please select at least one guest.", "warning");
@@ -163,19 +167,19 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           title: title,
           image: image,
           location: location,
-          dates: selectedDate,
+          dates: dateString || "",
           amenities: [`${adults} Adults, ${children} Children`],
           price: price * (adults + children),
           actionLabel: "Customize",
         };
         addToCart(cartItem);
-        router.push("/checkout");
+        router.push("/cart");
         return;
       }
 
       // Step 1: Check Availability
       setIsChecking(true);
-      showToast(`Checking availability for ${selectedDate}...`, "info");
+      showToast(`Checking availability for ${dateString}...`, "info");
 
       // Simulate API call delay
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -317,10 +321,9 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
               <DatePicker
                 value={selectedDate}
                 onChange={(val) => {
-                  if (typeof val === "string") {
-                    setSelectedDate(val);
-                  }
+                  setSelectedDate(val);
                 }}
+                mode="range"
                 variant="transparent"
                 size="sm"
                 align="right"

@@ -384,7 +384,7 @@ const TermsContentSection = () => {
                 
                   className="text-brand-orange "
                 >
-                  legal@travixo.com
+                 example@example.com 
                 </a>
               </p>
               <p>

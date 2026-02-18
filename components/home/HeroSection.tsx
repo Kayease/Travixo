@@ -51,7 +51,7 @@ export const HeroSection = () => {
     }
 
     const query = params.toString();
-    router.push(query ? `/products/grand-palace-tour?${query}` : "/products/grand-palace-tour");
+    router.push(query ? `/paris?${query}` : "/paris");
   };
 
   /** Cancel any running pendulum swing animation */
@@ -249,8 +249,7 @@ export const HeroSection = () => {
               (image, index) => (
                 <div
                   key={`img-${index}`}
-                  onClick={() => router.push("/destinations")}
-                  className="relative shrink-0 overflow-hidden transition-transform duration-500 cursor-pointer"
+                  className="relative shrink-0 overflow-hidden transition-transform duration-500"
                   style={{
                     width: "272px",
                     height: "363px",

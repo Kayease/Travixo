@@ -200,6 +200,7 @@ const pagesColumn1: PageLink[] = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Checkout", href: "/checkout" },
   { label: "Wishlist", href: "/wishlist" },
+  { label: "Tour Listings", href: "/products" },
 ];
 
 const pagesColumn2: PageLink[] = [
@@ -208,6 +209,7 @@ const pagesColumn2: PageLink[] = [
   { label: "Blog 2", href: "/blog2" },
   { label: "FAQ", href: "/faq" },
   { label: "Cart Page", href: "/cart" },
+  { label: "Testimonials", href: "/testimonials" },
 ];
 
 const pagesColumn3: PageLink[] = [
@@ -216,6 +218,16 @@ const pagesColumn3: PageLink[] = [
   { label: "Stay", href: "/stay" },
   { label: "Room", href: "/room" },
   { label: "Room Detail", href: "/room-detail" },
+  { label: "Latest News", href: "/news" },
+];
+
+const pagesColumn4: PageLink[] = [
+  { label: "News Detail", href: "/news-detail" },
+  { label: "Tour Activities", href: "/tour-activates" },
+  { label: "Tour Types", href: "/tour-types" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Profile Settings", href: "/profile" },
+  { label: "Destinations", href: "/destinations" },
 ];
 
 /* ============================================
@@ -245,15 +257,16 @@ const PagesDropdown: React.FC<PagesDropdownProps> = ({ isOpen, onClose: _onClose
 
   return (
     <div
-      className={`w-[90vw] md:w-[830px] h-auto md:h-[314px] bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top flex flex-col justify-center ${isOpen
+      className={`w-[90vw] md:w-[700px] h-auto bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out transform origin-top flex flex-col justify-center py-6 ${isOpen
         ? "opacity-100 visible translate-y-0 scale-100 pointer-events-auto"
         : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"
         }`}
     >
-      <div className="grid grid-cols-3 w-full items-center justify-items-center">
+      <div className="grid grid-cols-2 md:grid-cols-4 w-full items-start justify-items-center">
         {renderColumn(pagesColumn1)}
         {renderColumn(pagesColumn2)}
         {renderColumn(pagesColumn3)}
+        {renderColumn(pagesColumn4)}
       </div>
     </div>
   );
@@ -356,19 +369,13 @@ const SearchIcon = () => (
  * SVG icon for cart/luggage functionality
  */
 const CartIcon = () => (
-  <svg
-    width="25"
-    height="20"
-    viewBox="0 0 25 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="cursor-pointer hover:opacity-70 transition-opacity"
-  >
-    <path
-      d="M8.75 12.5H10V3.75H8.75C8.06 3.75 7.5 4.3098 7.5 5V11.25C7.5 11.9402 8.06 12.5 8.75 12.5ZM22.5 11.25V5C22.5 4.3098 21.94 3.75 21.25 3.75H20V12.5H21.25C21.94 12.5 22.5 11.9402 22.5 11.25ZM24.38 15H5V0.625C5 0.2797 4.72 0 4.38 0H0.62C0.28 0 0 0.2797 0 0.625V1.875C0 2.2203 0.28 2.5 0.62 2.5H2.5V16.875C2.5 17.2203 2.78 17.5 3.12 17.5H6.36C6.29 17.6965 6.25 17.9047 6.25 18.125C6.25 19.1605 7.09 20 8.12 20C9.16 20 10 19.1605 10 18.125C10 17.9047 9.96 17.6965 9.89 17.5H17.61C17.54 17.6965 17.5 17.9047 17.5 18.125C17.5 19.1605 18.34 20 19.38 20C20.41 20 21.25 19.1605 21.25 18.125C21.25 17.9047 21.21 17.6965 21.14 17.5H24.38C24.72 17.5 25 17.2203 25 16.875V15.625C25 15.2797 24.72 15 24.38 15ZM18.75 3.75V1.875C18.75 0.8395 17.91 0 16.88 0H13.12C12.09 0 11.25 0.8395 11.25 1.875V12.5H18.75V3.75ZM16.88 3.75H13.12V1.875H16.88V3.75Z"
-      fill="#4B3621"
-    />
-  </svg>
+  <Image
+    src="/images/navbar/mdi_cart-outline.png"
+    alt="Cart"
+    width={25}
+    height={25}
+    className="cursor-pointer hover:opacity-70 transition-opacity object-contain"
+  />
 );
 
 /**
@@ -433,11 +440,13 @@ export const Navbar = () => {
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
   const [isPagesOpen, setIsPagesOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
   const [isMobilePagesExpanded, setIsMobilePagesExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
   const searchBarRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -458,6 +467,7 @@ export const Navbar = () => {
     setIsDestinationOpen(false);
     setIsPagesOpen(false);
     setIsSearchOpen(false);
+    setIsProfileOpen(false);
     setIsMobilePagesExpanded(false);
     setExpandedCountry(null);
   }, [pathname]);
@@ -501,6 +511,13 @@ export const Navbar = () => {
       }
 
       if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileOpen(false);
+      }
+
+      if (
         searchBarRef.current &&
         !searchBarRef.current.contains(event.target as Node)
       ) {
@@ -526,6 +543,7 @@ export const Navbar = () => {
         setIsSearchOpen(false);
         setIsDestinationOpen(false);
         setIsPagesOpen(false);
+        setIsProfileOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -669,13 +687,52 @@ export const Navbar = () => {
               )}
             </Link>
 
-            <Link
-              href="/profile"
-              aria-label="View profile"
-              className="cursor-pointer scale-90 md:scale-100"
+            {/* Profile with Click + Hover Dropdown */}
+            <div
+              ref={profileRef}
+              className="relative group/profile cursor-pointer scale-90 md:scale-100"
+              aria-label="Profile options"
+              onMouseEnter={() => {
+                if (window.matchMedia("(hover: hover)").matches) {
+                  setIsProfileOpen(true);
+                }
+              }}
+              onMouseLeave={() => {
+                if (window.matchMedia("(hover: hover)").matches) {
+                  setIsProfileOpen(false);
+                }
+              }}
             >
-              <ProfileIcon />
-            </Link>
+              <div onClick={(e) => { e.stopPropagation(); setIsProfileOpen((prev) => !prev); }}>
+                <ProfileIcon />
+              </div>
+              {/* Dropdown */}
+              <div className={`absolute top-full right-0 pt-2 z-50 transition-all duration-300 ${isProfileOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}>
+                <div className="bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] py-1.5 min-w-[110px]">
+                  <Link
+                    href="/login"
+                    className="group/item relative flex items-center px-3 py-1.5 font-display italic text-[15px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover/item:w-full group-hover/item:opacity-100 transition-all duration-500 ease-out z-0" />
+                    <span className="relative z-10">Sign In</span>
+                  </Link>
+                  <Link
+                    href="/signup"
+                    className="group/item relative flex items-center px-3 py-1.5 font-display italic text-[15px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover/item:w-full group-hover/item:opacity-100 transition-all duration-500 ease-out z-0" />
+                    <span className="relative z-10">Sign Up</span>
+                  </Link>
+                  <Link
+                    href="/profile"
+                    className="group/item relative flex items-center px-3 py-1.5 font-display italic text-[15px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover/item:w-full group-hover/item:opacity-100 transition-all duration-500 ease-out z-0" />
+                    <span className="relative z-10">Profile</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
 
             {/* Icons shown only on Large Screens */}
             <div className="hidden lg:flex items-center gap-2 md:gap-4 lg:gap-6">
@@ -858,10 +915,10 @@ export const Navbar = () => {
                 </button>
 
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isMobilePagesExpanded ? "max-h-[800px] opacity-100 mb-2" : "max-h-0 opacity-0"}`}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isMobilePagesExpanded ? "max-h-[1200px] opacity-100 mb-2" : "max-h-0 opacity-0"}`}
                 >
                   <div className="flex flex-col gap-1 pl-6 pt-1">
-                    {[...pagesColumn1, ...pagesColumn2, ...pagesColumn3].map((page) => (
+                    {[...pagesColumn1, ...pagesColumn2, ...pagesColumn3, ...pagesColumn4].map((page) => (
                       <Link
                         key={page.label}
                         href={page.href}

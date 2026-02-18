@@ -47,7 +47,7 @@ const GALLERY_IMAGES = [
   },
   {
     id: 4,
-    url: "/images/travixo-tours/cards/community-4.png",
+    url: "/images/home/Component7.png",
     alt: "Travel moment 4",
   },
 ];

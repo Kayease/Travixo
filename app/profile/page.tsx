@@ -30,11 +30,244 @@ const ProfileHeroSection = () => {
 };
 
 /**
+ * Settings Tab Content (embedded in Profile page)
+ */
+const SettingsTabContent = () => {
+  const { showToast } = useToast();
+  const [settings, setSettings] = useState({
+    emailNotifications: true,
+    smsNotifications: false,
+    pushNotifications: true,
+    marketingEmails: true,
+    weeklyNewsletter: false,
+    bookingReminders: true,
+    priceAlerts: true,
+    specialOffers: true,
+    travelTips: false,
+    language: "en",
+    currency: "USD",
+    timezone: "America/New_York",
+  });
+
+  const handleToggle = (key: keyof typeof settings) => {
+    const newValue = !settings[key];
+    setSettings({
+      ...settings,
+      [key]: newValue,
+    });
+
+    const labels: { [key: string]: string } = {
+      emailNotifications: "Email Notifications",
+      smsNotifications: "SMS Notifications",
+      pushNotifications: "Push Notifications",
+      marketingEmails: "Marketing Emails",
+      weeklyNewsletter: "Weekly Newsletter",
+      bookingReminders: "Booking Reminders",
+      priceAlerts: "Price Alerts",
+      specialOffers: "Special Offers",
+      travelTips: "Travel Tips",
+    };
+
+    const label = labels[key as string] || "Setting";
+    showToast(
+      `${label} ${newValue ? "Enabled" : "Disabled"}`,
+      "success",
+    );
+  };
+
+  const handleSelect = (key: keyof typeof settings, value: string) => {
+    setSettings({
+      ...settings,
+      [key]: value,
+    });
+  };
+
+  const handleSave = () => {
+    showToast("Settings saved successfully!", "success");
+  };
+
+  return (
+    <div className="space-y-8">
+      {/* Notifications Section */}
+      <div className="bg-white rounded-xl shadow-sm p-4 md:p-8">
+        <h2 className="font-display italic font-semibold text-2xl md:text-[28px] text-brand-brown mb-6">
+          Notification Preferences
+        </h2>
+
+        {/* General Notifications */}
+        <div className="mb-8 pb-8 border-b">
+          <h3 className="font-body font-semibold text-[18px] md:text-[20px] text-brand-brown mb-4">
+            General Notifications
+          </h3>
+          <div className="space-y-4">
+            {[
+              { key: "emailNotifications" as const, label: "Email Notifications", desc: "Receive updates via email" },
+              { key: "smsNotifications" as const, label: "SMS Notifications", desc: "Receive updates via text message" },
+              { key: "pushNotifications" as const, label: "Push Notifications", desc: "Receive push notifications on your device" },
+            ].map((item) => (
+              <div key={item.key} className="flex items-center justify-between">
+                <div>
+                  <p className="font-body font-medium text-[16px] text-brand-brown">{item.label}</p>
+                  <p className="font-body text-[14px] text-gray-600">{item.desc}</p>
+                </div>
+                <button
+                  onClick={() => handleToggle(item.key)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings[item.key] ? "bg-brand-orange" : "bg-gray-300"}`}
+                >
+                  <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings[item.key] ? "translate-x-6" : "translate-x-1"}`} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Email Preferences */}
+        <div>
+          <h3 className="font-body font-semibold text-[18px] md:text-[20px] text-brand-brown mb-4">
+            Email Preferences
+          </h3>
+          <div className="space-y-4">
+            {[
+              { key: "bookingReminders" as const, label: "Booking Reminders", desc: "Reminders about upcoming trips" },
+              { key: "priceAlerts" as const, label: "Price Alerts", desc: "Notify me about price drops" },
+              { key: "marketingEmails" as const, label: "Marketing Emails", desc: "Promotions and special offers" },
+              { key: "weeklyNewsletter" as const, label: "Weekly Newsletter", desc: "Weekly travel inspiration and tips" },
+              { key: "travelTips" as const, label: "Travel Tips", desc: "Helpful tips for your destinations" },
+            ].map((item) => (
+              <div key={item.key} className="flex items-center justify-between">
+                <div>
+                  <p className="font-body font-medium text-[16px] text-brand-brown">{item.label}</p>
+                  <p className="font-body text-[14px] text-gray-600">{item.desc}</p>
+                </div>
+                <button
+                  onClick={() => handleToggle(item.key)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${settings[item.key] ? "bg-brand-orange" : "bg-gray-300"}`}
+                >
+                  <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings[item.key] ? "translate-x-6" : "translate-x-1"}`} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Preferences Section */}
+      <div className="bg-white rounded-xl shadow-sm p-4 md:p-8">
+        <h2 className="font-display italic font-semibold text-2xl md:text-[28px] text-brand-brown mb-6">
+          General Preferences
+        </h2>
+        <div className="space-y-6">
+          <div>
+            <label className="block font-body font-medium text-[16px] text-brand-brown mb-2">Language</label>
+            <select
+              value={settings.language}
+              onChange={(e) => handleSelect("language", e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            >
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="it">Italiano</option>
+              <option value="pt">Português</option>
+              <option value="zh">中文</option>
+              <option value="ja">日本語</option>
+            </select>
+          </div>
+          <div>
+            <label className="block font-body font-medium text-[16px] text-brand-brown mb-2">Currency</label>
+            <select
+              value={settings.currency}
+              onChange={(e) => handleSelect("currency", e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            >
+              <option value="USD">USD - US Dollar</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="GBP">GBP - British Pound</option>
+              <option value="JPY">JPY - Japanese Yen</option>
+              <option value="AUD">AUD - Australian Dollar</option>
+              <option value="CAD">CAD - Canadian Dollar</option>
+              <option value="CHF">CHF - Swiss Franc</option>
+              <option value="CNY">CNY - Chinese Yuan</option>
+            </select>
+          </div>
+          <div>
+            <label className="block font-body font-medium text-[16px] text-brand-brown mb-2">Timezone</label>
+            <select
+              value={settings.timezone}
+              onChange={(e) => handleSelect("timezone", e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            >
+              <option value="America/New_York">Eastern Time (ET)</option>
+              <option value="America/Chicago">Central Time (CT)</option>
+              <option value="America/Denver">Mountain Time (MT)</option>
+              <option value="America/Los_Angeles">Pacific Time (PT)</option>
+              <option value="Europe/London">London (GMT)</option>
+              <option value="Europe/Paris">Paris (CET)</option>
+              <option value="Asia/Tokyo">Tokyo (JST)</option>
+              <option value="Asia/Shanghai">Shanghai (CST)</option>
+              <option value="Australia/Sydney">Sydney (AEDT)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* Privacy Section */}
+      <div className="bg-white rounded-xl shadow-sm p-4 md:p-8">
+        <h2 className="font-display italic font-semibold text-2xl md:text-[28px] text-brand-brown mb-6">
+          Privacy & Data
+        </h2>
+        <div className="space-y-4">
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-start">
+              <svg className="w-5 h-5 text-brand-orange mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <p className="font-body font-medium text-[16px] text-brand-brown mb-1">Data Usage</p>
+                <p className="font-body text-[14px] text-gray-600">Learn how we use your data and manage your privacy settings</p>
+                <Link href="/privacy" className="font-body text-[14px] text-brand-orange hover:underline inline-block mt-2">
+                  View Privacy Policy →
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-start">
+              <svg className="w-5 h-5 text-brand-orange mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <div>
+                <p className="font-body font-medium text-[16px] text-brand-brown mb-1">Download Your Data</p>
+                <p className="font-body text-[14px] text-gray-600">Request a copy of your personal data</p>
+                <button className="font-body text-[14px] text-brand-orange hover:underline inline-block mt-2 cursor-pointer">
+                  Request Data Export →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Save Button */}
+      <div className="flex justify-end">
+        <button
+          onClick={handleSave}
+          className="px-6 py-3 rounded-lg bg-brand-orange text-white font-body font-medium text-[16px] hover:bg-orange-600 transition-colors cursor-pointer"
+        >
+          Save Settings
+        </button>
+      </div>
+    </div>
+  );
+};
+
+/**
  * Profile Content Section
  */
 const ProfileContentSection = () => {
   const [activeTab, setActiveTab] = useState<
-    "profile" | "bookings" | "security"
+    "profile" | "bookings" | "security" | "settings"
   >("profile");
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
@@ -353,9 +586,12 @@ const ProfileContentSection = () => {
                   Security
                 </button>
 
-                <Link
-                  href="/settings"
-                  className="shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] text-gray-700 hover:bg-gray-100 transition-colors whitespace-nowrap"
+                <button
+                  onClick={() => setActiveTab("settings")}
+                  className={`shrink-0 lg:w-full flex items-center px-4 py-2 lg:py-3 rounded-lg font-body font-medium text-[14px] md:text-[16px] transition-colors cursor-pointer whitespace-nowrap ${activeTab === "settings"
+                    ? "bg-brand-orange text-white"
+                    : "text-gray-700 hover:bg-gray-100"
+                    }`}
                 >
                   <svg
                     className="w-5 h-5 mr-2 md:mr-3"
@@ -377,7 +613,7 @@ const ProfileContentSection = () => {
                     />
                   </svg>
                   Settings
-                </Link>
+                </button>
               </nav>
 
               {/* Logout Button */}
@@ -759,6 +995,11 @@ const ProfileContentSection = () => {
 
 
               </div>
+            )}
+
+            {/* Settings Tab */}
+            {activeTab === "settings" && (
+              <SettingsTabContent />
             )}
           </div>
         </div>

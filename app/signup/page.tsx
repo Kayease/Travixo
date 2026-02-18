@@ -68,8 +68,8 @@ const SignupFormSection = () => {
     }
 
     // In production, this would create the account via API
-    showToast("Account created successfully! Redirecting to login...", "success");
-    setTimeout(() => router.push("/login"), 1500);
+    showToast("Account created successfully! Redirecting to home...", "success");
+    setTimeout(() => router.push("/"), 1500);
   };
 
   return (

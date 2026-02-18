@@ -180,7 +180,7 @@ const CompareTableSection: React.FC = () => {
     };
 
     addToCart(cartItem);
-    router.push("/checkout");
+    router.push("/cart");
   };
 
   return (

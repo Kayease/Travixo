@@ -8,7 +8,7 @@ import travelIconImg from "@/public/images/home/about/healthicons_travel-outline
 import luggageIconImg from "@/public/images/home/about/material-symbols-light_travel-luggage-and-bags-outline.png";
 import checkIconImg from "@/public/images/home/about/mask-group.png";
 import gettoknow1Img from "@/public/images/gettoknow/gettoknow-1.png";
-import gettoknow2Img from "@/public/images/gettoknow/gettoknow-2.png";
+import frame27Img from "@/public/images/gettoknow/Frame27.png";
 
 /**
  * Plane Icon for the badge
@@ -112,20 +112,22 @@ export const AboutSection = () => {
             </div>
 
             {/* Overlapping Secondary Image — bottom-right of main image */}
-            <div
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 md:-bottom-4 md:left-auto md:right-0 md:-translate-x-6 lg:bottom-6 lg:right-[-50px] xl:bottom-12 xl:right-[-60px] w-[240px] md:w-[320px] lg:w-[240px] xl:w-[401px] h-[160px] md:h-[200px] lg:h-[150px] xl:h-[242px] z-20 overflow-hidden "
-              style={{
-                boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.1)",
-                borderRadius: "32px",
-              }}
-            >
-              <Image
-                src={gettoknow2Img}
-                alt="Beach View"
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 768px) 240px, (max-width: 1024px) 320px, (max-width: 1280px) 240px, 401px"
-              />
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 md:-bottom-4 md:left-auto md:right-0 md:-translate-x-6 lg:bottom-6 lg:right-[-50px] xl:bottom-12 xl:right-[-60px] z-20 w-[240px] md:w-[320px] lg:w-[240px] xl:w-[401px] h-[160px] md:h-[200px] lg:h-[150px] xl:h-[242px]">
+              <div
+                className="relative w-full h-full overflow-hidden"
+                style={{
+                  boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "32px",
+                }}
+              >
+                <Image
+                  src={frame27Img}
+                  alt="Beach View"
+                  fill
+                  className="object-cover object-center scale-[1.12]"
+                  sizes="(max-width: 768px) 240px, (max-width: 1024px) 320px, (max-width: 1280px) 240px, 401px"
+                />
+              </div>
             </div>
           </div>
 

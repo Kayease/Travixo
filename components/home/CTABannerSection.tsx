@@ -104,9 +104,13 @@ export const CTABannerSection = ({
         </div>
       </div>
       <style jsx>{`
-        @media screen and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
           .cta-person-image {
-            top: -35px !important;
+            top: -50px !important;
+            height: 320px !important;
+          }
+          section {
+            padding-bottom: 120px !important;
           }
         }
       `}</style>

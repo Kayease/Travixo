@@ -87,14 +87,16 @@ const ContactFormSection = () => {
               Today!
             </p>
 
-            {/* Image */}
+            {/* Video */}
             <div className="relative h-[280px] md:h-[351px] rounded-xl overflow-hidden">
-              <Image
-                src="/images/travixo-tours/cards/contact.png"
-                alt="Beautiful waterfall"
-                fill
-                className="object-cover"
-                sizes="487px"
+              <video
+                src="/images/contact/37088-413229662_small.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover scale-[1.02]"
+                style={{ objectFit: 'cover' }}
               />
             </div>
           </div>
@@ -223,10 +225,10 @@ const ContactFormSection = () => {
               Mail us:
             </h4>
             <p className="font-body font-normal text-[16px] md:text-[18px] leading-[30px] text-brand-brown">
-              contact@travixo.com
+              example@example.com
             </p>
             <p className="font-body font-normal text-[16px] md:text-[18px] leading-[30px] text-brand-brown">
-              support@travixo.com
+              example@example.com
             </p>
           </div>
 

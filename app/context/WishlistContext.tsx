@@ -17,24 +17,29 @@ const WishlistContext = createContext<WishlistContextType | undefined>(undefined
 export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
-    const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>(() => {
-        if (typeof window === "undefined") return [];
+    const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
+    const [mounted, setMounted] = useState(false);
+    const { showToast } = useToast();
+
+    // Load from localStorage on mount
+    useEffect(() => {
+        setMounted(true);
         try {
             const savedWishlist = localStorage.getItem("travixo_wishlist");
-            return savedWishlist ? JSON.parse(savedWishlist) : [];
-        } catch {
-            return [];
+            if (savedWishlist) {
+                setWishlistItems(JSON.parse(savedWishlist));
+            }
+        } catch (error) {
+            console.error("Failed to load wishlist from localStorage:", error);
         }
-    });
-    const [isLoaded] = useState(typeof window !== "undefined");
-    const { showToast } = useToast();
+    }, []);
 
     // Save to localStorage whenever wishlist changes
     useEffect(() => {
-        if (isLoaded) {
+        if (mounted) {
             localStorage.setItem("travixo_wishlist", JSON.stringify(wishlistItems));
         }
-    }, [wishlistItems, isLoaded]);
+    }, [wishlistItems, mounted]);
 
     const addToWishlist = (item: WishlistItem) => {
         const exists = wishlistItems.some((i) => i.id === item.id);

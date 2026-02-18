@@ -309,5 +309,5 @@ npm run start
 
 For questions or support, please contact:
 
-- **Email**: support@travixo.com
+- **Email**: example@example.com 
 - **Documentation**: [View Docs](#)

@@ -66,19 +66,20 @@ const StarIcon = ({ filled = true }: { filled?: boolean }) => (
 /**
  * Cart Icon for top-right actions
  */
-const CartIcon = () => (
-  <svg
-    width="25"
-    height="20"
-    viewBox="0 0 25 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8.75 12.5H10V3.75H8.75C8.06 3.75 7.5 4.3098 7.5 5V11.25C7.5 11.9402 8.06 12.5 8.75 12.5ZM22.5 11.25V5C22.5 4.3098 21.94 3.75 21.25 3.75H20V12.5H21.25C21.94 12.5 22.5 11.9402 22.5 11.25ZM24.38 15H5V0.625C5 0.2797 4.72 0 4.38 0H0.62C0.28 0 0 0.2797 0 0.625V1.875C0 2.2203 0.28 2.5 0.62 2.5H2.5V16.875C2.5 17.2203 2.78 17.5 3.12 17.5H6.36C6.29 17.6965 6.25 17.9047 6.25 18.125C6.25 19.1605 7.09 20 8.12 20C9.16 20 10 19.1605 10 18.125C10 17.9047 9.96 17.6965 9.89 17.5H17.61C17.54 17.6965 17.5 17.9047 17.5 18.125C17.5 19.1605 18.34 20 19.38 20C20.41 20 21.25 19.1605 21.25 18.125C21.25 17.9047 21.21 17.6965 21.14 17.5H24.38C24.72 17.5 25 17.2203 25 16.875V15.625C25 15.2797 24.72 15 24.38 15ZM18.75 3.75V1.875C18.75 0.8395 17.91 0 16.88 0H13.12C12.09 0 11.25 0.8395 11.25 1.875V12.5H18.75V3.75ZM16.88 3.75H13.12V1.875H16.88V3.75Z"
-      fill="currentColor"
-    />
-  </svg>
+const CartIcon = ({ className = "" }: { className?: string }) => (
+  <div
+    className={`w-full h-full ${className}`}
+    style={{
+      maskImage: 'url("/images/navbar/mdi_cart-outline.png")',
+      maskSize: "contain",
+      maskRepeat: "no-repeat",
+      maskPosition: "center",
+      WebkitMaskImage: 'url("/images/navbar/mdi_cart-outline.png")',
+      WebkitMaskSize: "contain",
+      WebkitMaskRepeat: "no-repeat",
+      WebkitMaskPosition: "center",
+    }}
+  />
 );
 
 /**
@@ -171,8 +172,14 @@ const TourCard: React.FC<TourCardProps> = ({
         price: currentPrice,
         actionLabel: "Customize",
       });
+    } else {
+      // Find the item ID in the cart to remove it
+      const itemToRemove = cartItems.find((item) => item.title === title);
+      const itemId = itemToRemove?.id;
+      if (itemId) {
+        removeFromCart(itemId);
+      }
     }
-    router.push("/cart");
   };
 
   const handleBookNow = (e: React.MouseEvent) => {
@@ -192,176 +199,182 @@ const TourCard: React.FC<TourCardProps> = ({
       actionLabel: "Customize",
     });
 
-    router.push("/checkout");
+    router.push("/cart");
   };
 
   const fullStars = Math.floor(rating);
 
   return (
     <div className="relative w-full max-w-[418px] group lg:hover:z-50 focus-within:z-50 pb-[58px] outline-none" tabIndex={0}>
-      {/* Card Container */}
-      <div
-        className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 lg:hover:shadow-lg group-focus:shadow-lg group-active:shadow-lg z-10 h-full bg-[#FFFCF5]"
-      >
-        {/* Image Container */}
-        <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
-          <div className="block w-full h-full relative">
-            <Image
-              src={image}
-              alt={title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 418px"
-              priority={priority}
-            />
+      <Link href="/products/grand-palace-tour" className="block">
+        <div
+          className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 lg:hover:shadow-lg group-focus:shadow-lg group-active:shadow-lg z-10 h-full bg-[#FFFCF5] cursor-pointer"
+        >
+          {/* Image Container */}
+          <div className="relative w-full h-[220px] md:h-[283px] rounded-xl overflow-hidden mb-4">
+            <div className="block w-full h-full relative">
+              <Image
+                src={image}
+                alt={title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 418px"
+                priority={priority}
+              />
+            </div>
+
+            {/* Discount Badge */}
+            {discount && (
+              <div className="absolute top-3 left-3 bg-[#FF6E00] px-3 py-1 z-20">
+                <span className="font-body font-bold text-[14px] text-white uppercase tracking-wider">
+                  {discount}
+                </span>
+              </div>
+            )}
+
+            {/* Price Badge */}
+            <div
+              className="absolute bottom-1 right-1 bg-white z-10 flex items-center justify-center gap-1.5"
+              style={{
+                width: "136px",
+                height: "52px",
+                borderRadius: "40px 80px 0px 40px",
+                boxShadow: "-2px -2px 10px rgba(0, 0, 0, 0.08)",
+              }}
+            >
+              <span className="font-body font-semibold text-[20px] leading-[27px] text-[#FF6E00]">
+                ${currentPrice}
+              </span>
+              {originalPrice && (
+                <span className="font-body font-medium text-[15px] leading-[21px] text-black/40 line-through">
+                  ${originalPrice}
+                </span>
+              )}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 transition-all duration-500 ease-out xl:translate-x-12 xl:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100 group-active:translate-x-0 group-active:opacity-100">
+              {/* Heart / Wishlist Button */}
+              <button
+                onClick={handleWishlistAction}
+                className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isWishlisted
+                  ? "bg-[#FF6E00]"
+                  : "bg-white lg:hover:bg-[#FF6E00]"
+                  }`}
+                aria-label={
+                  variant === "wishlist"
+                    ? "Remove from wishlist"
+                    : "Add to wishlist"
+                }
+              >
+                <div
+                  className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
+                    ? "bg-white"
+                    : "bg-[#4B3621] lg:group-hover/icon:bg-white"
+                    }`}
+                  style={{
+                    maskImage: 'url("/images/icons/line-md_heart.png")',
+                    maskSize: "contain",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "center",
+                    WebkitMaskImage: 'url("/images/icons/line-md_heart.png")',
+                    WebkitMaskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                  }}
+                />
+              </button>
+
+              {/* Cart Button */}
+              <button
+                onClick={handleCartAction}
+                className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isInCartState
+                  ? "bg-[#FF6E00] text-white"
+                  : "bg-white text-[#4B3621] lg:hover:bg-[#FF6E00] lg:hover:text-white"
+                  }`}
+                aria-label="Add to cart"
+              >
+                <div className="scale-[0.8] w-6 h-6">
+                  <CartIcon
+                    className={isInCartState
+                      ? "bg-white"
+                      : "bg-[#4B3621] group-hover/icon:bg-white transition-colors duration-300"
+                    }
+                  />
+                </div>
+              </button>
+            </div>
           </div>
 
-          {/* Discount Badge */}
-          {discount && (
-            <div className="absolute top-3 left-3 bg-[#FF6E00] px-3 py-1 z-20">
-              <span className="font-body font-bold text-[14px] text-white uppercase tracking-wider">
-                {discount}
+          {/* Rating */}
+          <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <StarIcon key={i} filled={i <= fullStars} />
+              ))}
+            </div>
+            <span className="font-body font-normal text-base text-brand-brown">
+              {rating}
+            </span>
+            <div className="w-px h-4 bg-brand-brown" />
+            <span className="font-body font-normal text-base text-brand-brown">
+              ({reviews} Reviews)
+            </span>
+          </div>
+
+          {/* Title */}
+          <div className="block">
+            <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 transition-colors">
+              {title}
+            </h3>
+          </div>
+
+          {/* Description */}
+          <p className="font-body font-normal text-sm leading-6 text-brand-brown/60 mb-4 line-clamp-2">
+            {description}
+          </p>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-black/20 mb-4" />
+
+          {/* Info Row */}
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/images/home/featured/tdesign_time.png"
+                alt="Duration"
+                width={24}
+                height={24}
+              />
+              <span className="font-body font-normal text-sm text-brand-brown">
+                {duration}
               </span>
             </div>
-          )}
-
-          {/* Price Badge */}
-          <div
-            className="absolute bottom-1 right-1 bg-white z-10 flex items-center justify-center gap-1.5"
-            style={{
-              width: "136px",
-              height: "52px",
-              borderRadius: "40px 80px 0px 40px",
-              boxShadow: "-2px -2px 10px rgba(0, 0, 0, 0.08)",
-            }}
-          >
-            <span className="font-body font-semibold text-[20px] leading-[27px] text-[#FF6E00]">
-              ${currentPrice}
-            </span>
-            {originalPrice && (
-              <span className="font-body font-medium text-[15px] leading-[21px] text-black/40 line-through">
-                ${originalPrice}
-              </span>
-            )}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20 transition-all duration-500 ease-out xl:translate-x-12 xl:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100 group-active:translate-x-0 group-active:opacity-100">
-            {/* Heart / Wishlist Button */}
-            <button
-              onClick={handleWishlistAction}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isWishlisted
-                ? "bg-[#FF6E00]"
-                : "bg-white lg:hover:bg-[#FF6E00]"
-                }`}
-              aria-label={
-                variant === "wishlist"
-                  ? "Remove from wishlist"
-                  : "Add to wishlist"
-              }
-            >
-              <div
-                className={`w-[24px] h-[24px] transition-colors duration-300 ${isWishlisted
-                  ? "bg-white"
-                  : "bg-[#4B3621] lg:group-hover/icon:bg-white"
-                  }`}
-                style={{
-                  maskImage: 'url("/images/icons/line-md_heart.png")',
-                  maskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  maskPosition: "center",
-                  WebkitMaskImage: 'url("/images/icons/line-md_heart.png")',
-                  WebkitMaskSize: "contain",
-                  WebkitMaskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                }}
+            <div className="flex items-center gap-2">
+              <Image
+                src="/images/home/featured/formkit_people-1.png"
+                alt="People"
+                width={24}
+                height={24}
               />
-            </button>
-
-            {/* Cart Button */}
-            <button
-              onClick={handleCartAction}
-              className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer outline-none ${isInCartState
-                ? "bg-[#FF6E00] text-white"
-                : "bg-white text-[#4B3621] lg:hover:bg-[#FF6E00] lg:hover:text-white"
-                }`}
-              aria-label="Add to cart"
-            >
-              <div className="scale-[0.6]">
-                <CartIcon />
-              </div>
-            </button>
+              <span className="font-body font-normal text-sm text-brand-brown">
+                {people}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Image
+                src="/images/home/featured/akar-icons_location.png"
+                alt="Location"
+                width={24}
+                height={24}
+              />
+              <span className="font-body font-normal text-sm text-brand-brown">
+                {location}
+              </span>
+            </div>
           </div>
         </div>
-
-        {/* Rating */}
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex items-center gap-1">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <StarIcon key={i} filled={i <= fullStars} />
-            ))}
-          </div>
-          <span className="font-body font-normal text-base text-brand-brown">
-            {rating}
-          </span>
-          <div className="w-px h-4 bg-brand-brown" />
-          <span className="font-body font-normal text-base text-brand-brown">
-            ({reviews} Reviews)
-          </span>
-        </div>
-
-        {/* Title */}
-        <div className="block">
-          <h3 className="font-display italic font-semibold text-lg md:text-[22px] leading-[29px] text-brand-brown mb-3 transition-colors">
-            {title}
-          </h3>
-        </div>
-
-        {/* Description */}
-        <p className="font-body font-normal text-sm leading-6 text-brand-brown/60 mb-4 line-clamp-2">
-          {description}
-        </p>
-
-        {/* Divider */}
-        <div className="w-full h-px bg-black/20 mb-4" />
-
-        {/* Info Row */}
-        <div className="flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/home/featured/tdesign_time.png"
-              alt="Duration"
-              width={24}
-              height={24}
-            />
-            <span className="font-body font-normal text-sm text-brand-brown">
-              {duration}
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/home/featured/formkit_people-1.png"
-              alt="People"
-              width={24}
-              height={24}
-            />
-            <span className="font-body font-normal text-sm text-brand-brown">
-              {people}
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/home/featured/akar-icons_location.png"
-              alt="Location"
-              width={24}
-              height={24}
-            />
-            <span className="font-body font-normal text-sm text-brand-brown">
-              {location}
-            </span>
-          </div>
-        </div>
-      </div>
+      </Link>
 
       {/* Book Now Button — slides up on hover */}
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 xl:opacity-0 xl:translate-y-4 transform lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:pointer-events-auto group-focus:opacity-100 group-focus:translate-y-0 group-focus:pointer-events-auto transition-all duration-500 ease-out">
