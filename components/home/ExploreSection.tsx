@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { DatePicker, DateRange } from "@/components/ui/DatePicker";
+import SelectInput from "@/components/ui/SelectInput";
 import { useToast } from "@/app/context/ToastContext";
 
 /**
@@ -92,44 +93,10 @@ const ActivityIcon = ({
   );
 };
 
-/**
- * Dropdown Select Component
- */
-
 // Example values for dropdowns
 const DESTINATIONS = ["Bangkok", "Paris", "New York", "Tokyo", "Sydney"];
 const TRAVEL_TYPES = ["Adventure", "Leisure", "Family", "Romantic", "Cultural"];
 const DURATIONS = ["1-3 Days", "4-7 Days", "8-14 Days", "15+ Days"];
-
-const SelectInput = ({
-  label,
-  value,
-  onChange,
-  options,
-  name,
-}: {
-  label: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: string[];
-  name: string;
-}) => (
-  <select
-    name={name}
-    value={value}
-    onChange={onChange}
-    className="w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 text-brand-brown font-medium text-lg font-body outline-none focus:outline-none focus:ring-0 focus:border-brand-brown/20 !focus-visible:ring-0 !focus-visible:border-brand-brown/20 !focus-visible:shadow-none !focus-visible:outline-none focus:shadow-none"
-  >
-    <option value="" disabled>
-      {label}
-    </option>
-    {options.map((opt) => (
-      <option key={opt} value={opt}>
-        {opt}
-      </option>
-    ))}
-  </select>
-);
 
 /**
  * ExploreSection Component

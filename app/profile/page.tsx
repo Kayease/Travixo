@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "../context/ToastContext";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import SelectInput from "@/components/ui/SelectInput";
 
 /**
  * Profile Hero Section
@@ -159,55 +160,64 @@ const SettingsTabContent = () => {
         <div className="space-y-6">
           <div>
             <label className="block font-body font-medium text-[16px] text-brand-brown mb-2">Language</label>
-            <select
+            <SelectInput
+              label="Select Language"
+              name="language"
               value={settings.language}
               onChange={(e) => handleSelect("language", e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange"
-            >
-              <option value="en">English</option>
-              <option value="es">Español</option>
-              <option value="fr">Français</option>
-              <option value="de">Deutsch</option>
-              <option value="it">Italiano</option>
-              <option value="pt">Português</option>
-              <option value="zh">中文</option>
-              <option value="ja">日本語</option>
-            </select>
+              variant="settings"
+              options={[
+                { label: "English", value: "en" },
+                { label: "Español", value: "es" },
+                { label: "Français", value: "fr" },
+                { label: "Deutsch", value: "de" },
+                { label: "Italiano", value: "it" },
+                { label: "Português", value: "pt" },
+                { label: "中文", value: "zh" },
+                { label: "日本語", value: "ja" },
+              ]}
+            />
           </div>
           <div>
             <label className="block font-body font-medium text-[16px] text-brand-brown mb-2">Currency</label>
-            <select
+            <SelectInput
+              label="Select Currency"
+              name="currency"
               value={settings.currency}
               onChange={(e) => handleSelect("currency", e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange"
-            >
-              <option value="USD">USD - US Dollar</option>
-              <option value="EUR">EUR - Euro</option>
-              <option value="GBP">GBP - British Pound</option>
-              <option value="JPY">JPY - Japanese Yen</option>
-              <option value="AUD">AUD - Australian Dollar</option>
-              <option value="CAD">CAD - Canadian Dollar</option>
-              <option value="CHF">CHF - Swiss Franc</option>
-              <option value="CNY">CNY - Chinese Yuan</option>
-            </select>
+              variant="settings"
+              options={[
+                { label: "USD - US Dollar", value: "USD" },
+                { label: "EUR - Euro", value: "EUR" },
+                { label: "GBP - British Pound", value: "GBP" },
+                { label: "JPY - Japanese Yen", value: "JPY" },
+                { label: "AUD - Australian Dollar", value: "AUD" },
+                { label: "CAD - Canadian Dollar", value: "CAD" },
+                { label: "CHF - Swiss Franc", value: "CHF" },
+                { label: "CNY - Chinese Yuan", value: "CNY" },
+              ]}
+            />
           </div>
           <div>
             <label className="block font-body font-medium text-[16px] text-brand-brown mb-2">Timezone</label>
-            <select
+            <SelectInput
+              label="Select Timezone"
+              name="timezone"
               value={settings.timezone}
               onChange={(e) => handleSelect("timezone", e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 font-body text-[16px] text-brand-brown focus:outline-none focus:ring-2 focus:ring-brand-orange"
-            >
-              <option value="America/New_York">Eastern Time (ET)</option>
-              <option value="America/Chicago">Central Time (CT)</option>
-              <option value="America/Denver">Mountain Time (MT)</option>
-              <option value="America/Los_Angeles">Pacific Time (PT)</option>
-              <option value="Europe/London">London (GMT)</option>
-              <option value="Europe/Paris">Paris (CET)</option>
-              <option value="Asia/Tokyo">Tokyo (JST)</option>
-              <option value="Asia/Shanghai">Shanghai (CST)</option>
-              <option value="Australia/Sydney">Sydney (AEDT)</option>
-            </select>
+              variant="settings"
+              options={[
+                { label: "Eastern Time (ET)", value: "America/New_York" },
+                { label: "Central Time (CT)", value: "America/Chicago" },
+                { label: "Mountain Time (MT)", value: "America/Denver" },
+                { label: "Pacific Time (PT)", value: "America/Los_Angeles" },
+                { label: "London (GMT)", value: "Europe/London" },
+                { label: "Paris (CET)", value: "Europe/Paris" },
+                { label: "Tokyo (JST)", value: "Asia/Tokyo" },
+                { label: "Shanghai (CST)", value: "Asia/Shanghai" },
+                { label: "Sydney (AEDT)", value: "Australia/Sydney" },
+              ]}
+            />
           </div>
         </div>
       </div>
