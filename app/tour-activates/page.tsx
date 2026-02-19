@@ -92,7 +92,7 @@ export default function TourActivitiesPage() {
         <section className="w-full py-12 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {ACTIVITIES.map((activity) => (
+              {ACTIVITIES.map((activity, index) => (
                 <div
                   key={activity.id}
                   className="bg-white rounded-xl overflow-hidden shadow-sm border border-brand-orange/10 group hover:shadow-lg transition-shadow duration-300"

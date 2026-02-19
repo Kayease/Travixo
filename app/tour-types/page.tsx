@@ -92,7 +92,7 @@ export default function TourTypesPage() {
         <section className="w-full py-12 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {TOUR_TYPES.map((type) => (
+              {TOUR_TYPES.map((type, index) => (
                 <Link
                   key={type.id}
                   href="/destinations"

@@ -708,24 +708,24 @@ export const Navbar = () => {
               </div>
               {/* Dropdown */}
               <div className={`absolute top-full right-0 pt-2 z-50 transition-all duration-300 ${isProfileOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}>
-                <div className="bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] py-1.5 min-w-[110px]">
+                <div className="bg-[#FFFCF5] rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] py-2 min-w-[150px]">
                   <Link
                     href="/login"
-                    className="group/item relative flex items-center px-3 py-1.5 font-display italic text-[15px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
+                    className="group/item relative flex items-center px-4 py-2 font-display italic text-[17px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
                   >
                     <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover/item:w-full group-hover/item:opacity-100 transition-all duration-500 ease-out z-0" />
                     <span className="relative z-10">Sign In</span>
                   </Link>
                   <Link
                     href="/signup"
-                    className="group/item relative flex items-center px-3 py-1.5 font-display italic text-[15px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
+                    className="group/item relative flex items-center px-4 py-2 font-display italic text-[17px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
                   >
                     <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover/item:w-full group-hover/item:opacity-100 transition-all duration-500 ease-out z-0" />
                     <span className="relative z-10">Sign Up</span>
                   </Link>
                   <Link
                     href="/profile"
-                    className="group/item relative flex items-center px-3 py-1.5 font-display italic text-[15px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
+                    className="group/item relative flex items-center px-4 py-2 font-display italic text-[17px] text-[#4B3621] hover:text-white transition-colors duration-300 overflow-hidden"
                   >
                     <span className="absolute inset-0 bg-[#FF6E00] w-0 opacity-0 group-hover/item:w-full group-hover/item:opacity-100 transition-all duration-500 ease-out z-0" />
                     <span className="relative z-10">Profile</span>

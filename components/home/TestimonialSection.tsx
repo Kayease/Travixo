@@ -117,34 +117,11 @@ export const TestimonialSection = () => {
   const handleAvatarClick = (clickedId: number) => {
     if (clickedId === activeId) return;
 
-    // Find current slot of clicked item
-    const clickedSlotIndex = slotMapping[clickedId];
-
-    // Find current slot of active item (should be ACTIVE_SLOT_INDEX which is 3)
-    const activeSlotIndex = ACTIVE_SLOT_INDEX;
-
-    // Slot 4 acts as the "Buffer" position
-    const BUFFER_SLOT_INDEX = 4;
-
-    // Find the item currently in the buffer slot
-    const bufferId = Number(Object.keys(slotMapping).find(key => slotMapping[Number(key)] === BUFFER_SLOT_INDEX));
-
-    if (clickedSlotIndex === BUFFER_SLOT_INDEX) {
-      // If clicking the item already in the buffer, just swap it with active
-      setSlotMapping(prev => ({
-        ...prev,
-        [clickedId]: activeSlotIndex,
-        [activeId]: BUFFER_SLOT_INDEX
-      }));
-    } else {
-      // 3-way rotation for more dynamic animation
-      setSlotMapping(prev => ({
-        ...prev,
-        [clickedId]: activeSlotIndex,
-        [activeId]: BUFFER_SLOT_INDEX,
-        [bufferId]: clickedSlotIndex,
-      }));
-    }
+    setSlotMapping(prev => ({
+      ...prev,
+      [clickedId]: prev[activeId],
+      [activeId]: prev[clickedId]
+    }));
 
     setActiveId(clickedId);
   };
@@ -191,8 +168,6 @@ export const TestimonialSection = () => {
           />
 
           {/* Static Connection Line - Always connected to the Active Slot */}
-          {/* Active Slot (Index 3): left 458, top 227. Width 100. Right Edge: 558. Top Center+50: 277. */}
-          {/* Line 28: left 557.98px. Matches. */}
           <div
             className="absolute"
             style={{
@@ -341,36 +316,86 @@ export const TestimonialSection = () => {
             </div>
           </div>
 
-          {/* Mini avatars for mobile */}
-          <div className="flex gap-2 mt-8 flex-wrap justify-center mobile-avatars-list">
-            {TESTIMONIALS_DATA.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => handleAvatarClick(item.id)}
-                className={`relative w-10 h-10 rounded-full overflow-hidden border-2 cursor-pointer transition-all ${activeId === item.id ? 'border-brand-orange scale-110' : 'border-transparent opacity-60 hover:opacity-100'}`}
-              >
-                <Image src={item.url} fill sizes="40px" className="object-cover" alt="avatar" />
-              </div>
-            ))}
+          {/* Mini avatars for mobile - now using slot mapping for animation */}
+          <div className="relative mt-8 mobile-avatars-list">
+            {TESTIMONIALS_DATA.map((item) => {
+              const currentSlotIndex = slotMapping[item.id];
+              const isActive = item.id === activeId;
+
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => handleAvatarClick(item.id)}
+                  className={`mobile-avatar-item slot-${currentSlotIndex} ${isActive ? 'active' : ''}`}
+                >
+                  <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-transparent transition-all duration-300 avatar-circle">
+                    <Image
+                      src={item.url}
+                      fill
+                      sizes="70px"
+                      className="object-cover"
+                      alt="avatar"
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
+
+          {/* Connection line for landscape */}
+          <div className="mobile-connection-line" />
         </div>
       </div>
 
       <style jsx>{`
         /* Base stability for all mobile/tablet versions */
+        .mobile-testimonial-container {
+          position: relative;
+        }
+        
+        .mobile-connection-line {
+          display: none;
+        }
+
         .mobile-testimonial-card {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           min-height: 340px;
+          z-index: 5;
         }
 
-        @media (max-width: 450px) and (orientation: portrait) {
-          /* Already handled by base rule, keeping for clarity */
-          .mobile-testimonial-card {
-            min-height: 340px;
-          }
+        /* Avatar slot animation base */
+        .mobile-avatars-list {
+          position: relative !important;
+          margin-top: 30px !important;
         }
+
+        .mobile-avatar-item {
+          position: absolute !important;
+          transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          cursor: pointer;
+          width: 45px;
+          height: 45px;
+        }
+
+        .mobile-avatar-item.active .avatar-circle {
+          border-color: #FF6E00 !important;
+          transform: scale(1.15);
+          opacity: 1 !important;
+        }
+
+        .mobile-avatar-item:not(.active) {
+          opacity: 0.7;
+        }
+
+        .mobile-avatar-item:not(.active):hover {
+          opacity: 1;
+        }
+
+        /* Default vertical slots for small mobile */
+        .mobile-avatars-list { height: 70px; width: 100%; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .mobile-avatar-item { position: relative !important; }
 
         @media (max-height: 500px) and (orientation: landscape) {
           .mobile-testimonial-container {
@@ -380,23 +405,9 @@ export const TestimonialSection = () => {
             padding: 20px !important;
             min-height: 320px !important;
           }
-          .mobile-avatars-list {
-            order: -1;
-            flex-direction: column !important;
-            margin-top: 0 !important;
-            gap: 12px !important;
-          }
           .mobile-testimonial-card {
             max-width: 420px !important;
             min-height: 260px;
-          }
-        }
-
-        /* iPad and Tablet Fix (Portrait & Landscape) */
-        @media (min-width: 768px) and (max-width: 1279px) {
-          .mobile-testimonial-card {
-            min-height: 300px;
-            max-width: 500px !important;
           }
         }
 
@@ -410,6 +421,22 @@ export const TestimonialSection = () => {
             padding-right: 60px !important;
             align-items: center !important;
           }
+
+          .mobile-connection-line {
+            display: block;
+            position: absolute;
+            left: 232px;
+            width: 225px;
+            height: 1.5px;
+            background-color: #FF6E00;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+          }
+
+          @media (max-width: 950px) {
+            .mobile-connection-line { width: 125px !important; }
+          }
           
           .mobile-testimonial-card {
             margin: 0 !important;
@@ -419,57 +446,64 @@ export const TestimonialSection = () => {
           }
 
           .mobile-avatars-list {
-            order: 1 !important; /* Force to left side */
-            display: flex !important;
-            flex-direction: column !important;
-            flex-wrap: wrap !important;
-            height: 300px !important; /* Increased height to ensure 5 items don't overlap or hide */
-            justify-content: center !important; /* Centers items vertically in columns */
-            width: 170px !important; /* Width for 2 columns */
-            gap: 24px !important;
-            margin-top: 0 !important;
+            order: 1 !important;
+            width: 170px !important;
+            height: 400px !important;
+            margin: 0 !important;
           }
 
-          /* Target the avatars to be bigger */
-          .mobile-avatars-list > div {
-             width: 70px !important;
-             height: 70px !important;
-          }
+          .mobile-avatar-item { width: 70px !important; height: 70px !important; position: absolute !important; }
+          .slot-0 { left: 0; top: 10px; }
+          .slot-1 { left: 0; top: 110px; }
+          .slot-2 { left: 0; top: 220px; }
+          .slot-4 { left: 0; top: 320px; }
+          .slot-3 { left: 100px; top: 165px; } 
         }
 
         /* iPhone 14 Pro Max Portrait */
         @media only screen and (min-width: 420px) and (max-width: 767px) and (orientation: portrait) {
            .mobile-testimonial-container {
-             flex-direction: column !important;
+             flex-direction: row !important;
              justify-content: center !important;
-             gap: 40px !important;
-             padding-top: 40px !important;
-             padding-bottom: 40px !important;
+             gap: 35px !important;
+             padding: 20px !important;
+             align-items: center !important;
            }
            
            .mobile-avatars-list {
-             order: -1 !important; /* Move to top */
-             margin-top: 0 !important;
-             margin-bottom: 20px !important;
-             width: 100% !important;
-             max-width: 240px !important; /* Force 3+2 layout */
-             margin-left: auto !important;
-             margin-right: auto !important;
-             justify-content: center !important;
-             display: flex !important;
-             flex-direction: row !important; /* Keep them horizontal */
-             flex-wrap: wrap !important;
-             gap: 16px !important;
+             order: 1 !important; 
+             width: 130px !important; 
+             height: 310px !important;
+             margin: 0 !important;
            }
 
-           .mobile-avatars-list > div {
-             width: 60px !important;
-             height: 60px !important;
+           .mobile-avatar-item { width: 55px !important; height: 55px !important; position: absolute !important; }
+           .slot-0 { left: 0; top: 0; }
+           .slot-1 { left: 0; top: 85px; }
+           .slot-2 { left: 0; top: 170px; }
+           .slot-4 { left: 0; top: 255px; }
+           .slot-3 { left: 75px; top: 127px; }
+
+           .mobile-testimonial-card {
+             width: 235px !important;
+             order: 2 !important;
+             margin: 0 !important;
+             padding: 14px !important;
+             min-height: 270px !important;
            }
            
-           /* Ensure card is below */
-           .mobile-testimonial-card {
-             order: 2 !important;
+           .mobile-testimonial-card p { font-size: 15px !important; line-height: 1.4 !important; }
+
+           .mobile-connection-line {
+             display: block;
+             position: absolute;
+             left: 145px;
+             width: 35px;
+             height: 1.5px;
+             background-color: #FF6E00;
+             top: 50%;
+             transform: translateY(-50%);
+             z-index: 10;
            }
         }
 
@@ -483,30 +517,39 @@ export const TestimonialSection = () => {
             padding-right: 40px !important;
             align-items: center !important;
           }
+
+          .mobile-connection-line {
+            display: block;
+            position: absolute;
+            left: 195px;
+            width: 100px;
+            height: 1.5px;
+            background-color: #FF6E00;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+          }
           
           .mobile-testimonial-card {
             margin: 0 !important;
-            width: 420px !important; /* Slightly narrower for portrait */
+            width: 420px !important;
             max-width: 500px !important;
             order: 2 !important;
           }
 
           .mobile-avatars-list {
             order: 1 !important; 
-            display: flex !important;
-            flex-direction: column !important;
-            flex-wrap: wrap !important;
-            height: 300px !important; /* Increased height for iPad Mini 5-item layout */
-            justify-content: center !important;
             width: 160px !important; 
-            gap: 20px !important;
-            margin-top: 0 !important;
+            height: 380px !important;
+            margin: 0 !important;
           }
 
-          .mobile-avatars-list > div {
-             width: 65px !important;
-             height: 65px !important;
-          }
+          .mobile-avatar-item { width: 65px !important; height: 65px !important; position: absolute !important; }
+          .slot-0 { left: 0; top: 10px; }
+          .slot-1 { left: 0; top: 105px; }
+          .slot-2 { left: 0; top: 205px; }
+          .slot-4 { left: 0; top: 305px; }
+          .slot-3 { left: 95px; top: 157px; } 
         }
       `}</style>
     </section>

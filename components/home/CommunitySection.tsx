@@ -99,11 +99,14 @@ export const CommunitySection = () => {
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {GALLERY_IMAGES.map((image) => (
-            <GalleryCard key={image.id} url={image.url} alt={image.alt} />
+            <GalleryCard
+              key={image.id}
+              url={image.url}
+              alt={image.alt}
+            />
           ))}
         </div>
       </div>
     </section>
   );
 };
-

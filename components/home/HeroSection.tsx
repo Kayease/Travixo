@@ -11,7 +11,7 @@ const PENDULUM_AMPLITUDE = 18; // degrees
 const PENDULUM_PERIOD = 1.4; // seconds per full cycle
 const PENDULUM_DAMPING = 0.9; // decay rate (higher = stops sooner)
 const PENDULUM_OMEGA = (2 * Math.PI) / PENDULUM_PERIOD;
-const PENDULUM_MAX_TIME = 7; // stop animation after 7s
+const PENDULUM_MAX_TIME = 5; // stop animation after 5s
 const PENDULUM_REST_THRESHOLD = 0.25; // degrees below which we consider "at rest"
 
 /** Homepage hero with search, date picker, and floating image gallery. */
@@ -23,12 +23,23 @@ export const HeroSection = () => {
   const pendulumRef = useRef<HTMLDivElement>(null);
   const swingRAF = useRef<number | null>(null);
   const swingStartTime = useRef<number>(0);
+  const mouseIdleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isMouseControlling = useRef(false); // true only while mouse is actively moving
+  const lastPendulumMouseX = useRef(0); // track last mouse X for delta calculation
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState<string | DateRange>("");
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const dateIconRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const { showToast } = useToast();
+
+  // ─── Image Strip / Ribbon cursor-follow state ───
+  const stripOffset = useRef(0); // current translateX in px
+  const [stripTranslate, setStripTranslate] = useState(0);
+  const lastMouseX = useRef(0);
+  const isHoveringStrip = useRef(false);
+  const autoScrollRAF = useRef<number | null>(null);
+  const stripInnerRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = () => {
     if (!destination.trim()) {
@@ -63,38 +74,16 @@ export const HeroSection = () => {
     setIsSwinging(false);
   }, []);
 
-  /**
-   * Handle mouse movement over pendulum area (follow cursor while hovering)
-   */
-  const handlePendulumMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Ignore mouse events for 500ms after a touch to prevent swing interruption on mobile
-    if (performance.now() - lastTouchTime.current < 500) return;
-    if (!pendulumRef.current) return;
+  /** Start a damped swing from a given angle */
+  const startSwingFrom = useCallback((startAngle: number) => {
     cancelSwing();
-
-    const rect = pendulumRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const mouseX = e.clientX;
-    const distance = mouseX - centerX;
-    const maxDistance = 150;
-    const rotation = Math.max(-15, Math.min(15, (distance / maxDistance) * 15));
-    pendulumRotationRef.current = rotation;
-    setPendulumRotation(rotation);
-  };
-
-  /**
-   * On mouse leave: start damped pendulum swing from wherever the cursor was (no glitch).
-   * Uses current rotation as initial amplitude so swing starts from the side you hovered.
-   */
-  const handlePendulumMouseLeave = useCallback(() => {
-    cancelSwing();
-    let startAngle = pendulumRotationRef.current;
-    if (Math.abs(startAngle) < 1) startAngle = PENDULUM_AMPLITUDE; // gentle swing if cursor didn't move
+    if (Math.abs(startAngle) < 1) startAngle = PENDULUM_AMPLITUDE;
+    isMouseControlling.current = false;
     setIsSwinging(true);
     swingStartTime.current = performance.now();
 
     const step = (now: number) => {
-      const t = (now - swingStartTime.current) / 1000; // seconds
+      const t = (now - swingStartTime.current) / 1000;
       if (t > PENDULUM_MAX_TIME) {
         setPendulumRotation(0);
         pendulumRotationRef.current = 0;
@@ -120,15 +109,157 @@ export const HeroSection = () => {
     swingRAF.current = requestAnimationFrame(step);
   }, [cancelSwing]);
 
-  /** On mouse enter: stop swing so hover can control again */
-  const handlePendulumMouseEnter = () => {
+  /**
+   * Handle mouse movement over pendulum area.
+   * Tracks cursor DIRECTION (dx) so moving left pushes pendulum left, etc.
+   * After 300ms of no movement the swing resumes automatically.
+   */
+  const handlePendulumMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Ignore mouse events for 500ms after a touch to prevent swing interruption on mobile
     if (performance.now() - lastTouchTime.current < 500) return;
-    cancelSwing();
+    if (!pendulumRef.current) return;
+
+    const dx = e.clientX - lastPendulumMouseX.current;
+    lastPendulumMouseX.current = e.clientX;
+
+    // Pause the physics swing while mouse is actively moving
+    if (!isMouseControlling.current) {
+      cancelSwing();
+      isMouseControlling.current = true;
+    }
+
+    // Accumulate rotation from movement direction — sensitivity multiplier
+    const sensitivity = 0.15;
+    const newRotation = Math.max(
+      -PENDULUM_AMPLITUDE,
+      Math.min(PENDULUM_AMPLITUDE, pendulumRotationRef.current + dx * sensitivity)
+    );
+    pendulumRotationRef.current = newRotation;
+    setPendulumRotation(newRotation);
+
+    // Reset idle timer — resume swing after 300ms of no movement
+    if (mouseIdleTimer.current) clearTimeout(mouseIdleTimer.current);
+    mouseIdleTimer.current = setTimeout(() => {
+      startSwingFrom(pendulumRotationRef.current);
+    }, 300);
   };
 
+  /**
+   * On mouse leave: clear idle timer and start damped swing from current angle.
+   */
+  const handlePendulumMouseLeave = useCallback(() => {
+    if (mouseIdleTimer.current) {
+      clearTimeout(mouseIdleTimer.current);
+      mouseIdleTimer.current = null;
+    }
+    startSwingFrom(pendulumRotationRef.current);
+  }, [startSwingFrom]);
+
+  /** On mouse enter: record initial X so the first dx is correct. Don't cancel the existing swing. */
+  const handlePendulumMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (performance.now() - lastTouchTime.current < 500) return;
+    lastPendulumMouseX.current = e.clientX;
+    // Don't cancel swing here; handlePendulumMouseMove will take over only when cursor moves
+  };
+
+  /** Auto-swing pendulum on page load / reload for 5 seconds */
   useEffect(() => {
-    return () => cancelSwing();
-  }, [cancelSwing]);
+    // Small delay so the component has painted before starting
+    const timeout = setTimeout(() => {
+      setIsSwinging(true);
+      swingStartTime.current = performance.now();
+      const startAngle = PENDULUM_AMPLITUDE;
+
+      const step = (now: number) => {
+        const t = (now - swingStartTime.current) / 1000;
+        if (t > PENDULUM_MAX_TIME) {
+          setPendulumRotation(0);
+          pendulumRotationRef.current = 0;
+          setIsSwinging(false);
+          swingRAF.current = null;
+          return;
+        }
+        const angle =
+          startAngle *
+          Math.exp(-PENDULUM_DAMPING * t) *
+          Math.cos(PENDULUM_OMEGA * t);
+        pendulumRotationRef.current = angle;
+        setPendulumRotation(angle);
+        if (t > 3 && Math.abs(angle) < PENDULUM_REST_THRESHOLD) {
+          setPendulumRotation(0);
+          pendulumRotationRef.current = 0;
+          setIsSwinging(false);
+          swingRAF.current = null;
+          return;
+        }
+        swingRAF.current = requestAnimationFrame(step);
+      };
+      swingRAF.current = requestAnimationFrame(step);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+      cancelSwing();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ─── Auto-scroll for the image strip (runs when NOT hovering) ───
+  useEffect(() => {
+    let lastTime = performance.now();
+    const AUTO_SPEED = 50; // px per second
+
+    const tick = (now: number) => {
+      if (!isHoveringStrip.current) {
+        const dt = (now - lastTime) / 1000;
+        stripOffset.current -= AUTO_SPEED * dt;
+
+        // Reset offset to prevent value growing infinitely
+        // Each image set is ~(272+16)*N wide; with 3 copies, wrap at 1/3
+        if (stripInnerRef.current) {
+          const totalW = stripInnerRef.current.scrollWidth;
+          const oneThird = totalW / 3;
+          if (Math.abs(stripOffset.current) >= oneThird) {
+            stripOffset.current += oneThird;
+          }
+        }
+        setStripTranslate(stripOffset.current);
+      }
+      lastTime = now;
+      autoScrollRAF.current = requestAnimationFrame(tick);
+    };
+    autoScrollRAF.current = requestAnimationFrame(tick);
+
+    return () => {
+      if (autoScrollRAF.current != null) cancelAnimationFrame(autoScrollRAF.current);
+    };
+  }, []);
+
+  /** Strip mouse handlers — follow cursor direction freely */
+  const handleStripMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isHoveringStrip.current) return;
+    const dx = e.clientX - lastMouseX.current;
+    lastMouseX.current = e.clientX;
+    stripOffset.current += dx * 1.8; // multiplier for responsiveness
+
+    // Wrap logic
+    if (stripInnerRef.current) {
+      const totalW = stripInnerRef.current.scrollWidth;
+      const oneThird = totalW / 3;
+      if (stripOffset.current > 0) stripOffset.current -= oneThird;
+      if (stripOffset.current < -oneThird) stripOffset.current += oneThird;
+    }
+    setStripTranslate(stripOffset.current);
+  }, []);
+
+  const handleStripMouseEnter = useCallback((e: React.MouseEvent) => {
+    isHoveringStrip.current = true;
+    lastMouseX.current = e.clientX;
+  }, []);
+
+  const handleStripMouseLeave = useCallback(() => {
+    isHoveringStrip.current = false;
+  }, []);
 
   return (
     <section
@@ -242,8 +373,15 @@ export const HeroSection = () => {
             transform: "translateX(-50%) rotate(-8.6deg)",
             transformOrigin: "center center",
           }}
+          onMouseEnter={handleStripMouseEnter}
+          onMouseMove={handleStripMouseMove}
+          onMouseLeave={handleStripMouseLeave}
         >
-          <div className="hero-strip-inner flex items-center gap-4 animate-scroll-infinite">
+          <div
+            ref={stripInnerRef}
+            className="hero-strip-inner flex items-center gap-4"
+            style={{ transform: `translateX(${stripTranslate}px)`, willChange: "transform" }}
+          >
             {/* Render images multiple times for infinite scroll effect */}
             {[...HERO_IMAGES, ...HERO_IMAGES, ...HERO_IMAGES].map(
               (image, index) => (
@@ -414,17 +552,7 @@ export const HeroSection = () => {
 
       {/* ========== CSS Animations & Landscape Phone Overrides ========== */}
       <style jsx>{`
-        @keyframes scroll-infinite {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-33.33%);
-          }
-        }
-        .animate-scroll-infinite {
-          animation: scroll-infinite 12s linear infinite;
-        }
+        /* Strip animation is now JS-driven (cursor-follow + auto-scroll) */
 
         /* Landscape phone: orientation landscape AND short viewport */
         @media (orientation: landscape) and (max-height: 500px) {

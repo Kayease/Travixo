@@ -47,16 +47,20 @@ const ExperienceCard = ({
   image: string;
   offset: boolean;
 }) => (
-  <div className={`flex flex-col items-center ${offset ? "lg:mt-8" : ""}`}>
-    {/* Image Container */}
-    <div className="relative w-[320px] md:w-[380px] lg:w-[300px] xl:w-[405px] h-[400px] md:h-[450px] lg:h-[400px] xl:h-[500px] rounded-xl overflow-hidden shadow-lg">
-      <Image
-        src={image}
-        alt={title}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 320px, (max-width: 1024px) 380px, (max-width: 1280px) 300px, 405px"
-      />
+  <div className={`flex flex-col items-center ${offset ? "lg:mt-8" : ""} group/card`}>
+    {/* Image Container with orange glow on hover */}
+    <div className="relative w-[320px] md:w-[380px] lg:w-[300px] xl:w-[405px] h-[400px] md:h-[450px] lg:h-[400px] xl:h-[500px]">
+      <div
+        className="relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-shadow duration-500 lg:group-hover/card:[box-shadow:0_0_25px_8px_rgba(255,140,40,0.2),0_0_60px_15px_rgba(255,140,40,0.08)]"
+      >
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 320px, (max-width: 1024px) 380px, (max-width: 1280px) 300px, 405px"
+        />
+      </div>
     </div>
 
     {/* Content */}
