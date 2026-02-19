@@ -344,13 +344,13 @@ const CompareTableSection: React.FC = () => {
               >
                 <button
                   onClick={() => handleBookNow(tour)}
-                  className="w-full max-w-[233px] block group/btn relative h-[40px] md:h-[45px] bg-white border border-[#FF6E00] text-[#4B3621] font-display text-[14px] md:text-[20px] leading-[20px] md:leading-[27px] italic font-medium rounded-xl transition-all duration-300 cursor-pointer overflow-hidden"
+                  className="w-full max-w-[233px] block group/btn relative h-[40px] md:h-[45px] bg-[#FF6E00] border border-[#FF6E00] text-white font-display text-[14px] md:text-[20px] leading-[20px] md:leading-[27px] italic font-medium rounded-xl transition-all duration-300 cursor-pointer overflow-hidden"
                 >
-                  <span className="relative z-10 flex items-center justify-center h-full group-hover/btn:text-white transition-colors duration-300">
+                  <span className="relative z-10 flex items-center justify-center h-full group-hover/btn:text-[#FF6E00] transition-colors duration-300">
                     Book Now
                   </span>
                   {/* Bottom-to-top fill animation */}
-                  <span className="absolute bottom-0 left-0 w-full h-0 bg-[#FF6E00] transition-all duration-500 ease-out group-hover/btn:h-full"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-0 bg-white transition-all duration-500 ease-out group-hover/btn:h-full"></span>
                 </button>
               </div>
             ))}

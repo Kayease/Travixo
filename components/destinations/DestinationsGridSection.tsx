@@ -104,7 +104,7 @@ export const DestinationsGridSection: React.FC<
                     key={destination.id}
                     className={`flex justify-center ${isLast && isOddTotal ? "md:col-span-2 lg:col-span-1" : ""}`}
                   >
-                    <div className="w-full max-w-[418px]">
+                    <div className={`w-full max-w-[418px] ${isLast && isOddTotal ? "md:w-[calc(50%-12px)] lg:w-full" : ""}`}>
                       <DestinationCard
                         id={destination.id}
                         name={destination.name}

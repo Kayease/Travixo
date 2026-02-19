@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 /**
  * Interface for room card data
@@ -20,75 +21,11 @@ interface RoomData {
  * RoomCard Component
  * Displays a room type with image and hover overlay showing details
  */
-import { useCart, CartItem } from "@/app/context/CartContext";
-
-// ... existing RoomData interface ...
-
-import { useRouter } from "next/navigation";
-
-const CartIcon = ({ className = "" }: { className?: string }) => (
-  <div
-    className={`w-full h-full ${className}`}
-    style={{
-      maskImage: 'url("/images/navbar/mdi_cart-outline.png")',
-      maskSize: "contain",
-      maskRepeat: "no-repeat",
-      maskPosition: "center",
-      WebkitMaskImage: 'url("/images/navbar/mdi_cart-outline.png")',
-      WebkitMaskSize: "contain",
-      WebkitMaskRepeat: "no-repeat",
-      WebkitMaskPosition: "center",
-    }}
-  />
-);
-
-/**
- * RoomCard Component
- * Displays a room type with image and hover overlay showing details
- */
 const RoomCard: React.FC<{ room: RoomData; className?: string }> = ({ room, className }) => {
   const router = useRouter();
-  const { addToCart, isInCart, cartItems, removeFromCart } = useCart();
 
-  const handleCartAction = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (!isInCart(room.name)) {
-      addToCart({
-        id: `${room.id}-${Date.now()}`,
-        type: "room",
-        title: room.name,
-        image: room.image,
-        location: "Luxurious Hotel",
-        dates: new Date().toISOString().split("T")[0],
-        amenities: [room.size, room.occupancy, room.bed],
-        price: 150,
-        actionLabel: "Customize",
-      });
-    } else {
-      const itemToRemove = cartItems.find((item) => item.title === room.name);
-      if (itemToRemove) {
-        removeFromCart(itemToRemove.id);
-      }
-    }
-  };
-
-  const handleBookNow = () => {
-    // Add room to cart
-    addToCart({
-      id: `${room.id}-${Date.now()}`,
-      type: "room",
-      title: room.name,
-      image: room.image,
-      location: "Luxurious Hotel",
-      dates: new Date().toISOString().split("T")[0],
-      amenities: [room.size, room.occupancy, room.bed],
-      price: 150,
-      actionLabel: "Customize",
-    });
-
-    router.push("/cart");
+  const handleViewDetail = () => {
+    router.push("/room-detail");
   };
 
   return (
@@ -101,23 +38,6 @@ const RoomCard: React.FC<{ room: RoomData; className?: string }> = ({ room, clas
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-transform duration-500 xl:group-hover:scale-105"
       />
-
-      {/* Cart Icon in top right - matches TourCard behavior */}
-      <div className="absolute top-4 right-4 z-30 transition-all duration-500 xl:translate-x-12 xl:opacity-0 xl:group-hover:translate-x-0 xl:group-hover:opacity-100">
-        <button
-          onClick={handleCartAction}
-          className="group/icon w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[#4B3621] hover:bg-[#FF6E00] hover:text-white transition-colors cursor-pointer shadow-md"
-        >
-          <div className="scale-[0.8] w-6 h-6">
-            <CartIcon
-              className={isInCart(room.name)
-                ? "bg-white"
-                : "bg-[#4B3621] group-hover/icon:bg-white transition-colors duration-300"
-              }
-            />
-          </div>
-        </button>
-      </div>
 
       {/* Gradient to hide baked-in text on images */}
       <div className="absolute inset-x-0 bottom-0 h-[100px] bg-linear-to-t from-[#1a1a1a] to-transparent z-5" />
@@ -145,16 +65,16 @@ const RoomCard: React.FC<{ room: RoomData; className?: string }> = ({ room, clas
           </p>
         </div>
 
-        {/* Book Now Button with bottom-to-top fill animation */}
+        {/* View Detail Button with bottom-to-top fill animation */}
         <button
-          onClick={handleBookNow}
-          className="flex items-center justify-center relative w-[160px] md:w-[200px] h-[40px] md:h-[50px] bg-white rounded-lg font-display italic text-[14px] md:text-[18px] text-[#4B3621] transition-all duration-200 opacity-100 xl:opacity-0 xl:group-hover:opacity-100 xl:delay-200 overflow-hidden group/btn cursor-pointer"
+          onClick={handleViewDetail}
+          className="flex items-center justify-center relative w-[160px] md:w-[200px] h-[40px] md:h-[50px] bg-white border border-[#FF6E00] rounded-lg font-display italic text-[14px] md:text-[18px] text-[#FF6E00] transition-all duration-200 opacity-100 xl:opacity-0 xl:group-hover:opacity-100 xl:delay-200 overflow-hidden group/btn cursor-pointer"
         >
           {/* Fill animation from bottom to top */}
           <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover/btn:h-full transition-all duration-300 ease-out" />
           {/* Button text */}
           <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">
-            Book Now
+            View Detail
           </span>
         </button>
       </div>

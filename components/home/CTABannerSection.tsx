@@ -71,7 +71,7 @@ export const CTABannerSection = ({
               borderRadius: "12px",
             }}
           >
-            <div className="flex flex-col lg:flex-row items-center md:items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[320px]">
+            <div className="cta-card-content flex flex-col lg:flex-row items-center md:items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[320px]">
               {/* Content */}
               <div className="flex-1 text-center md:text-left">
                 {/* Title */}
@@ -111,6 +111,40 @@ export const CTABannerSection = ({
           }
           section {
             padding-bottom: 120px !important;
+          }
+        }
+
+        /* iPhone 14 Pro Max Landscape (932x430) */
+        @media screen and (max-width: 932px) and (max-height: 440px) and (orientation: landscape) {
+          section {
+            padding-top: 80px !important;
+          }
+          .cta-person-image {
+            display: block !important;
+            position: absolute !important;
+            left: 20px !important;
+            top: auto !important;
+            bottom: 0 !important;
+            width: 180px !important;
+            height: 260px !important;
+            z-index: 10 !important;
+          }
+          .cta-card-content {
+            padding-left: 210px !important;
+            padding-right: 16px !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+          }
+          .cta-card-content h2 {
+            font-size: 20px !important;
+            line-height: 26px !important;
+            text-align: left !important;
+          }
+          .cta-card-content p {
+            font-size: 14px !important;
+            line-height: 20px !important;
+            text-align: left !important;
           }
         }
       `}</style>

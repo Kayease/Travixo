@@ -5,14 +5,14 @@ export const AdventureSection = () => {
     <section className="w-full h-[440px] md:h-[476px] relative overflow-hidden flex justify-center bg-gray-900">
       {/* Background Video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-80 object-[75%_center] md:object-center"
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-80 object-[75%_center] md:object-[center_35%]"
         autoPlay
         loop
         muted
         playsInline
       >
         <source
-          src="/images/paris/paris-adventure.mp4"
+          src="/images/paris/149980-797471122_medium.mp4"
           type="video/mp4"
         />
       </video>

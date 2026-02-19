@@ -443,6 +443,9 @@ export const HeroSection = () => {
             font-size: 22px;
             line-height: 1.25;
           }
+          .hero-heading br {
+            display: none;
+          }
           .hero-description {
             display: none;
           }
@@ -459,12 +462,12 @@ export const HeroSection = () => {
             gap: 8px;
           }
           .hero-search-wrapper {
-            bottom: 6px;
+            bottom: 35px;
             width: 85%;
           }
           .hero-search-bar {
             flex-direction: row;
-            height: 42px;
+            height: 70px;
             padding: 0;
           }
           .hero-search-field {
@@ -504,6 +507,19 @@ export const HeroSection = () => {
         @media (max-width: 767px) and (orientation: portrait) {
           .hero-content {
             padding-top: 75px !important;
+          }
+        }
+        /* Specific override for large landscape phones (iPhone 14 Pro Max) */
+        @media (orientation: landscape) and (max-height: 500px) and (min-width: 900px) {
+          .hero-heading {
+            font-size: 37px !important;
+          }
+          .hero-content {
+            padding-right: 10% !important;
+            max-width: 100% !important;
+          }
+          .hero-cta {
+            margin-top: 20px !important;
           }
         }
       `}</style>

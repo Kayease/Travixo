@@ -773,10 +773,9 @@ export const Navbar = () => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 bg-black/40 z-990 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          className={`fixed inset-0 bg-black/40 z-990 backdrop-blur-sm lg:hidden transition-opacity duration-300 touch-none ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           onClick={() => setIsMobileMenuOpen(false)}
-          onTouchMove={(e) => isMobileMenuOpen && e.preventDefault()}
         />
 
         {/* Mobile Menu Content Drawer */}

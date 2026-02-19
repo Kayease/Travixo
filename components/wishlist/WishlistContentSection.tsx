@@ -228,10 +228,10 @@ const WishlistContentSection: React.FC<WishlistContentSectionProps> = () => {
               <div className="flex justify-center">
                 <button
                   onClick={() => setVisibleCount(sortedItems.length)}
-                  className="relative w-full max-w-[200px] h-[45px] bg-white border border-brand-orange rounded-xl overflow-hidden group cursor-pointer shadow-[0px_8px_24px_rgba(255,110,0,0.15)]"
+                  className="relative w-full max-w-[200px] h-[45px] bg-brand-orange border border-brand-orange rounded-xl overflow-hidden group cursor-pointer shadow-[0px_8px_24px_rgba(255,110,0,0.15)]"
                 >
-                  <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full transition-all duration-300 ease-out" />
-                  <span className="relative z-10 font-display italic font-medium text-lg md:text-xl leading-[27px] text-brand-orange group-hover:text-white transition-colors duration-300">
+                  <span className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-300 ease-out" />
+                  <span className="relative z-10 font-display italic font-medium text-lg md:text-xl leading-[27px] text-white group-hover:text-brand-orange transition-colors duration-300">
                     Load More
                   </span>
                 </button>
