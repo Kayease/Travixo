@@ -101,6 +101,26 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
     }
   };
 
+  const handleBookNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!isInCartState) {
+      addToCart({
+        id: `${room.id}-${Date.now()}`,
+        type: "room",
+        title: room.name,
+        image: room.image,
+        location: "Luxury Resort",
+        dates: new Date().toISOString().split("T")[0],
+        amenities: ["Free Wifi", "Breakfast Included"],
+        price: parseInt(room.price.replace(/[^0-9]/g, "")) || 0,
+        actionLabel: "Customize",
+      });
+    }
+    router.push("/cart");
+  };
+
   return (
     <div className="bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group relative">
       {/* Room Image */}
@@ -183,7 +203,7 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
 
         {/* Check Availability Link */}
         <button
-          onClick={handleCartAction}
+          onClick={handleBookNow}
           className="inline-flex items-center gap-2 text-base md:text-xl font-normal text-[#4B3621] hover:text-[#FF6E00] transition-colors duration-300 group/link"
         >
           <span className="transition-colors duration-300">Book Now</span>

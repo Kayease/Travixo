@@ -103,6 +103,26 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
     }
   };
 
+  const handleBookNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!isInCartState) {
+      addToCart({
+        id: `${room.id}-${Date.now()}`,
+        type: "room",
+        title: room.name,
+        image: room.image,
+        location: "Luxury Resort",
+        dates: new Date().toISOString().split("T")[0],
+        amenities: ["Free Wifi", "Breakfast Included"],
+        price: parseInt(room.price.replace(/[^0-9]/g, "")) || 0,
+        actionLabel: "Customize",
+      });
+    }
+    router.push("/cart");
+  };
+
   return (
     <div className="bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group relative">
       {/* Room Image */}
@@ -186,7 +206,7 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
 
         {/* Check Availability Link */}
         <button
-          onClick={handleCartAction}
+          onClick={handleBookNow}
           className="inline-flex items-center gap-2 mt-2 md:mt-4 cursor-pointer hover:text-[#FF6E00] text-[#4B3621] transition-colors duration-300 group/availability"
         >
           <span className="font-poppins text-lg transition-colors duration-300">
