@@ -123,7 +123,7 @@ const DestinationCard = ({
 
     {/* Orange hover: hover-bg.png in place of white, in front of image in lower band */}
     <div
-      className="absolute left-0 w-full h-[15px] lg:group-hover:h-[55%] group-focus:h-[55%] group-active:h-[55%] transition-all duration-500 ease-in-out bg-[#FF8930]"
+      className="absolute left-0 w-full h-[15px] lg:group-hover:h-[55%] transition-all duration-500 ease-in-out bg-[#FF8930]"
       style={{
         top: "var(--overlay-top, 316px)",
         zIndex: 0,
@@ -142,7 +142,7 @@ const DestinationCard = ({
 
     {/* TRAVEL TO */}
     <span
-      className="absolute left-1/2 -translate-x-1/2 text-center transition-colors duration-500 ease-in-out lg:group-hover:text-white group-focus:text-white group-active:text-white"
+      className="absolute left-1/2 -translate-x-1/2 text-center transition-colors duration-500 ease-in-out lg:group-hover:text-white"
       style={{
         width: "98px",
         top: "var(--label-top, 537px)",
@@ -159,7 +159,7 @@ const DestinationCard = ({
 
     {/* Destination name */}
     <h3
-      className="absolute left-1/2 -translate-x-1/2 text-center font-display italic transition-colors duration-500 ease-in-out lg:group-hover:text-white group-focus:text-white group-active:text-white"
+      className="absolute left-1/2 -translate-x-1/2 text-center font-display italic transition-colors duration-500 ease-in-out lg:group-hover:text-white"
       style={{
         top: "var(--name-top, 577px)",
         fontWeight: 500,

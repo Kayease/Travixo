@@ -26,6 +26,8 @@ export const HeroSection = () => {
   const mouseIdleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMouseControlling = useRef(false); // true only while mouse is actively moving
   const lastPendulumMouseX = useRef(0); // track last mouse X for delta calculation
+  const accumulatedDelta = useRef(0); // accumulated mouse movement before taking over
+  const MOUSE_TAKEOVER_THRESHOLD = 8; // px of cumulative movement before mouse takes over swing
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState<string | DateRange>("");
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
@@ -37,7 +39,6 @@ export const HeroSection = () => {
   const stripOffset = useRef(0); // current translateX in px
   const [stripTranslate, setStripTranslate] = useState(0);
   const lastMouseX = useRef(0);
-  const isHoveringStrip = useRef(false);
   const autoScrollRAF = useRef<number | null>(null);
   const stripInnerRef = useRef<HTMLDivElement>(null);
 
@@ -74,11 +75,22 @@ export const HeroSection = () => {
     setIsSwinging(false);
   }, []);
 
-  /** Start a damped swing from a given angle */
-  const startSwingFrom = useCallback((startAngle: number) => {
+  /** Start a damped swing from a given angle.
+   *  If `force` is false (default) and a swing is already running, skip — let it finish. */
+  const startSwingFrom = useCallback((startAngle: number, force = false) => {
+    // If a swing is already in progress and we're not forcing, let it continue
+    if (!force && swingRAF.current != null) return;
+
     cancelSwing();
-    if (Math.abs(startAngle) < 1) startAngle = PENDULUM_AMPLITUDE;
+    // If pendulum is nearly at rest, just settle to 0 — don't restart a full swing
+    if (Math.abs(startAngle) < 1) {
+      setPendulumRotation(0);
+      pendulumRotationRef.current = 0;
+      setIsSwinging(false);
+      return;
+    }
     isMouseControlling.current = false;
+    accumulatedDelta.current = 0;
     setIsSwinging(true);
     swingStartTime.current = performance.now();
 
@@ -122,8 +134,12 @@ export const HeroSection = () => {
     const dx = e.clientX - lastPendulumMouseX.current;
     lastPendulumMouseX.current = e.clientX;
 
-    // Pause the physics swing while mouse is actively moving
+    // If mouse hasn't taken over yet, accumulate movement and wait for threshold
     if (!isMouseControlling.current) {
+      accumulatedDelta.current += Math.abs(dx);
+      // Don't take over until the user has moved the mouse enough intentionally
+      if (accumulatedDelta.current < MOUSE_TAKEOVER_THRESHOLD) return;
+      // Threshold reached — take over control from any running swing
       cancelSwing();
       isMouseControlling.current = true;
     }
@@ -140,7 +156,9 @@ export const HeroSection = () => {
     // Reset idle timer — resume swing after 300ms of no movement
     if (mouseIdleTimer.current) clearTimeout(mouseIdleTimer.current);
     mouseIdleTimer.current = setTimeout(() => {
-      startSwingFrom(pendulumRotationRef.current);
+      // Resume from current angle so swing doesn't snap back to full amplitude
+      const currentAngle = pendulumRotationRef.current;
+      startSwingFrom(currentAngle, true);
     }, 300);
   };
 
@@ -152,14 +170,27 @@ export const HeroSection = () => {
       clearTimeout(mouseIdleTimer.current);
       mouseIdleTimer.current = null;
     }
-    startSwingFrom(pendulumRotationRef.current);
+    // Only force-start a new swing if the mouse was actually controlling;
+    // otherwise let any existing swing continue undisturbed.
+    if (isMouseControlling.current) {
+      isMouseControlling.current = false;
+      accumulatedDelta.current = 0;
+      // Resume from current angle instead of full amplitude
+      const currentAngle = pendulumRotationRef.current;
+      startSwingFrom(currentAngle, true);
+    }
+    // If mouse never took over (just hovered in/out quickly), do nothing —
+    // the existing swing keeps going.
   }, [startSwingFrom]);
 
-  /** On mouse enter: record initial X so the first dx is correct. Don't cancel the existing swing. */
+  /** On mouse enter: record initial X and reset accumulated delta so fresh threshold check begins.
+   *  Don't cancel any existing swing — mouse only takes over after intentional movement. */
   const handlePendulumMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     if (performance.now() - lastTouchTime.current < 500) return;
     lastPendulumMouseX.current = e.clientX;
-    // Don't cancel swing here; handlePendulumMouseMove will take over only when cursor moves
+    accumulatedDelta.current = 0;
+    isMouseControlling.current = false;
+    // Don't cancel swing here; handlePendulumMouseMove will take over only after threshold
   };
 
   /** Auto-swing pendulum on page load / reload for 5 seconds */
@@ -204,27 +235,25 @@ export const HeroSection = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ─── Auto-scroll for the image strip (runs when NOT hovering) ───
+  // ─── Auto-scroll for the image strip (Purely auto-scrolling) ───
   useEffect(() => {
     let lastTime = performance.now();
     const AUTO_SPEED = 50; // px per second
 
     const tick = (now: number) => {
-      if (!isHoveringStrip.current) {
-        const dt = (now - lastTime) / 1000;
-        stripOffset.current -= AUTO_SPEED * dt;
+      const dt = (now - lastTime) / 1000;
+      stripOffset.current -= AUTO_SPEED * dt;
 
-        // Reset offset to prevent value growing infinitely
-        // Each image set is ~(272+16)*N wide; with 3 copies, wrap at 1/3
-        if (stripInnerRef.current) {
-          const totalW = stripInnerRef.current.scrollWidth;
-          const oneThird = totalW / 3;
-          if (Math.abs(stripOffset.current) >= oneThird) {
-            stripOffset.current += oneThird;
-          }
+      // Reset offset to prevent value growing infinitely
+      // Each image set is ~(272+16)*N wide; with 3 copies, wrap at 1/3
+      if (stripInnerRef.current) {
+        const totalW = stripInnerRef.current.scrollWidth;
+        const oneThird = totalW / 3;
+        if (Math.abs(stripOffset.current) >= oneThird) {
+          stripOffset.current += oneThird;
         }
-        setStripTranslate(stripOffset.current);
       }
+      setStripTranslate(stripOffset.current);
       lastTime = now;
       autoScrollRAF.current = requestAnimationFrame(tick);
     };
@@ -235,31 +264,7 @@ export const HeroSection = () => {
     };
   }, []);
 
-  /** Strip mouse handlers — follow cursor direction freely */
-  const handleStripMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!isHoveringStrip.current) return;
-    const dx = e.clientX - lastMouseX.current;
-    lastMouseX.current = e.clientX;
-    stripOffset.current += dx * 1.8; // multiplier for responsiveness
 
-    // Wrap logic
-    if (stripInnerRef.current) {
-      const totalW = stripInnerRef.current.scrollWidth;
-      const oneThird = totalW / 3;
-      if (stripOffset.current > 0) stripOffset.current -= oneThird;
-      if (stripOffset.current < -oneThird) stripOffset.current += oneThird;
-    }
-    setStripTranslate(stripOffset.current);
-  }, []);
-
-  const handleStripMouseEnter = useCallback((e: React.MouseEvent) => {
-    isHoveringStrip.current = true;
-    lastMouseX.current = e.clientX;
-  }, []);
-
-  const handleStripMouseLeave = useCallback(() => {
-    isHoveringStrip.current = false;
-  }, []);
 
   return (
     <section
@@ -373,9 +378,6 @@ export const HeroSection = () => {
             transform: "translateX(-50%) rotate(-8.6deg)",
             transformOrigin: "center center",
           }}
-          onMouseEnter={handleStripMouseEnter}
-          onMouseMove={handleStripMouseMove}
-          onMouseLeave={handleStripMouseLeave}
         >
           <div
             ref={stripInnerRef}
@@ -461,7 +463,7 @@ export const HeroSection = () => {
                 onChange={(e) => setDestination(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="Enter Location"
-                className="hero-search-input font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent !outline-none !focus:outline-none !focus-visible:outline-none !ring-0 !border-none w-full placeholder:text-[#4B3621]/60 text-brand-brown shadow-none"
+                className="hero-search-input font-body font-normal text-[16px] md:text-[18px] leading-[28px] bg-transparent outline-none! focus:outline-none! focus-visible:outline-none! ring-0! border-none! w-full placeholder:text-[#4B3621]/60 text-brand-brown shadow-none"
               />
             </div>
           </div>

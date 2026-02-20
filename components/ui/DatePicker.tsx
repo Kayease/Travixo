@@ -357,8 +357,8 @@ export const DatePicker = ({
         onClick={() => setIsOpen(!isOpen)}
         className={
           variant === "transparent"
-            ? "w-full bg-transparent border-none p-0 flex items-center justify-between text-brand-brown font-normal text-[16px] md:text-[18px] leading-[28px] font-body outline-none focus:outline-none !focus-visible:ring-0 !focus-visible:shadow-none !focus-visible:outline-none focus:shadow-none cursor-pointer"
-            : `w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 flex items-center justify-between gap-3 text-brand-brown font-medium text-lg font-body outline-none focus:outline-none focus:ring-0 focus:border-brand-brown/20 !focus-visible:ring-0 !focus-visible:shadow-none !focus-visible:outline-none focus:shadow-none transition-all duration-200 cursor-pointer`
+            ? "w-full bg-transparent border-none p-0 flex items-center justify-between text-brand-brown font-normal text-[16px] md:text-[18px] leading-[28px] font-body outline-none focus:outline-none focus-visible:ring-0! focus-visible:shadow-none! focus-visible:outline-none! focus:shadow-none cursor-pointer"
+            : `w-full h-[50px] bg-white border border-brand-brown/20 rounded-xl px-4 flex items-center justify-between gap-3 text-brand-brown font-medium text-lg font-body outline-none focus:outline-none focus:ring-0 focus:border-brand-brown/20 focus-visible:ring-0! focus-visible:shadow-none! focus-visible:outline-none! focus:shadow-none transition-all duration-200 cursor-pointer`
         }
       >
         <span className={value ? "text-brand-brown" : "text-brand-brown/60"}>

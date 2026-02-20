@@ -84,8 +84,8 @@ const ActivityIcon = ({
         alt={alt}
         fill
         className={`object-contain ${isActive
-          ? "[filter:invert(45%)_sepia(98%)_saturate(1500%)_hue-rotate(360deg)_brightness(100%)]"
-          : "lg:group-hover:[filter:invert(45%)_sepia(98%)_saturate(1500%)_hue-rotate(360deg)_brightness(100%)]"
+          ? "filter-[invert(45%)_sepia(98%)_saturate(1500%)_hue-rotate(360deg)_brightness(100%)]"
+          : "lg:group-hover:filter-[invert(45%)_sepia(98%)_saturate(1500%)_hue-rotate(360deg)_brightness(100%)]"
           }`}
         sizes="46px"
       />

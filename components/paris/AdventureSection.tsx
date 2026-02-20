@@ -2,7 +2,7 @@ import React from "react";
 
 export const AdventureSection = () => {
   return (
-    <section className="w-full h-[440px] md:h-[476px] relative overflow-hidden flex justify-center bg-gray-900">
+    <section className="w-full h-[440px] md:h-[650px] relative overflow-hidden flex justify-center bg-gray-900">
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover opacity-80 object-[75%_center] md:object-[center_35%]"

@@ -46,10 +46,20 @@ export const CTABannerSection = ({
   return (
     <section className="relative w-full py-10 md:py-6 lg:py-24 xl:py-36 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
-        {/* Container with relative positioning for the image */}
-        <div className="relative ml-0">
-          {/* Traveler Image - Positioned to overlap */}
-          <div className="cta-person-image hidden md:block absolute left-[80px] -top-[10px] lg:-top-[38px] xl:-top-[135px] w-[232px] md:h-[280px] lg:h-[334px] z-10">
+        {/* CTA Card - image is inside, anchored to the bottom */}
+        <div
+          className="cta-card relative w-full max-w-[1280px] mx-auto overflow-visible"
+          style={{
+            minHeight: "200px",
+            backgroundImage: "url('/images/home/cta/bg.png')",
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            borderRadius: "12px",
+          }}
+        >
+          {/* Traveler Image - Anchored to bottom of card */}
+          <div className="cta-person-image hidden md:block absolute left-[80px] bottom-0 w-[232px] md:h-[280px] lg:h-[334px] xl:h-[380px] z-10">
             <Image
               src="/images/home/cta/cta-banner.png"
               alt="Travel expert"
@@ -59,19 +69,9 @@ export const CTABannerSection = ({
             />
           </div>
 
-          {/* CTA Card */}
-          <div
-            className="relative py-10 md:py-8 px-6 md:px-8 lg:px-12 w-full max-w-[1280px] mx-auto"
-            style={{
-              minHeight: "200px",
-              backgroundImage: "url('/images/home/cta/bg.png')",
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              borderRadius: "12px",
-            }}
-          >
-            <div className="cta-card-content flex flex-col lg:flex-row items-center md:items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[320px]">
+          {/* Card Content */}
+          <div className="relative py-10 md:py-8 px-6 md:px-8 lg:px-12">
+            <div className="cta-card-content flex flex-col lg:flex-row items-center md:items-start lg:items-center justify-between gap-6 lg:gap-8 pl-0 md:pl-[280px]">
               {/* Content */}
               <div className="flex-1 text-center md:text-left">
                 {/* Title */}
@@ -104,13 +104,25 @@ export const CTABannerSection = ({
         </div>
       </div>
       <style jsx>{`
+        /* Tablet portrait */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+          .cta-person-image {
+            height: 280px !important;
+            left: 40px !important;
+          }
+          .cta-card-content {
+            padding-left: 240px !important;
+          }
+        }
+
+        /* Tablet landscape */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
           .cta-person-image {
-            top: -50px !important;
-            height: 320px !important;
+            height: 300px !important;
+            left: 40px !important;
           }
-          section {
-            padding-bottom: 120px !important;
+          .cta-card-content {
+            padding-left: 260px !important;
           }
         }
 
@@ -123,7 +135,6 @@ export const CTABannerSection = ({
             display: block !important;
             position: absolute !important;
             left: 20px !important;
-            top: auto !important;
             bottom: 0 !important;
             width: 180px !important;
             height: 260px !important;
