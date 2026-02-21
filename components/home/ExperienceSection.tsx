@@ -47,11 +47,14 @@ const ExperienceCard = ({
   image: string;
   offset: boolean;
 }) => (
-  <div className={`flex flex-col items-center ${offset ? "lg:mt-8" : ""} group/card`}>
+  <div
+    className={`flex flex-col items-center ${offset ? "lg:mt-8" : ""} group/card cursor-pointer`}
+    tabIndex={0}
+  >
     {/* Image Container with orange glow on hover */}
     <div className="relative w-[320px] md:w-[380px] lg:w-[300px] xl:w-[405px] h-[400px] md:h-[450px] lg:h-[400px] xl:h-[500px]">
       <div
-        className="relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-shadow duration-500 lg:group-hover/card:[box-shadow:0_0_25px_8px_rgba(255,140,40,0.2),0_0_60px_15px_rgba(255,140,40,0.08)]"
+        className="relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-shadow duration-500 group-hover/card:[box-shadow:0_0_25px_8px_rgba(255,140,40,0.2),0_0_60px_15px_rgba(255,140,40,0.08)] group-focus/card:[box-shadow:0_0_25px_8px_rgba(255,140,40,0.2),0_0_60px_15px_rgba(255,140,40,0.08)]"
       >
         <Image
           src={image}
@@ -80,8 +83,8 @@ const ExperienceCard = ({
     <Link href="/destinations">
       <button className="mt-6 w-[300px] h-[50px] bg-white border border-brand-orange rounded-[12px] font-display italic text-[18px] leading-[24px] text-brand-orange overflow-hidden transition-all duration-300 relative group cursor-pointer outline-none">
         {/* Fill animation from bottom to top */}
-        <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange lg:group-hover:h-full transition-all duration-300 ease-out" />
-        <span className="relative z-10 lg:group-hover:text-white transition-colors duration-300">
+        <span className="absolute bottom-0 left-0 right-0 h-0 bg-brand-orange group-hover:h-full group-focus:h-full transition-all duration-300 ease-out" />
+        <span className="relative z-10 group-hover:text-white group-focus:text-white transition-colors duration-300">
           Discover More
         </span>
       </button>
@@ -105,6 +108,7 @@ export const ExperienceSection = () => {
           fill
           className="object-cover"
           sizes="100vw"
+          priority
         />
 
         {/* Dark Overlay */}

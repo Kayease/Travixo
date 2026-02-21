@@ -136,7 +136,7 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
         />
 
         {/* Action Buttons - Slide in from right */}
-        <div className="absolute top-3 right-3 z-20 flex flex-col gap-2 transition-all duration-500 ease-out lg:translate-x-12 lg:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100">
+        <div className="absolute top-3 right-3 z-20 flex flex-col gap-2 transition-all duration-500 ease-out xl:translate-x-12 xl:opacity-0 xl:group-hover:translate-x-0 xl:group-hover:opacity-100 focus-within:translate-x-0 focus-within:opacity-100">
           {/* Wishlist Button */}
           <button
             onClick={handleWishlistAction}

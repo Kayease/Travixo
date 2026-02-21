@@ -41,7 +41,7 @@ const TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Italy, Rome",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
   {
     id: 2,
@@ -57,7 +57,7 @@ const TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Italy, Venice",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
   {
     id: 3,
@@ -73,7 +73,7 @@ const TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "France, Paris",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
 ];
 
@@ -108,7 +108,7 @@ export const FeaturedToursSection = () => {
           {TOURS.map((tour) => (
             <div
               key={tour.id}
-              className="flex justify-center md:last:col-span-2 lg:last:col-span-1 lg:last:block"
+              className="flex justify-center md:last:col-span-2 md:last:px-[calc(25%+8px)] lg:last:col-span-1 lg:last:px-0 lg:last:block"
             >
               <TourCard
                 id={tour.id}
@@ -124,7 +124,6 @@ export const FeaturedToursSection = () => {
                 people={tour.people}
                 location={tour.location}
                 slug={tour.slug}
-                priority={true}
               />
             </div>
           ))}

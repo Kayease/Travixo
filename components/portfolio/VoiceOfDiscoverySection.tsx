@@ -66,7 +66,7 @@ const VoiceOfDiscoverySection: React.FC<VoiceOfDiscoverySectionProps> = ({
           {discoveries.map((item, index) => (
             <div
               key={item.id}
-              className={`flex justify-center ${index === 2 ? "md:col-span-2 lg:col-span-1" : ""}`}
+              className={`flex justify-center ${index === 2 ? "md:col-span-2 md:px-[calc(25%+8px)] lg:col-span-1 lg:px-0" : ""}`}
             >
               <div className="w-full max-w-[418px]">
                 <DiscoveryCard item={item} />

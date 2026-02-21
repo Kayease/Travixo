@@ -145,7 +145,7 @@ travixo/
 │   ├── terms/                    # Terms & Conditions
 │   ├── privacy/                  # Privacy Policy
 │   ├── testimonials/             # Testimonials
-│   ├── tour-activates/           # Tour activities
+│   ├── tour-activities/          # Tour activities
 │   ├── tour-types/               # Tour types
 │   └── wishlist/                 # Wishlist page
 │

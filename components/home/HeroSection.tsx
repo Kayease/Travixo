@@ -651,6 +651,9 @@ export const HeroSection = () => {
           .hero-cta {
             margin-top: 20px !important;
           }
+          .hero-search-input {
+            font-size: 18px !important;
+          }
         }
       `}</style>
     </section>

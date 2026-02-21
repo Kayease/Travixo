@@ -206,7 +206,7 @@ const TourCard: React.FC<TourCardProps> = ({
 
   return (
     <div className="relative w-full max-w-[418px] group lg:hover:z-50 focus-within:z-50 pb-[58px] outline-none" tabIndex={0}>
-      <Link href="/products/grand-palace-tour" className="block">
+      <Link href="/products" className="block">
         <div
           className="relative rounded-xl p-4 border border-brand-orange/20 transition-all duration-300 lg:hover:shadow-lg group-focus:shadow-lg group-active:shadow-lg z-10 h-full bg-[#FFFCF5] cursor-pointer"
         >

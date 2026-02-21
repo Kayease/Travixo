@@ -100,10 +100,15 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         <div className="flex flex-col w-full md:w-[190px] lg:max-xl:w-[200px] pt-2 mb-4 md:mb-0">
           {/* Top Destination Header */}
           <div
-            className="bg-[#FF6E00] px-4 py-1.5 rounded-sm mb-1 cursor-pointer"
+            className={`group relative flex px-4 py-1.5 rounded-sm mb-1 cursor-pointer overflow-hidden transition-colors duration-300 ${hoveredCountry === "" ? "text-white" : "text-[#4B3621] hover:text-white"
+              }`}
             onMouseEnter={() => setHoveredCountry("")}
           >
-            <span className="font-display text-lg italic text-white whitespace-nowrap">
+            <span
+              className={`absolute inset-0 bg-[#FF6E00] transition-all duration-500 ease-out z-0 ${hoveredCountry === "" ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+                }`}
+            ></span>
+            <span className="relative z-10 font-display text-lg italic whitespace-nowrap">
               Top Destination
             </span>
           </div>
@@ -196,11 +201,11 @@ interface PageLink {
 
 const pagesColumn1: PageLink[] = [
   { label: "About", href: "/about" },
-  { label: "Product Page", href: "/products/grand-palace-tour" },
+  { label: "Product Page", href: "/products" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Checkout", href: "/checkout" },
   { label: "Wishlist", href: "/wishlist" },
-  { label: "Tour Listings", href: "/products" },
+  { label: "Tour Listings", href: "/tour-listings" },
 ];
 
 const pagesColumn2: PageLink[] = [
@@ -223,7 +228,7 @@ const pagesColumn3: PageLink[] = [
 
 const pagesColumn4: PageLink[] = [
   { label: "News Detail", href: "/news-detail" },
-  { label: "Tour Activities", href: "/tour-activates" },
+  { label: "Tour Activities", href: "/tour-activities" },
   { label: "Tour Types", href: "/tour-types" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Profile Settings", href: "/profile" },

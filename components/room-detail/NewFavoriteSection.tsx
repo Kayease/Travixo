@@ -122,7 +122,12 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
   };
 
   return (
-    <div className="bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group relative">
+    <div
+      onClick={() => {
+        window.location.href = "/room-detail";
+      }}
+      className="bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group relative cursor-pointer"
+    >
       {/* Room Image */}
       <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden">
         <Image
@@ -134,7 +139,7 @@ const FavoriteRoomCard: React.FC<{ room: FavoriteRoom }> = ({ room }) => {
         />
 
         {/* Action Buttons - Slide in from right */}
-        <div className="absolute top-3 right-3 z-20 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+        <div className="absolute top-3 right-3 z-20 flex flex-col gap-2 translate-x-0 opacity-100 xl:translate-x-12 xl:opacity-0 xl:group-hover:translate-x-0 xl:group-hover:opacity-100 transition-all duration-500 ease-out [@media(hover:none)]:translate-x-0 [@media(hover:none)]:opacity-100">
           {/* Wishlist Button */}
           <button
             onClick={handleWishlistAction}

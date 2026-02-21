@@ -163,9 +163,9 @@ const ArrowIcon = ({ className }: { className?: string }) => (
  * Footer links data
  */
 const COMPANY_LINKS = [
-  { label: "Tour Listings", href: "/products" },
+  { label: "Tour Listings", href: "/tour-listings" },
   { label: "Destinations", href: "/destinations" },
-  { label: "Tour Activities", href: "/tour-activates" },
+  { label: "Tour Activities", href: "/tour-activities" },
   { label: "Tour Types", href: "/tour-types" },
   { label: "How It Works", href: "/how-it-works" },
 ];

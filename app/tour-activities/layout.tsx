@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   description:
     "Discover activities included in Travixo tours: wildlife safaris, cultural experiences, and adventure options.",
   alternates: {
-    canonical: `${siteUrl}/tour-activates`,
+    canonical: `${siteUrl}/tour-activities`,
   },
 };
 
-export default function TourActivatesLayout({
+export default function TourActivitiesLayout({
   children,
 }: {
   children: React.ReactNode;

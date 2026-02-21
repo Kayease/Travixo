@@ -55,7 +55,7 @@ const SignatureExpeditionsSection: React.FC<SignatureExpeditionsSectionProps> = 
           {expeditions.map((expedition, index) => (
             <div
               key={expedition.id}
-              className={`flex justify-center ${index === 2 ? "md:col-span-2 lg:col-span-1" : ""}`}
+              className={`flex justify-center ${index === 2 ? "md:col-span-2 md:px-[calc(25%+8px)] lg:col-span-1 lg:px-0" : ""}`}
             >
               <div className="w-full max-w-[418px]">
                 <ExpeditionCard expedition={expedition} />

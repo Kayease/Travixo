@@ -70,7 +70,7 @@ export const PromoPopup: React.FC = () => {
     const handleBookNow = (e: React.MouseEvent) => {
         e.preventDefault();
         handleClose();
-        router.push("/products/grand-palace-tour");
+        router.push("/products");
     };
 
     if (!isOpen) return null;

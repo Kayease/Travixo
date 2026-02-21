@@ -426,7 +426,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
           <span className="text-base md:text-lg text-[#4B3621]">
             {item.type === "room" ? "Rooms Selection" : "Experience"}
           </span>
-          <span className="font-display text-xl md:text-2xl italic font-medium text-[#FF6E00]">
+          <span className="font-display text-xl md:text-2xl italic font-medium text-[#FF6E00] cart-item-price">
             $ {item.price.toLocaleString()}
           </span>
         </div>
@@ -537,6 +537,10 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
             font-size: 0.8rem !important;
           }
           
+          .cart-item-details span.cart-item-price {
+            font-size: 1.25rem !important;
+          }
+          
           .cart-item-details button {
             padding: 0.375rem 0.625rem !important;
             font-size: 0.75rem !important;
@@ -579,6 +583,10 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
           
           .cart-item-details span {
             font-size: 0.75rem !important;
+          }
+          
+          .cart-item-details span.cart-item-price {
+            font-size: 1.15rem !important;
           }
           
           .cart-item-details button {
@@ -677,7 +685,7 @@ const CartItemsSection: React.FC = () => {
 
   return (
     <section className="w-full bg-[#FFFCF5] py-12 md:py-16 cart-items-section">
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-20 cart-container">
+      <div className="w-full max-w-8xl mx-auto px-4 md:px-6 lg:px-20 cart-container">
         {/* Two Column Layout */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 cart-layout">
           {/* Left Column - Cart Items */}

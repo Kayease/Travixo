@@ -489,7 +489,7 @@ export const TestimonialSection = () => {
              order: 2 !important;
              margin: 0 !important;
              padding: 14px !important;
-             min-height: 270px !important;
+             height: 310px !important;
            }
            
            .mobile-testimonial-card p { font-size: 15px !important; line-height: 1.4 !important; }
@@ -497,8 +497,8 @@ export const TestimonialSection = () => {
            .mobile-connection-line {
              display: block;
              position: absolute;
-             left: 145px;
-             width: 35px;
+             left: 155px;
+             width: 17px;
              height: 1.5px;
              background-color: #FF6E00;
              top: 50%;

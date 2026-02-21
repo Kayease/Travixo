@@ -189,17 +189,17 @@ const CompareTableSection: React.FC = () => {
         {/* ============================================
             Header Card - Selected Tours Preview
         ============================================ */}
-        <div className="bg-white border border-[#4B3621]/20 rounded-xl h-auto lg:h-[275px] grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] mb-8 overflow-hidden">
+        <div className="bg-white border border-[#4B3621]/20 rounded-xl h-auto lg:h-[275px] grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] mb-8 overflow-hidden">
           {/* Selected Count Column */}
-          <div className="col-span-3 lg:col-span-1 p-4 md:p-6 lg:p-3 xl:p-8 flex items-start justify-center lg:justify-start">
-            <h3 className="font-display text-[22px] md:text-[28px] xl:text-[28px] italic font-semibold leading-[30px] text-[#4B3621] whitespace-nowrap lg:mt-[107px]">
-              {tours.length} Selected
+          <div className="col-span-1 p-2 md:p-4 lg:p-3 xl:p-8 flex items-center lg:items-start justify-center lg:justify-start">
+            <h3 className="font-display text-[12px] md:text-[18px] lg:text-[22px] xl:text-[28px] italic font-semibold leading-[16px] md:leading-[30px] text-[#4B3621] text-center lg:text-left lg:whitespace-nowrap lg:mt-[107px]">
+              {tours.length} <span className="block lg:inline">Selected</span>
             </h3>
           </div>
 
           {/* Tour Image Columns */}
           {tours.map((tour) => (
-            <div key={tour.id} className="p-2 md:p-4 flex flex-col items-center border-t lg:border-t-0">
+            <div key={tour.id} className="p-2 md:p-4 flex flex-col items-center border-l border-[#4B3621]/10 lg:border-l-0">
               {/* Tour Image - Max width 302px as per Figma design */}
               <div className="relative w-full max-w-[302px] aspect-4/3 lg:h-auto xl:h-[203px] rounded-lg overflow-hidden">
                 <Image
@@ -211,7 +211,7 @@ const CompareTableSection: React.FC = () => {
                 />
               </div>
               {/* Tour Name - Positioned 12px below image */}
-              <span className="mt-2 lg:mt-[12px] font-display text-[14px] md:text-[18px] lg:text-[20px] leading-[20px] md:leading-[30px] italic font-semibold text-[#4B3621] text-center">
+              <span className="mt-2 lg:mt-[12px] font-display text-[11px] md:text-[18px] lg:text-[20px] leading-[14px] md:leading-[30px] italic font-semibold text-[#4B3621] text-center">
                 {tour.name}
               </span>
             </div>
@@ -223,16 +223,16 @@ const CompareTableSection: React.FC = () => {
         ============================================ */}
         <div className="bg-white border border-[#4B3621]/20 rounded-xl overflow-hidden">
           {/* ----- Price Row (60px height) ----- */}
-          <div className="grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
-            <div className="col-span-3 lg:col-span-1 p-2 md:p-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
-              <span className="font-display text-lg md:text-[22px] leading-[28px] italic font-semibold text-[#4B3621]">
+          <div className="grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
+            <div className="col-span-1 p-2 md:px-2 md:py-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
+              <span className="font-display text-[14px] md:text-[16px] lg:text-[22px] leading-[20px] lg:leading-[28px] italic font-semibold text-[#4B3621] text-center lg:text-left px-1 md:px-0">
                 Price
               </span>
             </div>
             {tours.map((tour) => (
               <div
                 key={`price-${tour.id}`}
-                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0"
+                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-l border-[#4B3621]/10 lg:border-l-0"
               >
                 <span className="text-[14px] md:text-[22px] leading-[20px] md:leading-[28px] font-medium text-[#4B3621] text-center">
                   {tour.price} <span className="block lg:inline text-[10px] lg:text-sm uppercase">PP</span>
@@ -242,16 +242,16 @@ const CompareTableSection: React.FC = () => {
           </div>
 
           {/* ----- Duration Row (60px height) ----- */}
-          <div className="grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
-            <div className="col-span-3 lg:col-span-1 p-2 md:p-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
-              <span className="font-display text-lg md:text-[22px] leading-[28px] italic font-semibold text-[#4B3621]">
+          <div className="grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
+            <div className="col-span-1 p-2 md:px-2 md:py-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
+              <span className="font-display text-[14px] md:text-[16px] lg:text-[22px] leading-[20px] lg:leading-[28px] italic font-semibold text-[#4B3621] text-center lg:text-left px-1 md:px-0">
                 Duration
               </span>
             </div>
             {tours.map((tour) => (
               <div
                 key={`duration-${tour.id}`}
-                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0"
+                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-l border-[#4B3621]/10 lg:border-l-0"
               >
                 <span className="text-[12px] md:text-[22px] leading-[18px] md:leading-[28px] font-medium text-[#4B3621] text-center">
                   {tour.duration}
@@ -261,16 +261,16 @@ const CompareTableSection: React.FC = () => {
           </div>
 
           {/* ----- Accommodation Row (60px height) ----- */}
-          <div className="grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
-            <div className="col-span-3 lg:col-span-1 p-2 md:p-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
-              <span className="font-display text-lg md:text-[22px] leading-[28px] italic font-semibold text-[#4B3621]">
+          <div className="grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
+            <div className="col-span-1 p-2 md:px-2 md:py-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
+              <span className="font-display text-[11px] md:text-[16px] lg:text-[22px] leading-[14px] lg:leading-[28px] italic font-semibold text-[#4B3621] text-center lg:text-left px-1 md:px-0">
                 Accommodation
               </span>
             </div>
             {tours.map((tour) => (
               <div
                 key={`accommodation-${tour.id}`}
-                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0 scale-75 lg:scale-100"
+                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-l border-[#4B3621]/10 lg:border-l-0 scale-75 lg:scale-100"
               >
                 <StarRating rating={tour.accommodation} />
               </div>
@@ -278,16 +278,16 @@ const CompareTableSection: React.FC = () => {
           </div>
 
           {/* ----- Included Meals Row (94px height) ----- */}
-          <div className="grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:min-h-[94px] border-b border-[#4B3621]/20 bg-white">
-            <div className="col-span-3 lg:col-span-1 p-2 md:p-6 lg:px-3 xl:px-6 lg:py-8 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
-              <span className="font-display text-lg md:text-[22px] leading-[28px] italic font-semibold text-[#4B3621]">
+          <div className="grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:min-h-[94px] border-b border-[#4B3621]/20 bg-white">
+            <div className="col-span-1 p-2 md:px-2 md:py-6 lg:px-3 xl:px-6 lg:py-8 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
+              <span className="font-display text-[11px] md:text-[16px] lg:text-[22px] leading-[14px] lg:leading-[28px] italic font-semibold text-[#4B3621] text-center lg:text-left px-1 md:px-0">
                 Included Meals
               </span>
             </div>
             {tours.map((tour) => (
               <div
                 key={`meals-${tour.id}`}
-                className="p-2 md:p-6 lg:px-6 lg:py-8 flex items-center justify-center text-center border-t lg:border-t-0"
+                className="p-2 md:p-6 lg:px-6 lg:py-8 flex items-center justify-center text-center border-l border-[#4B3621]/10 lg:border-l-0"
               >
                 <span className="text-[12px] md:text-[22px] leading-[18px] md:leading-[28px] font-medium text-[#4B3621]">
                   {tour.meals}
@@ -297,16 +297,16 @@ const CompareTableSection: React.FC = () => {
           </div>
 
           {/* ----- Key Activities Row (174px height) ----- */}
-          <div className="grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:min-h-[174px] border-b border-[#4B3621]/20 bg-white">
-            <div className="col-span-3 lg:col-span-1 p-2 md:p-6 lg:px-3 xl:px-6 lg:py-8 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
-              <span className="font-display text-lg md:text-[22px] leading-[28px] italic font-semibold text-[#4B3621]">
+          <div className="grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:min-h-[174px] border-b border-[#4B3621]/20 bg-white">
+            <div className="col-span-1 p-2 md:px-2 md:py-6 lg:px-3 xl:px-6 lg:py-8 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
+              <span className="font-display text-[11px] md:text-[16px] lg:text-[22px] leading-[14px] lg:leading-[28px] italic font-semibold text-[#4B3621] text-center lg:text-left px-1 md:px-0">
                 Key Activities
               </span>
             </div>
             {tours.map((tour) => (
               <div
                 key={`activities-${tour.id}`}
-                className="p-2 md:p-6 lg:px-6 lg:py-8 flex flex-col items-center gap-3 border-t lg:border-t-0"
+                className="p-2 md:p-6 lg:px-6 lg:py-8 flex flex-col items-center gap-3 border-l border-[#4B3621]/10 lg:border-l-0"
               >
                 <div className="flex flex-col gap-2 md:gap-3 items-start scale-90 lg:scale-100 origin-center">
                   {tour.activities.map((activity) => (
@@ -318,16 +318,16 @@ const CompareTableSection: React.FC = () => {
           </div>
 
           {/* ----- Difficulty Row (60px height) ----- */}
-          <div className="grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
-            <div className="col-span-3 lg:col-span-1 p-2 md:p-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
-              <span className="font-display text-lg md:text-[22px] leading-[28px] italic font-semibold text-[#4B3621]">
+          <div className="grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[60px] border-b border-[#4B3621]/20 bg-white">
+            <div className="col-span-1 p-2 md:px-2 md:py-6 lg:px-3 xl:px-6 lg:py-4 flex items-center justify-center lg:justify-start bg-gray-50 lg:bg-transparent">
+              <span className="font-display text-[14px] md:text-[16px] lg:text-[22px] leading-[20px] lg:leading-[28px] italic font-semibold text-[#4B3621] text-center lg:text-left px-1 md:px-0">
                 Difficulty
               </span>
             </div>
             {tours.map((tour) => (
               <div
                 key={`difficulty-${tour.id}`}
-                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-t lg:border-t-0"
+                className="p-2 md:p-6 lg:px-6 lg:py-4 flex items-center justify-center border-l border-[#4B3621]/10 lg:border-l-0"
               >
                 <DifficultyBadge difficulty={tour.difficulty} />
               </div>
@@ -335,12 +335,12 @@ const CompareTableSection: React.FC = () => {
           </div>
 
           {/* ----- Book Now Buttons Row (107px height) ----- */}
-          <div className="grid grid-cols-3 lg:grid-cols-[140px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[107px] rounded-b-xl bg-white">
-            <div className="col-span-3 lg:col-span-1 p-4 md:p-6 hidden lg:block xl:w-[200px]"></div>
+          <div className="grid grid-cols-[90px_1fr_1fr_1fr] md:grid-cols-[150px_1fr_1fr_1fr] lg:grid-cols-[150px_1fr_1fr_1fr] xl:grid-cols-[200px_1fr_1fr_1fr] h-auto lg:h-[107px] rounded-b-xl bg-white">
+            <div className="col-span-1 p-4 md:p-6 xl:w-[200px]"></div>
             {tours.map((tour) => (
               <div
                 key={`book-${tour.id}`}
-                className="p-2 md:p-6 flex items-center justify-center border-t lg:border-t-0"
+                className="p-2 md:p-6 flex items-center justify-center border-l border-[#4B3621]/10 lg:border-l-0"
               >
                 <button
                   onClick={() => handleBookNow(tour)}

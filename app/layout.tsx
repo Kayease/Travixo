@@ -62,6 +62,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${playfair.variable} ${poppins.variable} antialiased`}
+        suppressHydrationWarning
       >
 
 

@@ -20,7 +20,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
   {
     id: "paris-2",
@@ -36,7 +36,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
   {
     id: "paris-3",
@@ -52,7 +52,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
   {
     id: "paris-4",
@@ -68,7 +68,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
   {
     id: "paris-5",
@@ -84,7 +84,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
   {
     id: "paris-6",
@@ -100,7 +100,7 @@ const PARIS_TOURS = [
     duration: "4 hours",
     people: "2-18",
     location: "Paris, France",
-    slug: "/products/grand-palace-tour",
+    slug: "/tour-listings/grand-palace-tour",
   },
 ];
 

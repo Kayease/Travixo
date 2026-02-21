@@ -53,7 +53,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
         {tours.map((tour) => (
           <div
             key={tour.id}
-            className="w-full flex justify-center md:last:col-span-2 lg:last:col-span-1"
+            className="w-full flex justify-center md:last:col-span-2 md:last:px-[calc(25%+4px)] lg:last:col-span-1 lg:last:px-0"
           >
             <TourCard
               id={tour.id}
@@ -68,7 +68,7 @@ export const RelatedToursSection: React.FC<RelatedToursSectionProps> = ({
               duration={tour.duration}
               people={tour.groupSize}
               location={tour.location}
-              slug={`/products/${tour.slug || tour.id}`}
+              slug={`/tour-listings/${tour.slug || tour.id}`}
             />
           </div>
         ))}

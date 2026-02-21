@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/paris",
     "/portfolio",
     "/privacy",
-    "/products",
+    "/tour-listings",
     "/room",
     "/room-detail",
     "/signup",
@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/team",
     "/terms",
     "/testimonials",
-    "/tour-activates",
+    "/tour-activities",
     "/tour-types",
   ];
 

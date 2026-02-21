@@ -37,7 +37,7 @@ const DESTINATIONS = [
     id: "south-korea",
     name: "South Korea",
     listings: 3,
-    image: "/images/home/destination/cards/south-korea.png",
+    image: "/images/home/destination/cards/south-korea-v2.png",
   },
 ];
 

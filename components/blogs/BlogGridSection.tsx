@@ -143,16 +143,25 @@ export const BlogGridSection: React.FC<BlogGridSectionProps> = ({
 
         {/* Blog Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-[33px]">
-          {visiblePosts.map((post) => (
-            <BlogCard
+          {visiblePosts.map((post, index) => (
+            <div
               key={post.id}
-              id={post.id}
-              title={post.title}
-              date={post.date}
-              imageUrl={post.imageUrl}
-              imageAlt={post.imageAlt}
-              slug={post.slug}
-            />
+              className={`w-full flex justify-center ${index === visiblePosts.length - 1 && visiblePosts.length % 2 !== 0
+                ? "md:col-span-2 md:px-[calc(25%+8px)] lg:col-span-1 lg:px-0"
+                : ""
+                }`}
+            >
+              <div className="w-full max-w-[418px]">
+                <BlogCard
+                  id={post.id}
+                  title={post.title}
+                  date={post.date}
+                  imageUrl={post.imageUrl}
+                  imageAlt={post.imageAlt}
+                  slug={post.slug}
+                />
+              </div>
+            </div>
           ))}
         </div>
 

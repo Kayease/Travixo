@@ -129,7 +129,7 @@ export default function TourActivitiesPage() {
                         {activity.duration}
                       </span>
                       <Link
-                        href="/products/grand-palace-tour"
+                        href="/products"
                         className="font-body font-medium text-sm text-brand-orange hover:underline"
                       >
                         Learn More

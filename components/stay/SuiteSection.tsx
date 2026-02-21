@@ -25,7 +25,7 @@ const RoomCard: React.FC<{ room: RoomData; className?: string }> = ({ room, clas
   const router = useRouter();
 
   const handleViewDetail = () => {
-    router.push("/room-detail");
+    router.push("/room");
   };
 
   return (

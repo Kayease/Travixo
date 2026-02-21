@@ -1,211 +1,325 @@
+"use client";
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { siteUrl } from "@/app/lib/siteConfig";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { TourDetailHeroSection } from "@/components/tours/TourDetailHeroSection";
+import { TourGallerySection } from "@/components/tours/TourGallerySection";
+import { TourOverviewSection } from "@/components/tours/TourOverviewSection";
+import { TourBookingCard } from "@/components/tours/TourBookingCard";
+import { TourHighlightsSection } from "@/components/tours/TourHighlightsSection";
+import { TourIncludesSection } from "@/components/tours/TourIncludesSection";
+import { TourCancellationSection } from "@/components/tours/TourCancellationSection";
+import { TourFAQSection } from "@/components/tours/TourFAQSection";
+import { TourReviewsSection } from "@/components/tours/TourReviewsSection";
+import { RelatedToursSection } from "@/components/tours/RelatedToursSection";
 
 /**
- * Products listing data
+ * Sample tour data for demonstration
+ * In production, this would come from CMS, API, or database
  */
-const PRODUCTS = [
-  {
-    id: "grand-palace-tour",
-    title: "Grand Palace & Temple Tour",
-    description:
-      "Discover Bangkok's most iconic landmarks with a guided tour of the Grand Palace, Wat Pho, and Wat Arun.",
-    image: "/images/products/cards/gallery-1.png",
-    price: "$45",
-    originalPrice: "$60",
-    rating: 4.8,
-    reviews: 312,
-    location: "Bangkok, Thailand",
-    duration: "4 hours",
-  },
-  {
-    id: "eiffel-tower",
-    title: "Eiffel Tower Experience",
-    description:
-      "Ascend the iconic Eiffel Tower for panoramic views of Paris, with skip-the-line access and a guided history tour.",
-    image: "/images/products/cards/product-1.png",
-    price: "$100",
-    originalPrice: "$120",
-    rating: 4.9,
-    reviews: 311,
-    location: "Paris, France",
-    duration: "4 hours",
-  },
-  {
-    id: "louvre-museum",
-    title: "Louvre Museum Tour",
-    description:
-      "Explore the world's largest art museum with a curated tour of masterpieces including the Mona Lisa and Venus de Milo.",
-    image: "/images/products/cards/product-2.png",
-    price: "$100",
-    originalPrice: "$120",
-    rating: 4.9,
-    reviews: 311,
-    location: "Paris, France",
-    duration: "4 hours",
-  },
-  {
-    id: "centre-pompidou",
-    title: "Centre Pompidou Visit",
-    description:
-      "Discover modern and contemporary art at this architectural marvel, featuring works by Picasso, Kandinsky, and more.",
-    image: "/images/products/cards/product-3.png",
-    price: "$100",
-    originalPrice: "$120",
-    rating: 4.9,
-    reviews: 311,
-    location: "Paris, France",
-    duration: "4 hours",
-  },
-  {
-    id: "venice-gondola",
-    title: "Venice Gondola & Walking Tour",
-    description:
-      "Glide through Venice's iconic canals, visit historic piazzas, and savor authentic Italian cuisine at local trattorias.",
-    image: "/images/travixo-tours/cards/tour-2.png",
-    price: "$85",
-    originalPrice: "$110",
-    rating: 4.7,
-    reviews: 245,
-    location: "Venice, Italy",
-    duration: "3 hours",
-  },
-  {
-    id: "rome-colosseum",
-    title: "Rome Colosseum Experience",
-    description:
-      "Step back in time with a guided tour of the ancient Colosseum, Roman Forum, and Palatine Hill ruins.",
-    image: "/images/travixo-tours/cards/tour-3.png",
-    price: "$75",
-    originalPrice: "$95",
-    rating: 4.8,
-    reviews: 189,
-    location: "Rome, Italy",
-    duration: "5 hours",
-  },
-];
+const SAMPLE_TOUR = {
+  // Hero Section Data
+  title: "Grand Palace, Wat Pho, and Wat Arun Guided Tour",
+  rating: 4.8,
+  reviewCount: 2,
+  city: "Bangkok",
+  country: "Thailand",
 
-// Metadata for SEO
-export const metadata = {
-  title: "Products & Experiences | Travixo - Travel & Tour",
-  description:
-    "Explore our curated collection of tours, activities, and experiences around the world.",
-  alternates: {
-    canonical: `${siteUrl}/products`,
+  // Gallery Images
+  images: [
+    { url: "/images/tour-listings/cards/gallery-1.png", alt: "Eiffel Tower View" },
+    { url: "/images/tour-listings/cards/gallery-2.png", alt: "Louvre Museum" },
+    { url: "/images/tour-listings/cards/gallery-3.png", alt: "Centre Pompidou" },
+    { url: "/images/tour-listings/cards/gallery-4.png", alt: "Parisian Street" },
+  ],
+
+  // Overview Data
+  duration: "4 hours",
+  groupSize: "2-18",
+  tourType: "Daily Tour",
+  languages: ["English", "French", "German", "Italian"],
+  description: `Immerse yourself in Bangkok's rich history and spiritual heritage on this guided tour to some of the city's most famous temples. From the majestic Grand Palace to the stunning Wat Pho and Wat Arun, this guided walking tour takes you on a journey through centuries of Thai art, culture, and religion.
+
+Start your day by visiting the iconic Grand Palace, a symbol of Thailand's royal family and an architectural masterpiece. Wander through its ornate buildings, including the Temple of the Emerald Buddha (Wat Phra Kaew), home to one of the most sacred Buddha images in Thailand. Admire the intricate details of the murals, gold leaf decorations, and the stunning spires that make this palace a must-see destination.
+
+Next, explore Wat Pho, the Temple of the Reclining Buddha, famous for its massive 46-meter-long golden Buddha statue. This temple is also known as the birthplace of traditional Thai massage, and you'll learn about its significance in Thai culture and medicine.`,
+
+  // Price
+  price: 45,
+
+  // Highlights
+  highlights: [
+    "Discover the rich history and spiritual heritage of Bangkok on a guided tour",
+    "Visit the iconic Grand Palace, a symbol of Thailand's royal family",
+    "See the massive 46-meter-long Reclining Buddha at Wat Pho",
+    "Cross the Chao Phraya River to Wat Arun, one of Bangkok's most iconic landmarks",
+  ],
+
+  // Includes/Excludes
+  includes: [
+    "English-speaking guide",
+    "Guided tour",
+    "Boat ride",
+    "Bottled water",
+  ],
+  excludes: ["Entrance fees"],
+
+  // Cancellation Policy
+  cancellationPolicy:
+    "You can cancel up to 24 hours in advance of the experience for a full refund.",
+
+  // FAQs
+  faqs: [
+    {
+      question: "What to bring",
+      answer:
+        "Comfortable walking shoes, sunscreen, hat, and a camera. Dress modestly as you'll be visiting temples - shoulders and knees should be covered.",
+    },
+    {
+      question: "Not allowed",
+      answer:
+        "Shorts, sleeveless shirts, and revealing clothing are not permitted inside the temples. Shoes must be removed before entering temple buildings.",
+    },
+    {
+      question: "Know before you go",
+      answer:
+        "The tour involves a significant amount of walking. The temples can get crowded, especially during peak hours. We recommend booking an early morning tour for a more peaceful experience.",
+    },
+  ],
+
+  // Reviews
+  reviewSummary: {
+    overall: 4.2,
+    totalReviews: 312,
+    categories: [
+      { name: "Guide", rating: 4.2 },
+      { name: "Service", rating: 4.2 },
+      { name: "Transportation", rating: 4.2 },
+      { name: "Organization", rating: 4.2 },
+    ],
   },
+  reviews: [
+    {
+      id: 1,
+      author: "Aarav Vink",
+      date: "October 31, 2025",
+      rating: 4,
+      comment:
+        "I don't know how to improve the tour because it was great professional run funny great day lover som and Grand Canyon, brilliant enough time to do everything not rushed great tour",
+      images: [
+        "/images/tour-listings/cards/gallery-5.png",
+        "/images/tour-listings/cards/gallery-6.png",
+      ],
+    },
+  ],
+
+  // Related Tours
+  relatedTours: [
+    {
+      id: "related-eiffel-tower",
+      title: "Eiffel Tower",
+      description:
+        "Ascend the iconic Eiffel Tower for panoramic views of Paris, with skip-the-line access and a guided history tour.",
+      imageUrl: "/images/tour-listings/cards/product-1.png",
+      price: 100,
+      originalPrice: 120,
+      discount: "27% Off",
+      rating: 4.9,
+      reviewCount: 311,
+      duration: "4 hrs",
+      groupSize: "2-18",
+      location: "Paris, France",
+      slug: "eiffel-tower",
+    },
+    {
+      id: "related-louvre-museum",
+      title: "Louvre Museum",
+      description:
+        "Explore the world's largest art museum with a curated tour of masterpieces including the Mona Lisa and Venus de Milo.",
+      imageUrl: "/images/tour-listings/cards/product-2.png",
+      price: 100,
+      originalPrice: 120,
+      discount: "27% Off",
+      rating: 4.9,
+      reviewCount: 311,
+      duration: "4 hrs",
+      groupSize: "2-18",
+      location: "Paris, France",
+      slug: "louvre-museum",
+    },
+    {
+      id: "related-centre-pompidou",
+      title: "Centre Pompidou",
+      description:
+        "Discover modern and contemporary art at this architectural marvel, featuring works by Picasso, Kandinsky, and more.",
+      imageUrl: "/images/tour-listings/cards/product-3.png",
+      price: 100,
+      originalPrice: 120,
+      discount: "27% Off",
+      rating: 4.9,
+      reviewCount: 311,
+      duration: "4 hrs",
+      groupSize: "2-18",
+      location: "Paris, France",
+      slug: "centre-pompidou",
+    },
+  ],
 };
 
-export default function ProductsPage() {
+/**
+ * TourDetailPage Component
+ *
+ * Individual tour/product detail page showing comprehensive tour information.
+ * Uses dynamic routing with [slug] parameter.
+ *
+ * Page Structure:
+ * 1. Navbar - Site navigation
+ * 2. TourDetailHeroSection - Tour title, rating, and location
+ * 3. Main Content Area with:
+ *    - Left Column: Gallery, Overview, Highlights, Includes, Cancellation, FAQ, Reviews
+ *    - Right Column: Booking Card (sticky)
+ * 4. Related Tours Section
+ * 5. Footer - Site footer
+ *
+ * @returns {JSX.Element} The complete tour detail page
+ */
+const TourDetailPage: React.FC = () => {
+  // In production, fetch tour data based on slug parameter
+  const tour = SAMPLE_TOUR;
+
   return (
-    <>
+    <main className="relative min-h-screen bg-brand-cream">
+      {/* TouristAttraction JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TouristAttraction",
+            name: tour.title,
+            description: tour.description,
+            image: tour.images[0]?.url
+              ? `${siteUrl}${tour.images[0].url}`
+              : undefined,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: tour.city,
+              addressCountry: tour.country,
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: tour.reviewSummary.overall,
+              reviewCount: tour.reviewSummary.totalReviews,
+              bestRating: 5,
+            },
+            offers: {
+              "@type": "Offer",
+              price: tour.price,
+              priceCurrency: "USD",
+              availability: "https://schema.org/InStock",
+            },
+            touristType: tour.tourType,
+          }),
+        }}
+      />
+
+      {/* Site Navigation */}
       <Navbar />
-      <main className="min-h-screen bg-[#FFFCF5]">
-        {/* Hero Section */}
-        <section
-          className="relative w-full py-16 lg:py-[98px] bg-[#FFF7E5]"
-        >
-          <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
-            <div className="text-center">
-              <h1 className="font-display italic font-semibold text-[24px] md:text-[28px] leading-[37px] text-brand-brown mb-6">
-                Products & Experiences
-              </h1>
-              <p className="font-body font-medium text-[16px] md:text-[18px] leading-[30px] text-brand-brown max-w-[780px] mx-auto">
-                Explore our curated collection of tours, activities, and
-                experiences crafted to create unforgettable memories.
-              </p>
+
+      {/* Hero Section - Tour Header */}
+      <TourDetailHeroSection
+        title={tour.title}
+        rating={tour.rating}
+        reviewCount={tour.reviewCount}
+        city={tour.city}
+        country={tour.country}
+      />
+
+      {/* Main Content Section */}
+      <section
+        className="w-full py-8 md:py-12 bg-[#FFFCF5]"
+      >
+        <div className="max-w-[1440px] mx-auto px-5 md:px-10 lg:px-10 xl:px-20">
+          {/* Gallery Section - Full Width */}
+          <div className="mb-12">
+            <TourGallerySection images={tour.images} />
+          </div>
+
+          {/* Two Column Layout: Stacks on iPhone/iPad, Side-by-side on Desktop (1280px+) */}
+          <div className="flex flex-col xl:flex-row gap-8 lg:gap-12">
+            {/* Left Column - Main Content */}
+            <div className="flex-1 min-w-0 space-y-10">
+              {/* Overview Section */}
+              <TourOverviewSection
+                duration={tour.duration}
+                groupSize={tour.groupSize}
+                tourType={tour.tourType}
+                languages={tour.languages}
+                description={tour.description}
+              />
+
+              {/* Mobile/Tablet Booking Card: Shown below description on iPhone and iPad */}
+              <div className="xl:hidden my-10">
+                <TourBookingCard
+                  price={tour.price}
+                  currency="$"
+                  title={tour.title}
+                  image={tour.images[0]?.url || ""}
+                  location={`${tour.city}, ${tour.country}`}
+                  rating={tour.rating}
+                />
+              </div>
+
+              {/* Highlights Section */}
+              <TourHighlightsSection highlights={tour.highlights} />
+
+              {/* Includes/Excludes Section */}
+              <TourIncludesSection
+                includes={tour.includes}
+                excludes={tour.excludes}
+              />
+
+              {/* Cancellation Policy Section */}
+              <TourCancellationSection policy={tour.cancellationPolicy} />
+
+              {/* FAQ Section */}
+              <TourFAQSection faqs={tour.faqs} />
+
+              {/* Reviews Section */}
+              <TourReviewsSection
+                summary={tour.reviewSummary}
+                reviews={tour.reviews}
+              />
+            </div>
+
+            {/* Right Column - Booking Card (Sticky) - Only for Desktop */}
+            <div className="hidden xl:block xl:w-[467px] shrink-0 h-full relative">
+              <div className="xl:sticky xl:top-28 z-10 self-start">
+                <TourBookingCard
+                  price={tour.price}
+                  currency="$"
+                  title={tour.title}
+                  image={tour.images[0]?.url || ""}
+                  location={`${tour.city}, ${tour.country}`}
+                  rating={tour.rating}
+                />
+              </div>
             </div>
           </div>
-        </section>
 
-        {/* Products Grid */}
-        <section className="w-full py-12 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {PRODUCTS.map((product, index) => (
-                <Link
-                  key={product.id}
-                  href={`/products/${product.id}`}
-                  className="group block"
-                >
-                  <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-brand-orange/10 hover:shadow-lg transition-all duration-300">
-                    {/* Image */}
-                    <div className="relative w-full h-[240px] overflow-hidden">
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        priority={index === 0}
-                      />
-                      {/* Price Badge */}
-                      <div className="absolute bottom-0 right-0 bg-white shadow-sm flex items-center justify-center gap-2 px-4 py-2 rounded-tl-2xl">
-                        <span className="font-body font-medium text-lg text-[#FF6E00]">
-                          {product.price}
-                        </span>
-                        <span className="font-body font-medium text-sm text-black/50 line-through">
-                          {product.originalPrice}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-5">
-                      {/* Rating */}
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="flex items-center gap-0.5">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <svg
-                              key={star}
-                              width="14"
-                              height="14"
-                              viewBox="0 0 17 16"
-                              fill={
-                                star <= Math.round(product.rating)
-                                  ? "#FF6E00"
-                                  : "none"
-                              }
-                              stroke="#FF6E00"
-                              strokeWidth="1.5"
-                            >
-                              <path d="M8.5 1L10.5 5.5L15.5 6L11.5 10L12.5 15L8.5 12.5L4.5 15L5.5 10L1.5 6L6.5 5.5L8.5 1Z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <span className="font-body text-sm text-brand-brown">
-                          {product.rating} ({product.reviews})
-                        </span>
-                      </div>
-
-                      <h3 className="font-display italic font-semibold text-lg text-brand-brown mb-2 group-hover:text-brand-orange transition-colors">
-                        {product.title}
-                      </h3>
-                      <p className="font-body font-normal text-sm text-brand-brown/70 mb-4 line-clamp-2">
-                        {product.description}
-                      </p>
-
-                      {/* Meta */}
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <span className="font-body text-xs text-brand-brown/60">
-                          {product.location}
-                        </span>
-                        <span className="font-body text-xs text-brand-brown/60">
-                          {product.duration}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+          {/* Related Tours Section */}
+          <div className="mt-4 md:mt-2">
+            <div className="w-full max-w-[800px] h-px bg-[#4B3621] opacity-20 mb-4 md:mb-0" />
+            <RelatedToursSection tours={tour.relatedTours} />
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* Site Footer */}
       <Footer />
-    </>
+    </main>
   );
-}
+};
+
+export default TourDetailPage;

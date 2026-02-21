@@ -33,11 +33,19 @@ const FavoriteRoomSection: React.FC = () => {
   const router = useRouter();
   const { addToCart, isInCart, cartItems, removeFromCart } = useCart();
 
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isInCartState = mounted && isInCart("Special Room");
+
   const handleCartAction = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!isInCart("Special Room")) {
+    if (!isInCartState) {
       addToCart({
         id: `special-room-${Date.now()}`,
         type: "room",
@@ -60,17 +68,19 @@ const FavoriteRoomSection: React.FC = () => {
   const handleBookNow = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    addToCart({
-      id: `special-room-${Date.now()}`,
-      type: "room",
-      title: "Special Room",
-      image: "/images/room/cards/room-card-3.png",
-      location: "Luxurious Hotel",
-      dates: new Date().toISOString().split("T")[0],
-      amenities: ["Golden Interior", "Premium Amenities"],
-      price: 45,
-      actionLabel: "Customize",
-    });
+    if (!isInCartState) {
+      addToCart({
+        id: `special-room-${Date.now()}`,
+        type: "room",
+        title: "Special Room",
+        image: "/images/room/cards/room-card-3.png",
+        location: "Luxurious Hotel",
+        dates: new Date().toISOString().split("T")[0],
+        amenities: ["Golden Interior", "Premium Amenities"],
+        price: 45,
+        actionLabel: "Customize",
+      });
+    }
 
     router.push("/cart");
   };
@@ -97,7 +107,10 @@ const FavoriteRoomSection: React.FC = () => {
           {/* ============================================
               Left - Room Card
           ============================================ */}
-          <div className="w-full max-w-[418px] bg-[#FFFCF5] rounded-xl overflow-hidden shrink-0">
+          <Link
+            href="/room-detail"
+            className="block w-full max-w-[418px] bg-[#FFFCF5] rounded-xl overflow-hidden shrink-0 outline-none focus-within:z-50 pb-0 transition-transform duration-300 hover:shadow-xl cursor-pointer"
+          >
             {/* Room Image */}
             <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden group/card">
               <Image
@@ -109,14 +122,18 @@ const FavoriteRoomSection: React.FC = () => {
               />
 
               {/* Cart Icon in top right */}
-              <div className="absolute top-4 right-4 z-30 transition-all duration-500 xl:translate-x-12 xl:opacity-0 xl:group-hover/card:translate-x-0 xl:group-hover/card:opacity-100">
+              <div className="absolute top-4 right-4 z-30 transition-all duration-500 xl:translate-x-12 xl:opacity-0 xl:group-hover/card:translate-x-0 xl:group-hover/card:opacity-100 group-focus/card:translate-x-0 group-focus/card:opacity-100 group-active/card:translate-x-0 group-active/card:opacity-100">
                 <button
                   onClick={handleCartAction}
-                  className="group/icon w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center text-[#4B3621] hover:bg-[#FF6E00] hover:text-white transition-colors cursor-pointer shadow-md"
+                  className={`group/icon w-[35px] h-[35px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer shadow-md outline-none ${isInCartState
+                    ? "bg-[#FF6E00] text-white"
+                    : "bg-white text-[#4B3621] hover:bg-[#FF6E00] hover:text-white"
+                    }`}
+                  aria-label={isInCartState ? "Remove from cart" : "Add to cart"}
                 >
                   <div className="scale-[0.8] w-6 h-6">
                     <CartIcon
-                      className={isInCart("Special Room")
+                      className={isInCartState
                         ? "bg-white"
                         : "bg-[#4B3621] group-hover/icon:bg-white transition-colors duration-300"
                       }
@@ -145,9 +162,8 @@ const FavoriteRoomSection: React.FC = () => {
                 a restful stay.
               </p>
 
-
             </div>
-          </div>
+          </Link>
 
           {/* ============================================
               Right - Featured Content
