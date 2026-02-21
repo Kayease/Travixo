@@ -16,7 +16,7 @@ const ACTIVITY_CATEGORIES = [
     id: "beach",
     label: "Beach Tour",
     iconPath: "/images/home/streamline_beach.png",
-    imagePath: "/images/home/explore/cards/beach-tour.png",
+    imagePath: "/images/home/explore/cards/beach1.jpg",
     title: "Discover Pristine Beach Paradises!",
     description:
       "Escape to sun-kissed shores and crystal-clear waters. Our beach tours offer the perfect blend of relaxation and adventure along the world's most beautiful coastlines.",
@@ -25,7 +25,7 @@ const ACTIVITY_CATEGORIES = [
     id: "safari",
     label: "Safari",
     iconPath: "/images/home/majesticons_car-line.png",
-    imagePath: "/images/home/explore/cards/safari.png",
+    imagePath: "/images/home/explore/cards/safari1.jpg",
     title: "Experience Wildlife Safari Adventures!",
     description:
       "Venture into the wild and witness majestic animals in their natural habitat. Our safari tours promise unforgettable encounters with nature's most incredible creatures.",
@@ -34,7 +34,7 @@ const ACTIVITY_CATEGORIES = [
     id: "hiking",
     label: "Hiking",
     iconPath: "/images/home/game-icons_hiking.png",
-    imagePath: "/images/home/explore/cards/hiking.png",
+    imagePath: "/images/home/explore/cards/123.jpg",
     title: "Conquer Breathtaking Mountain Trails!",
     description:
       "Challenge yourself on scenic hiking trails through lush forests, dramatic peaks, and hidden valleys. Every step brings a new perspective on nature's grandeur.",
@@ -43,7 +43,7 @@ const ACTIVITY_CATEGORIES = [
     id: "cycling",
     label: "Cycling",
     iconPath: "/images/home/game-icons_cycling.png",
-    imagePath: "/images/home/explore/cards/cycling.png",
+    imagePath: "/images/home/explore/cards/cycling1.jpg",
     title: "Explore Scenic Cycling Routes!",
     description:
       "Pedal through picturesque landscapes and charming villages. Our cycling tours combine fitness with exploration for an eco-friendly adventure.",
@@ -52,7 +52,7 @@ const ACTIVITY_CATEGORIES = [
     id: "surfing",
     label: "Surfing",
     iconPath: "/images/home/material-symbols-light_surfing-sharp.png",
-    imagePath: "/images/home/explore/cards/surfing.png",
+    imagePath: "/images/home/explore/cards/surfing1.jpg",
     title: "Ride the Perfect Waves!",
     description:
       "Catch the ultimate surf at world-renowned beaches. From beginner-friendly breaks to challenging barrels, find your perfect wave with our surfing adventures.",
@@ -276,7 +276,7 @@ export const ExploreSection = () => {
           </div>
 
           {/* Right Content - Featured Image with smooth transition */}
-          <div className="relative w-full h-[300px] md:h-[556px] rounded-xl overflow-hidden explore-image-wrapper">
+          <div className="relative w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden explore-image-wrapper">
             <div
               key={currentCategory.imagePath}
               className="relative w-full h-full animate-explore-image-in"
@@ -285,8 +285,9 @@ export const ExploreSection = () => {
                 src={currentCategory.imagePath}
                 alt={`${currentCategory.label} experience`}
                 fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 lg:hover:scale-105 explore-image"
-                sizes="(max-width: 1023px) 100vw, 50vw"
               />
               {/* Subtle gradient overlay for better text readability if needed */}
               <div className="absolute inset-0 bg-linear-to-t from-brand-brown/10 to-transparent pointer-events-none" />
