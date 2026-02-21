@@ -24,11 +24,7 @@ export const BlogDetailContent: React.FC = () => {
         {/* Back to Blog - Frame 338 */}
         <Link
           href={backLink}
-          className="flex lg:absolute items-center gap-2 group px-5 lg:px-0 py-2 lg:py-0 max-w-[846px] mx-auto lg:mx-0 ipad-landscape-fix ipad-back-link"
-          style={{
-            left: "297px",
-            top: "52px",
-          }}
+          className="flex lg:absolute items-center gap-2 group px-5 lg:px-0 py-2 lg:py-0 max-w-[846px] mx-auto lg:mx-0 lg:left-[297px] lg:top-[52px] ipad-landscape-fix ipad-back-link"
         >
           <div className="w-6 h-6 flex items-center justify-center shrink-0">
             <svg
@@ -199,24 +195,7 @@ export const BlogDetailContent: React.FC = () => {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        @media only screen
-          and (min-width: 1000px)
-          and (max-width: 1050px)
-          and (orientation: landscape) {
-          .ipad-landscape-fix {
-            left: 89px !important;
-          }
-          .ipad-back-link {
-            position: absolute !important;
-            left: 57px !important;
-            margin-left: 0 !important;
-            transform: none !important;
-            max-width: none !important;
-            width: auto !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 };

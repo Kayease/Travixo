@@ -292,9 +292,19 @@ const NewFavoriteSection: React.FC = () => {
             Room Cards Grid
         ============================================ */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-[18px]">
-          {favoriteRooms.map((room) => (
-            <FavoriteRoomCard key={room.id} room={room} />
-          ))}
+          {favoriteRooms.map((room, index) => {
+            const isThirdCard = index === 2;
+            return (
+              <div
+                key={room.id}
+                className={isThirdCard ? "md:col-span-2 lg:col-span-1 md:flex md:justify-center lg:block" : ""}
+              >
+                <div className={isThirdCard ? "w-full md:w-[calc(50%-12px)] lg:w-full" : "w-full"}>
+                  <FavoriteRoomCard room={room} />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

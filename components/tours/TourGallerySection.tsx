@@ -55,6 +55,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
               className="object-cover"
               sizes="(max-width: 1280px) 100vw, 611px"
               priority
+              loading="eager"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -107,6 +108,7 @@ export const TourGallerySection: React.FC<TourGallerySectionProps> = ({
               className="object-cover"
               sizes="611px"
               priority
+              loading="eager"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">

@@ -186,6 +186,43 @@ textarea:focus-visible {
   animation: explore-image-in 0.5s ease-out forwards;
 }
 
+/* ========== iPad Mini Landscape Fix ========== */
+@media (min-width: 1000px) and (max-width: 1050px) {
+  .ipad-back-link {
+    position: absolute !important;
+    left: 30px !important;
+    top: 52px !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+
+  .ipad-landscape-fix {
+    left: 89px !important;
+    width: calc(100% - 89px - 89px) !important;
+    max-width: 846px !important;
+  }
+}
+
+/* ========== iPad Mini Portrait - Cart Fix ========== */
+@media only screen and (min-width: 768px) and (max-width: 810px) and (orientation: portrait) {
+  .cart-item-card {
+    flex-direction: column !important;
+    overflow: visible !important;
+  }
+
+  .cart-item-card > div:first-child {
+    width: 100% !important;
+  }
+
+  .cart-item-image {
+    height: 300px !important;
+    min-height: 300px !important;
+    flex: none !important;
+  }
+}
+
 /* ========== Reduced Motion Accessibility ========== */
 /* Respect user's OS-level motion preferences (WCAG 2.1 AA) */
 @media (prefers-reduced-motion: reduce) {

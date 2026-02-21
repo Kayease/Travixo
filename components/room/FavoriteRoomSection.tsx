@@ -109,7 +109,7 @@ const FavoriteRoomSection: React.FC = () => {
           ============================================ */}
           <Link
             href="/room-detail"
-            className="block w-full max-w-[418px] bg-[#FFFCF5] rounded-xl overflow-hidden shrink-0 outline-none focus-within:z-50 pb-0 transition-transform duration-300 hover:shadow-xl cursor-pointer"
+            className="order-2 lg:order-1 block w-full max-w-[418px] bg-[#FFFCF5] rounded-xl overflow-hidden shrink-0 outline-none focus-within:z-50 pb-0 transition-transform duration-300 hover:shadow-xl cursor-pointer"
           >
             {/* Room Image */}
             <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden group/card">
@@ -168,7 +168,7 @@ const FavoriteRoomSection: React.FC = () => {
           {/* ============================================
               Right - Featured Content
           ============================================ */}
-          <div className="flex flex-col justify-center text-center lg:text-left">
+          <div className="order-1 lg:order-2 flex flex-col justify-center text-center lg:text-left">
             {/* Label */}
             <span className="font-display text-xl md:text-2xl italic font-semibold text-white mb-2">
               Favorite Room
@@ -185,20 +185,28 @@ const FavoriteRoomSection: React.FC = () => {
               meets modern comfort for an unforgettable stay.
             </p>
 
-            {/* Book Now Button */}
+            {/* Book Now Button - Desktop only */}
             <button
               onClick={handleBookNow}
-              className="group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer flex items-center justify-center font-display text-lg italic text-[#FF6E00]"
+              className="hidden lg:flex group relative w-full max-w-[300px] h-[50px] mx-auto lg:mx-0 bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer items-center justify-center font-display text-lg italic text-[#FF6E00]"
             >
-              {/* Fill animation from bottom to top */}
               <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
-
-              {/* Button Text */}
               <span className="relative z-10 group-hover:text-white transition-colors duration-300">
                 Book Now
               </span>
             </button>
           </div>
+
+          {/* Book Now Button - Mobile/Tablet (below card) */}
+          <button
+            onClick={handleBookNow}
+            className="order-3 lg:hidden group relative w-full max-w-[300px] h-[50px] mx-auto bg-white border border-[#FF6E00] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer flex items-center justify-center font-display text-lg italic text-[#FF6E00]"
+          >
+            <span className="absolute bottom-0 left-0 right-0 h-0 bg-[#FF6E00] group-hover:h-full transition-all duration-300 ease-out" />
+            <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+              Book Now
+            </span>
+          </button>
         </div>
       </div>
     </section>

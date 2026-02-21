@@ -194,13 +194,28 @@ export const DestinationsSection = () => {
       const deltaTime = time - lastTime;
       lastTime = time;
 
-      if (!isHovering && !isManualScrolling.current && scrollRef.current) {
-        // Move at consistent speed regardless of frame rate
-        scrollRef.current.scrollLeft += speed * deltaTime;
+      if (scrollRef.current) {
+        const childNodes = scrollRef.current.children;
+        if (childNodes.length > DESTINATIONS.length) {
+          const firstItem = childNodes[0] as HTMLElement;
+          const secondSetFirstItem = childNodes[DESTINATIONS.length] as HTMLElement;
+          const loopDistance = secondSetFirstItem.offsetLeft - firstItem.offsetLeft;
 
-        // Reset to start for infinite loop
-        if (scrollRef.current.scrollLeft >= scrollRef.current.scrollWidth / 2) {
-          scrollRef.current.scrollLeft = 0;
+          if (loopDistance > 0) {
+            // Keep background auto-scrolling only when not hovered/manual
+            if (!isHovering && !isManualScrolling.current) {
+              scrollRef.current.scrollLeft += speed * deltaTime;
+            }
+
+            // Always enforce loop bounds carefully when not manually animating
+            if (!isManualScrolling.current) {
+              if (scrollRef.current.scrollLeft >= loopDistance * 2) {
+                scrollRef.current.scrollLeft -= loopDistance;
+              } else if (scrollRef.current.scrollLeft <= 0) {
+                scrollRef.current.scrollLeft += loopDistance;
+              }
+            }
+          }
         }
       }
       animationFrameId = requestAnimationFrame(step);
@@ -212,6 +227,24 @@ export const DestinationsSection = () => {
 
   const handleManualScroll = useCallback((offset: number) => {
     if (scrollRef.current) {
+      const childNodes = scrollRef.current.children;
+      if (childNodes.length > DESTINATIONS.length) {
+        const firstItem = childNodes[0] as HTMLElement;
+        const secondSetFirstItem = childNodes[DESTINATIONS.length] as HTMLElement;
+        const loopDistance = secondSetFirstItem.offsetLeft - firstItem.offsetLeft;
+
+        if (loopDistance > 0) {
+          // If we are about to hit the left edge, instantly jump a full set to the right FIRST
+          if (offset < 0 && scrollRef.current.scrollLeft < Math.abs(offset)) {
+            scrollRef.current.scrollLeft += loopDistance;
+          }
+          // If we are about to hit the right edge, instantly jump a full set to the left FIRST
+          else if (offset > 0 && scrollRef.current.scrollLeft > (loopDistance * 2) - offset) {
+            scrollRef.current.scrollLeft -= loopDistance;
+          }
+        }
+      }
+
       isManualScrolling.current = true;
       scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
 
@@ -222,13 +255,33 @@ export const DestinationsSection = () => {
     }
   }, []);
 
+  const handleScroll = useCallback(() => {
+    if (!scrollRef.current || isManualScrolling.current) return;
+
+    // Support smooth infinite manual scrolling backward/forward on touch devices
+    const childNodes = scrollRef.current.children;
+    if (childNodes.length > DESTINATIONS.length) {
+      const firstItem = childNodes[0] as HTMLElement;
+      const secondSetFirstItem = childNodes[DESTINATIONS.length] as HTMLElement;
+      const loopDistance = secondSetFirstItem.offsetLeft - firstItem.offsetLeft;
+
+      if (loopDistance > 0) {
+        if (scrollRef.current.scrollLeft <= 5) {
+          scrollRef.current.scrollLeft += loopDistance;
+        } else if (scrollRef.current.scrollLeft >= loopDistance * 2 - 5) {
+          scrollRef.current.scrollLeft -= loopDistance;
+        }
+      }
+    }
+  }, []);
+
   // Stable callbacks for hover state — passed to each DestinationCard
   const handleCardMouseEnter = useCallback(() => setIsHovering(true), []);
   const handleCardMouseLeave = useCallback(() => setIsHovering(false), []);
 
-  // Duplicate the destinations for a seamless visual loop
+  // Duplicate the destinations for a seamless visual loop (3 sets for smooth bidirectional loop)
   const displayDestinations = useMemo(
-    () => [...DESTINATIONS, ...DESTINATIONS],
+    () => [...DESTINATIONS, ...DESTINATIONS, ...DESTINATIONS],
     [],
   );
 
@@ -326,6 +379,7 @@ export const DestinationsSection = () => {
             </button>
             <div
               ref={scrollRef}
+              onScroll={handleScroll}
               className="flex gap-8 overflow-x-hidden pb-8 pr-8 pl-4 lg:pl-[120px] select-none"
               style={{
                 scrollbarWidth: "none",

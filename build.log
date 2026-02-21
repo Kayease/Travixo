@@ -1,0 +1,58 @@
+
+> travixo@1.0.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.0s
+  Running TypeScript ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/36) ...
+  Generating static pages using 9 workers (9/36) 
+  Generating static pages using 9 workers (18/36) 
+  Generating static pages using 9 workers (27/36) 
+✓ Generating static pages using 9 workers (36/36) in 187.2ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /blog
+├ ○ /blog-detail
+├ ○ /blog2
+├ ○ /cart
+├ ƒ /checkout
+├ ○ /compare
+├ ○ /contact
+├ ○ /destinations
+├ ○ /faq
+├ ○ /history
+├ ○ /how-it-works
+├ ○ /login
+├ ○ /news
+├ ○ /news-detail
+├ ○ /paris
+├ ○ /portfolio
+├ ○ /privacy
+├ ○ /products
+├ ○ /profile
+├ ○ /robots.txt
+├ ○ /room
+├ ○ /room-detail
+├ ○ /signup
+├ ○ /sitemap.xml
+├ ○ /stay
+├ ○ /team
+├ ○ /terms
+├ ○ /testimonials
+├ ○ /tour-activities
+├ ○ /tour-listings
+├ ○ /tour-types
+└ ○ /wishlist
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

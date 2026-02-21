@@ -70,7 +70,7 @@ const PencilIcon: React.FC = () => (
   >
     <path
       d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z"
-      stroke="#FFFFFF"
+      stroke="#4B3621"
       strokeWidth="1.5"
       fill="none"
     />
@@ -340,22 +340,21 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
   };
 
   // Stable default values for adults/children based on item id
-  const defaultAdults = ((item.id.charCodeAt(0) + item.id.length) % 10) + 1;
-  const defaultChildren = ((item.id.charCodeAt(item.id.length - 1) + item.id.length) % 10) + 1;
+  const defaultAdults = ((item.id.charCodeAt(0) + item.id.length) % 5) + 1;
+  const defaultChildren = ((item.id.charCodeAt(item.id.length - 1) + item.id.length) % 5) + 1;
 
   return (
-    <div className="bg-white rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] p-3 flex flex-col md:flex-row gap-4 cart-item-card h-full">
-      {/* Image + Counters Column */}
-      <div className="w-full md:w-[278px] shrink-0 flex flex-col">
-        {/* Item Image */}
-        <div className="relative w-full h-[200px] md:h-[238px] rounded-xl overflow-hidden bg-gray-100 cart-item-image">
+    <div className="bg-white rounded-xl shadow-[0px_0px_4px_rgba(0,0,0,0.1)] p-3 md:p-4 flex flex-col md:flex-row gap-4 md:gap-5 cart-item-card overflow-hidden">
+      {/* Left: Image */}
+      <div className="w-full md:w-[280px] lg:w-[340px] shrink-0">
+        <div className="relative w-full h-[240px] md:h-full min-h-[240px] rounded-xl overflow-hidden bg-gray-100 cart-item-image">
           {item.image ? (
             <Image
               src={item.image}
               alt={item.title}
               fill
               className="object-cover object-center"
-              sizes="(max-width: 768px) 100vw, 278px"
+              sizes="(max-width: 768px) 100vw, 380px"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -365,145 +364,150 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
             </div>
           )}
         </div>
-
-        {/* Adult & Children Counters */}
-        <div>
-          {/* Adult Counter */}
-          <div className="py-3 flex items-center justify-between">
-            <span className="text-sm md:text-base text-[#4B3621]">
-              Adult ( 13+ age )
-            </span>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => onUpdate(item.id, { adults: Math.max(0, (item.adults ?? defaultAdults) - 1) })}
-                className="w-7 h-7 rounded-full bg-[#FFE5CC] flex items-center justify-center text-[#4B3621] text-lg font-bold hover:bg-[#FFD6B0] transition-colors cursor-pointer"
-              >
-                −
-              </button>
-              <span className="text-base md:text-lg text-[#4B3621] w-5 text-center">
-                {item.adults ?? defaultAdults}
-              </span>
-              <button
-                onClick={() => onUpdate(item.id, { adults: (item.adults ?? defaultAdults) + 1 })}
-                className="w-7 h-7 rounded-full bg-[#FF6E00] flex items-center justify-center text-white text-lg font-bold hover:bg-[#e56200] transition-colors cursor-pointer"
-              >
-                +
-              </button>
-            </div>
-          </div>
-
-          {/* Children Counter */}
-          <div className="py-3 flex items-center justify-between">
-            <span className="text-sm md:text-base text-[#4B3621]">
-              Children ( age 3-12 )
-            </span>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => onUpdate(item.id, { children: Math.max(0, (item.children ?? defaultChildren) - 1) })}
-                className="w-7 h-7 rounded-full bg-[#FFE5CC] flex items-center justify-center text-[#4B3621] text-lg font-bold hover:bg-[#FFD6B0] transition-colors cursor-pointer"
-              >
-                −
-              </button>
-              <span className="text-base md:text-lg text-[#4B3621] w-5 text-center">
-                {item.children ?? defaultChildren}
-              </span>
-              <button
-                onClick={() => onUpdate(item.id, { children: (item.children ?? defaultChildren) + 1 })}
-                className="w-7 h-7 rounded-full bg-[#FF6E00] flex items-center justify-center text-white text-lg font-bold hover:bg-[#e56200] transition-colors cursor-pointer"
-              >
-                +
-              </button>
-            </div>
-          </div>
-
-        </div>
       </div>
 
-      {/* Item Details */}
-      <div className="flex-1 py-2 relative cart-item-details flex flex-col">
-        {/* Type & Price Row */}
-        <div className="flex justify-between items-start mb-1">
-          <span className="text-base md:text-lg text-[#4B3621]">
-            {item.type === "room" ? "Rooms Selection" : "Experience"}
-          </span>
-          <span className="font-display text-xl md:text-2xl italic font-medium text-[#FF6E00] cart-item-price">
-            $ {item.price.toLocaleString()}
-          </span>
-        </div>
+      {/* Right: Details */}
+      <div className="flex-1 min-w-0 py-1 md:py-2 relative flex flex-col">
+        {/* Close (Remove) Button - top right */}
+        <button
+          onClick={() => onRemove(item.id)}
+          className="absolute top-0 right-0 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center text-[#FF3B30] hover:text-[#e53530] transition-colors cursor-pointer z-10"
+          aria-label="Remove item"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        {/* Type Label */}
+        <span className="text-base md:text-xl text-[#4B3621] mb-1">
+          {item.type === "room" ? "Rooms Selection" : "Experience"}
+        </span>
 
         {/* Title */}
-        <h3 className="font-display text-xl md:text-2xl italic font-semibold text-[#4B3621] mb-2">
+        <h3 className="font-display text-xl md:text-[28px] italic font-semibold text-[#4B3621] leading-tight mb-3 pr-10">
           {item.title}
         </h3>
 
-        {/* Location & Dates */}
-        <div className="flex flex-wrap gap-3 md:gap-4 mb-2">
-          {/* Location */}
-          <div className="flex items-center gap-2">
+        {/* Location + Amenity Badges */}
+        <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             <LocationIcon />
-            <span className="text-base md:text-lg text-[#4B3621]">
+            <span className="text-sm md:text-base text-[#4B3621] whitespace-nowrap">
               {item.location}
             </span>
           </div>
+          {item.amenities &&
+            item.amenities.map((amenity) => {
+              if (amenity.includes("Adults,") || amenity.includes("Children")) {
+                return (
+                  <span
+                    key="guests-pill"
+                    className="px-2 md:px-3 py-0.5 bg-[#FFF7E5] rounded-full text-xs md:text-sm text-[#4B3621] whitespace-nowrap shrink-0"
+                  >
+                    {item.adults ?? defaultAdults} Adults, {item.children ?? defaultChildren} Children
+                  </span>
+                );
+              }
+              return (
+                <span
+                  key={amenity}
+                  className="px-2 md:px-3 py-0.5 bg-[#FFF7E5] rounded-full text-xs md:text-sm text-[#4B3621] whitespace-nowrap shrink-0"
+                >
+                  {amenity}
+                </span>
+              );
+            })}
+        </div>
 
-          {/* Dates */}
-          <div className="flex items-center gap-2 relative">
-            <div onClick={handleEditClick} className="cursor-pointer">
-              <CalendarIcon />
-            </div>
-            <div ref={datePickerWrapperRef} className="w-[180px] cart-datepicker">
-              <DatePicker
-                value={dateValue}
-                onChange={handleDateChange}
-                variant="transparent"
-                placeholder="Select Dates"
-                mode="range"
-                size="sm"
-                hideIcon={true}
-                open={isDatePickerOpen}
-                onOpenChange={setIsDatePickerOpen}
-              />
-            </div>
+        {/* Date Row with Pencil Icon */}
+        <div className="flex items-center gap-2 mb-4">
+          <div onClick={handleEditClick} className="cursor-pointer shrink-0">
+            <PencilIcon />
+          </div>
+          <div ref={datePickerWrapperRef} className="w-[200px] cart-datepicker">
+            <DatePicker
+              value={dateValue}
+              onChange={handleDateChange}
+              variant="transparent"
+              placeholder="Select Dates"
+              mode="range"
+              size="sm"
+              hideIcon={true}
+              open={isDatePickerOpen}
+              onOpenChange={setIsDatePickerOpen}
+            />
           </div>
         </div>
 
-        {/* Amenities */}
-        <div className="flex flex-wrap gap-2 mb-3">
-          {item.amenities &&
-            item.amenities.map((amenity) => (
-              <span
-                key={amenity}
-                className="px-3 py-1 bg-[#FFF7E5] rounded-xl text-sm md:text-lg text-[#4B3621]"
-              >
-                {amenity}
+        {/* Divider */}
+        <div className="border-t border-[#4B3621]/10 mb-4" />
+
+        {/* Counters + Price Row */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mt-auto overflow-hidden">
+          {/* Counters (stacked vertically) */}
+          <div className="flex flex-col gap-3 min-w-0">
+            {/* Children Counter */}
+            <div className="flex items-center gap-3">
+              <span className="text-base md:text-lg font-medium text-[#4B3621] min-w-[120px] md:min-w-[140px]">
+                Children <span className="font-normal text-sm md:text-base">(03-12)</span>
               </span>
-            ))}
-        </div>
+              <div className="flex items-center gap-2 md:gap-3">
+                <button
+                  onClick={() => onUpdate(item.id, { children: Math.max(0, (item.children ?? defaultChildren) - 1) })}
+                  className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center text-[#4B3621] text-lg font-bold hover:bg-[#FFD6B0] transition-colors cursor-pointer shrink-0"
+                >
+                  −
+                </button>
+                <span className="text-base md:text-lg text-[#4B3621] w-5 text-center shrink-0 font-medium">
+                  {item.children ?? defaultChildren}
+                </span>
+                <button
+                  onClick={() => onUpdate(item.id, { children: (item.children ?? defaultChildren) + 1 })}
+                  className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#FF6E00] flex items-center justify-center text-white text-lg font-bold hover:bg-[#e56200] transition-colors cursor-pointer shrink-0"
+                >
+                  +
+                </button>
+              </div>
+            </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-2 md:gap-4 mt-auto">
-          {/* Edit/Customize Button */}
-          <button
-            onClick={handleEditClick}
-            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6E00] rounded-xl text-white text-sm md:text-lg hover:bg-[#e56200] transition-colors cursor-pointer"
-          >
-            <PencilIcon />
-            <span>Customize</span>
-          </button>
+            {/* Adult Counter */}
+            <div className="flex items-center gap-3">
+              <span className="text-base md:text-lg font-medium text-[#4B3621] min-w-[120px] md:min-w-[140px]">
+                Adult <span className="font-normal text-sm md:text-base">(13+)</span>
+              </span>
+              <div className="flex items-center gap-2 md:gap-3">
+                <button
+                  onClick={() => onUpdate(item.id, { adults: Math.max(0, (item.adults ?? defaultAdults) - 1) })}
+                  className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center text-[#4B3621] text-lg font-bold hover:bg-[#FFD6B0] transition-colors cursor-pointer shrink-0"
+                >
+                  −
+                </button>
+                <span className="text-base md:text-lg text-[#4B3621] w-5 text-center shrink-0 font-medium">
+                  {item.adults ?? defaultAdults}
+                </span>
+                <button
+                  onClick={() => onUpdate(item.id, { adults: (item.adults ?? defaultAdults) + 1 })}
+                  className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#FF6E00] flex items-center justify-center text-white text-lg font-bold hover:bg-[#e56200] transition-colors cursor-pointer shrink-0"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
 
-          {/* Remove Button */}
-          <button
-            onClick={() => onRemove(item.id)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-[#FF3B30] rounded-xl text-white text-sm md:text-lg hover:bg-[#e53530] transition-colors cursor-pointer"
-          >
-            <span>Remove</span>
-          </button>
+          {/* Price - right-aligned, responsive sizing */}
+          <div className="shrink-0 text-right">
+            <span className="font-display text-2xl md:text-[28px] lg:text-[32px] italic font-semibold text-[#4B3621] leading-none whitespace-nowrap">
+              <span className="text-lg md:text-xl align-top">$</span> {item.price.toLocaleString()}
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* iPad Mini Specific Styles */}
+      {/* iPad Mini / iPhone Styles */}
       <style jsx>{`
-        /* iPad Mini Portrait (768x1024) - Compact for 2-column grid */
+        /* iPad Mini Portrait (768x1024) */
         @media only screen 
           and (min-width: 768px) 
           and (max-width: 768px) 
@@ -512,90 +516,18 @@ const CartItemCard: React.FC<CartItemCardProps> = ({
           and (orientation: portrait) {
           .cart-item-card {
             flex-direction: column !important;
-            padding: 0.5rem !important;
-            height: 100% !important;
           }
-          
-          .cart-item-image {
+          .cart-item-card > div:first-child {
             width: 100% !important;
             max-width: 100% !important;
-            height: 220px !important;
           }
-          
-          .cart-item-image img {
-            object-fit: cover !important;
-            object-position: center !important;
-          }
-          
-          .cart-item-details h3 {
-            font-size: 0.95rem !important;
-            margin-bottom: 0.5rem !important;
-            line-height: 1.3 !important;
-          }
-          
-          .cart-item-details span {
-            font-size: 0.8rem !important;
-          }
-          
-          .cart-item-details span.cart-item-price {
-            font-size: 1.25rem !important;
-          }
-          
-          .cart-item-details button {
-            padding: 0.375rem 0.625rem !important;
-            font-size: 0.75rem !important;
-          }
-          
-          .cart-datepicker {
-            max-width: 140px !important;
-          }
-        }
-        
-        /* iPad Mini Landscape (1024x768) - Very compact for 3-column grid */
-        @media only screen 
-          and (min-width: 1024px) 
-          and (max-width: 1024px) 
-          and (min-height: 768px) 
-          and (max-height: 768px) 
-          and (orientation: landscape) {
-          .cart-item-card {
-            flex-direction: column !important;
-            padding: 0.5rem !important;
-            height: 100% !important;
-          }
-          
           .cart-item-image {
-            width: 100% !important;
-            max-width: 100% !important;
             height: 200px !important;
+            min-height: 200px !important;
           }
-          
           .cart-item-image img {
             object-fit: cover !important;
             object-position: center !important;
-          }
-          
-          .cart-item-details h3 {
-            font-size: 0.875rem !important;
-            margin-bottom: 0.375rem !important;
-            line-height: 1.2 !important;
-          }
-          
-          .cart-item-details span {
-            font-size: 0.75rem !important;
-          }
-          
-          .cart-item-details span.cart-item-price {
-            font-size: 1.15rem !important;
-          }
-          
-          .cart-item-details button {
-            padding: 0.25rem 0.5rem !important;
-            font-size: 0.7rem !important;
-          }
-          
-          .cart-datepicker {
-            max-width: 120px !important;
           }
         }
 
@@ -657,17 +589,25 @@ const CartItemsSection: React.FC = () => {
 
   // Memoize booking summary — recalculates only when cartItems change
   const bookingSummary = useMemo<BookingSummary>(() => {
+    const getPeopleCount = (item: CartItem) => {
+      const defaultAdults = ((item.id.charCodeAt(0) + item.id.length) % 5) + 1;
+      const defaultChildren = ((item.id.charCodeAt(item.id.length - 1) + item.id.length) % 5) + 1;
+      const adults = item.adults ?? defaultAdults;
+      const children = item.children ?? defaultChildren;
+      return adults + children;
+    };
+
     const roomSubtotal = cartItems
       .filter((item) => item.type === "room")
       .reduce(
-        (sum, item) => sum + item.price * calculateDuration(item.dates),
+        (sum, item) => sum + item.price * calculateDuration(item.dates) * getPeopleCount(item),
         0,
       );
 
     const experienceSubtotal = cartItems
       .filter((item) => item.type === "experience")
       .reduce(
-        (sum, item) => sum + item.price * calculateDuration(item.dates),
+        (sum, item) => sum + item.price * calculateDuration(item.dates) * getPeopleCount(item),
         0,
       );
 
@@ -760,15 +700,19 @@ const CartItemsSection: React.FC = () => {
             max-width: 100% !important;
           }
           
-          .cart-items-grid {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 1rem !important;
-          }
-          
           .cart-summary-column {
             width: 100% !important;
             max-width: 100% !important;
+          }
+          
+          .cart-items-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1.5rem !important;
+          }
+          
+          .cart-items-grid > div {
+            margin-top: 0 !important;
           }
         }
         
@@ -792,12 +736,6 @@ const CartItemsSection: React.FC = () => {
           
           .cart-items-column {
             max-width: 100% !important;
-          }
-          
-          .cart-items-grid {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 0.75rem !important;
           }
           
           .cart-summary-column {

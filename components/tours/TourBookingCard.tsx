@@ -171,6 +171,8 @@ export const TourBookingCard: React.FC<TourBookingCardProps> = ({
           amenities: [`${adults} Adults, ${children} Children`],
           price: price * (adults + children),
           actionLabel: "Customize",
+          adults,
+          children,
         };
         addToCart(cartItem);
         router.push("/cart");

@@ -1,11 +1,13 @@
+"use client";
+
 import React from "react";
 
 export const AdventureSection = () => {
   return (
-    <section className="w-full h-[440px] md:h-[650px] relative overflow-hidden flex justify-center bg-gray-900">
+    <section className="w-full h-[350px] md:h-[450px] lg:h-[650px] relative overflow-hidden flex justify-center bg-gray-900">
       {/* Background Video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-80 object-[75%_center] md:object-[center_35%]"
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-80 object-[55%_center] lg:object-[center_35%] adventure-video"
         autoPlay
         loop
         muted
@@ -36,6 +38,20 @@ export const AdventureSection = () => {
           </p>
         </div>
       </div>
+
+      {/* iPhone 14 Pro Max Portrait Styles (430x932) */}
+      <style jsx>{`
+        @media only screen 
+          and (min-width: 430px) 
+          and (max-width: 430px) 
+          and (min-height: 932px) 
+          and (max-height: 932px) 
+          and (orientation: portrait) {
+          .adventure-video {
+            object-position: 75% center !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
