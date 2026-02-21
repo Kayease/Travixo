@@ -416,12 +416,13 @@ npm start</code></pre>
 │   │   └── ToastContext.tsx       # Toast notifications
 │   ├── about/                    # About page
 │   ├── contact/                  # Contact page
-│   ├── products/                 # Products listing + detail
+│   ├── tour-listings/            # Products listing grid
+│   ├── products/                 # Individual tour detail
 │   ├── destinations/             # Destinations page
 │   ├── checkout/                 # Checkout flow
 │   ├── cart/                     # Cart page
 │   ├── wishlist/                 # Wishlist page
-│   └── ...                       # Other pages
+│   └── ...                       # Other pages (news, blog, room, etc.)
 │
 ├── components/                   # Reusable React components
 │   ├── layout/                   # Navbar, Footer
@@ -469,12 +470,12 @@ npm start</code></pre>
           <td>Contact form and office information</td>
         </tr>
         <tr>
-          <td><code>/products</code></td>
+          <td><code>/tour-listings</code></td>
           <td>Products</td>
           <td>Tour listings grid with filtering</td>
         </tr>
         <tr>
-          <td><code>/products/[slug]</code></td>
+          <td><code>/products</code></td>
           <td>Tour Detail</td>
           <td>Individual tour page with gallery, booking, reviews</td>
         </tr>
@@ -518,11 +519,7 @@ npm start</code></pre>
           <td>Profile</td>
           <td>User profile management</td>
         </tr>
-        <tr>
-          <td><code>/settings</code></td>
-          <td>Settings</td>
-          <td>Account settings</td>
-        </tr>
+
         <tr>
           <td><code>/blog</code></td>
           <td>Blog</td>
@@ -541,7 +538,12 @@ npm start</code></pre>
         <tr>
           <td><code>/news</code></td>
           <td>News</td>
-          <td>Latest travel news</td>
+          <td>Latest travel news listing</td>
+        </tr>
+        <tr>
+          <td><code>/news-detail</code></td>
+          <td>News Detail</td>
+          <td>Individual travel news article</td>
         </tr>
         <tr>
           <td><code>/faq</code></td>
@@ -623,14 +625,16 @@ npm start</code></pre>
       <li><strong>layout/</strong> — Navbar, Footer (used across all pages)</li>
       <li><strong>home/</strong> — HeroSection, ExploreSection, ServicesSection, DestinationsSection,
         TestimonialSection, etc.</li>
-      <li><strong>ui/</strong> — Button, TourCard, Toast, DatePicker, ReviewModal</li>
+      <li><strong>ui/</strong> — Button, TourCard, Toast, DatePicker, ReviewModal, SelectInput, PromoPopup</li>
       <li><strong>tours/</strong> — TourDetailHeroSection, TourGallerySection, TourBookingCard, TourFAQSection, etc.
       </li>
       <li><strong>cart/</strong> — CartHeroSection, CartItemsSection</li>
-      <li><strong>checkout/</strong> — CheckoutSection, TravelInformationForm, OrderSummaryCard</li>
-      <li><strong>wishlist/</strong> — WishlistContentSection, WishlistSidebar, WishlistHeroSection</li>
+      <li><strong>checkout/</strong> — CheckoutProgressBar, CheckoutSection, OrderSummaryCard, PaymentDetailsForm,
+        TravelInformationForm</li>
+      <li><strong>wishlist/</strong> — WishlistBannerSection, WishlistCard, WishlistContentSection, WishlistHeroSection,
+        WishlistSidebar</li>
       <li><strong>about/</strong> — AboutHeroSection, ProcessSection, ValuesSection</li>
-      <li><strong>blogs/</strong> — BlogHeroSection, BlogCard, BlogGridSection, BlogDetailContent</li>
+      <li><strong>blogs/</strong> — BlogHeroSection, BlogCard, BlogGridSection, BlogDetailContent, BlogDetailHero</li>
       <li><strong>destinations/</strong> — DestinationsHeroSection, DestinationsGridSection, DestinationCard</li>
       <li><strong>paris/</strong> — ParisToursSection, WhenToVisitSection, TestimonialSection</li>
       <li><strong>room/</strong> — RoomHeroSection, RoomGridSection, FavoriteRoomSection</li>
@@ -638,8 +642,10 @@ npm start</code></pre>
       <li><strong>stay/</strong> — StayHeroSection, SuiteSection, StayCommunitySection</li>
       <li><strong>team/</strong> — TeamHeroSection, TeamGridSection, TeamMemberCard</li>
       <li><strong>compare/</strong> — CompareHeroSection, CompareTableSection</li>
-      <li><strong>portfolio/</strong> — PortfolioHeroSection, ExpeditionCard, DiscoveryCard</li>
-      <li><strong>history/</strong> — HistoryHeroSection, ScrapbookCard, TravelStatsCard</li>
+      <li><strong>portfolio/</strong> — PortfolioHeroSection, ExpeditionCard, DiscoveryCard,
+        SignatureExpeditionsSection, ImpactStoriesSection</li>
+      <li><strong>history/</strong> — HistoryHeroSection, ScrapbookCard, TravelStatsCard, HistoryContentSection,
+        MilestoneCard</li>
     </ul>
 
     <!-- Colors & Branding -->
