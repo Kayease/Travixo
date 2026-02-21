@@ -124,7 +124,7 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
   };
 
   return (
-    <div className="bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group relative">
+    <Link href="/room-detail" className="block bg-[#FFFCF5] rounded-xl overflow-hidden shadow-[0_0_4px_rgba(0,0,0,0.1)] group relative cursor-pointer hover:shadow-lg transition-shadow duration-300">
       {/* Room Image */}
       <div className="relative w-full h-[280px] md:h-[320px] lg:h-[360px] overflow-hidden">
         <Image
@@ -138,12 +138,14 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
         {/* Action Buttons - Slide in from right */}
         <div className="absolute top-3 right-3 z-20 flex flex-col gap-2 transition-all duration-500 ease-out xl:translate-x-12 xl:opacity-0 xl:group-hover:translate-x-0 xl:group-hover:opacity-100 focus-within:translate-x-0 focus-within:opacity-100">
           {/* Wishlist Button */}
-          <button
+          <div
             onClick={handleWishlistAction}
             className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isWishlisted
               ? "bg-[#FF6E00]"
               : "bg-white hover:bg-[#FF6E00]"
               }`}
+            role="button"
+            tabIndex={0}
             aria-label="Add to wishlist"
           >
             <div
@@ -163,15 +165,17 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
                 WebkitMaskPosition: "center",
               }}
             />
-          </button>
+          </div>
 
           {/* Cart Button */}
-          <button
+          <div
             onClick={handleCartAction}
             className={`group/icon w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${isInCartState
               ? "bg-[#FF6E00] text-white"
               : "bg-white text-[#4B3621] hover:bg-[#FF6E00] hover:text-white"
               }`}
+            role="button"
+            tabIndex={0}
             aria-label="Add to cart"
           >
             <div className="scale-[0.8] w-6 h-6">
@@ -182,7 +186,7 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
                 }
               />
             </div>
-          </button>
+          </div>
         </div>
       </div>
 
@@ -205,9 +209,11 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
         </p>
 
         {/* Check Availability Link */}
-        <button
+        <div
           onClick={handleBookNow}
           className="inline-flex items-center gap-2 mt-2 md:mt-4 cursor-pointer hover:text-[#FF6E00] text-[#4B3621] transition-colors duration-300 group/availability"
+          role="button"
+          tabIndex={0}
         >
           <span className="font-poppins text-lg transition-colors duration-300">
             Book Now
@@ -228,9 +234,9 @@ const RoomCard: React.FC<{ room: RoomCardData }> = ({ room }) => {
               strokeLinejoin="round"
             />
           </svg>
-        </button>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

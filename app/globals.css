@@ -203,6 +203,10 @@ textarea:focus-visible {
     width: calc(100% - 89px - 89px) !important;
     max-width: 846px !important;
   }
+
+  .ipad-main-content-fix {
+    top: 850px !important;
+  }
 }
 
 /* ========== iPad Mini Portrait - Cart Fix ========== */
@@ -212,7 +216,7 @@ textarea:focus-visible {
     overflow: visible !important;
   }
 
-  .cart-item-card > div:first-child {
+  .cart-item-card>div:first-child {
     width: 100% !important;
   }
 

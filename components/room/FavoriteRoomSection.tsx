@@ -123,12 +123,14 @@ const FavoriteRoomSection: React.FC = () => {
 
               {/* Cart Icon in top right */}
               <div className="absolute top-4 right-4 z-30 transition-all duration-500 xl:translate-x-12 xl:opacity-0 xl:group-hover/card:translate-x-0 xl:group-hover/card:opacity-100 group-focus/card:translate-x-0 group-focus/card:opacity-100 group-active/card:translate-x-0 group-active/card:opacity-100">
-                <button
+                <div
                   onClick={handleCartAction}
                   className={`group/icon w-[35px] h-[35px] rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer shadow-md outline-none ${isInCartState
                     ? "bg-[#FF6E00] text-white"
                     : "bg-white text-[#4B3621] hover:bg-[#FF6E00] hover:text-white"
                     }`}
+                  role="button"
+                  tabIndex={0}
                   aria-label={isInCartState ? "Remove from cart" : "Add to cart"}
                 >
                   <div className="scale-[0.8] w-6 h-6">
@@ -139,7 +141,7 @@ const FavoriteRoomSection: React.FC = () => {
                       }
                     />
                   </div>
-                </button>
+                </div>
               </div>
             </div>
 

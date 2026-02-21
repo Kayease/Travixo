@@ -739,17 +739,15 @@ export const Navbar = () => {
               </div>
             </div>
 
-            {/* Icons shown only on Large Screens */}
-            <div className="hidden lg:flex items-center gap-2 md:gap-4 lg:gap-6">
-              <Link href="/wishlist" aria-label="View wishlist" className="relative cursor-pointer scale-90 md:scale-100">
-                <WishlistIcon />
-                {mounted && wishlistItems.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
-                    {wishlistItems.length}
-                  </span>
-                )}
-              </Link>
-            </div>
+            {/* Wishlist Icon */}
+            <Link href="/wishlist" aria-label="View wishlist" className="relative cursor-pointer scale-90 md:scale-100">
+              <WishlistIcon />
+              {mounted && wishlistItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#FF6E00] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center border border-white shadow-sm">
+                  {wishlistItems.length}
+                </span>
+              )}
+            </Link>
 
             {/* Hamburger Menu Toggle Button - Mobile Only */}
             <button

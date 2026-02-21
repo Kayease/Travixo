@@ -75,7 +75,6 @@ export default function NewsDetailPage() {
                 className="object-cover"
                 sizes="(max-width: 1200px) 100vw, 1200px"
                 priority
-                unoptimized
               />
             </div>
           </div>

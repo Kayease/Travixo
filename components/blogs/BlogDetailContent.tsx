@@ -105,7 +105,7 @@ export const BlogDetailContent: React.FC = () => {
 
         {/* Main Detailed Content */}
         <div
-          className="px-5 lg:px-0 lg:absolute mt-6 lg:mt-0 max-w-[846px] mx-auto lg:mx-0 ipad-landscape-fix"
+          className="px-5 lg:px-0 lg:absolute mt-6 lg:mt-0 max-w-[846px] mx-auto lg:mx-0 ipad-landscape-fix ipad-main-content-fix"
           style={{
             left: "297px",
             top: "996px",
