@@ -293,7 +293,7 @@ const RoomGridSection: React.FC = () => {
       id: "deluxe-room",
       name: "Deluxe Room",
       price: "$45",
-      image: "/images/room/cards/gallery.png",
+      image: "/images/room/cards/deluxeroom.jpg",
       description:
         "Generously appointed with king-size bedding, a soaking tub, and elegant touches for discerning travelers.",
     },
